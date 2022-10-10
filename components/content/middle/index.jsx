@@ -1622,7 +1622,7 @@ function ContentMiddle() {
                   </article>
                 </div>
                 <div className="widget widget-who-following">
-                  <h3 className="widget-title">Who's Following</h3>
+                  <h3 className="widget-title">{"Who's Following"}</h3>
 
                   <div className="following-item d-flex justify-content-between align-items-center">
                     <a href="#">
