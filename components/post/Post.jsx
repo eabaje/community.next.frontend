@@ -1,4 +1,4 @@
-import "./post.css";
+//import "./post.css";
 import { MoreVert } from "@material-ui/icons";
 import { useContext, useEffect, useState } from "react";
 import axios from "axios";
