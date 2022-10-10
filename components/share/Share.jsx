@@ -1,4 +1,4 @@
-import "./share.css";
+//import "./share.css";
 import {
   PermMedia,
   Label,

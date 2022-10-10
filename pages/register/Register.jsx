@@ -2,7 +2,7 @@ import axios from "axios";
 
 import axiosInstance from "../../helpers/axiosInstance-2";
 import { useRef, useState } from "react";
-import "./register.css";
+//import "./register.css";
 import { useHistory } from "react-router";
 import Visibility from "@material-ui/icons/Visibility";
 import InputAdornment from "@material-ui/core/InputAdornment";
