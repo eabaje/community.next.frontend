@@ -1,32 +1,32 @@
 import React from "react";
-// const imgMyimageexample = require("../assets/slider_2.jpg");
-// const divStyle = {
-//   width: "100vw",
-//   height: "100vh",
-//   backgroundImage: `url(${imgMyimageexample})`,
-//   backgroundSize: "cover",
-// };style={divStyle}
-const AuthLayout = ({ children }) => (
-  <div>
-    <div className="auth-wrapper">
-      <div className="auth-content">
-        <div className="card">
-          <div className="row align-items-center text-center">
-            <div className="col-md-12">
-              <div className=" card-body">
-                <img
-                  src="assets/images/logo-small-prod.png"
-                  alt=""
-                  className="logo-main"
-                />
-                <h4 className="mb-3 f-w-700">Global Load Dispatch</h4>
 
-                {children}
+const AuthLayout = ({ children }) => (
+  <div className="profile-authentication-area">
+    <div className="container">
+      <div className="row">
+        <div className="col-lg-6 col-md-12">
+          <div className="profile-authentication-image">
+            <div className="content-image">
+              <div className="logo">
+                <a href="#">
+                  <img src="assets/images/logo.png" alt="MyArea" />
+                </a>
+              </div>
+              <div className="vector-image">
+                <img src="assets/images/vector.png" alt="image" />
               </div>
             </div>
           </div>
         </div>
+
+        {children}
       </div>
+    </div>
+
+    <div className="home-btn-icon">
+      <a href="index.html">
+        <i className="flaticon-home"></i>
+      </a>
     </div>
   </div>
 );
