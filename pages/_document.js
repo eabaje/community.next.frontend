@@ -23,30 +23,41 @@ export default class MyDocument extends Document {
               rel="stylesheet"
               href="http://localhost:3000/assets/style.css"
             />
-            <link rel="stylesheet" href="assets/css/style.css" />
+            <link rel="stylesheet" href="/assets/css/style.css" />
 
-            <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-            <link rel="stylesheet" href="assets/css/animate.min.css" />
-            <link rel="stylesheet" href="assets/css/remixicon.css" />
-            <link rel="stylesheet" href="assets/css/flaticon.css" />
-            <link rel="stylesheet" href="assets/css/jquery-ui.min.css" />
-            <link rel="stylesheet" href="assets/css/magnific-popup.min.css" />
-            <link rel="stylesheet" href="assets/css/simplebar.min.css" />
-            <link rel="stylesheet" href="assets/css/metismenu.min.css" />
-            <link rel="stylesheet" href="assets/css/owl.carousel.min.css" />
+            <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="/assets/css/animate.min.css" />
+            <link rel="stylesheet" href="/assets/css/remixicon.css" />
+            <link rel="stylesheet" href="/assets/css/flaticon.css" />
+            <link rel="stylesheet" href="/assets/css/jquery-ui.min.css" />
+            <link rel="stylesheet" href="/assets/css/magnific-popup.min.css" />
+            <link rel="stylesheet" href="/assets/css/simplebar.min.css" />
+            <link rel="stylesheet" href="/assets/css/metismenu.min.css" />
+            <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
             <link
               rel="stylesheet"
-              href="assets/css/owl.theme.default.min.css"
+              href="/assets/css/owl.theme.default.min.css"
             />
-            <link rel="stylesheet" href="assets/css/style.css" />
-            <link rel="stylesheet" href="assets/css/responsive.css" />
+            <link rel="stylesheet" href="/assets/css/style.css" />
+            <link rel="stylesheet" href="/assets/css/responsive.css" />
             <link
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
               rel="stylesheet"
             />
             <link
+              rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/fontawesome.min.css"
+              integrity="sha384-z4tVnCr80ZcL0iufVdGQSUzNvJsKjEtqYZjiQrrYKlpGow+btDHDfQWkFjoaz/Zr"
+              crossOrigin="anonymous"
+            ></link>
+            <link
               type="text/css"
-              href="assets/css/fontawesome/font-awesome.min.css"
+              href="/assets/css/fontawesome/font-awesome.min.css"
+              rel="stylesheet"
+            />
+            <link
+              type="text/css"
+              href="/assets/css/fontawesome-6.2.0/css/all.css"
               rel="stylesheet"
             />
             <link
@@ -61,15 +72,15 @@ export default class MyDocument extends Document {
 
             {/* <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> */}
-            <script src="assets/js/jquery.min.js"></script>
-            <script src="assets/js/bootstrap.bundle.min.js"></script>
-            <script src="assets/js/jquery.magnific-popup.min.js"></script>
-            <script src="assets/js/jquery-ui.min.js"></script>
-            <script src="assets/js/simplebar.min.js"></script>
-            <script src="assets/js/metismenu.min.js"></script>
-            <script src="assets/js/owl.carousel.min.js"></script>
-            <script src="assets/js/wow.min.js"></script>
-            <script src="assets/js/main.js"></script>
+            <script src="/assets/js/jquery.min.js"></script>
+            <script src="/assets/js/bootstrap.bundle.min.js"></script>
+            <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+            <script src="/assets/js/jquery-ui.min.js"></script>
+            <script src="/assets/js/simplebar.min.js"></script>
+            <script src="/assets/js/metismenu.min.js"></script>
+            <script src="/assets/js/owl.carousel.min.js"></script>
+            <script src="/assets/js/wow.min.js"></script>
+            <script src="/assets/js/main.js"></script>
           </body>
         </Html>
       </>

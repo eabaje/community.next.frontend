@@ -1,0 +1,1722 @@
+[
+    {
+      "id": "0",
+      "gender": "female",
+      "name": "בלה פרינס",
+      "birt_date": "20 APR 1884",
+      "birt_hebdate": "כ\"ה  ניסן  תרמ\"ד ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "26 OCT 1942",
+      "deat_hebdate": "ט\"ו  חשון  תש\"ג ",
+      "deat_place": "אושביץ ",
+      "holucost": "1",
+      "img": "607",
+      "docs": [
+        {
+          "img": "פרינס בלה 20 APR 1884-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796043/?p=1&s=Betje%20Prins%201884&doc_id=12796043",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס בלה 20 APR 1884-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Betje%20mok%201884%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס בלה 20 APR 1884-3.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22Joseph+Prins%22&coll=ddd&page=1&maxperpage=50&identifier=ddd:010859514:mpeg21:a0046&resultsidentifier=ddd:010859514:mpeg21:a0046",
+          "title": "פרסום נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס בלה 20 APR 1884-4.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22Joseph+Prins%22&coll=ddd&page=2&maxperpage=50&identifier=ddd:010872789:mpeg21:a0051&resultsidentifier=ddd:010872789:mpeg21:a0051",
+          "title": "פרסום נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "10", "type": "blood" }],
+      "siblings": [
+        { "id": "14", "type": "blood" },
+        { "id": "11", "type": "blood" },
+        { "id": "12", "type": "blood" },
+        { "id": "13", "type": "blood" },
+        { "id": "15", "type": "blood" }
+      ],
+      "spouses": [{ "id": "1", "type": "married" }],
+      "children": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ]
+    },
+    {
+      "id": "1",
+      "gender": "male",
+      "name": "יוסף פרינס",
+      "birt_date": "5 DEC 1884",
+      "birt_hebdate": "י\"ז  כסלו  תרמ\"ה ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "26 OCT 1942",
+      "deat_hebdate": "ט\"ו  חשון  תש\"ג ",
+      "deat_place": "אושביץ פולין",
+      "holucost": "1",
+      "img": "608",
+      "docs": [
+        {
+          "img": "פרינס יוסף 5 DEC 1884-1.JPG",
+          "link": "https://www.joodsmonument.nl/image/2016/3/28/gezinskaart.pdf",
+          "title": "לא ברור",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס יוסף 5 DEC 1884-2.JPG",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796228/?p=1&s=Joseph%20Prins%201884&doc_id=12796228",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס יוסף 5 DEC 1884-3.JPG",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Joseph%20Prins%20%201884%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "16", "type": "blood" },
+        { "id": "17", "type": "blood" }
+      ],
+      "siblings": [{ "id": "19", "type": "blood" }],
+      "spouses": [{ "id": "0", "type": "married" }],
+      "children": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ]
+    },
+    {
+      "id": "2",
+      "gender": "male",
+      "name": "הרב אברהם פרינס",
+      "birt_date": "15 JAN 1912",
+      "birt_hebdate": "כ\"ה  טבת  תרע\"ב ",
+      "birt_place": " הולנד",
+      "deat_date": "24 MAY 1982",
+      "deat_hebdate": "ב'  סיון  תשמ\"ב ",
+      "deat_place": "רחובות ישראל",
+      "holucost": "0",
+      "img": "609",
+      "docs": [
+        {
+          "img": "",
+          "link": "http://www.infocenters.co.il/massuah/notebook.asp?lang=HEB&dlang=HEB&module=search&page=list&rsvr=4&param=%3Cuppernav%3Ecomplex%3C/%3E%3Cnob%3E1%3C/%3E%3Crsvr_ser%3E@@4%3C/%3E%3Cdlang%3EHEB%3C/%3E%3Csearch_type%3Ecomplex%3C/%3E%3Cview%3Erecords%3C/%3E%3Cnrsvr%3EN%3C/%3E%3Csort%3E!35;ARCODE@A%3C/%3E%3Cdispq%3Ez1z%D7%97%D7%99%D7%A4%D7%95%D7%A9%20%D7%92%D7%9C%D7%95%D7%91%D7%9C%D7%99:%20z3z%D7%A4%D7%A8%D7%99%D7%A0%D7%A1,%20%D7%92%D7%96%D7%A2%20%D7%9E%D7%99%D7%9C%D7%95%D7%A0%D7%99%20%20z1z%D7%9E%D7%90%D7%92%D7%A8%D7%99%D7%9D:%20z3z%20%D7%9E%D7%90%D7%92%D7%A8%20%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F%20%D7%94%D7%99%D7%A1%D7%98%D7%95%D7%A8%D7%99%3C/%3E%3Cquery_name%3Eidh-appl3_4756_432825%3C/%3E%3Cquantity%3E10%3C/%3E%3Cstart_entry%3E1%3C/%3E%3Cnum_of_items%3E2%3C/%3E%3Cquery_index%3E@GLOBAL%3C/%3E%3Cthumb%3E0%3C/%3E%3Csmode%3Edts%3C/%3E%3Cfirst_item%3E1%3C/%3E%3Cbook_id%3E102056%3C/%3E%3Cwords%3E!33;%D7%A4%D7%A8%D7%99%D7%A0%D7%A1@@%D7%A4%D7%A8%D7%99%D7%A0%D7%A1@@n%3C/%3E&param2=%3Csearch_type%3Ecomplex%3C/%3E%3Cnum_fields%3E17%3C/%3E%3Cnvf%3E17%3C/%3E%3Cnor%3E15%3C/%3E%3Cnvr%3E3%3C/%3E%3Cnob%3E0%3C/%3E&site=massuah",
+          "title": "עדות שניתנה במסגרת פרויקט.. של בר אילן",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12795994/?p=1&s=Abraham%20Prins%201912&doc_id=12795994",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Abraham%20Prins%20%201912%22%7D ",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-3.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Abraham%20Prins%20%201912%22%7D",
+          "title": "יומן המשטרה",
+          "desc": "\"גנבו לאברהם פרינס האופניים. תאריך הלידה, המקצוע שלו שהוא מנהל בית ספר, הכתובת והוא מודיע על גניבת האופניים שלו, אופני גברים , לא מסומן וללא מספר והערך של האופנים-.55  פלורין. נעלם בתאריך 10-2-42 בין השעות 19.30 ו-19.35 מדרך ציבורית ומצוינת הכתובת. אין מושג. יטופל\"  תאריך מענין.  נראה שזה היה עוד לפני הגרושים של היהודים (צריך לבדוק) והרב פרינס הסתובב חפשי. כנראה לא ידעו שהוא יהודי...יש להניח שהוא נכנס לכמה רגעים לאיזה מקום כי ידע את השעה המדויקת של הגניבה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-4.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22rabbijn+abraham+prins%22&coll=ddd&maxperpage=50&identifier=ddd:010873877:mpeg21:a0004&resultsidentifier=ddd:010873877:mpeg21:a0004",
+          "title": "דף עיתון ובו על בואו של הרב פרינס",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-5.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22rabbijn+abraham+prins%22&coll=ddd&maxperpage=50&identifier=ddd:010873877:mpeg21:a0004&resultsidentifier=ddd:010873877:mpeg21:a0004",
+          "title": "ההודעה בעיתון על בואו של הרב פרינס",
+          "desc": "מעיתון ב1953 אחרי העלייה לארץ נשלח חזרה לאמסטרדם בשליחות חשאית של הרב הרצוג.  בעיתון מסופר על המסר שהביא ליהדות אמסטרדם בשליחות הרב הראשי לישראל. אלישבע הבת זוכרת ימים אלו כטראומה שכן היא צוותה לומר שאינה יודעת איפה אבא וכילדה בת 12 הרגישה שהא מספיק בוגרת כדי שיספרו לה."
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-6.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=mageen+Dawied+de+boot+in+voor+abraham+prins&coll=ddd&maxperpage=50&identifier=ddd:010859899:mpeg21:a0104&resultsidentifier=ddd:010859899:mpeg21:a0104",
+          "title": "עיתון מ 27-5-1949 המבשר על הכרזתו של הרב פרינס כרבה הראשי של חרוניגן",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-7.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=mageen+Dawied+de+boot+in+voor+abraham+prins&coll=ddd&maxperpage=50&identifier=ddd:010859899:mpeg21:a0104&resultsidentifier=ddd:010859899:mpeg21:a0104",
+          "title": "עיתון מ 27-5-1949 המבשר על הכרזתו של הרב פרינס כרבה הראשי של חרוניגן",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-8.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=mageen+Dawied+de+boot+in+voor+abraham+prins&coll=ddd&maxperpage=50&identifier=ddd:010859899:mpeg21:a0104&resultsidentifier=ddd:010859899:mpeg21:a0104",
+          "title": "מפגש בוגרי מגן דוד",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס הרב אברהם 15 JAN 1912-9.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=mageen+Dawied+de+boot+in+voor+abraham+prins&coll=ddd&maxperpage=50&identifier=ddd:010859899:mpeg21:a0104&resultsidentifier=ddd:010859899:mpeg21:a0104",
+          "title": "מפגש בוגרי מגן דוד",
+          "desc": "אחרי המלחמה ועל מנת למנוע התבוללות של צעירים באמסטרדם ארגו הרב פרינס \"מועדון\" בשם מגן דוד למען הצעירים ואכן זוגות מצאו שם את שחיפשו. ישם הרבה כתבות בעיתון על הארגון הזה.   תורגם ע\"י אלישבע אבוש    מגן דוד ספינה לצעירים  ארגון הצעירים היהודים מגן דוד, שבסוף שנות הארבעים וראשית שנות החמישים העסיק כל ערב הרבה צעירים יהודים מאמסטרדם והסביבה באווירה יהודית , קם לתחייה ליום אחד.  ביום ראשון 23 מאי 1976 יקיימו חברי מגן דוד של פעם מפגש.  הכוונה היא להחיות את הארגון. יו\"ר המפגש י' סנדרס מספר שבשנה הקודמת צעירים בני עשרה נפגשו.  כולם משפחות עם ילדים בגיל שהוריהם היו כשהיו חברים במגן דוד. ההבדל מפעם הוא שלמעשה לגיל של 18 ומעלה אין מה לעשות.  אנחנו רוצים לנסות שבעזרת שיט ספינה עבור החברים הוותיקים עם ילדיהם שמעל גיל 14 לחדש את החברות הישנה ולתת קשר יהודי לנוער.  הרב אברהם פרינס היה האב הרוחני של מגן דוד של פעם, יחד עם מר ליאו קיסינג כיושב ראש.  כעת מתבקש רב אריה רלבג לנסות לארגן את הצעירים.  יוהן סנדרס מספר שהם שטים עם הספינה ל IJselmeer (שם של אגם) יחד עם כמה מאות יהודים שפעם הכירו אחד את השני מצוין וזה אמור להיות עבור הילדים חגיגה בפני עצמה. מתכננים לבוא אפילו חברים ותיקים מבלגיה וצרפת.  יש מזנון קר, תזמורת והופעות של כמה ותיקים על הספון. הרבה מאד כבר נרשמו. האנשים מאד מתלהבים. זה לא דבר מוזר עבור מגן דוד.  הארגון הזה ב 1950 ארגן נשף גדול בסוף שבוע עבור כל צעירי הולנד באמסטרדם.  עוד הרבה שנים המשיכו אחרים במתכונת זו. ועדת המפגש של מגן דוד הוותיקה מצפה שהמפגש יחדש הכרויות ישנות ויהווה תחילת ארגון צעירים יהודים. אנחנו יודעים שהצעירים צריכים לעשות את זה בעצמם, אומר י\"ר סנדרס, אבל באף מקום לא כתוב שאנחנו לא יכולים לעזור. אנחנו נעשה את זה בכל מקרה בצורה נעימה."
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ],
+      "spouses": [{ "id": "20", "type": "married" }],
+      "children": [{ "id": "21", "type": "blood" }]
+    },
+    {
+      "id": "3",
+      "gender": "male",
+      "name": "נתן פרינס",
+      "birt_date": "22 SEP 1913",
+      "birt_hebdate": "כ'  אלול  תרע\"ג ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "14 FEB 2007",
+      "deat_hebdate": "כ\"ו  שבט  תשס\"ז ",
+      "deat_place": " ישראל",
+      "holucost": "0",
+      "img": "610",
+      "docs": [
+        {
+          "img": "פרינס נתן 22 SEP 1913-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796341/?p=1&s=Nathan%20Prins%201913%20&doc_id=12796341",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Nathan%20Prins%201913%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "",
+          "link": "http://www.infocenters.co.il/massuah/notebook.asp?lang=HEB&dlang=HEB&module=search&page=list&rsvr=4&param=%3Cuppernav%3Ecomplex%3C/%3E%3Cnob%3E1%3C/%3E%3Crsvr_ser%3E@@4%3C/%3E%3Cdlang%3EHEB%3C/%3E%3Csearch_type%3Ecomplex%3C/%3E%3Cview%3Erecords%3C/%3E%3Cnrsvr%3EN%3C/%3E%3Csort%3E!35;ARCODE@A%3C/%3E%3Cdispq%3Ez1z%D7%97%D7%99%D7%A4%D7%95%D7%A9%20%D7%92%D7%9C%D7%95%D7%91%D7%9C%D7%99:%20z3z%D7%A4%D7%A8%D7%99%D7%A0%D7%A1,%20%D7%92%D7%96%D7%A2%20%D7%9E%D7%99%D7%9C%D7%95%D7%A0%D7%99%20%20z1z%D7%9E%D7%90%D7%92%D7%A8%D7%99%D7%9D:%20z3z%20%D7%9E%D7%90%D7%92%D7%A8%20%D7%90%D7%A8%D7%9B%D7%99%D7%95%D7%9F%20%D7%94%D7%99%D7%A1%D7%98%D7%95%D7%A8%D7%99%3C/%3E%3Cquery_name%3Eidh-appl3_4756_432825%3C/%3E%3Cquantity%3E10%3C/%3E%3Cstart_entry%3E1%3C/%3E%3Cnum_of_items%3E2%3C/%3E%3Cquery_index%3E@GLOBAL%3C/%3E%3Cthumb%3E0%3C/%3E%3Csmode%3Edts%3C/%3E%3Cbook_id%3E101882%3C/%3E%3Clast_item%3E1%3C/%3E%3Cwords%3E!33;%D7%A4%D7%A8%D7%99%D7%A0%D7%A1@@%D7%A4%D7%A8%D7%99%D7%A0%D7%A1@@n%3C/%3E&param2=%3Csearch_type%3Ecomplex%3C/%3E%3Cnum_fields%3E17%3C/%3E%3Cnvf%3E17%3C/%3E%3Cnor%3E15%3C/%3E%3Cnvr%3E3%3C/%3E%3Cnob%3E0%3C/%3E&site=massuah",
+          "title": "קישור לעדות נתן פרינס לבנו במסגרת פרוקט בבר-אילן",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-3",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%90%D7%9C%D7%9B%D7%A1%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=9752772&TreeItemId=3555174",
+          "title": "הגלויה שנשלחה בתום המלחמה",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-4.jpg",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%90%D7%9C%D7%9B%D7%A1%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=9752772&TreeItemId=3555174",
+          "title": "הגלויה שנשלחה בתום המלחמה",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-5.jpg",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%90%D7%9C%D7%9B%D7%A1%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=9752772&TreeItemId=3555174",
+          "title": "הגלויה שנשלחה בתום המלחמה",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-6.jpg",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%90%D7%9C%D7%9B%D7%A1%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=9752772&TreeItemId=3555174",
+          "title": "כרטיס מיון רפואי",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-7.jpg",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%90%D7%9C%D7%9B%D7%A1%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=9752772&TreeItemId=3555174",
+          "title": "כרטיס מיון רפואי",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 22 SEP 1913-8.jpg",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%90%D7%9C%D7%9B%D7%A1%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=9752772&TreeItemId=3555174",
+          "title": "כרטיס מיון רפואי",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%A0%D7%AA%D7%9F%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=3555207",
+          "title": "עדותו של פרינס נתן ",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%94%D7%90%D7%A6%D7%99%D7%9C%D7%95%D7%AA%20%D7%9E%D7%97%D7%99%D7%99%D7%91%D7%AA&GridItemId=10331135",
+          "title": "קובץ שירים בשם \"Noblesse Oblige\" (האצילות מחייבת)",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "2", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ],
+      "spouses": [{ "id": "26", "type": "married" }],
+      "children": [
+        { "id": "27", "type": "blood" },
+        { "id": "28", "type": "blood" }
+      ]
+    },
+    {
+      "id": "4",
+      "gender": "female",
+      "name": "אליזבט אלישבע פרינס",
+      "birt_date": "22 NOV 1914",
+      "birt_hebdate": "ד'  כסלו  תרע\"ה ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "4 JUN 1943",
+      "deat_hebdate": "א'  סיון  תש\"ג ",
+      "deat_place": "נספתה בסוביבור ",
+      "holucost": "1",
+      "img": "611",
+      "docs": [
+        {
+          "img": "פרינס אליזבט אלישבע 22 NOV 1914-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796096/?p=1&s=Elisabeth%20Prins%201914&doc_id=12796096",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס אליזבט אלישבע 22 NOV 1914-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Elisabeth%20Prins%20%201914%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "5",
+      "gender": "female",
+      "name": "שרה דיאמנט",
+      "birt_date": "22 JAN 1919",
+      "birt_hebdate": "כ\"א  שבט  תרע\"ט ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "1 JUL 1994",
+      "deat_hebdate": "כ\"ב  תמוז  תשנ\"ד ",
+      "deat_place": "רמת גן ישראל",
+      "holucost": "0",
+      "img": "612",
+      "docs": [
+        {
+          "img": "דיאמנט שרה 22 JAN 1919-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796405/?p=1&s=Sara%20Prins%201919&doc_id=12796405",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "דיאמנט שרה 22 JAN 1919-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22sara%20prins%22%7D&sort=%7B%22order_i_datum%22:%22desc%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "6",
+      "gender": "female",
+      "name": "קלרה פרינס",
+      "birt_date": "22 JAN 1919",
+      "birt_hebdate": "כ\"א  שבט  תרע\"ט ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "4 JUN 1943",
+      "deat_hebdate": "א'  סיון  תש\"ג ",
+      "deat_place": "סוביבור פולין",
+      "holucost": "1",
+      "img": "613",
+      "docs": [
+        {
+          "img": "פרינס קלרה 22 JAN 1919-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796243/?p=1&s=Klaartje%20Prins%201919&doc_id=12796243",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס קלרה 22 JAN 1919-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Klaartje%20Prins%201919%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "7", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "7",
+      "gender": "female",
+      "name": "שולמית הויזר",
+      "birt_date": "23 JUL 1920",
+      "birt_hebdate": "ח'  אב  תר\"פ ",
+      "birt_place": " הולנד",
+      "deat_date": "6 NOV 2007",
+      "deat_hebdate": "כ\"ה  חשון  תשס\"ח ",
+      "deat_place": " ישראל",
+      "holucost": "0",
+      "img": "614",
+      "docs": [
+        {
+          "img": "הויזר שולמית 23 JUL 1920-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796127/?p=1&s=Frederika%20prins%201920&doc_id=12796127",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "8", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "8",
+      "gender": "male",
+      "name": "מרק פרינס",
+      "birt_date": "11 JUL 1921",
+      "birt_hebdate": "ה'  תמוז  תרפ\"א ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "30 SEP 1942",
+      "deat_hebdate": "י\"ט  תשרי  תש\"ג ",
+      "deat_place": "אושביץ פולין",
+      "holucost": "1",
+      "img": "615",
+      "docs": [
+        {
+          "img": "פרינס מרק 11 JUL 1921-1.jpg",
+          "link": "ttps://collections.arolsen-archives.org/en/archive/12796279/?p=1&s=Marcus%20Prins%201921&doc_id=12796279",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס מרק 11 JUL 1921-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22M*%20%20Prins%20%201921%22%7D&sort=%7B%22order_s_voornaam%22:%22asc%22%7D&rows=250",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "1", "type": "blood" }, { "id": "0", "type": "blood" }],
+      "siblings": [
+        { "id": "2", "type": "blood" },
+        { "id": "3", "type": "blood" },
+        { "id": "4", "type": "blood" },
+        { "id": "5", "type": "blood" },
+        { "id": "6", "type": "blood" },
+        { "id": "7", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "10",
+      "gender": "female",
+      "name": "אליזבט מוק",
+      "birt_date": "22 FEB 1844",
+      "birt_hebdate": "ב'  אדר  תר\"ד ",
+      "birt_place": "אמסטרדם ",
+      "deat_date": "11 FEB 1941",
+      "deat_hebdate": "י\"ד  שבט  תש\"א ",
+      "deat_place": " פולין",
+      "holucost": "0",
+      "img": "616",
+      "docs": [
+        {
+          "img": "מוק אליזבט 22 FEB 1844-1.jpg",
+          "link": "https://www.stenenarchief.nl/hsa_all/hsa_view.php?editid1=49210",
+          "title": "מצבה בבית הקברות Diemen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אליזבט 22 FEB 1844-2.jpg",
+          "link": "https://www.wiewaswie.nl/nl/detail/31164661",
+          "title": "תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אליזבט 22 FEB 1844-3.jpg",
+          "link": "https://www.wiewaswie.nl/nl/detail/31164661",
+          "title": "פרטי תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": [
+        { "id": "14", "type": "blood" },
+        { "id": "11", "type": "blood" },
+        { "id": "12", "type": "blood" },
+        { "id": "13", "type": "blood" },
+        { "id": "15", "type": "blood" },
+        { "id": "0", "type": "blood" }
+      ]
+    },
+    {
+      "id": "11",
+      "gender": "female",
+      "name": "שרה קאפמן",
+      "birt_date": "6 AUG 1875",
+      "birt_hebdate": "ה'  אב  תרל\"ה ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "11 JUN 1943",
+      "deat_hebdate": "ח'  סיון  תש\"ג ",
+      "deat_place": "סוביבור פולין",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "קאפמן שרה 6 AUG 1875-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12759094/?p=1&s=Sara%20Koopman%201875&doc_id=12759094",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן שרה 6 AUG 1875-2.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/376139/?p=1&s=Sara%20Koopman%201875&doc_id=376140",
+          "title": "המעטפה בארכיון Arolsen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן שרה 6 AUG 1875-3.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/376139/?p=1&s=Sara%20Koopman%201875&doc_id=376141",
+          "title": "כרטיס מסע",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן שרה 6 AUG 1875-4.jpg",
+          "link": "https://www.wiewaswie.nl/nl/zoeken/?advancedsearch=1",
+          "title": "תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן שרה 6 AUG 1875-5.jpg",
+          "link": "https://www.wiewaswie.nl/nl/zoeken/?advancedsearch=1",
+          "title": "פרטי תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן שרה 6 AUG 1875-6.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?cql%5B%5D=%28date+_gte_+%2227-07-1876%22%29&cql%5B%5D=%28date+_lte_+%2211-12-1947%22%29&query=%22Sara+Koopman+Mok%22&coll=ddd&redirect=true&identifier=ddd:010872493:mpeg21:a0025&resultsidentifier=ddd:010872493:mpeg21:a0025",
+          "title": "פרסום יום הנישואין ה25",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "10", "type": "blood" }],
+      "siblings": [
+        { "id": "14", "type": "blood" },
+        { "id": "12", "type": "blood" },
+        { "id": "13", "type": "blood" },
+        { "id": "15", "type": "blood" },
+        { "id": "0", "type": "blood" }
+      ],
+      "spouses": [{ "id": "51", "type": "married" }],
+      "children": [
+        { "id": "52", "type": "blood" },
+        { "id": "53", "type": "blood" },
+        { "id": "54", "type": "blood" },
+        { "id": "55", "type": "blood" }
+      ]
+    },
+    {
+      "id": "12",
+      "gender": "male",
+      "name": "אהרון מוק",
+      "birt_date": "24 JUL 1877",
+      "birt_hebdate": "י\"ד  אב  תרל\"ז ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "4 JUN 1943",
+      "deat_hebdate": "א'  סיון  תש\"ג ",
+      "deat_place": "נספה בסוביבור ",
+      "holucost": "1",
+      "img": "617",
+      "docs": [
+        {
+          "img": "מוק אהרון 24 JUL 1877-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12776515/?p=1&s=Aaron%20Mok%201877&doc_id=12776515",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אהרון 24 JUL 1877-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Aaron%20Mok%20%201877%22%7D",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אהרון 24 JUL 1877-3.jpg",
+          "link": "https://www.joodsmonument.nl/en/page/157272/aaron-mok",
+          "title": "היתר ספק",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "10", "type": "blood" }],
+      "siblings": [
+        { "id": "14", "type": "blood" },
+        { "id": "11", "type": "blood" },
+        { "id": "13", "type": "blood" },
+        { "id": "15", "type": "blood" },
+        { "id": "0", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": [
+        { "id": "57", "type": "blood" },
+        { "id": "59", "type": "blood" },
+        { "id": "58", "type": "blood" }
+      ]
+    },
+    {
+      "id": "13",
+      "gender": "male",
+      "name": "מרק מוק",
+      "birt_date": "23 JUN 1879",
+      "birt_hebdate": "ב'  תמוז  תרל\"ט ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "ABT 5 MAY 1937",
+      "deat_hebdate": "",
+      "deat_place": "אמסטרדם הולנד",
+      "holucost": "0",
+      "img": "618",
+      "docs": [
+        {
+          "img": "מוק מרק 23 JUN 1879-3.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22marc+mok%22&coll=ddd&identifier=ddd:010872956:mpeg21:a0114&resultsidentifier=ddd:010872956:mpeg21:a0114",
+          "title": "מודעות אבל",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק מרק 23 JUN 1879-4.jpg",
+          "link": "https://www.stenenarchief.nl/hsa_all/hsa_view.php?editid1=47347",
+          "title": "מצבה בבית הקברות Diemen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "10", "type": "blood" }],
+      "siblings": [
+        { "id": "14", "type": "blood" },
+        { "id": "11", "type": "blood" },
+        { "id": "12", "type": "blood" },
+        { "id": "15", "type": "blood" },
+        { "id": "0", "type": "blood" }
+      ],
+      "spouses": [{ "id": "61", "type": "married" }],
+      "children": [
+        { "id": "62", "type": "blood" },
+        { "id": "63", "type": "blood" },
+        { "id": "64", "type": "blood" }
+      ]
+    },
+    {
+      "id": "14",
+      "gender": "female",
+      "name": "Anna מוק",
+      "birt_date": "19 AUG 1874",
+      "birt_hebdate": "ו'  אלול  תרל\"ד ",
+      "birt_place": " ",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "10", "type": "blood" }],
+      "siblings": [
+        { "id": "11", "type": "blood" },
+        { "id": "12", "type": "blood" },
+        { "id": "13", "type": "blood" },
+        { "id": "15", "type": "blood" },
+        { "id": "0", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "15",
+      "gender": "female",
+      "name": "Henriëtte מוק",
+      "birt_date": "10 AUG 1882",
+      "birt_hebdate": "כ\"ה  אב  תרמ\"ב ",
+      "birt_place": " ",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "10", "type": "blood" }],
+      "siblings": [
+        { "id": "14", "type": "blood" },
+        { "id": "11", "type": "blood" },
+        { "id": "12", "type": "blood" },
+        { "id": "13", "type": "blood" },
+        { "id": "0", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "16",
+      "gender": "male",
+      "name": "נתן פרינס",
+      "birt_date": "7 FEB 1861",
+      "birt_hebdate": "כ\"ז  שבט  תרכ\"א ",
+      "birt_place": "דן הלדר הולנד",
+      "deat_date": "23 NOV 1942",
+      "deat_hebdate": "י\"ד  כסלו  תש\"ג ",
+      "deat_place": "אפלדורן הולנד",
+      "holucost": "0",
+      "img": "619",
+      "docs": [
+        {
+          "img": "פרינס נתן 7 FEB 1861-1.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Nathan%20Prins%20%201861%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס נתן 7 FEB 1861-2.jpg",
+          "link": "https://www.stenenarchief.nl/hsa_all/hsa_view.php?editid1=54490",
+          "title": "מצבה בבית הקברות Diemen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "17", "type": "married" }],
+      "children": [
+        { "id": "1", "type": "blood" },
+        { "id": "19", "type": "blood" }
+      ]
+    },
+    {
+      "id": "17",
+      "gender": "female",
+      "name": "קלרה פרינס",
+      "birt_date": "17 APR 1861",
+      "birt_hebdate": "ז'  אייר  תרכ\"א ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "25 APR 1942",
+      "deat_hebdate": "ח'  אייר  תש\"ב ",
+      "deat_place": "אמסטרדם הולנד",
+      "holucost": "0",
+      "img": "620",
+      "docs": [
+        {
+          "img": "פרינס קלרה 17 APR 1861-1.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Klaartje%20Milhado%201861%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס קלרה 17 APR 1861-2.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22Nathan+Prins%22&coll=ddd&page=6&identifier=ddd:010872737:mpeg21:a0045&resultsidentifier=ddd:010872737:mpeg21:a0045",
+          "title": "פרסום 25 שנות נישואים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס קלרה 17 APR 1861-3",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=k.+prins+milhado&coll=ddd&page=1&maxperpage=50&identifier=ddd:010318316:mpeg21:a0116&resultsidentifier=ddd:010318316:mpeg21:a0116",
+          "title": "מודעת אבל",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס קלרה 17 APR 1861-4.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=k.+prins+milhado&coll=ddd&page=1&maxperpage=50&identifier=ddd:010318316:mpeg21:a0116&resultsidentifier=ddd:010318316:mpeg21:a0116",
+          "title": "מודעת אבל",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "16", "type": "married" }],
+      "children": [
+        { "id": "1", "type": "blood" },
+        { "id": "19", "type": "blood" }
+      ]
+    },
+    {
+      "id": "19",
+      "gender": "male",
+      "name": "אברהם פרינס",
+      "birt_date": "2 OCT 1889",
+      "birt_hebdate": "ז'  תשרי  תר\"נ ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "2 JUL 1943",
+      "deat_hebdate": "כ\"ט  סיון  תש\"ג ",
+      "deat_place": "נספה בסוביבור ",
+      "holucost": "1",
+      "img": "621",
+      "docs": [
+        {
+          "img": "פרינס קלרה 17 APR 1861-5.jpg",
+          "link": "https://www.stenenarchief.nl/hsa_all/hsa_view.php?editid1=54153",
+          "title": "מצבה בבית הקברות Diemen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "16", "type": "blood" },
+        { "id": "17", "type": "blood" }
+      ],
+      "siblings": [{ "id": "1", "type": "blood" }],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "20",
+      "gender": "female",
+      "name": "רחל דינה דורה פרינס",
+      "birt_date": "8 AUG 1914",
+      "birt_hebdate": "ט\"ז  אב  תרע\"ד ",
+      "birt_place": "אנטוורפן בלגיה",
+      "deat_date": "25 AUG 2007",
+      "deat_hebdate": "י\"א  אלול  תשס\"ז ",
+      "deat_place": "ירושלים ישראל",
+      "holucost": "0",
+      "img": "622",
+      "docs": [
+        {
+          "img": "פרינס רחל דינה דורה 8 AUG 1914-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796357/?p=1&s=Rachel%20Prins%201914&doc_id=12796357",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס רחל דינה דורה 8 AUG 1914-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Rachel%20Dina%20Drukarch%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס רחל דינה דורה 8 AUG 1914-3.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22Abraham+Prins%22&coll=ddd&identifier=ddd:010871437:mpeg21:a0097&resultsidentifier=ddd:010871437:mpeg21:a0097",
+          "title": "הודעת מתחתנים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס רחל דינה דורה 8 AUG 1914-4.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22Abraham+Prins%22&coll=ddd&page=2&maxperpage=50&identifier=ddd:010871439:mpeg21:a0099&resultsidentifier=ddd:010871439:mpeg21:a0099",
+          "title": "פרסום תודות?????",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%9E%D7%A9%D7%A4%D7%97%D7%AA%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1%20%D7%91%D7%96%D7%9E%D7%9F&GridItemId=4024622",
+          "title": "זיכרונותיה של רחל פרינס על קורות משפחתה בשואת יהדות הולנד",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "2", "type": "married" }],
+      "children": [{ "id": "21", "type": "blood" }]
+    },
+    {
+      "id": "21",
+      "gender": "female",
+      "name": "אלישבע אבוש",
+      "birt_date": "27 OCT 1941",
+      "birt_hebdate": "ו'  חשון  תש\"ב ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "623",
+      "docs": [
+        {
+          "img": "אבוש אלישבע 27 OCT 1941-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796098/?p=1&s=Prins%201941&doc_id=12796098",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "אבוש אלישבע 27 OCT 1941-2.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22betty+prins%22&coll=ddd&maxperpage=50&identifier=MMNIOD05:000124223:mpeg21:a0021&resultsidentifier=MMNIOD05:000124223:mpeg21:a0021",
+          "title": "המודעה שפורסמה לאחר המלחמה על מנת למצוא את אלישבע",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%9E%D7%A9%D7%A4%D7%97%D7%AA%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1%20%D7%91%D7%96%D7%9E%D7%9F&GridItemId=13271960",
+          "title": "עדות של אלישבע אליזבט אבוש פרינס ילידת 1941 Amsterdam הולנד על קורותיה וקורות המשפחה בהולנד",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "2", "type": "blood" },
+        { "id": "20", "type": "blood" }
+      ],
+      "siblings": [],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "26",
+      "gender": "female",
+      "name": "סיבלה פרינס",
+      "birt_date": "30 NOV 1912",
+      "birt_hebdate": "כ'  כסלו  תרע\"ג ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "8 JUL 2000",
+      "deat_hebdate": "ה'  תמוז  תש\"ס ",
+      "deat_place": " ישראל",
+      "holucost": "0",
+      "img": "627",
+      "docs": [
+        {
+          "img": "פרינס סיבלה 30 NOV 1912-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796430/?p=1&s=Sybilla%20Prins%20&doc_id=12796430",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס סיבלה 30 NOV 1912-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Sybilla%20Polak%201912%22%7D",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרינס סיבלה 30 NOV 1912-3.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22Nathan+Prins%22&coll=ddd&page=3&identifier=ddd:010874594:mpeg21:a0122&resultsidentifier=ddd:010874594:mpeg21:a0122",
+          "title": "פרסום נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "",
+          "link": "https://documents.yadvashem.org/index.html?language=he&search=global&strSearch=%D7%A0%D7%AA%D7%9F%20%D7%A4%D7%A8%D7%99%D7%A0%D7%A1&GridItemId=3555206",
+          "title": "עדותה של פרינס סיבילה ילידת Amsterdam 1912 הולנד על קורותיה בזהות בדויה ב-Amsterdam וב-Bussum",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "3", "type": "married" }],
+      "children": [
+        { "id": "27", "type": "blood" },
+        { "id": "28", "type": "blood" }
+      ]
+    },
+    {
+      "id": "27",
+      "gender": "female",
+      "name": "מרים פרינס",
+      "birt_date": "1 NOV 1941",
+      "birt_hebdate": "י\"א  חשון  תש\"ב ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "15 FEB 2009",
+      "deat_hebdate": "י\"ט  שבט  תשס\"ט ",
+      "deat_place": "Yarkon ישראל",
+      "holucost": "0",
+      "img": "628",
+      "docs": [
+        {
+          "img": "פרינס מרים 1 NOV 1941-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796331/?p=1&s=Mirjam%20Prins%201941&doc_id=12796331",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "3", "type": "blood" },
+        { "id": "26", "type": "blood" }
+      ],
+      "siblings": [{ "id": "28", "type": "blood" }],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "28",
+      "gender": "male",
+      "name": "יוסף פרינס",
+      "birt_date": "22 FEB 1943",
+      "birt_hebdate": "י\"ז  אדר א'  תש\"ג ",
+      "birt_place": " הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "629",
+      "docs": [
+        {
+          "img": "פרינס יוסף 22 FEB 1943-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12796236/?p=1&s=prins%20joseph%201943&doc_id=12796236",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "3", "type": "blood" },
+        { "id": "26", "type": "blood" }
+      ],
+      "siblings": [{ "id": "27", "type": "blood" }],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "37",
+      "gender": "female",
+      "name": "Hanna Isaac Brander",
+      "birt_date": "15 OCT 1813",
+      "birt_hebdate": "כ\"א  תשרי  תקע\"ד ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": [
+        { "id": "39", "type": "blood" },
+        { "id": "39", "type": "blood" },
+        { "id": "40", "type": "blood" },
+        { "id": "41", "type": "blood" },
+        { "id": "42", "type": "blood" }
+      ]
+    },
+    {
+      "id": "39",
+      "gender": "female",
+      "name": "Hendrika מוק",
+      "birt_date": "8 SEP 1842",
+      "birt_hebdate": "ד'  תשרי  תר\"ג ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "37", "type": "blood" }],
+      "siblings": [
+        { "id": "40", "type": "blood" },
+        { "id": "41", "type": "blood" },
+        { "id": "42", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": [
+        { "id": "185", "type": "blood" },
+        { "id": "186", "type": "blood" },
+        { "id": "187", "type": "blood" },
+        { "id": "188", "type": "blood" },
+        { "id": "189", "type": "blood" },
+        { "id": "190", "type": "blood" }
+      ]
+    },
+    {
+      "id": "41",
+      "gender": "male",
+      "name": "Manuel מוק",
+      "birt_date": "8 JUL 1849",
+      "birt_hebdate": "י\"ח  תמוז  תר\"ט ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "37", "type": "blood" }],
+      "siblings": [
+        { "id": "39", "type": "blood" },
+        { "id": "39", "type": "blood" },
+        { "id": "40", "type": "blood" },
+        { "id": "42", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "42",
+      "gender": "female",
+      "name": "שרה מוק",
+      "birt_date": "1 SEP 1851",
+      "birt_hebdate": "ד'  אלול  תרי\"א ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "37", "type": "blood" }],
+      "siblings": [
+        { "id": "39", "type": "blood" },
+        { "id": "39", "type": "blood" },
+        { "id": "40", "type": "blood" },
+        { "id": "41", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "49",
+      "gender": "female",
+      "name": "Wilhelmina קופויט",
+      "birt_date": "9 AUG 1845",
+      "birt_hebdate": "ו'  אב  תר\"ה ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "",
+          "link": "",
+          "title": "",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "51",
+      "gender": "male",
+      "name": "בנימין קאפמן",
+      "birt_date": "27 JUL 1876",
+      "birt_hebdate": "ו'  אב  תרל\"ו ",
+      "birt_place": "אלקמר הולנד",
+      "deat_date": "11 JUN 1943",
+      "deat_hebdate": "ח'  סיון  תש\"ג ",
+      "deat_place": "נספה בסוביבור ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "קאפמן בנימין 27 JUL 1876-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12758844/?p=1&s=Benjamin%20%20Koopman%201876&doc_id=12758844",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן בנימין 27 JUL 1876-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Benjamin%20%20Koopman%20%201876%22%7D",
+          "title": "Pension cards",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן בנימין 27 JUL 1876-3.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Benjamin%20%20Koopman%20%201876%22%7D",
+          "title": "Pension cards",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן בנימין 27 JUL 1876-4.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/378013/?p=1&s=Benjamin%20%20Koopman%201876&doc_id=378014",
+          "title": "המעטפה בארכיון Arolsen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן בנימין 27 JUL 1876-5.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/378013/?p=1&s=Benjamin%20%20Koopman%201876&doc_id=378015",
+          "title": "כרטיס מסע",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "11", "type": "married" }],
+      "children": [
+        { "id": "52", "type": "blood" },
+        { "id": "53", "type": "blood" },
+        { "id": "54", "type": "blood" },
+        { "id": "55", "type": "blood" }
+      ]
+    },
+    {
+      "id": "52",
+      "gender": "female",
+      "name": "Rozette Wolff",
+      "birt_date": "11 OCT 1900",
+      "birt_hebdate": "י\"ח  תשרי  תרס\"א ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "3 SEP 1943",
+      "deat_hebdate": "ג'  אלול  תש\"ג ",
+      "deat_place": "Gmina אושביץ פולין",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "Wolff Rozette 11 OCT 1900-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12842332/?p=1&s=Wolff%20Koopman&doc_id=12842332",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "Wolff Rozette 11 OCT 1900-2.jpg",
+          "link": "https://www.joodsmonument.nl/en/page/123057/rosette-wolff-koopman",
+          "title": "פרסום נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "Wolff Rozette 11 OCT 1900-3.jpg",
+          "link": "https://www.wiewaswie.nl/nl/zoeken/?advancedsearch=1",
+          "title": "תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "Wolff Rozette 11 OCT 1900-4.jpg",
+          "link": "https://www.wiewaswie.nl/nl/zoeken/?advancedsearch=1",
+          "title": "פרטי תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "Wolff Rozette 11 OCT 1900-5.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/425631/?p=1&s=Wolff%20Koopman&doc_id=425632",
+          "title": "המעטפה בארכיון Arolsen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "Wolff Rozette 11 OCT 1900-6.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/425631/?p=1&s=Wolff%20Koopman&doc_id=425633",
+          "title": "כרטיס מסע",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "51", "type": "blood" },
+        { "id": "11", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "53", "type": "blood" },
+        { "id": "54", "type": "blood" },
+        { "id": "55", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "53",
+      "gender": "male",
+      "name": "אברהם קאפמן",
+      "birt_date": "ABT 4 FEB 1902",
+      "birt_hebdate": "",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "23 JUL 1943",
+      "deat_hebdate": "כ'  תמוז  תש\"ג ",
+      "deat_place": "נספה בסוביבור ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "קאפמן אברהם ABT 4 FEB 1902-3.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12758823/?p=1&s=Abraham%20Koopman%201902&doc_id=12758823",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן אברהם ABT 4 FEB 1902-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Abraham%20Koopman%201902%22%7D&rows=250",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "קאפמן אברהם ABT 4 FEB 1902-3.jpg",
+          "link": "https://www.joodsmonument.nl/en/page/154036/abraham-koopman",
+          "title": "פרסום ???",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "51", "type": "blood" },
+        { "id": "11", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "52", "type": "blood" },
+        { "id": "54", "type": "blood" },
+        { "id": "55", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "54",
+      "gender": "male",
+      "name": "יעקב קאפמן",
+      "birt_date": "4 JUL 1904",
+      "birt_hebdate": "כ\"א  תמוז  תרס\"ד ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "28 FEB 1943",
+      "deat_hebdate": "כ\"ג  אדר א'  תש\"ג ",
+      "deat_place": "נספה באושביץ ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "קאפמן יעקב 4 JUL 1904",
+          "link": "https://collections.arolsen-archives.org/en/archive/12758953/?p=1&s=Jacob%20Koopman%20%201904&doc_id=12758953",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "51", "type": "blood" },
+        { "id": "11", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "52", "type": "blood" },
+        { "id": "53", "type": "blood" },
+        { "id": "55", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "55",
+      "gender": "female",
+      "name": "אלישבע קאפמן",
+      "birt_date": "27 DEC 1906",
+      "birt_hebdate": "י'  טבת  תרס\"ז ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "19 NOV 1942",
+      "deat_hebdate": "י'  כסלו  תש\"ג ",
+      "deat_place": "נספתה באושביץ ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "קאפמן אלישבע 27 DEC 1906-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12758883/?p=1&s=Elisabeth%20Koopman%201931&doc_id=12758883",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "51", "type": "blood" },
+        { "id": "11", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "52", "type": "blood" },
+        { "id": "53", "type": "blood" },
+        { "id": "54", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "57",
+      "gender": "female",
+      "name": "אלישבע מוק",
+      "birt_date": "3 NOV 1910",
+      "birt_hebdate": "א'  חשון  תרע\"א ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "22 OCT 1943",
+      "deat_hebdate": "כ\"ג  תשרי  תש\"ד ",
+      "deat_place": "נספתה באושביץ ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "מוק אלישבע 3 NOV 1910-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12776569/?p=1&s=Elisabeth%20MOK%201910&doc_id=12776569",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אלישבע 3 NOV 1910-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Elisabeth%20Mok%20%201910%22%7D&sort=%7B%22order_i_datum%22:%22asc%22%7D&rows=250",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "12", "type": "blood" }],
+      "siblings": [
+        { "id": "59", "type": "blood" },
+        { "id": "58", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "58",
+      "gender": "female",
+      "name": "יהודית מוק",
+      "birt_date": "26 FEB 1916",
+      "birt_hebdate": "כ\"ב  אדר א'  תרע\"ו ",
+      "birt_place": " ",
+      "deat_date": "22 OCT 1943",
+      "deat_hebdate": "כ\"ג  תשרי  תש\"ד ",
+      "deat_place": "נספתה באושביץ ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "מוק יהודית 26 FEB 1916-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12776662/?p=1&s=Judith%20MOK%201916&doc_id=12776662",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק יהודית 26 FEB 1916-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Judith%20Mok%20%201916%22%7D&sort=%7B%22order_i_datum%22:%22asc%22%7D&rows=250",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [{ "id": "12", "type": "blood" }],
+      "siblings": [
+        { "id": "57", "type": "blood" },
+        { "id": "59", "type": "blood" }
+      ],
+      "spouses": [],
+      "children": []
+    },
+    {
+      "id": "59",
+      "gender": "male",
+      "name": "Leman מוק",
+      "birt_date": "23 OCT 1912",
+      "birt_hebdate": "י\"ב  חשון  תרע\"ג ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "7 JUL 1942",
+      "deat_hebdate": "כ\"ב  תמוז  תש\"ב ",
+      "deat_place": "נספה בMauthausen ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "מוק Leman 23 OCT 1912-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12776674/?p=1&s=Leman%20MOK%201912&doc_id=12776674",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Leman%20Mok%201912%22%7D&sort=%7B%22order_i_datum%22:%22asc%22%7D&rows=250",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-3.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/1637144/?p=1&s=Leman%20MOK%201912&doc_id=1637145",
+          "title": "המעטפה בארכיון Arolsen",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-4.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/1637144/?p=1&s=Leman%20MOK%201912&doc_id=1637146",
+          "title": "תעודת רצח",
+          "desc": "חשוב לתאר אתהכתוב"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-5.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/1637144/?p=1&s=Leman%20MOK%201912&doc_id=1637146",
+          "title": "תעודת רצח",
+          "desc": "חשוב לתאר אתהכתוב"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-6.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/1637144/?p=1&s=Leman%20MOK%201912&doc_id=1637147",
+          "title": "תעודת רצח",
+          "desc": "חשוב לתאר אתהכתוב"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-7.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/1637144/?p=1&s=Leman%20MOK%201912&doc_id=1637147",
+          "title": "תעודת רצח",
+          "desc": "חשוב לתאר אתהכתוב"
+        },
+        {
+          "img": "מוק Leman 23 OCT 1912-8.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/1637144/?p=1&s=Leman%20MOK%201912&doc_id=1637148",
+          "title": "תעודת רצח",
+          "desc": "חשוב לתאר אתהכתוב"
+        }
+      ],
+      "parents": [{ "id": "12", "type": "blood" }],
+      "siblings": [
+        { "id": "57", "type": "blood" },
+        { "id": "58", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "61",
+      "gender": "female",
+      "name": "שרה מוק",
+      "birt_date": "28 FEB 1885",
+      "birt_hebdate": "י\"ג  אדר  תרמ\"ה ",
+      "birt_place": " ",
+      "deat_date": "9 AUG 1942",
+      "deat_hebdate": "כ\"ו  אב  תש\"ב ",
+      "deat_place": "נספתה באושביץ-קטוביץ פולין",
+      "holucost": "1",
+      "img": "637",
+      "docs": [
+        {
+          "img": "מוק שרה 28 FEB 1885-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12776797/?p=1&s=BOLLE%20MOK&doc_id=12776797",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק שרה 28 FEB 1885-2.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22sara+mok+bolle%22&coll=ddd&identifier=ddd:010874741:mpeg21:a0117&resultsidentifier=ddd:010874741:mpeg21:a0117",
+          "title": "פרסום 25 שנות נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [],
+      "siblings": [],
+      "spouses": [{ "id": "13", "type": "married" }],
+      "children": [
+        { "id": "62", "type": "blood" },
+        { "id": "63", "type": "blood" },
+        { "id": "64", "type": "blood" }
+      ]
+    },
+    {
+      "id": "62",
+      "gender": "female",
+      "name": "Martha פרנק",
+      "birt_date": "18 DEC 1909",
+      "birt_hebdate": "ו'  טבת  תר\"ע ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "",
+      "deat_hebdate": "",
+      "deat_place": " ארה\"ב",
+      "holucost": "0",
+      "img": "",
+      "docs": [
+        {
+          "img": "פרנק Martha 18 DEC 1909-1.jpg",
+          "link": "https://www.wiewaswie.nl/nl/detail/31342033",
+          "title": "תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרנק Martha 18 DEC 1909-2.jpg",
+          "link": "https://www.wiewaswie.nl/nl/detail/31342033",
+          "title": "פרטי תעודת נישואין",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "פרנק Martha 18 DEC 1909-3.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22JOEL+FRANK%22&coll=ddd&identifier=ddd:010874367:mpeg21:a0098&resultsidentifier=ddd:010874367:mpeg21:a0098",
+          "title": "פרסום נישואים",
+          "desc": "Eenige en algemeene kennisgeving. Ondertrouwd: 747 JOEL FRANK en MARTHA MOK. De huwelijksvoltrekking zal plaats hebben op Woensdag 26 Juni a.s., te 1 1/2 uur, in Huize Cats, Plantage Middenlaan te Amsterdam..."
+        },
+        {
+          "img": "פרנק Martha 18 DEC 1909-4.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22JOEL+FRANK%22&coll=ddd&identifier=ddd:010874370:mpeg21:a0126&resultsidentifier=ddd:010874370:mpeg21:a0126",
+          "title": "פרסום נישואים",
+          "desc": "Getrouwd: JOEL FRANK en MARTHA MOK. De Heer en Mevrouw 1258 J.  FRANK MOK, betuigen langs dezen weg hun hartelijken  dank, voor de vele blijken van belangstelling bij hun Huwelijk ondervonden Amsterdam, 26 Juni 1929"
+        },
+        {
+          "img": "פרנק Martha 18 DEC 1909-5.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?query=%22JOEL+FRANK%22&coll=ddd&identifier=ddd:010658963:mpeg21:a0242&resultsidentifier=ddd:010658963:mpeg21:a0242",
+          "title": "פרסום נישואים",
+          "desc": "Eenige en algemeene Kennisgeving. Ondertrouwd: JOEL FRANK en MARTHA MOK. De huwelijksvoltrekking zal plaats hebben op Woensdag 26 Juni te Ij uur, in Huize Cats, Plantage middenlaan te Amsterdam"
+        }
+      ],
+      "parents": [
+        { "id": "13", "type": "blood" },
+        { "id": "61", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "63", "type": "blood" },
+        { "id": "64", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "63",
+      "gender": "female",
+      "name": "Elisabeth (Liesje) מוק",
+      "birt_date": "13 MAR 1912",
+      "birt_hebdate": "כ\"ד  אדר  תרע\"ב ",
+      "birt_place": "אמסטרדם ",
+      "deat_date": "12 MAR 1943",
+      "deat_hebdate": "ה'  אדר ב'  תש\"ג ",
+      "deat_place": "נספתה באושביץ ",
+      "holucost": "1",
+      "img": "",
+      "docs": [
+        {
+          "img": "מוק Elisabeth (Liesje) 13 MAR 1912-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12813024/?p=1&s=Elisabeth%20MOK%201912&doc_id=12813024",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק Elisabeth (Liesje) 13 MAR 1912-2.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12813025/?p=1&s=Elisabeth%20MOK%201912&doc_id=12813025",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        }
+      ],
+      "parents": [
+        { "id": "13", "type": "blood" },
+        { "id": "61", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "62", "type": "blood" },
+        { "id": "64", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    },
+    {
+      "id": "64",
+      "gender": "male",
+      "name": "אברהם (Ab) מוק",
+      "birt_date": "4 MAR 1914",
+      "birt_hebdate": "ו'  אדר  תרע\"ד ",
+      "birt_place": "אמסטרדם הולנד",
+      "deat_date": "30 SEP 1942",
+      "deat_hebdate": "י\"ט  תשרי  תש\"ג ",
+      "deat_place": "Gmina אושביץ פולין",
+      "holucost": "1",
+      "img": "638",
+      "docs": [
+        {
+          "img": "מוק אברהם (Ab) 4 MAR 1914-1.jpg",
+          "link": "https://collections.arolsen-archives.org/en/archive/12776523/?p=1&s=Abraham%20%20Mok%201914&doc_id=12776523",
+          "title": "כרטיס מועצת היהודים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אברהם (Ab) 4 MAR 1914-2.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Abraham%20Mok%2004-03-1914%22%7D&rows=250",
+          "title": "כרטיס סיכום בארכיון עיריית אמסטרדם",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אברהם (Ab) 4 MAR 1914-3.jpg",
+          "link": "https://www.delpher.nl/nl/kranten/view?coll=ddd&query=%22Sara+Mok%22&cql%5B%5D=%28date+_gte_+%2227-07-1876%22%29&cql%5B%5D=%28date+_lte_+%2211-12-1947%22%29&redirect=true&page=1&maxperpage=50&identifier=ddd:010858163:mpeg21:a0028&resultsidentifier=ddd:010858163:mpeg21:a0028",
+          "title": "פרסום בר מצוה ו-20 שנות נישואים של ההורים",
+          "desc": "פה יתכן ויכתב מלל ארוך המתאר את המסמך בצורה ברורה אבל לא לכל מסמך יהיה תוכן בשדה זה"
+        },
+        {
+          "img": "מוק אברהם (Ab) 4 MAR 1914-4.jpg",
+          "link": "https://archief.amsterdam/indexen/persons?ss=%7B%22q%22:%22Abraham%20Mok%2004-03-1914%22%7D&rows=250",
+          "title": "מיומן המשטרה",
+          "desc": "יומן אירועים של יומנאי במשטרה.  אברהם מוק הגיש תלונה  ב30-5-1940 שגנבו לו אופניים מחצר ביתו.  אין חשודים."
+        }
+      ],
+      "parents": [
+        { "id": "13", "type": "blood" },
+        { "id": "61", "type": "blood" }
+      ],
+      "siblings": [
+        { "id": "62", "type": "blood" },
+        { "id": "63", "type": "blood" }
+      ],
+      "spouses": [{ "id": "-1", "type": "married" }],
+      "children": []
+    }
+  ]
+  

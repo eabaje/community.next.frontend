@@ -1,11 +1,11 @@
-import ContentMiddle from "../../components/content/middle";
+import FirstMiddleContent from "../../components/content/middle";
 import MainLayout from "../../layout/mainLayout";
 import dynamic from "next/dynamic";
 function Home() {
   return (
     <>
       <MainLayout>
-        <ContentMiddle />
+        <FirstMiddleContent />
       </MainLayout>
     </>
   );

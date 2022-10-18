@@ -4,7 +4,7 @@ import PaternalLink from "../../relationLink/paternal";
 import OtherRelationLink from "../../relationLink/relation";
 import Sidebar from "../../sidebar/Sidebar";
 
-function ContentMiddle() {
+function FirstMiddleContent() {
   return (
     <>
       <div className="row">
@@ -1709,4 +1709,4 @@ function ContentMiddle() {
   );
 }
 
-export default ContentMiddle;
+export default FirstMiddleContent;

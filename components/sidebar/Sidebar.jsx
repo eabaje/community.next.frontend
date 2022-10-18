@@ -22,15 +22,18 @@ import {
 } from "@mui/icons-material";
 
 import { Link, useLocation } from "react-router-dom";
+import dynamic from "next/dynamic";
 import { Users } from "../../constants/dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
 
 import $ from "jquery";
+//import "./loader.js";
 //import "./metismenu.min";
 import { useContext, useEffect } from "react";
 import NavBar from "../navbar/navbar";
+import { menuItemsPublic } from "../navbar/vertical/sidebarData";
 
-export default function Sidebar() {
+function Sidebar({ user }) {
   const handleMenu = () => {
     // Metis Menu JS
     // $(function () {
@@ -67,6 +70,7 @@ export default function Sidebar() {
     //let controller = new AbortController();
     if (typeof window !== "undefined") {
       handleMenu();
+      // $("#sidemenu-nav").metisMenu();
     }
     // user===null &&  history.push(`sigin`)
     //  setUser(JSON.parse(localStorage.getItem("user")));
@@ -78,80 +82,19 @@ export default function Sidebar() {
       <div className="sidebar">
         <div className="sidebarWrapper">
           <ul className="sidebarList">
-            <li className="sidebarListItem">
-              <Timeline className="sidebarIcon" />
-              <NavBar
-                path={"/timeline"}
-                title={"Timeline"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <Chat className="sidebarIcon" />
-              <NavBar
-                path={"/chat"}
-                title={"Chats"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <PlayCircleFilledOutlined className="sidebarIcon" />
-              <NavBar
-                path={"/video"}
-                title={"Videos"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
+            {menuItemsPublic(user).map((menu, index) => {
+              return (
+                <NavBar
+                  key={index}
+                  iconName={`${menu.icon}`}
+                  path={menu.path}
+                  title={menu.title}
+                  cssStyle={"sidebarListItemText"}
+                />
+              );
+            })}
 
-            <li className="sidebarListItem">
-              <Person className="sidebarIcon" />
-              <NavBar
-                path={"/friend"}
-                title={"Friends"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <Group className="sidebarIcon" />
-              <NavBar
-                path={"/group"}
-                title={"Groups"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <Man className="sidebarIcon" />
-              <NavBar
-                path={"/paternal"}
-                title={"Paternal Links"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <Woman className="sidebarIcon" />
-              <NavBar
-                path={"/maternal"}
-                title={"Maternal Links"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <HolidayVillage className="sidebarIcon" />
-              <NavBar
-                path={"/neighbour"}
-                title={"Neighbour Links"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
-              <School className="sidebarIcon" />
-              <NavBar
-                path={"/colleague"}
-                title={"Colleague Links"}
-                cssStyle={"sidebarListItemText"}
-              />
-            </li>
-            <li className="sidebarListItem">
+            {/* <li className="sidebarListItem">
               <HelpOutline className="sidebarIcon" />
 
               <NavBar
@@ -173,19 +116,19 @@ export default function Sidebar() {
               <a href="notifications.html" className="nav-link1">
                 <span className="sidebarListItemText">Events</span>
               </a>
-            </li>
+            </li> */}
           </ul>
-          <button className="sidebarButton">Show More</button>
-          <hr className="sidebarHr" />
+
+          {/* <hr className="sidebarHr" />
           <ul className="sidebarFriendList">
             {Users.map((u) => (
               <CloseFriend key={u.id} user={u} />
             ))}
-          </ul>
+          </ul> */}
         </div>
       </div>
 
-      {/* <div class="sidemenu-area">
+      <div class="sidemenu-area">
         <div class="responsive-burger-menu d-lg-none d-block">
           <span class="top-bar"></span>
           <span class="middle-bar"></span>
@@ -268,6 +211,14 @@ export default function Sidebar() {
                   <i class="flaticon-team"></i>
                 </span>
                 <span class="menu-title">My Classmates</span>
+              </a>
+            </li>
+            <li class="nav-item show-mobile">
+              <a href="groups.html" class="nav-link">
+                <span class="icon">
+                  <i class="flaticon-team"></i>
+                </span>
+                <span class="menu-title">My Colleagues</span>
               </a>
             </li>
             <li class="nav-item show-mobile">
@@ -360,7 +311,9 @@ export default function Sidebar() {
             ))}
           </ul>
         </div>
-      </div> */}
+      </div>
     </>
   );
 }
+//export default Sidebar;
+export default dynamic(() => Promise.resolve(Sidebar), { ssr: false });

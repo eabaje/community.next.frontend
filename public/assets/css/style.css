@@ -14357,10 +14357,12 @@ Profile Authentication Area CSS
 .show-mobile {
   display: none;
 }
-/* .sidemenu-area {
+.sidemenu-area {
   display: none;
-} */
-
+}
+.navbar-burger-menu {
+  display: none;
+}
 /* .nav {
   padding: 0;
   list-style-type: none;
@@ -14410,6 +14412,15 @@ Profile Authentication Area CSS
 
 @media only screen and (max-width: 1199px) {
   .show-mobile {
+    display: block;
+  }
+  .sidemenu-area {
+    display: block;
+  }
+  .sidebar {
+    display: none;
+  }
+  .navbar-burger-menu {
     display: block;
   }
 }

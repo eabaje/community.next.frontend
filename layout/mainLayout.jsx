@@ -3,6 +3,7 @@ import Header from "../components/topbar/Topbar";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/Provider";
 import { signout } from "../context/actions/auth/auth.action";
+import $ from "jquery";
 import ContentLink from "../components/content/contentBar/Link";
 import Rightbar from "../components/rightbar/Rightbar";
 import Sidebar from "../components/sidebar/Sidebar";
@@ -37,8 +38,15 @@ const MainLayout = ({ children }) => {
   const a = 1;
   React.useEffect(() => {
     // let controller = new AbortController();
+
     // getUser();
     // return () => controller?.abort();
+    if (typeof window !== "undefined") {
+      $(".go-top").on("click", function () {
+        $("html, body").animate({ scrollTop: "0" }, 500);
+      });
+      // $("#sidemenu-nav").metisMenu();
+    }
   }, [a]);
   // console.log(`User`, user);
 

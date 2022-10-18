@@ -8,8 +8,8 @@ function Footer() {
         <div className="container">
           <div className="row align-items-center">
             <p>
-              <i className="ri-copyright-line"></i> 2021 Zust. All Rights
-              Reserved by
+              <i className="ri-copyright-line"></i> 2024 MyArea. All Rights
+              Reserved by &nbsp;
               <Link href={"#"} passHref>
                 <a href="#" target="_blank">
                   MyArea
