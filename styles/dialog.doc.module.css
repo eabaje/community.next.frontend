@@ -1,0 +1,28 @@
+.gallery {
+  overflow: hidden;
+  margin-left: -6px;
+  margin-right: -6px;
+  width: 100%;
+}
+
+.image {
+  background-color: #eee;
+  box-sizing: border-box;
+  float: right;
+  margin: 6px;
+  overflow: hidden;
+  padding-bottom: 16%;
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.image:hover {
+  opacity: 0.9;
+}
+
+.image img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+}
