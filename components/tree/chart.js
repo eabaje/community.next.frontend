@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import randomcolor from "randomcolor";
-import faker from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import call from "./call.png";
 import video from "./video.png";
 import chat from "./chat.png";

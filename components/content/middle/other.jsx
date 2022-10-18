@@ -2,7 +2,7 @@ import AdvertSlider from "../../advert/slider";
 import PaternalLink from "../../relationLink/paternal";
 import Sidebar from "../../sidebar/Sidebar";
 //import Tree from "../../tree";
-import Chart from "../../tree/chart";
+//import Chart from "../../tree/chart";
 import ContentWidget from "../../widget";
 import StyledTree from "../../tree/hTree";
 
