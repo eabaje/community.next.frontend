@@ -74,13 +74,11 @@ export default function Topbar() {
 
         <div className="main-navbar">
           <nav className="navbar navbar-expand-lg navbar-light">
-            <a
-              href="index.html"
-              className="navbar-brand d-flex align-items-center"
-            >
-              <img src="assets/images/logo.png" alt="image" />
-            </a>
-
+            <Link href={"/"} passHref>
+              <a className="navbar-brand d-flex align-items-center">
+                <img src="assets/images/logo.png" alt="image" />
+              </a>
+            </Link>
             <div
               className="collapse navbar-collapse"
               id="navbarSupportedContent"
@@ -556,9 +554,11 @@ export default function Topbar() {
               <div className="option-inner">
                 <div className="others-options d-flex align-items-center">
                   <div className="option-item">
-                    <a href="index.html" className="home-btn">
-                      <i className="flaticon-home"></i>
-                    </a>
+                    <Link href={"/"} passHref>
+                      <a className="home-btn">
+                        <i className="flaticon-home"></i>
+                      </a>
+                    </Link>
                   </div>
                   <div className="option-item">
                     <div className="dropdown friend-requests-nav-item">
