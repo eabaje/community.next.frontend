@@ -26,7 +26,6 @@ export default class MyDocument extends Document {
             <link rel="stylesheet" href="/assets/css/style.css" />
 
             <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
-
             <link rel="stylesheet" href="/assets/css/animate.min.css" />
             <link rel="stylesheet" href="/assets/css/remixicon.css" />
             <link rel="stylesheet" href="/assets/css/flaticon.css" />

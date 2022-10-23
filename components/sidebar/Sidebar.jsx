@@ -160,7 +160,6 @@ function Sidebar({ user }) {
                 <span class="menu-title">News Feed</span>
               </a>
             </li>
-
             <li class="nav-item">
               <a href="notifications.html" class="nav-link">
                 <span class="icon">
@@ -185,7 +184,6 @@ function Sidebar({ user }) {
                 <span class="menu-title">Friends</span>
               </a>
             </li>
-
             <li class="nav-item show-mobile">
               <a href="groups.html" class="nav-link">
                 <span class="icon">
