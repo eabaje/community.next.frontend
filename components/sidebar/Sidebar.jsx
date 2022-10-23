@@ -32,6 +32,7 @@ import $ from "jquery";
 import { useContext, useEffect } from "react";
 import NavBar from "../navbar/navbar";
 import { menuItemsPublic } from "../navbar/vertical/sidebarData";
+import SideBarMenu from "../navbar/vertical/sidebarMenu";
 
 function Sidebar({ user }) {
   const handleMenu = () => {
@@ -141,7 +142,17 @@ function Sidebar({ user }) {
             id="sidemenu-nav"
             data-simplebar
           >
-            <li class="nav-item active">
+            {menuItemsPublic(user).map((menu, index) => {
+              return (
+                <SideBarMenu
+                  key={index}
+                  icon={`${menu.icon}`}
+                  path={menu.path}
+                  title={menu.title}
+                />
+              );
+            })}
+            {/* <li class="nav-item active">
               <a href="index.html" class="nav-link">
                 <span class="icon">
                   <i class="flaticon-newspaper"></i>
@@ -149,6 +160,7 @@ function Sidebar({ user }) {
                 <span class="menu-title">News Feed</span>
               </a>
             </li>
+
             <li class="nav-item">
               <a href="notifications.html" class="nav-link">
                 <span class="icon">
@@ -173,14 +185,7 @@ function Sidebar({ user }) {
                 <span class="menu-title">Friends</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a href="groups.html" class="nav-link">
-                <span class="icon">
-                  <i class="flaticon-team"></i>
-                </span>
-                <span class="menu-title">Groups</span>
-              </a>
-            </li>
+
             <li class="nav-item show-mobile">
               <a href="groups.html" class="nav-link">
                 <span class="icon">
@@ -300,7 +305,7 @@ function Sidebar({ user }) {
                 </span>
                 <span class="menu-title">Register</span>
               </a>
-            </li>
+            </li> */}
           </ul>
 
           <button className="sidebarButton">Show More</button>

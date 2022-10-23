@@ -4,6 +4,8 @@ import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 import Link from "next/link";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { topMenuItemsPublic } from "../navbar/vertical/topBarData";
+import TopBarNav from "../navbar/vertical/topBarNav";
 
 export default function Topbar() {
   const { user } = useContext(AuthContext);
@@ -480,23 +482,33 @@ export default function Topbar() {
                       <ul className="profile-body">
                         <li>
                           <i className="flaticon-user"></i>{" "}
-                          <a href="my-profile.html">My Profile</a>
+                          <Link href={"/profile"} passHref>
+                            <a>My Profile</a>
+                          </Link>
                         </li>
                         <li>
                           <i className="flaticon-settings"></i>{" "}
-                          <a href="setting.html">Setting</a>
+                          <Link href={"/setting"} passHref>
+                            <a>Setting</a>
+                          </Link>
                         </li>
                         <li>
                           <i className="flaticon-privacy"></i>{" "}
-                          <a href="privacy.html">Privacy</a>
+                          <Link href={"/privacy"} passHref>
+                            <a href="privacy.html">Privacy</a>
+                          </Link>
                         </li>
                         <li>
                           <i className="flaticon-information"></i>{" "}
-                          <a href="help-and-support.html">Help & Support</a>
+                          <Link href={"/support"} passHref>
+                            <a>Help & Support</a>
+                          </Link>
                         </li>
                         <li>
                           <i className="flaticon-logout"></i>{" "}
-                          <a href="index.html">Logout</a>
+                          <Link href={"#"} passHref>
+                            <a>Logout</a>
+                          </Link>
                         </li>
                       </ul>
                     </div>
@@ -1002,15 +1014,15 @@ export default function Topbar() {
                         <ul className="profile-body">
                           <li>
                             <i className="flaticon-user"></i>{" "}
-                            <a href="my-profile.html">My Profile</a>
+                            <a href="/profile">My Profile</a>
                           </li>
                           <li>
                             <i className="flaticon-settings"></i>{" "}
-                            <a href="setting.html">Setting</a>
+                            <a href="/setting">Setting</a>
                           </li>
                           <li>
                             <i className="flaticon-privacy"></i>{" "}
-                            <a href="privacy.html">Privacy</a>
+                            <a href="/privacy">Privacy</a>
                           </li>
                           <li>
                             <i className="flaticon-information"></i>{" "}
@@ -1042,6 +1054,20 @@ export default function Topbar() {
               </div>
             </div>
           </div>
+        </div>
+        <div className="after-navbar-area">
+          <ul className="contentbar navbar-nav m-auto text-sm-center text-md-center white">
+            {topMenuItemsPublic(user).map((menu, index) => {
+              return (
+                <TopBarNav
+                  key={index}
+                  iconName={`${menu.icon}`}
+                  path={menu.path}
+                  title={menu.title}
+                />
+              );
+            })}
+          </ul>
         </div>
       </div>
     </>

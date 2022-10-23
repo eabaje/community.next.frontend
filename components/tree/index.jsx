@@ -7,6 +7,14 @@ import FamilyNode from "./familyTree";
 import useDialog from "./useDialog";
 import Dialog from "./Dialog";
 
+import dynamic from "next/dynamic";
+const PinchZoomPan = dynamic(() => import("pinch-zoom-pan"), {
+  ssr: false,
+});
+const ReactFamilyTree = dynamic(() => import("react-family-tree"), {
+  ssr: false,
+});
+
 const myID = "0";
 const WIDTH = 240;
 const HEIGHT = 280;
@@ -18,36 +26,36 @@ export default function Tree() {
   //const onResetClick = React.useCallback(() => setRootId(myID), []);
 
   return (
-    <div className={styles.root}>
+    <div>
       <button onClick={() => setMarkHolucost((m) => !m)}>
         {markHolucost ? "הצג רגיל" : "סמן  נספים בשואה"}
       </button>
-      {/* <PinchZoomPan captureWheel min={0.4} max={2.5} className={styles.wrapper}>
-        <ReactFamilyTree
-          nodes={nodes}
-          rootId={rootId}
-          width={WIDTH}
-          height={HEIGHT}
-          canvasClassName={styles.tree}
-          renderNode={(node) => (
-            <FamilyNode
-              key={node.id}
-              node={node}
-              isRoot={node.id === rootId}
-              onSubClick={setRootId}
-              //  openDialog={openDialog}
-              markHolucost={markHolucost}
-              style={{
-                width: WIDTH,
-                height: HEIGHT,
-                transform: `translate(${node.left * (WIDTH / 2)}px, ${
-                  node.top * (HEIGHT / 2)
-                }px)`,
-              }}
-            />
-          )}
-        /> 
-      </PinchZoomPan>*/}
+      {/* <PinchZoomPan captureWheel min={0.4} max={2.5}> */}
+      <ReactFamilyTree
+        nodes={nodes}
+        rootId={rootId}
+        width={WIDTH}
+        height={HEIGHT}
+        canvasClassName={styles.tree}
+        renderNode={(node) => (
+          <FamilyNode
+            key={node.id}
+            node={node}
+            isRoot={node.id === rootId}
+            onSubClick={setRootId}
+            //  openDialog={openDialog}
+            markHolucost={markHolucost}
+            style={{
+              width: WIDTH,
+              height: HEIGHT,
+              transform: `translate(${node.left * (WIDTH / 2)}px, ${
+                node.top * (HEIGHT / 2)
+              }px)`,
+            }}
+          />
+        )}
+      />
+      {/* </PinchZoomPan> */}
       <Dialog />
     </div>
   );

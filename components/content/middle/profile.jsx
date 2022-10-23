@@ -5,14 +5,11 @@ import Sidebar from "../../sidebar/Sidebar";
 //import Chart from "../../tree/chart";
 import ContentWidget from "../../widget";
 import StyledTree from "../../tree/hTree";
-import Tree from "../../tree";
-import { useRouter } from "next/router";
+import AddEditProfile from "../../form/profile/AddEditProfile";
 
 const isBrowser = typeof window !== "undefined";
 
-function SecondMiddleContent({ query }) {
-  const router = useRouter();
-
+function ProfileContent({ query }) {
   return isBrowser ? (
     <>
       <div className="row">
@@ -26,7 +23,7 @@ function SecondMiddleContent({ query }) {
               {/*  <Tree user={null} />
                
                 <Chart />*/}
-              <StyledTree user={null} />
+              <AddEditProfile query={null} />
             </div>
           </div>
         </div>
@@ -35,4 +32,4 @@ function SecondMiddleContent({ query }) {
   ) : null;
 }
 
-export default SecondMiddleContent;
+export default ProfileContent;

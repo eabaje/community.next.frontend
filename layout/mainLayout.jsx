@@ -9,6 +9,7 @@ import Rightbar from "../components/rightbar/Rightbar";
 import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/footer";
 import dynamic from "next/dynamic";
+import LeftBar from "../components/sidebar/LeftBar";
 const MainLayout = ({ children }) => {
   // const {
   //   authDispatch,
@@ -66,16 +67,11 @@ const MainLayout = ({ children }) => {
 
       <div className="main-content-wrapper d-flex flex-column">
         <Header />
+        {/* <ContentLink /> */}
+        <LeftBar />
 
         <div className="content-page-box-area">
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-12 col-md-12">
-                <ContentLink />
-              </div>
-            </div>
-            {children}
-          </div>
+          <div className="container">{children}</div>
         </div>
         <Rightbar />
       </div>

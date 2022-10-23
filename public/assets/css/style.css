@@ -147,8 +147,8 @@ Main Content Wrapper Area CSS
   overflow: hidden;
   background-color: #f4f7fc;
   min-height: 100vh;
-  padding-top: 100px;
-  /* padding-left: 175px;*/
+  padding-top: 150px;
+  padding-left: 300px;
   padding-right: 215px;
   padding-bottom: 50px;
 }
@@ -162,6 +162,15 @@ Main Content Wrapper Area CSS
   height: auto;
   top: 0;
   left: 0;
+  width: 100%;
+}
+.main-content-wrapper .navbar-area .after-navbar-area {
+  background-color: #f4f7fc;
+  -webkit-box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 12px 0 rgba(0, 0, 0, 0.12);
+  /* z-index: 999; */
+  height: auto;
+
   width: 100%;
 }
 
@@ -4587,6 +4596,18 @@ Main Content Wrapper Area CSS
 /*================================================
 Sidemenu Area CSS
 =================================================*/
+.leftBar {
+  position: fixed;
+  left: 0;
+  top: 9rem;
+  height: 100%;
+  width: 300px;
+  z-index: 1;
+  overflow: scroll;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  max-height: calc(100% - 80px);
+}
 .sidemenu-area {
   position: fixed;
   left: 0;
@@ -4775,7 +4796,7 @@ Right Sidebar Area CSS
 .right-sidebar-area {
   position: fixed;
   right: 0;
-  top: 5.3rem;
+  top: 9rem;
   height: 100%;
   width: 200px;
   z-index: 1;
@@ -11819,7 +11840,7 @@ Profile Authentication Area CSS
 }
 
 .forgot-password-form form .form-group .form-control {
-  height: 60px;
+  height: 40px;
   padding: 15px 25px;
   line-height: initial;
   color: var(--paragraph-color);
@@ -14300,9 +14321,10 @@ Profile Authentication Area CSS
 
 .sidebar {
   flex: 3;
-  height: calc(100vh - 50px);
-  overflow-y: scroll;
-  position: sticky;
+  height: calc(100vh - 180px);
+  background-color: #f1f1f1;
+  /* overflow-y: scroll; 
+  position: sticky;*/
   top: 50px;
   font: inherit;
 }
