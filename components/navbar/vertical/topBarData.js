@@ -20,7 +20,11 @@ const topMenuItemsPublic = (user) => [
     path: `/relation/?userId=${user?.UserId}&type=maternal`,
     icon: "fa fa-female",
   },
-
+  {
+    title: "Friends",
+    path: `/friend/?userId=${user?.UserId}`,
+    icon: "fa fa-users-gear",
+  },
   {
     title: "Classmates",
     path: `/classmate/?userId=${user?.UserId}`,
