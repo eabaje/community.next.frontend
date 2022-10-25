@@ -256,646 +256,1030 @@ const AddEditProfile = ({ query }) => {
   console.log("ShowProfile", showProfile);
   return (
     <>
-      <h3> Update Your Profile</h3>
-      <hr />
+      <div class="page-banner-box">
+        <h3>Profile Update</h3>
+      </div>
 
-      <div className="col-md-12">
-        <nav>
-          <div class="nav nav-pills nav-fill" id="nav-tab" role="tablist">
+      <div class="account-setting-list-tabs">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
             <a
               class="nav-link active"
-              id="step1-tab"
-              data-toggle="tab"
-              href="#step1"
+              id="profile-information-tab"
+              data-bs-toggle="tab"
+              href="#profile-information"
+              role="tab"
+              aria-controls="profile-information"
             >
-              Personal Info
+              Profile Information
             </a>
-            <a class="nav-link" id="step2-tab" data-toggle="tab" href="#step2">
-              Spousal Info
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="account-tab"
+              data-bs-toggle="tab"
+              href="#account"
+              role="tab"
+              aria-controls="account"
+            >
+              Spouse
             </a>
-            <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step3">
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="privacy-tab"
+              data-bs-toggle="tab"
+              href="#privacy"
+              role="tab"
+              aria-controls="privacy"
+            >
               Children
             </a>
-            <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step4">
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="notification-tab"
+              data-bs-toggle="tab"
+              href="#notification"
+              role="tab"
+              aria-controls="notification"
+            >
               Siblings
             </a>
-            <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step5">
-              Paternal Info
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="message-tab"
+              data-bs-toggle="tab"
+              href="#message"
+              role="tab"
+              aria-controls="message"
+            >
+              paternal Info
             </a>
-            <a class="nav-link" id="step3-tab" data-toggle="tab" href="#step6">
-              Maternal Info
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="close-account-tab"
+              data-bs-toggle="tab"
+              href="#close-account"
+              role="tab"
+              aria-controls="close-account"
+            >
+              Maternal
             </a>
-          </div>
-        </nav>
-        <div class="tab-content py-4" id="nav-tabContent">
-          <div class="tab-pane fade show active" id="step1">
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="close-account-tab"
+              data-bs-toggle="tab"
+              href="#close-account"
+              role="tab"
+              aria-controls="close-account"
+            >
+              Places Lived
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="close-account-tab"
+              data-bs-toggle="tab"
+              href="#close-account"
+              role="tab"
+              aria-controls="close-account"
+            >
+              Work History
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="profile-information"
+          role="tabpanel"
+        >
+          <form class="account-setting-form">
+            <h3>Profile Information</h3>
+
             <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First name"
+                    name="FirstName"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Backup Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Backup email"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Date of Birth</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Date of birth"
+                    id="datepicker"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Phone No:</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Phone no"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Occupation</label>
+                  <select class="form-select">
+                    <option selected="1">Occupation</option>
+                    <option value="2">Software Developer</option>
+                    <option value="3">Biomedical Engineer</option>
+                    <option value="4">Civil Engineer</option>
+                    <option value="5">General Practitioner</option>
+                    <option value="6">Structural Engineer</option>
+                    <option value="7">Pharmacy Technician</option>
+                    <option value="8">Mechanical Engineer</option>
+                    <option value="9">Petroleum Engineer</option>
+                    <option value="10">Technician</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select class="form-select">
+                    <option selected="1">Gender</option>
+                    <option value="2">Male</option>
+                    <option value="3">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Relation Status</label>
+                  <select
+                    class="form-select"
+                    name="MaritalStatus"
+                    {...register("MaritalStatus", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="0">Relation Status</option>
+                    <option value="1">Married</option>
+                    <option value="2">Unmarried</option>
+                    <option value="3">Single</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Blood Group</label>
+                  <select
+                    class="form-select"
+                    name="BloodGroup"
+                    {...register("BloodGroup", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="1">Blood Group</option>
+                    <option value="2">A+</option>
+                    <option value="3">A-</option>
+                    <option value="4">B+</option>
+                    <option value="5">B-</option>
+                    <option value="6">O+</option>
+                    <option value="7">O-</option>
+                    <option value="8">AB+</option>
+                    <option value="9">AB-</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Website</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Website"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Language</label>
+                  <select
+                    class="form-select"
+                    name="Language"
+                    {...register("Languages", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="1">Language</option>
+                    <option value="2">English</option>
+                    <option value="3">Portuguese</option>
+                    <option value="4">Japanese</option>
+                    <option value="5">Russian</option>
+                    <option value="6">Javanese</option>
+                    <option value="7">Gujarati</option>
+                    <option value="8">Yoruba</option>
+                    <option value="9">Polish</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Address</label>
+                  <input
+                    type="text"
+                    name="Address"
+                    class="form-control"
+                    placeholder="Address"
+                    {...register("Address", {
+                      required: true,
+                    })}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>City</label>
+                  <select
+                    class="form-select"
+                    name="City"
+                    {...register("City", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="1">City</option>
+                    <option value="2">Canada</option>
+                    <option value="3">Germany</option>
+                    <option value="4">Switzerland</option>
+                    <option value="5">Australia</option>
+                    <option value="6">United States</option>
+                    <option value="7">New Zealand</option>
+                    <option value="8">United Kingdom</option>
+                    <option value="9">Netherlands</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>State</label>
+
+                  <select
+                    name="State"
+                    className="form-select"
+                    id="State"
+                    {...register("State", {
+                      required: true,
+                    })}
+                  >
+                    <option value=""> Select Region/State </option>
+                    {pickUpRegion.map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Country</label>
+                  <select
+                    name="Country"
+                    className="form-select"
+                    {...register("Country")}
+                    onChange={selectPickUpCountry}
+                  >
+                    <option value="">Select Country</option>
+                    {countries.map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
               <div class="col-lg-12 col-md-12">
-                <div>
-                  <h2>Register</h2>
-
-                  <form>
-                    <div class="form-group">
-                      <label>Name</label>
-                      <input type="text" class="form-control" />
-                    </div>
-
-                    <div class="form-group row">
-                      <label className="col-sm-2 col-form-label">Email</label>
-                      <div className="col-sm-4">
-                        <input
-                          name="Email"
-                          className="form-control"
-                          placeholder="Email"
-                          {...register("Email", {
-                            required: true,
-                          })}
-                          required
-                        />
-                      </div>
-
-                      <label className="col-sm-2 col-form-label">Phone</label>
-                      <div className="col-sm-4">
-                        <input
-                          name="Phone"
-                          className="form-control"
-                          placeholder="Phone"
-                          {...register("Phone", {
-                            required: true,
-                          })}
-                        />
-                      </div>
-                    </div>
-
-                    <div class="form-group">
-                      <label>Password</label>
-                      <input type="password" class="form-control" />
-                    </div>
-
-                    <div class="form-group">
-                      <label>Confirm Password</label>
-                      <input type="password" class="form-control" />
-                    </div>
-
-                    <div class="remember-me-wrap">
-                      <p>
-                        <input type="checkbox" id="test1" />
-                        <label for="test1">
-                          I Accept The <a href="privacy.html">Privacy</a>
-                        </label>
-                      </p>
-                    </div>
-                    <button type="submit" class="default-btn">
-                      Register
-                    </button>
-                    <div class="or-text">
-                      <span>Or</span>
-                    </div>
-                    <button type="submit" class="google-btn">
-                      Log In with Google
-                    </button>
-                  </form>
-                </div>
+                <button type="submit" class="default-btn">
+                  Save
+                </button>
               </div>
             </div>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="account" role="tabpanel">
+          <form class="account-setting-form">
+            <h3>Account Information</h3>
 
             <div class="row">
-              <div className="col-md-12">
-                <div className="card">
-                  <div className="card-body">
-                    <div className="col-md-12 ">
-                      <form
-                        encType="multipart/form-data"
-                        onSubmit={handleSubmit(onSubmit)}
-                      >
-                        <input
-                          type="hidden"
-                          name="CompanyId"
-                          value={""}
-                          className="form-control"
-                          {...register("CompanyId")}
-                        />
-                        <input
-                          type="hidden"
-                          name="PicUrl"
-                          className="form-control"
-                          {...register("PicUrl")}
-                        />
-                        <input
-                          type="hidden"
-                          name="LicenseUrl"
-                          className="form-control"
-                          {...register("LicenseUrl")}
-                        />
-                        <div className="form-group row">
-                          <div className="col-md-12 ">
-                            <span>
-                              {" "}
-                              <ImageUpload
-                                refId={null}
-                                fieldName="PicUrl"
-                                show={true}
-                                onChangePicHandler={onChangePicHandler}
-                              />
-                            </span>
-                          </div>
-                          <div className="col-md-2">
-                            <span> </span>
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <div className="col-md-12">
-                            <h5 className="alert alert-info"> </h5>
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <label className="col-sm-2 col-form-label">
-                            Company Name
-                          </label>
-
-                          <div className="col-sm-4">
-                            <input
-                              name="CompanyName"
-                              className="form-control"
-                              readOnly="readonly"
-                              value={""}
-                              placeholder="Company Name"
-                              {...register("CompanyName")}
-                            />
-                          </div>
-                          <label className="col-sm-2 col-form-label">
-                            Driver Name
-                          </label>
-
-                          <div className="col-sm-4">
-                            <input
-                              name="DriverName"
-                              className="form-control"
-                              placeholder="Driver Name"
-                              {...register("DriverName", {
-                                required: true,
-                              })}
-                              required
-                            />
-                          </div>
-                        </div>
-
-                        <div className="form-group row">
-                          <label className="col-sm-2 col-form-label">
-                            Email
-                          </label>
-                          <div className="col-sm-4">
-                            <input
-                              name="Email"
-                              className="form-control"
-                              placeholder="Email"
-                              {...register("Email", {
-                                required: true,
-                              })}
-                              required
-                            />
-                          </div>
-
-                          <label className="col-sm-2 col-form-label">
-                            Phone
-                          </label>
-                          <div className="col-sm-4">
-                            <input
-                              name="Phone"
-                              className="form-control"
-                              placeholder="Phone"
-                              {...register("Phone", {
-                                required: true,
-                              })}
-                            />
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <label className="col-sm-2 col-form-label">
-                            Password
-                          </label>
-                          <div className="col-sm-4">
-                            <input
-                              name="Password"
-                              type="password"
-                              className="form-control"
-                              placeholder="Password"
-                              {...register("Password", {
-                                required: true,
-                              })}
-                              required
-                            />
-                          </div>
-
-                          <label className="col-sm-2 col-form-label">
-                            Confirm Password
-                          </label>
-                          <div className="col-sm-4">
-                            <input
-                              name="ConfirmPassword"
-                              className={`form-control ${
-                                errors.ConfirmPassword ? "is-invalid" : ""
-                              }`}
-                              type="password"
-                              placeholder="Confirm Password"
-                              {...register("ConfirmPassword", {
-                                required: true,
-                              })}
-                            />
-                            {errorMessage(errors.ConfirmPassword?.message)}
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <label className="col-sm-2 col-form-label">DOB</label>
-                          <div className="col-sm-4">
-                            <input
-                              type="date"
-                              class="form-control"
-                              required
-                              {...register("DOB")}
-                            />
-                          </div>
-
-                          <label className="col-sm-2 col-form-label">
-                            City
-                          </label>
-                          <div className="col-sm-4">
-                            <input
-                              name="Phone"
-                              className="form-control"
-                              placeholder="City"
-                              {...register("City")}
-                            />
-                          </div>
-                        </div>
-                        <div className="form-group row">
-                          <label className="col-form-label col-md-2">
-                            Country
-                          </label>
-                          <div className="col-md-4">
-                            <select
-                              name="Country"
-                              className="form-control"
-                              {...register("Country")}
-                              onChange={selectPickUpCountry}
-                            >
-                              <option value="">Select Country</option>
-                              {countries.map((item) => (
-                                <option key={item.isoCode} value={item.isoCode}>
-                                  {item.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-
-                          <label className="col-form-label col-md-2">
-                            Region/State
-                          </label>
-                          <div className="col-md-4">
-                            <select
-                              name="Region"
-                              className="form-control"
-                              id="Region"
-                              {...register("Region", {
-                                required: true,
-                              })}
-                            >
-                              <option value=""> Select Region/State </option>
-                              {pickUpRegion.map((item) => (
-                                <option
-                                  key={item.isoCode}
-                                  selected={selPickUpRegion === item.isoCode}
-                                  value={item.isoCode}
-                                >
-                                  {item.name}
-                                </option>
-                              ))}
-                            </select>
-                          </div>
-                        </div>
-
-                        <div className="form-group row">
-                          <label className="col-form-label col-md-2">
-                            Address
-                          </label>
-                          <div className="col-md-10">
-                            <input
-                              name="Address"
-                              className="form-control"
-                              placeholder="Address"
-                              {...register("Address", {
-                                required: true,
-                              })}
-                            />
-                          </div>
-                        </div>
-
-                        {/* <div className="form-group row">
-                            <label className="col-form-label col-md-2">
-                              Drivers License No
-                            </label>
-                            <div className="col-md-4">
-                              <input
-                                name="LicenseNo"
-                                className="form-control"
-                                placeholder="License No"
-                                {...register("LicenseNo", {
-                                  required: true,
-                                })}
-                              />
-                            </div>{" "}
-                            <label className="col-form-label col-md-2">
-                              Attach Drivers License
-                            </label>
-                            <div className="col-md-4">
-                              <input
-                                className="form-control"
-                                type="file"
-                                id="fileLicenseUrl"
-                                name="fileLicenseUrl"
-                                {...register("fileLicenseUrl")}
-                                onChange={(e) => onChangeDocHandler(e)}
-                              />
-                            </div>
-                          </div> */}
-
-                        <div className="form-group row alert alert-info">
-                          <div className="col-md-8 "></div>
-                          <div className="col-md-4 "></div>
-                        </div>
-                        <div className="form-group"></div>
-
-                        <div className="form-group row">
-                          <div className="col-sm-12 ">
-                            <div className="form-check">
-                              <input
-                                className="form-check-input"
-                                type="checkbox"
-                                value=""
-                                id="invalidCheck"
-                                required
-                              />
-                              <label
-                                className="form-check-label"
-                                htmlFor="invalidCheck"
-                              >
-                                I confirm all information entered are accurate
-                              </label>
-                            </div>
-                          </div>
-                          <div className="right" style={{ float: "right" }}>
-                            <CustomButton
-                              loading={loading}
-                              isAddMode={"true"}
-                            />
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Full Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Full name"
+                  />
                 </div>
               </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>User Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="User name"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Account Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Account email"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Phone Number</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Phone number"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Country</label>
+                  <select class="form-select">
+                    <option selected="1">Country</option>
+                    <option value="2">Canada</option>
+                    <option value="3">Germany</option>
+                    <option value="4">Switzerland</option>
+                    <option value="5">Australia</option>
+                    <option value="6">United States</option>
+                    <option value="7">New Zealand</option>
+                    <option value="8">United Kingdom</option>
+                    <option value="9">Netherlands</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                <button type="submit" class="default-btn">
+                  Save
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="step2">
-            <h4>Step 2</h4>
-            <div class="mb-3">
-              <label for="first_name">Required field 1</label>
-              <input
-                type="text"
-                class="form-control"
-                id="first_name"
-                required
-              />
+          </form>
+
+          <form class="account-setting-form">
+            <h3>Security Information</h3>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Recovery Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Recovery email"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Recovery Phone</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Recovery phone"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Security Question 01</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Security question 01"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Security Question 012</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Security question 02"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Security Question 03</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Security question 03"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                <button type="submit" class="default-btn">
+                  Save
+                </button>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="first_name">Optional field</label>
-              <input type="text" class="form-control" id="first_name" />
+          </form>
+
+          <form class="account-setting-form">
+            <h3>Change Password</h3>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Current Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Current password"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>New Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="New password"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Change Password</label>
+                  <input
+                    type="password"
+                    class="form-control"
+                    placeholder="Change password"
+                  />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                <button type="submit" class="default-btn">
+                  Save Change
+                </button>
+              </div>
             </div>
-            <div class="mb-3">
-              <label for="first_name">Required field 2</label>
-              <textarea rows="5" class="form-control" required></textarea>
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="privacy" role="tabpanel">
+          <form class="account-setting-form">
+            <h3>Privacy Settings</h3>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Who Can See Your Profile?</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Who Can See Your Future Post?</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Who Can Send You Friend Request?</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Who Can See Your Chat Activity?</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Who Can See Your Phone Number?</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>How People Find And Contact You?</label>
+                  <input type="text" class="form-control" />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                <button type="submit" class="default-btn">
+                  Save Change
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="tab-pane fade" id="step3">
-            <h4>Step 3</h4>
-            <div class="mb-3">
-              <label for="first_name">Required field 1</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Optional field</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Required field 2</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-          </div>
-          <div class="tab-pane fade" id="step4">
-            <h4>Step 3</h4>
-            <div class="mb-3">
-              <label for="first_name">Required field 1</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Optional field</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Required field 2</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-          </div>
-          <div class="tab-pane fade" id="step5">
-            <h4>Step 3</h4>
-            <div class="mb-3">
-              <label for="first_name">Required field 1</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Optional field</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Required field 2</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-          </div>
-          <div class="tab-pane fade" id="step6">
-            <h4>Step 3</h4>
-            <div class="mb-3">
-              <label for="first_name">Required field 1</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Optional field</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
-            </div>
-            <div class="mb-3">
-              <label for="first_name">Required field 2</label>
-              <input
-                type="text"
-                class="form-control-plaintext"
-                value="Lorem ipsum dolor sit amet"
-                id="first_name"
-              />
+          </form>
+        </div>
+
+        <div class="tab-pane fade" id="notification" role="tabpanel">
+          <div class="account-setting-notification">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="notification-content">
+                  <h3>Notification</h3>
+
+                  <ul class="alert-box">
+                    <li>Where You Receive Comment Notification?</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="email"
+                        />
+                        <label class="form-check-label" for="email">
+                          Email
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="SMS"
+                        />
+                        <label class="form-check-label" for="SMS">
+                          SMS
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="alert-box">
+                    <li>Get Notifications When You're Tagged By</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="anyone"
+                        />
+                        <label class="form-check-label" for="anyone">
+                          Anyone
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="friends"
+                        />
+                        <label class="form-check-label" for="friends">
+                          Friends
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="alert-box">
+                    <li>Get Notifications When Updates From Friends</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="email-2"
+                        />
+                        <label class="form-check-label" for="email-2">
+                          Email
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="SMS-2"
+                        />
+                        <label class="form-check-label" for="SMS-2">
+                          SMS
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <div class="other-notification-content">
+                  <h3>Other Notifications</h3>
+
+                  <ul class="alert-box">
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="recommended-videos"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="recommended-videos"
+                        >
+                          Recommended Videos
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="games"
+                        />
+                        <label class="form-check-label" for="games">
+                          Games
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="breaking-news"
+                        />
+                        <label class="form-check-label" for="breaking-news">
+                          Breaking News
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="pages-follow-notification"
+                        />
+                        <label
+                          class="form-check-label"
+                          for="pages-follow-notification"
+                        >
+                          Pages Follow Notification
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="notification-content">
+                  <ul class="alert-box">
+                    <li>Where You Receive Friend Request Notification?</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="email-3"
+                        />
+                        <label class="form-check-label" for="email-3">
+                          Email
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="SMS-3"
+                        />
+                        <label class="form-check-label" for="SMS-3">
+                          SMS
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="alert-box">
+                    <li>Where You Receive Birthday Notification?</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="email-4"
+                        />
+                        <label class="form-check-label" for="email-4">
+                          Email
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="SMS-4"
+                        />
+                        <label class="form-check-label" for="SMS-4">
+                          SMS
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="alert-box">
+                    <li>Where You Receive Groups Notification?</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="email-5"
+                        />
+                        <label class="form-check-label" for="email-5">
+                          Email
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="SMS-5"
+                        />
+                        <label class="form-check-label" for="SMS-5">
+                          SMS
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div class="card">
-          <div class="card-header">
-            <h5>Basic Tabs</h5>
-          </div>
-          <div class="card-body">
-            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
-              <li class="nav-item">
-                <a
-                  class="nav-link active text-uppercase"
-                  id="home-tab"
-                  data-toggle="tab"
-                  href="#home"
-                  role="tab"
-                  aria-controls="home"
-                  aria-selected="true"
-                >
-                  Home
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-uppercase"
-                  id="profile-tab"
-                  data-toggle="tab"
-                  href="#profile"
-                  role="tab"
-                  aria-controls="profile"
-                  aria-selected="false"
-                >
-                  Profile
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link text-uppercase"
-                  id="contact-tab"
-                  data-toggle="tab"
-                  href="#contact"
-                  role="tab"
-                  aria-controls="contact"
-                  aria-selected="false"
-                >
-                  Contact
-                </a>
-              </li>
-            </ul>
-            <div class="tab-content" id="myTabContent">
-              <div
-                class="tab-pane fade show active"
-                id="home"
-                role="tabpanel"
-                aria-labelledby="home-tab"
-              >
-                <p class="mb-0">
-                  Raw denim you probably haven't heard of them jean shorts
-                  Austin. Nesciunt tofu stumptown aliqua, retro synth master
-                  cleanse. Mustache cliche tempor, williamsburg carles vegan
-                  helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                  synth. Cosby sweater eu banh mi, qui irure terry richardson ex
-                  squid. Aliquip placeat salvia cillum iphone. Seitan aliquip
-                  quis cardigan american apparel, butcher voluptate nisi qui.
-                </p>
+        <div class="tab-pane fade" id="message" role="tabpanel">
+          <div class="account-setting-message">
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="message-content">
+                  <h3>Messages Setting</h3>
+
+                  <ul class="alert-box">
+                    <li>Send Me Messages To My Cell Phone</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="ON"
+                        />
+                        <label class="form-check-label" for="ON">
+                          ON
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="OFF"
+                        />
+                        <label class="form-check-label" for="OFF">
+                          OFF
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="alert-box">
+                    <li>General Announcement, Updates, Posts, And Videos</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="ON-2"
+                        />
+                        <label class="form-check-label" for="ON-2">
+                          ON
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="OFF-2"
+                        />
+                        <label class="form-check-label" for="OFF-2">
+                          OFF
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+
+                  <ul class="alert-box">
+                    <li>Messages From Activity On My Page</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="ON-3"
+                        />
+                        <label class="form-check-label" for="ON-3">
+                          ON
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="OFF-3"
+                        />
+                        <label class="form-check-label" for="OFF-3">
+                          OFF
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
-              <div
-                class="tab-pane fade"
-                id="profile"
-                role="tabpanel"
-                aria-labelledby="profile-tab"
-              >
-                <p class="mb-0">
-                  Food truck fixie locavore, accusamus mcsweeney's marfa nulla
-                  single-origin coffee squid. Exercitation +1 labore velit, blog
-                  sartorial PBR leggings next level wes anderson artisan four
-                  loko farm-to-table craft beer twee. Qui photo booth
-                  letterpress, commodo enim craft beer mlkshk aliquip jean
-                  shorts ullamco ad vinyl cillum PBR. accusamus tattooed echo
-                  park.
-                </p>
-              </div>
-              <div
-                class="tab-pane fade"
-                id="contact"
-                role="tabpanel"
-                aria-labelledby="contact-tab"
-              >
-                <p class="mb-0">
-                  Etsy mixtape wayfarers, ethical wes anderson tofu before they
-                  sold out mcsweeney's organic lomo retro fanny pack lo-fi
-                  farm-to-table readymade. Messenger bag gentrify pitchfork
-                  tattooed craft beer, iphone skateboard locavore carles etsy
-                  salvia banksy hoodie helvetica. DIY synth PBR banksy irony.
-                  Lnyl craft beer blog stumptown. Pitchfork sustainable tofu
-                  synth chambray yr.
-                </p>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="message-content">
+                  <ul class="alert-box">
+                    <li>Page Follow Notification</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="ON-4"
+                        />
+                        <label class="form-check-label" for="ON-4">
+                          ON
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="OFF-4"
+                        />
+                        <label class="form-check-label" for="OFF-4">
+                          OFF
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="alert-box">
+                    <li>Breaking News</li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="ON-5"
+                        />
+                        <label class="form-check-label" for="ON-5">
+                          ON
+                        </label>
+                      </div>
+                    </li>
+                    <li>
+                      <div class="form-check">
+                        <input
+                          type="checkbox"
+                          class="form-check-input"
+                          id="OFF-5"
+                        />
+                        <label class="form-check-label" for="OFF-5">
+                          OFF
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
+        </div>
+
+        <div class="tab-pane fade" id="close-account" role="tabpanel">
+          <form class="account-setting-form">
+            <div class="title">
+              <h3>Close Account</h3>
+              <p>
+                <span>Warning:</span> If you close your account, all your
+                followers and friends will be unsubscribed and you will lose
+                access forever.
+              </p>
+            </div>
+
+            <div class="row">
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Your Email Address</label>
+                  <input type="email" class="form-control" />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Your Password</label>
+                  <input type="password" class="form-control" />
+                </div>
+              </div>
+
+              <div class="col-lg-12 col-md-12">
+                <button type="submit" class="default-btn">
+                  Delate Account
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
       </div>
     </>
