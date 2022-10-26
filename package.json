@@ -28,6 +28,7 @@
     "country-state-city": "^3.0.1",
     "framer-motion": "^5.5.7",
     "jquery": "^3.6.0",
+    "language-list": "0.0.3",
     "little-state-machine": "^4.2.0",
     "mui-datatables": "^4.2.2",
     "next": "^12.0.8",

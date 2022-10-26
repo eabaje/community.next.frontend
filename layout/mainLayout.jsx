@@ -10,6 +10,7 @@ import Sidebar from "../components/sidebar/Sidebar";
 import Footer from "../components/footer/footer";
 import dynamic from "next/dynamic";
 import LeftBar from "../components/sidebar/LeftBar";
+//import "./jquery-ui.min.js";
 const MainLayout = ({ children }) => {
   // const {
   //   authDispatch,
@@ -46,6 +47,7 @@ const MainLayout = ({ children }) => {
       $(".go-top").on("click", function () {
         $("html, body").animate({ scrollTop: "0" }, 500);
       });
+      // $("#datepicker").datepicker();
       // $("#sidemenu-nav").metisMenu();
     }
   }, [a]);

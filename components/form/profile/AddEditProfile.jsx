@@ -39,13 +39,13 @@ const AddEditProfile = ({ query }) => {
   // const [companyId, setcompanyId] = useState("");
   const [email, setEmail] = useState("");
   const [countries, setCountries] = useState([]);
-  const [pickUpRegion, setPickUpRegion] = useState([]);
-  const [region, setRegion] = useState([]);
+  const [Region, setRegion] = useState([]);
+  const [City, setCity] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
-
+  const [selCity, setselCity] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  const [selPickUpRegion, setselpickUpRegion] = useState("");
+  const [selRegion, setselRegion] = useState("");
   const [value, setValues] = useState("");
   const [visibilityImage, setVisibilityImage] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -86,13 +86,7 @@ const AddEditProfile = ({ query }) => {
   const selectCountry = async (e) => {
     setCountry((country) => e.target.value);
 
-    setRegion((region) => (region = State.getStatesOfCountry(e.target.value)));
-  };
-
-  const selectPickUpCountry = async (e) => {
-    setCountry((country) => e.target.value);
-
-    setPickUpRegion((pickUpRegion = State.getStatesOfCountry(e.target.value)));
+    setRegion((Region = State.getStatesOfCountry(e.target.value)));
   };
   const popupCloseHandlerImage = (e) => {
     setVisibilityImage(e);
@@ -390,15 +384,62 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
+                  <label>Middle Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Middle name"
+                    name="MiddleName"
+                    {...register("MiddleName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
                   <label>Last Name</label>
                   <input
                     type="text"
                     class="form-control"
                     placeholder="Last name"
-                    {...register("FirstName")}
+                    name="LastName"
+                    {...register("LastName")}
                   />
                 </div>
               </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Maiden Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Maiden Name"
+                    name="MaidenName"
+                    {...register("MaidenName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select
+                    class="form-select"
+                    name="Sex"
+                    {...register("Sex", {
+                      required: true,
+                    })}
+                  >
+                    <option value=""></option>
+                    <option value="<18">{"<18"}</option>
+                    <option value="18-30">18-30</option>
+                    <option value="31-40">31-40</option>
+                    <option value="41-50">41-50</option>
+                    <option value="51-60">51-60</option>
+                    <option value="61 and above">61 and above</option>
+                  </select>
+                </div>
+              </div>
+
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Email</label>
@@ -406,11 +447,12 @@ const AddEditProfile = ({ query }) => {
                     type="email"
                     class="form-control"
                     placeholder="Email"
-                    {...register("FirstName")}
+                    name="Email"
+                    {...register("Email")}
                   />
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
+              {/* <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Backup Email</label>
                   <input
@@ -420,17 +462,40 @@ const AddEditProfile = ({ query }) => {
                     {...register("FirstName")}
                   />
                 </div>
-              </div>
+              </div> */}
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Date of Birth</label>
-                  <input
+                  <Controller
+                    name={"DOB"}
+                    control={control}
+                    // defaultValue={new Date()}
+                    render={({ field: { onChange, value } }) => {
+                      return (
+                        <DatePicker
+                          wrapperclassName="datePicker"
+                          className="ui-datepicker"
+                          onChange={onChange}
+                          selected={value}
+                          yearDropdownItemNumber={100}
+                          // dateFormat="dd-MM-yyyy"
+                          scrollableYearDropdown={true}
+                          showYearDropdown
+                          showMonthDropdown
+                          placeholderText="Enter date"
+                          customInput={<CustomInput />}
+                        />
+                      );
+                    }}
+                  />
+                  {/* <input
                     type="text"
                     class="form-control"
                     placeholder="Date of birth"
                     id="datepicker"
-                    {...register("FirstName")}
-                  />
+                    name="DOB"
+                    {...register("DOB")}
+                  /> */}
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
@@ -440,14 +505,37 @@ const AddEditProfile = ({ query }) => {
                     type="number"
                     class="form-control"
                     placeholder="Phone no"
-                    {...register("FirstName")}
+                    name="Mobile"
+                    {...register("Mobile")}
                   />
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
+                  <label>Gender</label>
+                  <select
+                    class="form-select"
+                    name="Sex"
+                    {...register("Sex", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="1">Gender</option>
+                    <option value="2">Male</option>
+                    <option value="3">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
                   <label>Occupation</label>
-                  <select class="form-select">
+                  <select
+                    class="form-select"
+                    name="Occupation"
+                    {...register("Occupation", {
+                      required: true,
+                    })}
+                  >
                     <option selected="1">Occupation</option>
                     <option value="2">Software Developer</option>
                     <option value="3">Biomedical Engineer</option>
@@ -463,14 +551,22 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Gender</label>
-                  <select class="form-select">
-                    <option selected="1">Gender</option>
-                    <option value="2">Male</option>
-                    <option value="3">Female</option>
+                  <label>Employment Status</label>
+                  <select
+                    class="form-select"
+                    name="EmploymentStatus"
+                    {...register("EmploymentStatus", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="0">Employment Status</option>
+                    <option value="2">Employed</option>
+                    <option value="3">Entrepreneur</option>
+                    <option value="4">Unemployed</option>
                   </select>
                 </div>
               </div>
+
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Relation Status</label>
@@ -559,22 +655,26 @@ const AddEditProfile = ({ query }) => {
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>City</label>
+
                   <select
-                    class="form-select"
                     name="City"
+                    className="form-control"
+                    // readOnly={readOnly}
+                    id="City"
                     {...register("City", {
                       required: true,
                     })}
                   >
-                    <option selected="1">City</option>
-                    <option value="2">Canada</option>
-                    <option value="3">Germany</option>
-                    <option value="4">Switzerland</option>
-                    <option value="5">Australia</option>
-                    <option value="6">United States</option>
-                    <option value="7">New Zealand</option>
-                    <option value="8">United Kingdom</option>
-                    <option value="9">Netherlands</option>
+                    <option value=""> Select City </option>
+                    {City.map((item) => (
+                      <option
+                        key={item.isoCode}
+                        selected={selCity === item.isoCode}
+                        value={item.isoCode}
+                      >
+                        {item.name}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
@@ -591,7 +691,7 @@ const AddEditProfile = ({ query }) => {
                     })}
                   >
                     <option value=""> Select Region/State </option>
-                    {pickUpRegion.map((item) => (
+                    {Region.map((item) => (
                       <option key={item.isoCode} value={item.isoCode}>
                         {item.name}
                       </option>
@@ -606,7 +706,7 @@ const AddEditProfile = ({ query }) => {
                     name="Country"
                     className="form-select"
                     {...register("Country")}
-                    onChange={selectPickUpCountry}
+                    onChange={selectCountry}
                   >
                     <option value="">Select Country</option>
                     {countries.map((item) => (
