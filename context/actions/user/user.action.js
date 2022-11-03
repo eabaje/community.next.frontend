@@ -268,11 +268,87 @@ export const deleteUser = (userId) => async (dispatch) => {
       payload: res.data,
     });
   } catch (err) {
-    const message =
-      err.message && err.response.data.message
-        ? err.response.data.message
-        : err.response.data.message;
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
     dispatch({ type: DELETE_USER_FAIL, payload: message });
+  }
+};
+
+export const UpdateUserProfile = (form) => async (dispatch) => {
+  dispatch({ type: EDIT_USER_REQUEST });
+
+  try {
+    const { res } = await axios.put(
+      `/user/updateUserProfile/${form.UserId}`,
+      form
+    );
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
+
+export const AddSpouseInfo = (form) => async (dispatch) => {
+  dispatch({ type: CREATE_USER_REQUEST });
+
+  try {
+    const { res } = await axios.post(`/user/addSpouse`, form);
+
+    dispatch({
+      type: CREATE_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: CREATE_USER_FAIL, payload: message });
+  }
+};
+
+export const AddChildSibling = (userId) => async (dispatch) => {
+  const requestPayload = {
+    ProfileId: userId,
+  };
+
+  dispatch({ type: CREATE_USER_REQUEST });
+
+  try {
+    const { res } = await axios.post(`/user/addChildOrSibling`, form);
+
+    dispatch({
+      type: CREATE_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: CREATE_USER_FAIL, payload: message });
+  }
+};
+export const AddSchoolPlaceWork = (form) => async (dispatch) => {
+  const requestPayload = {
+    ProfileId: userId,
+  };
+
+  dispatch({ type: CREATE_USER_REQUEST });
+
+  try {
+    const { res } = await axios.post(`/user/addSchoolPlaceWork`, form);
+
+    dispatch({
+      type: CREATE_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: CREATE_USER_FAIL, payload: message });
   }
 };
 
@@ -334,7 +410,7 @@ export const listUserSubscriptionByUserId =
         dispatch({ type: GET_USER_SUBSCRIPTIONS_SUCCESS, payload: res.data });
 
         onSuccess(res.data);
-      //  console.log(`res.data`, res.data);
+        //  console.log(`res.data`, res.data);
       })
       .catch((err) => {
         const message = err.response ? err.response.data : CONNECTION_ERROR;

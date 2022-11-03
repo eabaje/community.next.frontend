@@ -20,13 +20,14 @@ export const LOAD_UNIT = [
   { value: "Tons", text: "Tons" },
 ];
 
-export const TRIP_STATUS = [
-  { value: "NotAssigned", text: "Not Assigned" },
-  { value: "Assigned", text: "Assigned" },
-  { value: "Dispatched", text: "Dispatched" },
-  { value: "PickedUp", text: "Picked Up Shipment" },
-  { value: "Delivered", text: "Delivered Shipment" },
-  { value: "Cancelled", text: "Cancelled Shipment" },
+export const RELATION_TYPE = [
+  { value: "sp", text: "SPOUSE" },
+  { value: "ch", text: "CHILD" },
+  { value: "sib", text: "SIBLING" },
+  { value: "pa", text: "PARENT" },
+  { value: "pasib", text: "PARENT SIBLING" },
+  { value: "gp", text: "GRANDPARENT" },
+  { value: "ggp", text: "GREATGRANDPARENT" },
 ];
 export const TRACK_SHIPMENT_STATUS = [
   { value: "NotAssigned", text: "Not Assigned" },

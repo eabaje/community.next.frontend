@@ -43,7 +43,7 @@ const StyledTree = ({ query }) => {
         lineBorderRadius={"10px"}
         label={
           <StyledNode>
-            <StyledTreeItem user={null} />
+            <StyledTreeItem user={null} relation={"GreatGrandFather"} />
           </StyledNode>
         }
       >

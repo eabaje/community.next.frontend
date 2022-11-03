@@ -1,6 +1,6 @@
 import React from "react";
 
-const StyledTreeItem = ({ user }) => {
+const StyledTreeItem = ({ user, relation }) => {
   return (
     <div className="chat-item">
       <a href="#">
@@ -13,6 +13,9 @@ const StyledTreeItem = ({ user }) => {
       <span className="name">
         <a href="#">{user?.FullName ? user?.FullName : "Pa Chimeze"}</a>
       </span>
+      <br />
+      <span className="name">{relation}</span>
+
       <span className="status-online"></span>
     </div>
   );

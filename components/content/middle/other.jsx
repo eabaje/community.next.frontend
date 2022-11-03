@@ -24,8 +24,8 @@ function SecondMiddleContent({ query }) {
           <div className="row">
             <div className="col-lg-12 col-md-12">
               {/*  <Tree user={null} />
-               
-                <Chart />*/}
+
+                 <Chart />*/}
               <StyledTree user={null} />
             </div>
           </div>

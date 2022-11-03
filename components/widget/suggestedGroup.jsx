@@ -1,10 +1,10 @@
 import React from "react";
 
-const SuggestedGroupWidget = ({ userId }) => {
+const SuggestedGroupWidget = ({ userId, title, showButton }) => {
   return (
     <>
       <div className="widget widget-suggested-groups">
-        <h3 className="widget-title">My Groups</h3>
+        <h3 className="widget-title">{title}</h3>
         <article className="item">
           <a href="#" className="thumb">
             <span className="fullimage bg1" role="img"></span>
@@ -51,11 +51,13 @@ const SuggestedGroupWidget = ({ userId }) => {
           </div>
         </article>
         <br />
-        <div class="events-btn">
-          <a href="#" class="default-btn">
-            Add New Group
-          </a>
-        </div>
+        {showButton === true && (
+          <div class="events-btn">
+            <a href="#" class="default-btn">
+              Add New Group
+            </a>
+          </div>
+        )}
       </div>
     </>
   );

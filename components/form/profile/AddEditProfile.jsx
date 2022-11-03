@@ -15,14 +15,12 @@ import {
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CustomButton from "../../../components/button/customButton";
-import ImageUpload from "../../../components/upload/uploadImage";
-//import "../../../styles/form.module.css";
-// import { SPECIALIZATION_TYPE } from "../../../constants/enum";
-// import CustomPopup from "../../../components/popup/popup.component";
-// import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
+import CoupleForm from "./coupleForm";
+import ChildForm from "./childForm";
+import ParentForm from "./parentForm";
+import SchoolForm from "./schoolForm";
 
 const AddEditProfile = ({ query }) => {
   // const { userId, companyId } = query;
@@ -34,7 +32,7 @@ const AddEditProfile = ({ query }) => {
 
   // const isAddMode = !userId;
 
-  const [IsEdit, setEdit] = useState(false);
+  const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
   // const [companyId, setcompanyId] = useState("");
   const [email, setEmail] = useState("");
@@ -88,6 +86,9 @@ const AddEditProfile = ({ query }) => {
 
     setRegion((Region = State.getStatesOfCountry(e.target.value)));
   };
+  const SelectGender = async (e) => {
+    e.target.value !== null && setGender(e.target.value);
+  };
   const popupCloseHandlerImage = (e) => {
     setVisibilityImage(e);
   };
@@ -116,19 +117,7 @@ const AddEditProfile = ({ query }) => {
     setValue,
     control,
   } = useForm();
-  const {
-    register: registerPassword,
-    formState: { errors2 },
-    setValue: setValue1,
-    handleSubmit: handlePassword,
-  } = useForm();
 
-  const {
-    register: registerCompany,
-    formState: { errors3 },
-    setValue: setValue2,
-    handleSubmit: handleCompany,
-  } = useForm();
   const {
     userDispatch,
     userState: { User: data, loading, popUpOverLay: open },
@@ -265,18 +254,18 @@ const AddEditProfile = ({ query }) => {
               role="tab"
               aria-controls="profile-information"
             >
-              Profile Information
+              My Profile
             </a>
           </li>
 
           <li class="nav-item">
             <a
               class="nav-link"
-              id="account-tab"
+              id="spouse-tab"
               data-bs-toggle="tab"
-              href="#account"
+              href="#spouse"
               role="tab"
-              aria-controls="account"
+              aria-controls="spouse"
             >
               Spouse
             </a>
@@ -285,11 +274,11 @@ const AddEditProfile = ({ query }) => {
           <li class="nav-item">
             <a
               class="nav-link"
-              id="privacy-tab"
+              id="child-tab"
               data-bs-toggle="tab"
-              href="#privacy"
+              href="#child"
               role="tab"
-              aria-controls="privacy"
+              aria-controls="child"
             >
               Children
             </a>
@@ -298,11 +287,11 @@ const AddEditProfile = ({ query }) => {
           <li class="nav-item">
             <a
               class="nav-link"
-              id="notification-tab"
+              id="sibling-tab"
               data-bs-toggle="tab"
-              href="#notification"
+              href="#sibling"
               role="tab"
-              aria-controls="notification"
+              aria-controls="sibling"
             >
               Siblings
             </a>
@@ -311,24 +300,24 @@ const AddEditProfile = ({ query }) => {
           <li class="nav-item">
             <a
               class="nav-link"
-              id="message-tab"
+              id="paternal-tab"
               data-bs-toggle="tab"
-              href="#message"
+              href="#paternal"
               role="tab"
               aria-controls="message"
             >
-              paternal Info
+              Paternal
             </a>
           </li>
 
           <li class="nav-item">
             <a
               class="nav-link"
-              id="close-account-tab"
+              id="maternal-tab"
               data-bs-toggle="tab"
-              href="#close-account"
+              href="#maternal"
               role="tab"
-              aria-controls="close-account"
+              aria-controls="maternal"
             >
               Maternal
             </a>
@@ -336,25 +325,37 @@ const AddEditProfile = ({ query }) => {
           <li class="nav-item">
             <a
               class="nav-link"
-              id="close-account-tab"
+              id="school-tab"
               data-bs-toggle="tab"
-              href="#close-account"
+              href="#school"
               role="tab"
-              aria-controls="close-account"
+              aria-controls="school"
             >
-              Places Lived
+              Schools
             </a>
           </li>
           <li class="nav-item">
             <a
               class="nav-link"
-              id="close-account-tab"
+              id="place-tab"
               data-bs-toggle="tab"
-              href="#close-account"
+              href="#place"
               role="tab"
-              aria-controls="close-account"
+              aria-controls="place"
             >
-              Work History
+              Places lived
+            </a>
+          </li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              id="work-tab"
+              data-bs-toggle="tab"
+              href="#work"
+              role="tab"
+              aria-controls="work"
+            >
+              My Work
             </a>
           </li>
         </ul>
@@ -421,11 +422,11 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Gender</label>
+                  <label>Age Category</label>
                   <select
                     class="form-select"
                     name="Sex"
-                    {...register("Sex", {
+                    {...register("Age", {
                       required: true,
                     })}
                   >
@@ -516,13 +517,14 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="Sex"
+                    onchange={SelectGender}
                     {...register("Sex", {
                       required: true,
                     })}
                   >
-                    <option selected="1">Gender</option>
-                    <option value="2">Male</option>
-                    <option value="3">Female</option>
+                    <option selected="0">Gender</option>
+                    <option value="1">Male</option>
+                    <option value="2">Female</option>
                   </select>
                 </div>
               </div>
@@ -622,7 +624,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="Language"
-                    {...register("Languages", {
+                    {...register("Language", {
                       required: true,
                     })}
                   >
@@ -726,660 +728,66 @@ const AddEditProfile = ({ query }) => {
           </form>
         </div>
 
-        <div class="tab-pane fade" id="account" role="tabpanel">
-          <form class="account-setting-form">
-            <h3>Account Information</h3>
-
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Full Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Full name"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>User Name</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    placeholder="User name"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Account Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Account email"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Phone Number</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="Phone number"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Country</label>
-                  <select class="form-select">
-                    <option selected="1">Country</option>
-                    <option value="2">Canada</option>
-                    <option value="3">Germany</option>
-                    <option value="4">Switzerland</option>
-                    <option value="5">Australia</option>
-                    <option value="6">United States</option>
-                    <option value="7">New Zealand</option>
-                    <option value="8">United Kingdom</option>
-                    <option value="9">Netherlands</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <button type="submit" class="default-btn">
-                  Save
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <form class="account-setting-form">
-            <h3>Security Information</h3>
-
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Recovery Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Recovery email"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Recovery Phone</label>
-                  <input
-                    type="number"
-                    class="form-control"
-                    placeholder="Recovery phone"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Security Question 01</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Security question 01"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Security Question 012</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Security question 02"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Security Question 03</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Security question 03"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <button type="submit" class="default-btn">
-                  Save
-                </button>
-              </div>
-            </div>
-          </form>
-
-          <form class="account-setting-form">
-            <h3>Change Password</h3>
-
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Current Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Current password"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>New Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="New password"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Change Password</label>
-                  <input
-                    type="password"
-                    class="form-control"
-                    placeholder="Change password"
-                  />
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <button type="submit" class="default-btn">
-                  Save Change
-                </button>
-              </div>
-            </div>
-          </form>
+        <div class="tab-pane fade" id="spouse" role="tabpanel">
+          <CoupleForm
+            sex={gender}
+            relationType={"sp"}
+            UserId={user.UserId}
+            title={"Spousal Information"}
+          />
         </div>
 
-        <div class="tab-pane fade" id="privacy" role="tabpanel">
-          <form class="account-setting-form">
-            <h3>Privacy Settings</h3>
-
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Who Can See Your Profile?</label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Who Can See Your Future Post?</label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Who Can Send You Friend Request?</label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Who Can See Your Chat Activity?</label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Who Can See Your Phone Number?</label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>How People Find And Contact You?</label>
-                  <input type="text" class="form-control" />
-                </div>
-              </div>
-              <div class="col-lg-12 col-md-12">
-                <button type="submit" class="default-btn">
-                  Save Change
-                </button>
-              </div>
-            </div>
-          </form>
+        <div class="tab-pane fade" id="child" role="tabpanel">
+          <ChildForm
+            title={"Children Information"}
+            relationType={"ch"}
+            UserId={user.UserId}
+          />
         </div>
 
-        <div class="tab-pane fade" id="notification" role="tabpanel">
-          <div class="account-setting-notification">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="notification-content">
-                  <h3>Notification</h3>
-
-                  <ul class="alert-box">
-                    <li>Where You Receive Comment Notification?</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="email"
-                        />
-                        <label class="form-check-label" for="email">
-                          Email
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="SMS"
-                        />
-                        <label class="form-check-label" for="SMS">
-                          SMS
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul class="alert-box">
-                    <li>Get Notifications When You're Tagged By</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="anyone"
-                        />
-                        <label class="form-check-label" for="anyone">
-                          Anyone
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="friends"
-                        />
-                        <label class="form-check-label" for="friends">
-                          Friends
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul class="alert-box">
-                    <li>Get Notifications When Updates From Friends</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="email-2"
-                        />
-                        <label class="form-check-label" for="email-2">
-                          Email
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="SMS-2"
-                        />
-                        <label class="form-check-label" for="SMS-2">
-                          SMS
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-                <div class="other-notification-content">
-                  <h3>Other Notifications</h3>
-
-                  <ul class="alert-box">
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="recommended-videos"
-                        />
-                        <label
-                          class="form-check-label"
-                          for="recommended-videos"
-                        >
-                          Recommended Videos
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="games"
-                        />
-                        <label class="form-check-label" for="games">
-                          Games
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="breaking-news"
-                        />
-                        <label class="form-check-label" for="breaking-news">
-                          Breaking News
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="pages-follow-notification"
-                        />
-                        <label
-                          class="form-check-label"
-                          for="pages-follow-notification"
-                        >
-                          Pages Follow Notification
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-lg-6 col-md-6">
-                <div class="notification-content">
-                  <ul class="alert-box">
-                    <li>Where You Receive Friend Request Notification?</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="email-3"
-                        />
-                        <label class="form-check-label" for="email-3">
-                          Email
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="SMS-3"
-                        />
-                        <label class="form-check-label" for="SMS-3">
-                          SMS
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="alert-box">
-                    <li>Where You Receive Birthday Notification?</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="email-4"
-                        />
-                        <label class="form-check-label" for="email-4">
-                          Email
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="SMS-4"
-                        />
-                        <label class="form-check-label" for="SMS-4">
-                          SMS
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="alert-box">
-                    <li>Where You Receive Groups Notification?</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="email-5"
-                        />
-                        <label class="form-check-label" for="email-5">
-                          Email
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="SMS-5"
-                        />
-                        <label class="form-check-label" for="SMS-5">
-                          SMS
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="tab-pane fade" id="sibling" role="tabpanel">
+          <ChildForm
+            title={"Sibling Information"}
+            relationType={"sib"}
+            UserId={user.UserId}
+          />
         </div>
 
-        <div class="tab-pane fade" id="message" role="tabpanel">
-          <div class="account-setting-message">
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="message-content">
-                  <h3>Messages Setting</h3>
-
-                  <ul class="alert-box">
-                    <li>Send Me Messages To My Cell Phone</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="ON"
-                        />
-                        <label class="form-check-label" for="ON">
-                          ON
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="OFF"
-                        />
-                        <label class="form-check-label" for="OFF">
-                          OFF
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="alert-box">
-                    <li>General Announcement, Updates, Posts, And Videos</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="ON-2"
-                        />
-                        <label class="form-check-label" for="ON-2">
-                          ON
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="OFF-2"
-                        />
-                        <label class="form-check-label" for="OFF-2">
-                          OFF
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-
-                  <ul class="alert-box">
-                    <li>Messages From Activity On My Page</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="ON-3"
-                        />
-                        <label class="form-check-label" for="ON-3">
-                          ON
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="OFF-3"
-                        />
-                        <label class="form-check-label" for="OFF-3">
-                          OFF
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-
-              <div class="col-lg-6 col-md-6">
-                <div class="message-content">
-                  <ul class="alert-box">
-                    <li>Page Follow Notification</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="ON-4"
-                        />
-                        <label class="form-check-label" for="ON-4">
-                          ON
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="OFF-4"
-                        />
-                        <label class="form-check-label" for="OFF-4">
-                          OFF
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                  <ul class="alert-box">
-                    <li>Breaking News</li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="ON-5"
-                        />
-                        <label class="form-check-label" for="ON-5">
-                          ON
-                        </label>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="form-check">
-                        <input
-                          type="checkbox"
-                          class="form-check-input"
-                          id="OFF-5"
-                        />
-                        <label class="form-check-label" for="OFF-5">
-                          OFF
-                        </label>
-                      </div>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div class="tab-pane fade" id="paternal" role="tabpanel">
+          <ParentForm title={"Paternal Information"} UserId={user.UserId} />
         </div>
 
-        <div class="tab-pane fade" id="close-account" role="tabpanel">
-          <form class="account-setting-form">
-            <div class="title">
-              <h3>Close Account</h3>
-              <p>
-                <span>Warning:</span> If you close your account, all your
-                followers and friends will be unsubscribed and you will lose
-                access forever.
-              </p>
-            </div>
+        <div class="tab-pane fade" id="maternal" role="tabpanel">
+          <ParentForm title={"Maternal Information"} UserId={user.UserId} />
+        </div>
 
-            <div class="row">
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Your Email Address</label>
-                  <input type="email" class="form-control" />
-                </div>
-              </div>
+        <div class="tab-pane fade" id="school" role="tabpanel">
+          <SchoolForm
+            title={"School Information"}
+            UserId={user.UserId}
+            formTypeName={"School Name"}
+            formTypeControl={"SchoolName"}
+            relationType={"sch"}
+          />
+        </div>
 
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Your Password</label>
-                  <input type="password" class="form-control" />
-                </div>
-              </div>
-
-              <div class="col-lg-12 col-md-12">
-                <button type="submit" class="default-btn">
-                  Delate Account
-                </button>
-              </div>
-            </div>
-          </form>
+        <div class="tab-pane fade" id="place" role="tabpanel">
+          <SchoolForm
+            title={"Places lived"}
+            UserId={user.UserId}
+            formTypeName={"Place lived"}
+            formTypeControl={"NeighborhoodName"}
+            relationType={"pl"}
+          />
+        </div>
+        <div class="tab-pane fade" id="work" role="tabpanel">
+          <SchoolForm
+            title={"Work History"}
+            UserId={user.UserId}
+            formTypeName={"Neighbourhood"}
+            formTypeControl={"Neighbourhood"}
+            relationType={"wk"}
+          />
         </div>
       </div>
     </>

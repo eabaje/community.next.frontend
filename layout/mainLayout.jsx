@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/topbar/Topbar";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/Provider";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { signout } from "../context/actions/auth/auth.action";
 import $ from "jquery";
 import ContentLink from "../components/content/contentBar/Link";
@@ -38,6 +39,7 @@ const MainLayout = ({ children }) => {
   //   } catch (error) {}
   // };
   const a = 1;
+  const queryClient = new QueryClient();
   React.useEffect(() => {
     // let controller = new AbortController();
 
@@ -55,7 +57,8 @@ const MainLayout = ({ children }) => {
 
   return (
     <>
-      {/* <!-- Start Preloader Area --> 
+      <QueryClientProvider client={queryClient}>
+        {/* <!-- Start Preloader Area --> 
       <div className="preloader-area">
         <div className="spinner">
           <div className="inner">
@@ -65,20 +68,21 @@ const MainLayout = ({ children }) => {
           </div>
         </div>
       </div>*/}
-      {/* <!-- End Preloader Area --> */}
+        {/* <!-- End Preloader Area --> */}
 
-      <div className="main-content-wrapper d-flex flex-column">
-        <Header />
-        {/* <ContentLink /> */}
-        <LeftBar />
+        <div className="main-content-wrapper d-flex flex-column">
+          <Header />
+          {/* <ContentLink /> */}
+          <LeftBar />
 
-        <div className="content-page-box-area">
-          <div className="container">{children}</div>
+          <div className="content-page-box-area">
+            <div className="container">{children}</div>
+          </div>
+          <Rightbar />
         </div>
-        <Rightbar />
-      </div>
 
-      <Footer />
+        <Footer />
+      </QueryClientProvider>
     </>
   );
 };

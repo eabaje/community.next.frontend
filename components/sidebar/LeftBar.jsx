@@ -138,7 +138,21 @@ function LeftBar({ user }) {
             )}
             <Sidebar />
             <div className="leftBarDown">
-              <SuggestedGroupWidget userId={null} />
+              <SuggestedGroupWidget
+                userId={null}
+                title={"My Groups"}
+                showButton={true}
+              />
+              <SuggestedGroupWidget
+                userId={null}
+                title={"Suggested Groups"}
+                showButton={false}
+              />
+              <SuggestedGroupWidget
+                userId={null}
+                title={"Pages you like"}
+                showButton={false}
+              />
               <VideoWidget userId={null} />
               <AdvertWidget userId={null} />
             </div>
