@@ -119,6 +119,7 @@ const AddEditProfile = ({ query }) => {
   } = useForm();
 
   const {
+
     userDispatch,
     userState: { User: data, loading, popUpOverLay: open },
   } = useContext(GlobalContext);
@@ -379,7 +380,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="First name"
                     name="FirstName"
-                    {...register("FirstName")}
+                    {...registerUser("FirstName")}
                   />
                 </div>
               </div>
@@ -391,7 +392,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Middle name"
                     name="MiddleName"
-                    {...register("MiddleName")}
+                    {...registerUser("MiddleName")}
                   />
                 </div>
               </div>
@@ -403,7 +404,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Last name"
                     name="LastName"
-                    {...register("LastName")}
+                    {...registerUser("LastName")}
                   />
                 </div>
               </div>
@@ -416,7 +417,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Maiden Name"
                     name="MaidenName"
-                    {...register("MaidenName")}
+                    {...registerUser("MaidenName")}
                   />
                 </div>
               </div>
@@ -449,7 +450,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Email"
                     name="Email"
-                    {...register("Email")}
+                    {...registerUser("Email")}
                   />
                 </div>
               </div>
@@ -460,7 +461,7 @@ const AddEditProfile = ({ query }) => {
                     type="email"
                     class="form-control"
                     placeholder="Backup email"
-                    {...register("FirstName")}
+                    {...registerUser("FirstName")}
                   />
                 </div>
               </div> */}
@@ -495,7 +496,7 @@ const AddEditProfile = ({ query }) => {
                     placeholder="Date of birth"
                     id="datepicker"
                     name="DOB"
-                    {...register("DOB")}
+                    {...registerUser("DOB")}
                   /> */}
                 </div>
               </div>
@@ -507,7 +508,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Phone no"
                     name="Mobile"
-                    {...register("Mobile")}
+                    {...registerUser("Mobile")}
                   />
                 </div>
               </div>
@@ -534,7 +535,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="Occupation"
-                    {...register("Occupation", {
+                    {...registerUser("Occupation", {
                       required: true,
                     })}
                   >
@@ -557,7 +558,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="EmploymentStatus"
-                    {...register("EmploymentStatus", {
+                    {...registerUser("EmploymentStatus", {
                       required: true,
                     })}
                   >
@@ -575,7 +576,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="MaritalStatus"
-                    {...register("MaritalStatus", {
+                    {...registerUser("MaritalStatus", {
                       required: true,
                     })}
                   >
@@ -592,7 +593,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="BloodGroup"
-                    {...register("BloodGroup", {
+                    {...registerUser("BloodGroup", {
                       required: true,
                     })}
                   >
@@ -648,7 +649,7 @@ const AddEditProfile = ({ query }) => {
                     name="Address"
                     class="form-control"
                     placeholder="Address"
-                    {...register("Address", {
+                    {...registerUser("Address", {
                       required: true,
                     })}
                   />
@@ -663,7 +664,7 @@ const AddEditProfile = ({ query }) => {
                     className="form-control"
                     // readOnly={readOnly}
                     id="City"
-                    {...register("City", {
+                    {...registerUser("City", {
                       required: true,
                     })}
                   >
@@ -688,7 +689,7 @@ const AddEditProfile = ({ query }) => {
                     name="State"
                     className="form-select"
                     id="State"
-                    {...register("State", {
+                    {...registerUser("State", {
                       required: true,
                     })}
                   >
@@ -707,7 +708,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     name="Country"
                     className="form-select"
-                    {...register("Country")}
+                    {...registerUser("Country")}
                     onChange={selectCountry}
                   >
                     <option value="">Select Country</option>
