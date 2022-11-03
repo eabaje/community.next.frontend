@@ -22,6 +22,13 @@ const StyledNode = styled.div`
   border: 1px solid red;
 `;
 
+const StyledNodeMe = styled.div`
+  padding: 5px;
+  border-radius: 8px;
+  display: inline-block;
+  border: 1px solid blue;
+`;
+
 const StyledTree = ({ query }) => {
   const router = useRouter();
   console.log("router", router);
@@ -51,7 +58,7 @@ const StyledTree = ({ query }) => {
           label={
             <StyledNode>
               {" "}
-              <StyledTreeItem user={null} />
+              <StyledTreeItem user={null} relation={"GrandFather"} />
             </StyledNode>
           }
         >
@@ -59,7 +66,65 @@ const StyledTree = ({ query }) => {
             label={
               <StyledNode>
                 {" "}
-                <StyledTreeItem user={null} />
+                <StyledTreeItem user={null} relation={"Father"} />
+              </StyledNode>
+            }
+          >
+            <TreeNode
+              label={
+                <StyledNodeMe>
+                  {" "}
+                  <StyledTreeItem user={null} relation={"Me"} />
+                </StyledNodeMe>
+              }
+            >
+              <TreeNode
+                label={
+                  <StyledNode>
+                    {" "}
+                    <StyledTreeItem user={null} relation={"Child"} />
+                  </StyledNode>
+                }
+              />
+              <TreeNode
+                label={
+                  <StyledNode>
+                    {" "}
+                    <StyledTreeItem user={null} relation={"Child"} />
+                  </StyledNode>
+                }
+              />
+              <TreeNode
+                label={
+                  <StyledNode>
+                    {" "}
+                    <StyledTreeItem user={null} relation={"Child"} />
+                  </StyledNode>
+                }
+              />
+            </TreeNode>
+            <TreeNode
+              label={
+                <StyledNode>
+                  {" "}
+                  <StyledTreeItem user={null} relation={"Brother"} />
+                </StyledNode>
+              }
+            />
+            <TreeNode
+              label={
+                <StyledNode>
+                  {" "}
+                  <StyledTreeItem user={null} relation={"Sister"} />
+                </StyledNode>
+              }
+            />
+          </TreeNode>
+          <TreeNode
+            label={
+              <StyledNode>
+                {" "}
+                <StyledTreeItem user={null} relation={"Uncle"} />
               </StyledNode>
             }
           />
@@ -67,15 +132,7 @@ const StyledTree = ({ query }) => {
             label={
               <StyledNode>
                 {" "}
-                <StyledTreeItem user={null} />
-              </StyledNode>
-            }
-          />
-          <TreeNode
-            label={
-              <StyledNode>
-                {" "}
-                <StyledTreeItem user={null} />
+                <StyledTreeItem user={null} relation={"Uncle"} />
               </StyledNode>
             }
           />
