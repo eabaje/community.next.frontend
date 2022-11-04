@@ -104,9 +104,11 @@ export default function Topbar() {
 
               <div className="others-options d-flex align-items-center">
                 <div className="option-item">
-                  <a href="index.html" className="home-btn">
-                    <i className="flaticon-home"></i>
-                  </a>
+                  <Link href={"/"} passHref>
+                    <a className="home-btn">
+                      <i className="flaticon-home"></i>
+                    </a>
+                  </Link>
                 </div>
                 <div className="option-item">
                   <div className="dropdown friend-requests-nav-item">
@@ -530,9 +532,11 @@ export default function Topbar() {
               <div className="option-inner">
                 <div className="others-options d-flex align-items-center">
                   <div className="option-item">
-                    <a href="index.html" className="home-btn white-font">
-                      <i className="flaticon-home"></i> Find Maternal Links
-                    </a>
+                    <Link href={"/"} passHref>
+                      <a className="home-btn white-font">
+                        <i className="flaticon-home"></i> Find Maternal Links
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -1030,7 +1034,7 @@ export default function Topbar() {
                           </li>
                           <li>
                             <i className="flaticon-logout"></i>{" "}
-                            <a href="index.html">Logout</a>
+                            <a href="/">Logout</a>
                           </li>
                         </ul>
                       </div>
