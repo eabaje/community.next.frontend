@@ -119,7 +119,6 @@ const AddEditProfile = ({ query }) => {
   } = useForm();
 
   const {
-
     userDispatch,
     userState: { User: data, loading, popUpOverLay: open },
   } = useContext(GlobalContext);
@@ -229,7 +228,7 @@ const AddEditProfile = ({ query }) => {
           required
         />
         <div className="input-group-append">
-          <span className="input-group-text">
+          <span className="input-group-text" style={{ height: "54px" }}>
             <i className="fa fa-calendar"></i>
           </span>
         </div>
@@ -380,7 +379,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="First name"
                     name="FirstName"
-                    {...registerUser("FirstName")}
+                    {...register("FirstName")}
                   />
                 </div>
               </div>
@@ -392,7 +391,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Middle name"
                     name="MiddleName"
-                    {...registerUser("MiddleName")}
+                    {...register("MiddleName")}
                   />
                 </div>
               </div>
@@ -404,7 +403,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Last name"
                     name="LastName"
-                    {...registerUser("LastName")}
+                    {...register("LastName")}
                   />
                 </div>
               </div>
@@ -417,7 +416,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Maiden Name"
                     name="MaidenName"
-                    {...registerUser("MaidenName")}
+                    {...register("MaidenName")}
                   />
                 </div>
               </div>
@@ -450,7 +449,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Email"
                     name="Email"
-                    {...registerUser("Email")}
+                    {...register("Email")}
                   />
                 </div>
               </div>
@@ -461,7 +460,7 @@ const AddEditProfile = ({ query }) => {
                     type="email"
                     class="form-control"
                     placeholder="Backup email"
-                    {...registerUser("FirstName")}
+                    {...register("FirstName")}
                   />
                 </div>
               </div> */}
@@ -496,7 +495,7 @@ const AddEditProfile = ({ query }) => {
                     placeholder="Date of birth"
                     id="datepicker"
                     name="DOB"
-                    {...registerUser("DOB")}
+                    {...register("DOB")}
                   /> */}
                 </div>
               </div>
@@ -508,7 +507,7 @@ const AddEditProfile = ({ query }) => {
                     class="form-control"
                     placeholder="Phone no"
                     name="Mobile"
-                    {...registerUser("Mobile")}
+                    {...register("Mobile")}
                   />
                 </div>
               </div>
@@ -535,7 +534,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="Occupation"
-                    {...registerUser("Occupation", {
+                    {...register("Occupation", {
                       required: true,
                     })}
                   >
@@ -558,7 +557,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="EmploymentStatus"
-                    {...registerUser("EmploymentStatus", {
+                    {...register("EmploymentStatus", {
                       required: true,
                     })}
                   >
@@ -576,7 +575,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="MaritalStatus"
-                    {...registerUser("MaritalStatus", {
+                    {...register("MaritalStatus", {
                       required: true,
                     })}
                   >
@@ -593,7 +592,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="BloodGroup"
-                    {...registerUser("BloodGroup", {
+                    {...register("BloodGroup", {
                       required: true,
                     })}
                   >
@@ -649,7 +648,7 @@ const AddEditProfile = ({ query }) => {
                     name="Address"
                     class="form-control"
                     placeholder="Address"
-                    {...registerUser("Address", {
+                    {...register("Address", {
                       required: true,
                     })}
                   />
@@ -664,7 +663,7 @@ const AddEditProfile = ({ query }) => {
                     className="form-control"
                     // readOnly={readOnly}
                     id="City"
-                    {...registerUser("City", {
+                    {...register("City", {
                       required: true,
                     })}
                   >
@@ -689,7 +688,7 @@ const AddEditProfile = ({ query }) => {
                     name="State"
                     className="form-select"
                     id="State"
-                    {...registerUser("State", {
+                    {...register("State", {
                       required: true,
                     })}
                   >
@@ -708,7 +707,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     name="Country"
                     className="form-select"
-                    {...registerUser("Country")}
+                    {...register("Country")}
                     onChange={selectCountry}
                   >
                     <option value="">Select Country</option>

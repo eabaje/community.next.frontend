@@ -246,7 +246,7 @@ const ChildForm = (props) => {
           required
         />
         <div className="input-group-append">
-          <span className="input-group-text">
+          <span className="input-group-text" style={{ height: "54px" }}>
             <i className="fa fa-calendar"></i>
           </span>
         </div>
