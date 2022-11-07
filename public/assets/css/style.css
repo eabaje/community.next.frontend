@@ -14317,9 +14317,12 @@ Profile Authentication Area CSS
   .leftBarDown {
     display: none;
   }
-
   .leftBar {
     overflow: visible;
+  }
+
+  .leftBar .widget-view-profile {
+    display: none;
   }
 
   .sidemenu-area {
