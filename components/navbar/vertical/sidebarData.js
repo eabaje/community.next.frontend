@@ -1,7 +1,7 @@
 const menuItemsPublic = (user) => [
   {
     title: "Timeline",
-    path: `/timeline/?userId=${user?.UserId}`,
+    path: `/home/?userId=${user?.UserId}`,
     icon: `fa fa-clock-four`,
   },
   {

@@ -8,7 +8,7 @@ import { topMenuItemsPublic } from "../navbar/vertical/topBarData";
 import TopBarNav from "../navbar/vertical/topBarNav";
 
 export default function Topbar() {
-  const { user } = useContext(AuthContext);
+  const { currentUser } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
 
   return (

@@ -1,5 +1,6 @@
 //import "../styles/globals.css";
 import GlobalProvider from "../context/Provider";
+import { AuthContextProvider } from "../context/AuthContext";
 import Slide from "@material-ui/core/Slide";
 
 // function MyApp({ Component, pageProps }) {
@@ -28,9 +29,9 @@ const layouts = {
 // };
 const App = ({ Component, pageProps }) => {
   return (
-    <GlobalProvider>
+    <AuthContextProvider>
       <Component {...pageProps} />
-    </GlobalProvider>
+    </AuthContextProvider>
   );
 };
 export default App;

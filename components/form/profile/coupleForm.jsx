@@ -146,7 +146,7 @@ const CoupleForm = (props) => {
         "RoleType",
         "Website",
       ];
-      fields2.forEach((field2) => setValue2(field2, company[field2]));
+      fields2.forEach((field2) => setValue(field2, company[field2]));
     })((err) => {
       toast.error(err);
     });

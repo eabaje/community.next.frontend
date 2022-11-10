@@ -185,7 +185,7 @@ const AddEditProfile = ({ query }) => {
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
-    return isAddMode ? null : UpdateDriver(userId, formdata);
+    return isAddMode ? null : UpdateDriver(formdata);
   }
 
   const UpdateDriver = (data) => {
@@ -367,7 +367,7 @@ const AddEditProfile = ({ query }) => {
           id="profile-information"
           role="tabpanel"
         >
-          <form class="account-setting-form">
+          <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
             <h3>Profile Information</h3>
 
             <div class="row">
