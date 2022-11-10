@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 
 const AuthLayout = ({ children }) => (
   <div className="profile-authentication-area">
@@ -22,7 +23,7 @@ const AuthLayout = ({ children }) => (
         {children}
       </div>
     </div>
-
+    <ToastContainer position="top-center" />
     <div className="home-btn-icon">
       <a href="index.html">
         <i className="flaticon-home"></i>

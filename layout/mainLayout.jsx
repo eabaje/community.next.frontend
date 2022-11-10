@@ -2,6 +2,7 @@ import React from "react";
 import Header from "../components/topbar/Topbar";
 import { useContext, useState } from "react";
 import { GlobalContext } from "../context/Provider";
+import { ToastContainer } from "react-toastify";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { signout } from "../context/actions/auth/auth.action";
 import $ from "jquery";
@@ -74,7 +75,7 @@ const MainLayout = ({ children }) => {
           <Header />
           {/* <ContentLink /> */}
           <LeftBar />
-
+          <ToastContainer position="top-center" />
           <div className="content-page-box-area">
             <div className="container">{children}</div>
           </div>

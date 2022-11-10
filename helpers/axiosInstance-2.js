@@ -1,6 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../constants";
-export default (history = null) => {
+export default () => {
   //  const baseURL = process.env.REACT_APP_BACKEND_URL;
   const baseURL = API_URL;
 
@@ -29,12 +29,6 @@ export default (history = null) => {
 
       if (error.response.status === 403) {
         localStorage.removeItem("token");
-
-        if (history) {
-          history.push("/sigin");
-        } else {
-          window.location = "/sigin";
-        }
       } else {
         return new Promise((resolve, reject) => {
           reject(error);

@@ -49,19 +49,39 @@ export const register =
       });
   };
 
-export const signin = (form) => {
+export const signin3 = (form) => {
   try {
-    const res = axiosInstance().post(`auth/signin`, form);
+    const res = Axios.post(`auth/signin`, form);
     localStorage.setItem("token", res.data.token);
     localStorage.setItem("user", JSON.stringify(res.data));
 
     return res.data;
     //  console.log("res.data", res.data);
   } catch (error) {
-    return error.response ? error.response.data : CONNECTION_ERROR;
+    //  const message = error.response ? error.response.data.message : CONNECTION_ERROR;
+    return error;
   }
 };
+export const signin = (form) => (onSuccess) => (onError) => {
+  const requestPayload = {
+    Email: form.Email,
+    Password: form.Password,
+  };
 
+  axiosInstance()
+    .post(`auth/signin`, form)
+    .then((res) => {
+      console.log(`res`, res);
+      onSuccess(res.data);
+    })
+    .catch((err) => {
+      const message = err.response
+        ? err.response.data.message
+        : CONNECTION_ERROR;
+
+      onError(message);
+    });
+};
 export const signin2 = (form) => (dispatch) => (onSuccess) => (onError) => {
   const requestPayload = {
     Email: form.Email,

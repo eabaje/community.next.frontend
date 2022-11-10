@@ -25,11 +25,12 @@ export default function Index() {
     try {
       setLoading(true);
       await login(formdata);
+
       window.location.href = "/home/";
     } catch (err) {
       toast.error(err);
 
-      setLoading(true);
+      setLoading(false);
     }
   };
   // console.log(`formdata`, formdata);
