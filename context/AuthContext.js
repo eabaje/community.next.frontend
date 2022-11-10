@@ -14,14 +14,15 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (form) => {
     const res = axiosInstance().post(`auth/signin`, form);
 
-    setCurrentUser(res.data);
+    console.log('res', res)
+    setCurrentUser(res.data.data);
   };
 
   useEffect(() => {
     typeof window !== "undefined" ||
       localStorage.setItem("user", JSON.stringify(currentUser));
   }, [currentUser]);
-
+console.log('currentUser', currentUser)
   return (
     <AuthContext.Provider value={{ currentUser, login }}>
       {children}

@@ -1,40 +1,70 @@
+import { useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
+import { useForm, Controller } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import { AuthContext } from "../context/AuthContext";
 import AuthLayout from "../layout/authLayout";
-import styles from "../styles/Home.module.css";
 
-export default function Home() {
+export default function Index() {
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+  const { login } = useContext(AuthContext);
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setValue,
+    control,
+  } = useForm();
+
+  const onSubmit = async (formdata) => {
+    try {
+      setLoading(true);
+      await login(formdata);
+      window.location.href = "/home/";
+    } catch (err) {
+      toast.error(err);
+
+      setLoading(true);
+    }
+  };
+  // console.log(`formdata`, formdata);
+
   return (
     <AuthLayout>
       <div className="col-lg-6 col-md-12">
-        <div className="login-form">
+        <div className="register-form">
           <h2>Login</h2>
 
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)}>
             <div className="form-group">
-              <label>Username or email</label>
-              <input type="text" className="form-control" />
+              <label>Email</label>
+              <input
+                type="email"
+                className="form-control"
+                {...register("Email", {
+                  required: true,
+                })}
+                required
+              />
             </div>
 
             <div className="form-group">
               <label>Password</label>
-              <input type="password" className="form-control" />
+              <input
+                type="password"
+                className="form-control"
+                {...register("Password")}
+                required
+              />
             </div>
 
-            <div className="remember-me-wrap d-flex justify-content-between align-items-center">
-              <p>
-                <input type="checkbox" id="test1" />
-                <label htmlFor="test1">Remember me</label>
-              </p>
-
-              <div className="lost-your-password-wrap">
-                <a href="forgot-password.html" className="lost-your-password">
-                  Forgot password ?
-                </a>
-              </div>
-            </div>
             <button type="submit" className="default-btn">
-              Login
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Signin
             </button>
             <div className="or-text">
               <span>Or</span>

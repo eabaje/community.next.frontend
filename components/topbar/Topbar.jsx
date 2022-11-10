@@ -1061,7 +1061,7 @@ export default function Topbar() {
         </div>
         <div className="after-navbar-area">
           <ul className="contentbar navbar-nav m-auto text-sm-center text-md-center white">
-            {topMenuItemsPublic(user).map((menu, index) => {
+            {topMenuItemsPublic(currentUser).map((menu, index) => {
               return (
                 <TopBarNav
                   key={index}
