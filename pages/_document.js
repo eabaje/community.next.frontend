@@ -19,13 +19,10 @@ export default class MyDocument extends Document {
               href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,500&display=swap"
               rel="stylesheet"
             />
-            <link
-              rel="stylesheet"
-              href="http://localhost:3000/assets/style.css"
-            />
+           
             <link rel="stylesheet" href="/assets/css/style.css" />
 
-            <link rel="stylesheet" href="/assets/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="/assets/css/bootstrap.css" />
             <link rel="stylesheet" href="/assets/css/animate.min.css" />
             <link rel="stylesheet" href="/assets/css/remixicon.css" />
             <link rel="stylesheet" href="/assets/css/flaticon.css" />
@@ -64,7 +61,7 @@ export default class MyDocument extends Document {
               rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
             />
-
+             {/* <link rel="stylesheet" href="/assets2/css/bootstrap.css" /> */}
             <link href="/assets2/css/fontawesome-all.css" rel="stylesheet" />
             <link href="/assets2/css/swiper.css" rel="stylesheet" />
             <link href="/assets2/css/magnific-popup.css" rel="stylesheet" />

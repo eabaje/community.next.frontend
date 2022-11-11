@@ -936,59 +936,7 @@ a:hover.back-to-top {
   }
   /* end of general styles */
 
-  /* Navigation */
-  .navbar {
-    padding-top: 1.75rem;
-    background-color: transparent;
-    box-shadow: none;
-    transition: all 0.2s;
-  }
-
-  .navbar.top-nav-collapse {
-    padding-top: 0.625rem;
-    padding-bottom: 0.625rem;
-    background-color: #1b1e7b;
-    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.025);
-  }
-
-  .offcanvas-collapse {
-    position: static;
-    top: auto;
-    bottom: auto;
-    left: auto;
-    width: auto;
-    padding-right: 0;
-    padding-left: 0;
-    background-color: transparent;
-    overflow-y: visible;
-    visibility: visible;
-  }
-
-  .offcanvas-collapse.open {
-    -webkit-transform: none;
-    transform: none;
-  }
-
-  .navbar .navbar-nav {
-    margin-top: 0;
-    margin-bottom: 0;
-  }
-
-  .navbar .nav-item .nav-link {
-    padding-right: 0.75rem;
-    padding-left: 0.75rem;
-  }
-
-  .navbar .social-icons {
-    margin-left: 0.5rem;
-  }
-
-  .navbar .fa-stack {
-    margin-top: 0;
-    margin-right: 0;
-    margin-left: 0.25rem;
-  }
-  /* end of navigation */
+ 
 
   /* Header */
   .header {

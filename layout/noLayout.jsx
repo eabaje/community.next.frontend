@@ -8,7 +8,7 @@ const NoLayout = ({ children }) => (
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
       <div class="container">
         <a class="navbar-brand logo-image" href="index.html">
-          <img src="/assets2/images/logo.svg" alt="alternative" />
+          <img src="assets2/images/logo.svg" alt="alternative" />
         </a>
 
         <button
