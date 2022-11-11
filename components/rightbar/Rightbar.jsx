@@ -5,11 +5,17 @@ import axios from "axios";
 import Link from "next/link";
 import { AuthContext } from "../../context/AuthContext";
 import { Add, Remove } from "@material-ui/icons";
+import { GlobalContext } from "../../context/Provider";
 
 export default function Rightbar({ user }) {
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
   const [friends, setFriends] = useState([]);
-  const { user: currentUser, dispatch } = useContext(AuthContext);
+  //const { user: currentUser, dispatch } = useContext(AuthContext);
+  const {
+    authDispatch,
+    authState: { user: currentUser, isLoggedIn },
+  } = useContext(GlobalContext);
+
   const [followed, setFollowed] = useState(
     currentUser?.followings?.includes(user?.id)
   );

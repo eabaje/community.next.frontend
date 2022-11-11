@@ -1,15 +1,19 @@
 import "../../styles/topbar.module.css";
-import { Search, Person, Chat, Notifications } from "@material-ui/icons";
 //import { Link } from "react-router-dom";
 import Link from "next/link";
 import { useContext } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { topMenuItemsPublic } from "../navbar/vertical/topBarData";
 import TopBarNav from "../navbar/vertical/topBarNav";
+import { GlobalContext } from "../../context/Provider";
 
 export default function Topbar() {
-  const { currentUser } = useContext(AuthContext);
+  // const { currentUser } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
+  const {
+    authDispatch,
+    authState: { user, isLoggedIn },
+  } = useContext(GlobalContext);
 
   return (
     <>
@@ -1061,7 +1065,7 @@ export default function Topbar() {
         </div>
         <div className="after-navbar-area">
           <ul className="contentbar navbar-nav m-auto text-sm-center text-md-center white">
-            {topMenuItemsPublic(currentUser).map((menu, index) => {
+            {topMenuItemsPublic(user ? user : null).map((menu, index) => {
               return (
                 <TopBarNav
                   key={index}

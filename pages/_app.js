@@ -29,9 +29,9 @@ const layouts = {
 // };
 const App = ({ Component, pageProps }) => {
   return (
-    <AuthContextProvider>
+    <GlobalProvider>
       <Component {...pageProps} />
-    </AuthContextProvider>
+    </GlobalProvider>
   );
 };
 export default App;

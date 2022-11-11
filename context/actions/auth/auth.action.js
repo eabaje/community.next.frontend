@@ -13,7 +13,7 @@ import { API_URL } from "../../../constants";
 import { CONNECTION_ERROR } from "../../../constants/api";
 import axiosInstance from "../../../helpers/axiosInstance-2";
 
-export const register =
+export const registerUser =
   (form) => async (dispatch) => (onSuccess) => (onError) => {
     const requestPayload = {
       CompanyId: form.CompanyId || "",
@@ -45,7 +45,14 @@ export const register =
       .catch((err) => {
         const message = err.response
           ? err.response.data.message
-          : { error: "Something went wrong, try agin" };
+          : CONNECTION_ERROR;
+
+        dispatch({
+          type: REGISTER_FAIL,
+          payload: message,
+        });
+
+        onError(message);
       });
   };
 

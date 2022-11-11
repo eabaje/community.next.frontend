@@ -64,6 +64,12 @@ export default class MyDocument extends Document {
               rel="stylesheet"
               href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.0/css/font-awesome.min.css"
             />
+
+            <link href="/assets2/css/fontawesome-all.css" rel="stylesheet" />
+            <link href="/assets2/css/swiper.css" rel="stylesheet" />
+            <link href="/assets2/css/magnific-popup.css" rel="stylesheet" />
+            <link href="/assets2/css/styles.css" rel="stylesheet" />
+
             {/* <link rel="stylesheet" href="/assets/css/base.css" /> */}
           </Head>
           <body>
@@ -81,6 +87,10 @@ export default class MyDocument extends Document {
             <script src="/assets/js/owl.carousel.min.js"></script>
             <script src="/assets/js/wow.min.js"></script>
             <script src="/assets/js/main.js"></script>
+
+            <script src="/assets2/js/swiper.min.js"></script>
+            <script src="/assets2/js/jquery.magnific-popup.js"></script>
+            <script src="/assets2/js/scripts.js"></script>
           </body>
         </Html>
       </>

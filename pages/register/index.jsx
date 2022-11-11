@@ -1,8 +1,48 @@
+import { React, useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
-import AuthLayout from "../../layout/authLayout";
+import { useForm, Controller } from "react-hook-form";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
+import dynamic from "next/dynamic";
+import { AuthContext } from "../context/AuthContext";
+import AuthLayout from "../layout/authLayout";
+import { GlobalContext } from "../context/Provider";
+import { registerUser } from "../../context/actions/auth/auth.action";
 
 export default function Register() {
+  //**************************FORM FUNCTIONS ************* */
+
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setValue,
+    control,
+  } = useForm();
+  const {
+    authDispatch,
+    authState: { isLoggedIn, loading },
+  } = useContext(GlobalContext);
+
+  function onSubmit(formdata) {
+    // console.log(`formdata`, formdata);
+    registerUser(data)(authDispatch)((res) => {
+      if (res) {
+        toast.success(
+          `Congratulations!You have created an account successfully.You will be redirected to your timeline`
+        );
+        setTimeout(() => {
+          toast.dismiss();
+          router.reload(`/home/?userId=${res.data.UserId}`);
+        }, 5000);
+      }
+    })((error) => {
+      toast.error(error.message);
+    });
+  }
+
+  // *************************END FORM FUNCTIONS***********************
   return (
     <AuthLayout>
       <div className="col-lg-6 col-md-12">

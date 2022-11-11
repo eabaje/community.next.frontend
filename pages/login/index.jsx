@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { React, useState, useContext } from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { useForm, Controller } from "react-hook-form";
@@ -7,12 +7,14 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { AuthContext } from "../../context/AuthContext";
 import AuthLayout from "../../layout/authLayout";
+import { GlobalContext } from "../../context/Provider";
+import { signin2 } from "../../context/actions/auth/auth.action";
 
-export default function Login() {
-  const [loading, setLoading] = useState(false);
+export default function Index() {
+  // const [loading, setLoading] = useState(false);
 
   const router = useRouter();
-  const { login } = useContext(AuthContext);
+  // const { login } = useContext(AuthContext);
   const {
     register,
     formState: { errors },
@@ -20,17 +22,31 @@ export default function Login() {
     setValue,
     control,
   } = useForm();
+  const {
+    authDispatch,
+    authState: { isLoggedIn, loading },
+  } = useContext(GlobalContext);
+
+  // const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
 
   const onSubmit = async (formdata) => {
-    try {
-      setLoading(true);
-      await login(formdata);
-      window.location.href = "/home/";
-    } catch (err) {
-      toast.error(err.response.data);
+    signin2(formdata)(authDispatch)((res) => {
+      // res.user.isConfirmed === true
+      //   ? res.user.isActivated === true
+      //     ? router.push(`/dashboard/`)
+      //     : res.user.roles === "carrier"
+      //     ? (window.location.href = `/carrier/`)
+      //     : res.user.roles === "shipper"
+      //     ? (window.location.href = `/shipment/`)
+      //     : (window.location.href = `/user/user-profile/?userId=${res.user.UserId}&companyId=${res.user.CompanyId}`)
+      //   : (window.location.href = `/user/user-profile/?userId=${res.user.UserId}&companyId=${res.user.CompanyId}`);
 
-      setLoading(true);
-    }
+      window.location.href = "/home/";
+      // history.push("/dashboard");
+    })((err) => {
+      console.log(`err`, err);
+      toast.error(err);
+    });
   };
   // console.log(`formdata`, formdata);
 
