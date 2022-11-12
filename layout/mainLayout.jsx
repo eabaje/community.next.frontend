@@ -15,10 +15,9 @@ import dynamic from "next/dynamic";
 import LeftBar from "../components/sidebar/LeftBar";
 //import "./jquery-ui.min.js";
 const MainLayout = ({ children }) => {
-  // const {
-  //   authDispatch,
-  //   authState: { user, isLoggedIn },
-  // } = useContext(GlobalContext);
+  const {
+    authState: { user, isLoggedIn },
+  } = useContext(GlobalContext);
 
   // const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
   // const [authLoaded, setAuthLoaded] = React.useState(false);
@@ -55,7 +54,7 @@ const MainLayout = ({ children }) => {
       // $("#sidemenu-nav").metisMenu();
     }
   }, [a]);
-  // console.log(`User`, user);
+  console.log(`User`, user);
 
   return (
     <>
@@ -73,14 +72,14 @@ const MainLayout = ({ children }) => {
         {/* <!-- End Preloader Area --> */}
 
         <div className="main-content-wrapper d-flex flex-column">
-          <Header />
+          <Header user={user} />
           {/* <ContentLink /> */}
-          <LeftBar />
+          <LeftBar user={user} />
           <ToastContainer position="top-center" />
           <div className="content-page-box-area">
             <div className="container">{children}</div>
           </div>
-          <Rightbar />
+          <Rightbar user={user} />
         </div>
 
         <Footer />

@@ -1,14 +1,15 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "../styles/landing.page.module.css";
+//import "../styles/landing.page.module.css";
 
 const NoLayout = ({ children }) => (
   <>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
       <div class="container">
         <a class="navbar-brand logo-image" href="index.html">
-          <img src="assets2/images/logo.svg" alt="alternative" />
+          My Area
+          {/* <img src="assets2/images/logo.svg" alt="alternative" /> */}
         </a>
 
         <button
@@ -23,7 +24,7 @@ const NoLayout = ({ children }) => (
           class="navbar-collapse offcanvas-collapse"
           id="navbarsExampleDefault"
         >
-          <ul class="navbar-nav ml-auto">
+          {/* <ul class="navbar-nav ml-auto">
             <li class="nav-item">
               <a class="nav-link page-scroll" href="#details">
                 Details <span class="sr-only">(current)</span>
@@ -58,7 +59,7 @@ const NoLayout = ({ children }) => (
                 <i class="fab fa-twitter fa-stack-1x"></i>
               </a>
             </span>
-          </span>
+          </span> */}
         </div>
       </div>
     </nav>
@@ -69,32 +70,7 @@ const NoLayout = ({ children }) => (
         <div class="wave"></div>
       </div>
       <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="text-container">
-              <h1 class="h1-large">
-                Gemdev is a free HTML template designed for your web products
-              </h1>
-              <p class="p-large">
-                Use Gemdev to create awesome websites for your products,
-                services and ideas in a short amount of time
-              </p>
-              <a class="btn-solid-lg page-scroll" href="#statement">
-                Discover
-              </a>
-              {children}
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="image-container">
-              <img
-                class="img-fluid"
-                src="assets2/images/header-gem.svg"
-                alt="alternative"
-              />
-            </div>
-          </div>
-        </div>
+        <div class="row">{children}</div>
       </div>
       <ToastContainer position="top-center" />
     </div>

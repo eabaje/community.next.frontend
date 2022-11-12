@@ -51,7 +51,7 @@ function LeftBar({ user }) {
     //  setUser(JSON.parse(localStorage.getItem("user")));
     //  return () => controller?.abort();
   }, []);
-  console.log("router.pathname", router.pathname);
+  console.log("router.pathname", user);
   return (
     <>
       <div className="leftBar">
@@ -65,9 +65,9 @@ function LeftBar({ user }) {
                   </a>
                   <div className="text ms-2">
                     <h3>
-                      <a href="my-profile.html">Matthew Turner</a>
+                      <a href="my-profile.html">{user.FullName}</a>
                     </h3>
-                    <span>Washington</span>
+                    <span>{user.Address}</span>
                   </div>
                 </div>
                 <ul className="profile-statistics">
@@ -139,22 +139,22 @@ function LeftBar({ user }) {
             <Sidebar />
             <div className="leftBarDown">
               <SuggestedGroupWidget
-                userId={null}
+                userId={user.UserId}
                 title={"My Groups"}
                 showButton={true}
               />
               <SuggestedGroupWidget
-                userId={null}
+                userId={user.UserId}
                 title={"Suggested Groups"}
                 showButton={false}
               />
               <SuggestedGroupWidget
-                userId={null}
+                userId={user.UserId}
                 title={"Pages you like"}
                 showButton={false}
               />
-              <VideoWidget userId={null} />
-              <AdvertWidget userId={null} />
+              <VideoWidget userId={user.UserId} />
+              <AdvertWidget userId={user.UserId} />
             </div>
           </aside>
         </div>

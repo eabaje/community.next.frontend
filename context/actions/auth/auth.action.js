@@ -14,32 +14,18 @@ import { CONNECTION_ERROR } from "../../../constants/api";
 import axiosInstance from "../../../helpers/axiosInstance-2";
 
 export const registerUser =
-  (form) => async (dispatch) => (onSuccess) => (onError) => {
-    const requestPayload = {
-      CompanyId: form.CompanyId || "",
-      CarrierName: form.CarrierName || "",
-      Email: form.Email || "",
-      Phone: form.Phone || "",
-      Address: form.Address || "",
-      City: form.City || "",
-      Country: form.Country || "",
-      Licensed: form.Licensed || "",
-      LicenseUrl: form.LicenseUrl || "",
-      Rating: form.Rating || "",
-      CarrierDocs: form.CarrierDocs || "",
-      PicUrl: form.PicUrl || null,
-    };
-
+  (form) => (dispatch) => (onSuccess) => (onError) => {
     dispatch({ type: REGISTER_REQUEST, payload: form });
 
     axiosInstance()
-      .post("auth/register", form)
+      .post("auth/signup", form)
       .then((res) => {
         dispatch({ type: REGISTER_SUCCESS, payload: res.data });
-        // dispatch({ type: USER_SIGNIN_SUCCESS, payload: data });
 
-        localStorage.setItem("token", res.data.token);
-        localStorage.setItem("user", JSON.stringify(res.data.user));
+        // localStorage.setItem("token", res.data.token);
+        // localStorage.setItem("user", JSON.stringify(res.data.user));
+
+        onSuccess(res.data);
       })
 
       .catch((err) => {

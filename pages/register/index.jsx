@@ -5,14 +5,13 @@ import { useForm, Controller } from "react-hook-form";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
-import { AuthContext } from "../context/AuthContext";
-import AuthLayout from "../layout/authLayout";
-import { GlobalContext } from "../context/Provider";
+import AuthLayout from "../../layout/authLayout";
+import { GlobalContext } from "../../context/Provider";
 import { registerUser } from "../../context/actions/auth/auth.action";
 
 export default function Register() {
   //**************************FORM FUNCTIONS ************* */
-
+  const router = useRouter();
   const {
     register,
     formState: { errors },
@@ -34,7 +33,7 @@ export default function Register() {
         );
         setTimeout(() => {
           toast.dismiss();
-          router.reload(`/home/?userId=${res.data.UserId}`);
+          router.push(`/home/?userId=${res.data.UserId}`);
         }, 5000);
       }
     })((error) => {
@@ -81,12 +80,12 @@ export default function Register() {
             <button type="submit" className="default-btn">
               Register
             </button>
-            <div className="or-text">
+            {/* <div className="or-text">
               <span>Or</span>
             </div>
             <button type="submit" className="google-btn">
               Log In with Google
-            </button>
+            </button> */}
           </form>
         </div>
       </div>

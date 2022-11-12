@@ -23,9 +23,9 @@ export const DOC_URL = "http://localhost:8000/docs/";
 
 /* Remote host environment variables */
 
-// export const API_URL = "https://loadboard-api.herokuapp.com/api/";
+// export const API_URL = "https://api.pezentics.com/api/";
 
-// export const MEDIA_URL = "https://loadboard-api.herokuapp.com/";
+// export const MEDIA_URL = "https://api.pezentics.com/";
 
 // export const LOG_OUT = "https://load-dispatch-admin.vercel.app";
 

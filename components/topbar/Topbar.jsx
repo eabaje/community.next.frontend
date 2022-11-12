@@ -7,13 +7,13 @@ import { topMenuItemsPublic } from "../navbar/vertical/topBarData";
 import TopBarNav from "../navbar/vertical/topBarNav";
 import { GlobalContext } from "../../context/Provider";
 
-export default function Topbar() {
+export default function Topbar({ user }) {
   // const { currentUser } = useContext(AuthContext);
   const PF = process.env.REACT_APP_PUBLIC_FOLDER;
-  const {
-    authDispatch,
-    authState: { user, isLoggedIn },
-  } = useContext(GlobalContext);
+  // const {
+  //   authDispatch,
+  //   authState: { user, isLoggedIn },
+  // } = useContext(GlobalContext);
 
   return (
     <>
@@ -471,17 +471,15 @@ export default function Topbar() {
                           className="rounded-circle"
                           alt="image"
                         />
-                        <span className="name">Matthew</span>
+                        <span className="name">{user.FullName}</span>
                         <span className="status-online"></span>
                       </div>
                     </a>
 
                     <div className="dropdown-menu">
                       <div className="profile-header">
-                        <h3>Matthew Turner</h3>
-                        <a href="mailto:matthew507@gmail.com">
-                          matthew507@gmail.com
-                        </a>
+                        <h3>{user.FullName}</h3>
+                        <a href={user.Email}>{user.FullName}</a>
                       </div>
                       <ul className="profile-body">
                         <li>
@@ -1007,17 +1005,15 @@ export default function Topbar() {
                             className="rounded-circle"
                             alt="image"
                           />
-                          <span className="name">Matthew</span>
+                          <span className="name">{user.FullName}</span>
                           <span className="status-online"></span>
                         </div>
                       </a>
 
                       <div className="dropdown-menu">
                         <div className="profile-header">
-                          <h3>Matthew Turner</h3>
-                          <a href="mailto:matthew507@gmail.com">
-                            matthew507@gmail.com
-                          </a>
+                          <h3>{user.FullName}</h3>
+                          <a href={user.Email}>{user.Email}</a>
                         </div>
                         <ul className="profile-body">
                           <li>

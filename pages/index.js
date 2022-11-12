@@ -10,9 +10,11 @@ import AuthLayout from "../layout/authLayout";
 import NoLayout from "../layout/noLayout";
 import { GlobalContext } from "../context/Provider";
 import { signin2 } from "../context/actions/auth/auth.action";
+import LoginForm from "../components/form/register/loginForm";
+import RegisterForm from "../components/form/register/registerform";
 
 export default function Index() {
-  // const [loading, setLoading] = useState(false);
+  const [showForm, setShowForm] = useState(0);
 
   const router = useRouter();
   // const { login } = useContext(AuthContext);
@@ -53,22 +55,44 @@ export default function Index() {
 
   return (
     <NoLayout>
-      <ul className="list-unstyled">
-        <li className="list-group-item">
-          <i className="fa fa-arrow m-r-5"></i> Trace and connect with your
-          family members
-        </li>
-        <li className="list-group-item">
-          Trace and connect with old and current classmates
-        </li>
-        <li className="list-group-item">
-          Trace and connect with old and current colleagues
-        </li>
-        <li className="list-group-item">
-          Trace and connect with old and current neighbours
-        </li>
-        <li className="list-group-item">and much more</li>
-      </ul>
+      <div class="col-lg-6">
+        <div class="text-container">
+          <h1 class="h1-large">
+            MyArea is an online community designed for families
+          </h1>
+          <p class="p-large">
+            <ul>
+              <li>
+                <i className="fa fa-arrow m-r-5"></i> Trace and connect with
+                your family members
+              </li>
+              <li>Trace and connect with old and current classmates</li>
+              <li>Trace and connect with old and current colleagues</li>
+              <li>Trace and connect with old and current neighbours</li>
+              <li>and much more</li>
+            </ul>
+          </p>
+          <button
+            type="button"
+            class="btn-solid-lg page-scroll"
+            onClick={() => setShowForm(1)}
+          >
+            Register
+          </button>{" "}
+          <button
+            type="button"
+            class="btn-solid-lg page-scroll"
+            onClick={() => setShowForm(0)}
+          >
+            Login
+          </button>
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <div class="row">
+          {showForm === 0 ? <LoginForm /> : <RegisterForm />}
+        </div>
+      </div>
     </NoLayout>
   );
 }
