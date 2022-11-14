@@ -6,7 +6,7 @@ import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Country, State } from "country-state-city";
 import { getLanguageNames } from "language-list";
 import options from "./data";
-import { fetchData } from "../../../helpers/query";
+import { fetchData, fetchDataAll } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
@@ -27,8 +27,8 @@ import ImageUpload from "../../../components/upload/uploadImage";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
-const CoupleForm = ({ query }) => {
-  const { userId } = query;
+const CoupleForm = (props) => {
+  const { userId, relationType } = props;
 
   // const isSingleMode = !userId;
 
@@ -96,7 +96,7 @@ const CoupleForm = ({ query }) => {
 
   const {
     userDispatch,
-    userState: { user: data, loading, error },
+ userState: { createUser,Users },
   } = useContext(GlobalContext);
   const {
     authState: { user },
@@ -105,8 +105,8 @@ const CoupleForm = ({ query }) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     fetchData(
-      "user/findOne",
-      userId
+      fetchDataAll(`user/getRelation/${userId}/${relationType}`)
+     
     )((user) => {
       const fields = [
         "FirstName",
@@ -154,7 +154,7 @@ const CoupleForm = ({ query }) => {
 
   const AddSpouse = (formdata) => {
     AddRelationInfo(formdata)(userDispatch);
-    data ? toast.success(`New Record saved successfully`) : toast.error(error);
+    createUser.data ? toast.success(`New Record saved successfully`) : toast.error(createUser.error);
   };
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {

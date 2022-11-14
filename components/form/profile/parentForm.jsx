@@ -26,7 +26,7 @@ import dynamic from "next/dynamic";
 import { RELATION_TYPE } from "../../../constants/enum";
 
 const ParentForm = (props) => {
-  // const { userId, companyId } = query;
+  const { userId, relationType } = props;
 
   // const isSingleMode = !userId;
 
@@ -209,24 +209,7 @@ const ParentForm = (props) => {
     });
   };
 
-  function onChangePassword(formdata) {
-    formdata.Email = profile?.Email;
-    // console.log("fromPasword", formdata);
-    resetPassword(formdata)(userDispatch)((res) => {
-      toast.success(`Updated  Password successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
-
-  function onChangeCompany(formdata) {
-    updateCompany(formdata, formdata.CompanyId)(userDispatch)((res) => {
-      toast.success(`Updated  Company Profile successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
-
+ 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
       <div className="input-group mb-3">
@@ -514,8 +497,12 @@ const ParentForm = (props) => {
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
-            <button type="submit" class="default-btn">
-              Save
+            <button
+              type="submit"
+              class="default-btn"
+              disabled={loading ? "true" : "false"}
+            >
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
             </button>
           </div>
         </div>

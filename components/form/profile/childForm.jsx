@@ -8,10 +8,8 @@ import { fetchData, fetchDataAll } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
-  AddChildSibling,
-  editUser,
-  resetPassword,
-  updateCompany,
+  AddChildSibling, GetAllRelationInfo, GetRelationInfo,
+
 } from "../../../context/actions/user/user.action";
 
 import DatePicker from "react-datepicker";
@@ -25,10 +23,12 @@ import ImageUpload from "../../../components/upload/uploadImage";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
-const ChildForm = ({ query }) => {
-  const { userId, realtionType } = query;
+const ChildForm = ( props ) => {
+  const { userId, relationType } = props;
 
   // const isSingleMode = !userId;
+
+  //***********State variables **************//
 
   const [profile, setProfile] = useState({});
   const [companyInfo, setCompanyInfo] = useState({});
@@ -56,29 +56,7 @@ const ChildForm = ({ query }) => {
   const [showPassword, setShowPassword] = useState(false);
   // const [showProfile, setShowProfile] = useState(false);
 
-  function onChange(event) {
-    setValues(event.target.value);
-    // state.companyUser.Specilaization =
-    //   event.target.options[event.target.selectedIndex].text;
-    // console.log(
-    //   "value:",
-    //   event.target.options[event.target.selectedIndex].text
-    //);
-  }
-
-  // Messages
-  const required = "This field is required";
-  const maxLength = "Your input exceed maximum length";
-
-  // Error Component
-  const errorMessage = (error) => {
-    return (
-      <p className="invalid-feedback" style={{ color: "red" }}>
-        {error}
-      </p>
-    );
-  };
-
+  //**********page Functions *****************/ 
   const popupCloseHandler = (e) => {
     PopUpClose()(userDispatch);
     // setVisibility(e);
@@ -129,6 +107,7 @@ const ChildForm = ({ query }) => {
     setRowsData(rows);
   };
 
+  // *************** FORM FUNCTIONS**********//
   const {
     register,
     formState: { errors4 },
@@ -139,13 +118,15 @@ const ChildForm = ({ query }) => {
   const {
     authState: { user },
     userDispatch,
-    userState: { user: data, loading, error },
+    userState: { createUser,Users },
   } = useContext(GlobalContext);
 
   useEffect(() => {
     addTableRows();
     setCountries((countries) => (countries = Country.getAllCountries()));
+    GetAllRelationInfo(userId,relationType)(userDispatch);
     fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
+      setRowsData([...rowsData, user])
       const fields = [
         "FirstName",
         "MiddleName",
@@ -168,9 +149,9 @@ const ChildForm = ({ query }) => {
 
   const addChild = (formdata) => {
     AddChildSibling(formdata)(userDispatch);
-    data
+    createUser.data
       ? toast.success(`Added new child info successfully`)
-      : toast.error(error);
+      : toast.error(createUser.error);
   };
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
@@ -252,6 +233,7 @@ const ChildForm = ({ query }) => {
                     <input
                       type="text"
                       class="form-control"
+                      value={child?.FirstName}
                       placeholder="First name"
                       id={`child[${index}].FirstName`}
                       name={`child[${index}].FirstName`}
@@ -265,6 +247,7 @@ const ChildForm = ({ query }) => {
                     <input
                       type="text"
                       class="form-control"
+                      value={child?.MiddleName}
                       placeholder="Middle name"
                       id={`child[${index}].MiddleName`}
                       name={`child[${index}].MiddleName`}
@@ -278,6 +261,7 @@ const ChildForm = ({ query }) => {
                     <input
                       type="text"
                       class="form-control"
+                      value={child?.LastName}
                       placeholder="Last name"
                       id={`child[${index}].LastName`}
                       name={`child[${index}].LastName`}
@@ -292,6 +276,7 @@ const ChildForm = ({ query }) => {
                     <input
                       type="text"
                       class="form-control"
+                      value={child?.NickName}
                       placeholder="NickName"
                       id={`child[${index}].NickName`}
                       name={`child[${index}].NickName`}
@@ -310,9 +295,10 @@ const ChildForm = ({ query }) => {
                         required: true,
                       })}
                     >
-                      <option selected="1">Gender</option>
-                      <option value="2">Male</option>
-                      <option value="3">Female</option>
+                      <option>Gender</option>
+                      
+                      <option value="2" selected={child.Sex === "2"}>Male</option>
+                      <option value="3" selected={child.Sex === "3"}>Female</option>
                     </select>
                   </div>
                 </div>

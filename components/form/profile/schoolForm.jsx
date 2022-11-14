@@ -26,7 +26,7 @@ import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
 const SchoolForm = (props) => {
-  // const { userId, companyId } = query;
+  const { userId, relationType } = props;
 
   // const isSingleMode = !userId;
 
@@ -232,23 +232,7 @@ const SchoolForm = (props) => {
     //   : "Info";
   }
 
-  function onChangePassword(formdata) {
-    formdata.Email = profile?.Email;
-    // console.log("fromPasword", formdata);
-    resetPassword(formdata)(userDispatch)((res) => {
-      toast.success(`Updated  Password successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
 
-  function onChangeCompany(formdata) {
-    updateCompany(formdata, formdata.CompanyId)(userDispatch)((res) => {
-      toast.success(`Updated  Company Profile successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -323,7 +307,7 @@ const SchoolForm = (props) => {
               </div>
             </div>
           </div>
-          {rowsData.map((child, index) => (
+          {rowsData.map((school, index) => (
             <>
               {index === 1 && (
                 <div className="form-group row">
@@ -349,18 +333,20 @@ const SchoolForm = (props) => {
                           ? props.formTypeName
                           : "Name of School"
                       }
-                      id={`child[${index}].${
+                      value={school?.SchoolName}
+                    
+                      id={`school[${index}].${
                         props.formTypeControl
                           ? props.formTypeControl
                           : "SchoolName"
                       }`}
-                      name={`child[${index}].${
+                      name={`school[${index}].${
                         props.formTypeControl
                           ? props.formTypeControl
                           : "SchoolName"
                       }`}
                       {...register(
-                        `child[${index}].${
+                        `school[${index}].${
                           props.formTypeControl
                             ? props.formTypeControl
                             : "SchoolName"
@@ -376,9 +362,10 @@ const SchoolForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Address"
-                      id={`child[${index}].Address`}
-                      name={`child[${index}].Address`}
-                      {...register(`child[${index}].Address`, {
+                      value={school?.NickName}
+                      id={`school[${index}].Address`}
+                      name={`school[${index}].Address`}
+                      {...register(`school[${index}].Address`, {
                         required: true,
                       })}
                     />
@@ -389,7 +376,7 @@ const SchoolForm = (props) => {
                     <label>From Year </label>
 
                     <Controller
-                      name={`child[${index}].YearFrom`}
+                      name={`school[${index}].YearFrom`}
                       control={control}
                       // defaultValue={new Date()}
                       render={({ field: { onChange, value } }) => {
@@ -420,7 +407,7 @@ const SchoolForm = (props) => {
                   <div class="form-group">
                     <label>To Year</label>
                     <Controller
-                      name={`child[${index}].YearTo`}
+                      name={`school[${index}].YearTo`}
                       control={control}
                       // defaultValue={new Date()}
                       render={({ field: { onChange, value } }) => {
@@ -458,10 +445,10 @@ const SchoolForm = (props) => {
                     <select
                       className="form-control"
                       // readOnly={readOnly}
-
-                      id={`child[${index}].City`}
-                      name={`child[${index}].City`}
-                      {...register(`child[${index}].City`, {
+                      
+                      id={`school[${index}].City`}
+                      name={`school[${index}].City`}
+                      {...register(`school[${index}].City`, {
                         required: true,
                       })}
                     >
@@ -469,7 +456,7 @@ const SchoolForm = (props) => {
                       {City.map((item) => (
                         <option
                           key={item.isoCode}
-                          selected={selCity === item.isoCode}
+                          selected={school?.City === item.isoCode}
                           value={item.isoCode}
                         >
                           {item.name}
@@ -484,9 +471,9 @@ const SchoolForm = (props) => {
 
                     <select
                       className="form-select"
-                      id={`child[${index}].State`}
-                      name={`child[${index}].State`}
-                      {...register(`child[${index}].State`, {
+                      id={`school[${index}].State`}
+                      name={`school[${index}].State`}
+                      {...register(`school[${index}].State`, {
                         required: true,
                       })}
                     >
@@ -504,9 +491,9 @@ const SchoolForm = (props) => {
                     <label>Country</label>
                     <select
                       className="form-select"
-                      id={`child[${index}].Country`}
-                      name={`child[${index}].Country`}
-                      {...register(`child[${index}].Country`, {
+                      id={`school[${index}].Country`}
+                      name={`school[${index}].Country`}
+                      {...register(`school[${index}].Country`, {
                         required: true,
                       })}
                       onChange={selectCountry}
@@ -541,8 +528,12 @@ const SchoolForm = (props) => {
           ))}
 
           <div class="col-lg-12 col-md-12">
-            <button type="submit" class="default-btn">
-              Save
+            <button
+              type="submit"
+              class="default-btn"
+              disabled={loading ? "true" : "false"}
+            >
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
             </button>
           </div>
         </div>
