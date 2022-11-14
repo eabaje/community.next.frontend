@@ -4,10 +4,11 @@ import { useForm, Controller } from "react-hook-form";
 
 import { Country, State } from "country-state-city";
 
-import { fetchData } from "../../../helpers/query";
+import { fetchData, fetchDataAll } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
+  AddChildSibling,
   editUser,
   resetPassword,
   updateCompany,
@@ -24,8 +25,8 @@ import ImageUpload from "../../../components/upload/uploadImage";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
-const ChildForm = (props) => {
-  // const { userId, companyId } = query;
+const ChildForm = ({ query }) => {
+  const { userId, realtionType } = query;
 
   // const isSingleMode = !userId;
 
@@ -136,102 +137,41 @@ const ChildForm = (props) => {
   } = useForm();
 
   const {
-    userDispatch,
-    userState: { User: data, loading, popUpOverLay: open },
-  } = useContext(GlobalContext);
-  const {
     authState: { user },
+    userDispatch,
+    userState: { user: data, loading, error },
   } = useContext(GlobalContext);
-
-  const getCompany = (companyId) => {
-    fetchData(
-      "user/findCompany",
-      companyId
-    )((company) => {
-      console.log("company", company);
-      setCompanyInfo(company);
-      const fields2 = [
-        "CompanyName",
-        "ContactEmail",
-        "ContactPhone",
-        "Address",
-        "Region",
-        "Country",
-        "CompanyType",
-        "Specialization",
-        "RoleType",
-        "Website",
-      ];
-      fields2.forEach((field2) => setValue(field2, company[field2]));
-    })((err) => {
-      toast.error(err);
-    });
-  };
 
   useEffect(() => {
     addTableRows();
     setCountries((countries) => (countries = Country.getAllCountries()));
-    // fetchData(
-    //   "user/findOne",
-    //   userId
-    // )((user) => {
-    //   setProfile(user);
-    //   getCompany(user.CompanyId);
-    //   const fields = [
-    //     "FullName",
-    //     "Email",
-    //     "DOB",
-    //     "Address",
-    //     "City",
-    //     "Country",
-    //     "Phone",
-    //     "PicUrl",
-    //   ];
-    //   fields.forEach((field) => setValue(field, user[field]));
-    //   setEmail(user["Email"]);
-    //   // setcompanyId(user["CompanyId"]);
-    //   setPickUpRegion(
-    //     (pickUpRegion) =>
-    //       (pickUpRegion = State.getStatesOfCountry(user["Country"]))
-    //   );
-
-    //   setselpickUpRegion(user["Region"]);
-    // })((err) => {
-    //   toast.error(err);
-    // });
+    fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
+      const fields = [
+        "FirstName",
+        "MiddleName",
+        "LastName",
+        "MaidenName",
+        "Nickname",
+        "UserName",
+        "RelationType",
+      ];
+      fields.forEach((field) => setValue(field, user[field]));
+    })((err) => {
+      toast.error(err);
+    });
   }, []);
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
-    return isAddMode ? null : UpdateDriver(userId, formdata);
+    addChild(formdata);
   }
 
-  const UpdateDriver = (data) => {
-    editUser(data)(userDispatch)((res) => {
-      //  console.log(`data`, data);
-      toast.success(`Updated  Driver-${res.data.DriverName} successfully`);
-    })((err) => {
-      toast.error(err);
-    });
+  const addChild = (formdata) => {
+    AddChildSibling(formdata)(userDispatch);
+    data
+      ? toast.success(`Added new child info successfully`)
+      : toast.error(error);
   };
-
-  function onChangePassword(formdata) {
-    formdata.Email = profile?.Email;
-    // console.log("fromPasword", formdata);
-    resetPassword(formdata)(userDispatch)((res) => {
-      toast.success(`Updated  Password successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
-
-  function onChangeCompany(formdata) {
-    updateCompany(formdata, formdata.CompanyId)(userDispatch)((res) => {
-      toast.success(`Updated  Company Profile successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -397,8 +337,12 @@ const ChildForm = (props) => {
           ))}
 
           <div class="col-lg-12 col-md-12">
-            <button type="submit" class="default-btn">
-              Save
+            <button
+              type="submit"
+              class="default-btn"
+              disabled={loading ? "true" : "false"}
+            >
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
             </button>
           </div>
         </div>

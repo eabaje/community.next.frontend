@@ -1,21 +1,21 @@
 export default {
-  Orders: {
+  Friends: {
     data: [],
     error: null,
     loading: false,
   },
-  Order: {
+  Friend: {
     data: {},
     error: null,
     loading: false,
   },
-  createOrder: {
+  createFriend: {
     data: {},
     error: null,
     loading: false,
   },
 
-  deleteOrder: {
+  deleteFriend: {
     data: {},
     error: null,
     loading: false,

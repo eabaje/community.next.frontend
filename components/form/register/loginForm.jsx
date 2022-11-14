@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { GlobalContext } from "../../../context/Provider";
 import { signin2 } from "../../../context/actions/auth/auth.action";
+import { API_URL } from "../../../constants";
 
 export default function LoginForm() {
   // const [loading, setLoading] = useState(false);
@@ -45,47 +46,48 @@ export default function LoginForm() {
       toast.error(err);
     });
   };
-  console.log(`user`, user);
+  console.log(`user`, API_URL);
 
   return (
-    <div className="login-form">
+    <div class="account-setting-form">
       <h2>Login</h2>
+      <div className="row">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              name="Email"
+              className="form-control"
+              {...register("Email", {
+                required: true,
+              })}
+              required
+            />
+          </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            name="Email"
-            className="form-control"
-            {...register("Email", {
-              required: true,
-            })}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              name="Password"
+              type="password"
+              className="form-control"
+              {...register("Password")}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            name="Password"
-            type="password"
-            className="form-control"
-            {...register("Password")}
-            required
-          />
-        </div>
-
-        <button type="submit" className="form-control-submit-button">
-          {loading && <i className="fa fa-spinner fa-spin"></i>} Signin
-        </button>
-        {/* <div className="or-text">
+          <button type="submit" className="form-control-submit-button">
+            {loading && <i className="fa fa-spinner fa-spin"></i>} Signin
+          </button>
+          {/* <div className="or-text">
           <span>Or</span>
         </div>
         <button type="submit" className="google-btn">
           Log In with Google
         </button> */}
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

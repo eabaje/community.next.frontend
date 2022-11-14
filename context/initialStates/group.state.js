@@ -1,21 +1,20 @@
 export default {
-  Orders: {
+  Groups: {
     data: [],
     error: null,
     loading: false,
   },
-  Order: {
+  Group: {
     data: {},
     error: null,
     loading: false,
   },
-  createOrder: {
+  createGroup: {
     data: {},
     error: null,
     loading: false,
   },
-
-  deleteOrder: {
+  deleteGroup: {
     data: {},
     error: null,
     loading: false,

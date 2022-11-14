@@ -11,7 +11,7 @@ export default () => {
   }
 
   const axiosInstance = axios.create({
-    baseURL: baseURL,
+    baseURL: `${API_URL}`,
     headers,
   });
 

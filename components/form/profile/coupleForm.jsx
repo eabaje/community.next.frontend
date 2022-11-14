@@ -10,6 +10,7 @@ import { fetchData } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
+  AddRelationInfo,
   editUser,
   resetPassword,
   updateCompany,
@@ -26,8 +27,8 @@ import ImageUpload from "../../../components/upload/uploadImage";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
-const CoupleForm = (props) => {
-  // const { userId, companyId } = query;
+const CoupleForm = ({ query }) => {
+  const { userId } = query;
 
   // const isSingleMode = !userId;
 
@@ -55,35 +56,9 @@ const CoupleForm = (props) => {
   const [showCompany, setShowCompany] = useState(false);
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [selpickUpRegion, setselpickUpRegion] = useState("");
+  const [pickUpRegion, setPickUpRegion] = useState([]);
   // const [showProfile, setShowProfile] = useState(false);
-
-  function onChange(event) {
-    setValues(event.target.value);
-    // state.companyUser.Specilaization =
-    //   event.target.options[event.target.selectedIndex].text;
-    // console.log(
-    //   "value:",
-    //   event.target.options[event.target.selectedIndex].text
-    //);
-  }
-
-  // Messages
-  const required = "This field is required";
-  const maxLength = "Your input exceed maximum length";
-
-  // Error Component
-  const errorMessage = (error) => {
-    return (
-      <p className="invalid-feedback" style={{ color: "red" }}>
-        {error}
-      </p>
-    );
-  };
-
-  const popupCloseHandler = (e) => {
-    PopUpClose()(userDispatch);
-    // setVisibility(e);
-  };
 
   const selectCountry = async (e) => {
     setCountry((country) => e.target.value);
@@ -121,100 +96,66 @@ const CoupleForm = (props) => {
 
   const {
     userDispatch,
-    userState: { User: data, loading, popUpOverLay: open },
+    userState: { user: data, loading, error },
   } = useContext(GlobalContext);
   const {
     authState: { user },
   } = useContext(GlobalContext);
 
-  const getCompany = (companyId) => {
+  useEffect(() => {
+    setCountries((countries) => (countries = Country.getAllCountries()));
     fetchData(
-      "user/findCompany",
-      companyId
-    )((company) => {
-      console.log("company", company);
-      setCompanyInfo(company);
-      const fields2 = [
-        "CompanyName",
-        "ContactEmail",
-        "ContactPhone",
-        "Address",
-        "Region",
+      "user/findOne",
+      userId
+    )((user) => {
+      const fields = [
+        "FirstName",
+        "MiddleName",
+        "LastName",
+        "MaidenName",
+        "UserName",
+        "Mobile",
+        "Email",
+        "Sex",
+        "Age",
+        "DOB",
+        "BloodGroup",
+        "MaritalStatus",
+        "Languages",
+        "Occupation",
+        "EmploymentStatus",
+        "PasswordHash",
+        "ProfilePicture",
+        "CoverPicture",
+        "City",
+        "HomeTown",
+        "LGA",
+        "State",
         "Country",
-        "CompanyType",
-        "Specialization",
-        "RoleType",
-        "Website",
       ];
-      fields2.forEach((field2) => setValue(field2, company[field2]));
+      fields.forEach((field) => setValue(field, user[field]));
+      setEmail(user["Email"]);
+      // setcompanyId(user["CompanyId"]);
+      setPickUpRegion(
+        (pickUpRegion) =>
+          (pickUpRegion = State.getStatesOfCountry(user["Country"]))
+      );
+
+      setselpickUpRegion(user["Region"]);
     })((err) => {
       toast.error(err);
     });
-  };
-
-  useEffect(() => {
-    setCountries((countries) => (countries = Country.getAllCountries()));
-    // fetchData(
-    //   "user/findOne",
-    //   userId
-    // )((user) => {
-    //   setProfile(user);
-    //   getCompany(user.CompanyId);
-    //   const fields = [
-    //     "FullName",
-    //     "Email",
-    //     "DOB",
-    //     "Address",
-    //     "City",
-    //     "Country",
-    //     "Phone",
-    //     "PicUrl",
-    //   ];
-    //   fields.forEach((field) => setValue(field, user[field]));
-    //   setEmail(user["Email"]);
-    //   // setcompanyId(user["CompanyId"]);
-    //   setPickUpRegion(
-    //     (pickUpRegion) =>
-    //       (pickUpRegion = State.getStatesOfCountry(user["Country"]))
-    //   );
-
-    //   setselpickUpRegion(user["Region"]);
-    // })((err) => {
-    //   toast.error(err);
-    // });
   }, []);
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
-    return isAddMode ? null : UpdateDriver(userId, formdata);
+    AddSpouse(formdata);
   }
 
-  const UpdateDriver = (data) => {
-    editUser(data)(userDispatch)((res) => {
-      //  console.log(`data`, data);
-      toast.success(`Updated  Driver-${res.data.DriverName} successfully`);
-    })((err) => {
-      toast.error(err);
-    });
+  const AddSpouse = (formdata) => {
+    AddRelationInfo(formdata)(userDispatch);
+    data ? toast.success(`New Record saved successfully`) : toast.error(error);
   };
-
-  function onChangePassword(formdata) {
-    formdata.Email = profile?.Email;
-    // console.log("fromPasword", formdata);
-    resetPassword(formdata)(userDispatch)((res) => {
-      toast.success(`Updated  Password successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
-
-  function onChangeCompany(formdata) {
-    updateCompany(formdata, formdata.CompanyId)(userDispatch)((res) => {
-      toast.success(`Updated  Company Profile successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -616,8 +557,12 @@ const CoupleForm = (props) => {
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
-            <button type="submit" class="default-btn">
-              Save
+            <button
+              type="submit"
+              class="default-btn"
+              disabled={loading ? "true" : "false"}
+            >
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
             </button>
           </div>
         </div>

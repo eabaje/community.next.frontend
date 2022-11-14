@@ -112,5 +112,5 @@ export const signout = () => (dispatch) => {
   localStorage.removeItem("user");
   localStorage.removeItem("token");
   dispatch({ type: CLEAR_AUTH_STATE });
-  document.location.href = "/signin";
+  document.location.href = "/";
 };

@@ -42,77 +42,78 @@ export default function RegisterForm() {
 
   // *************************END FORM FUNCTIONS***********************
   return (
-    <div className="register-form">
+    <div className="account-setting-form">
       <h2>Register</h2>
+      <div className="row">
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <div className="form-group">
+            <label>First Name</label>
+            <input
+              type="text"
+              className="form-control"
+              {...register("FirstName")}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label>Last Name</label>
+            <input
+              type="text"
+              className="form-control"
+              {...register("LastName")}
+              required
+            />
+          </div>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="form-group">
-          <label>First Name</label>
-          <input
-            type="text"
-            className="form-control-input"
-            {...register("FirstName")}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Last Name</label>
-          <input
-            type="text"
-            className="form-control-input"
-            {...register("LastName")}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Email</label>
+            <input
+              type="email"
+              className="form-control"
+              {...register("Email")}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="email"
-            className="form-control-input"
-            {...register("Email")}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Password</label>
+            <input
+              type="password"
+              className="form-control"
+              {...register("Password")}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            className="form-control-input"
-            {...register("Password")}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label>Confirm Password</label>
+            <input
+              type="password"
+              className="form-control"
+              {...register("ConfirmPassword")}
+              required
+            />
+          </div>
 
-        <div className="form-group">
-          <label>Confirm Password</label>
-          <input
-            type="password"
-            className="form-control-input"
-            {...register("ConfirmPassword")}
-            required
-          />
-        </div>
-
-        <div className="remember-me-wrap">
-          <p>
-            <input type="checkbox" id="test1" />
-            <label htmlFor="test1">
-              I Accept The <a href="privacy.html">Privacy</a>
-            </label>
-          </p>
-        </div>
-        <button type="submit" className="default-btn">
-          {loading && <i className="fa fa-spinner fa-spin"></i>}Register
-        </button>
-        {/* <div className="or-text">
+          <div className="remember-me-wrap">
+            <p>
+              <input type="checkbox" id="test1" />
+              <label htmlFor="test1">
+                I Accept The <a href="privacy.html">Privacy</a>
+              </label>
+            </p>
+          </div>
+          <button type="submit" className="default-btn">
+            {loading && <i className="fa fa-spinner fa-spin"></i>}Register
+          </button>
+          {/* <div className="or-text">
           <span>Or</span>
         </div>
         <button type="submit" className="google-btn">
           Log In with Google
         </button> */}
-      </form>
+        </form>
+      </div>
     </div>
   );
 }

@@ -294,11 +294,11 @@ export const UpdateUserProfile = (form) => async (dispatch) => {
   }
 };
 
-export const AddSpouseInfo = (form) => async (dispatch) => {
+export const AddRelationInfo = (form) => async (dispatch) => {
   dispatch({ type: CREATE_USER_REQUEST });
 
   try {
-    const { res } = await axios.post(`/user/addSpouse`, form);
+    const { res } = await axios.post(`/user/addRelation`, form);
 
     dispatch({
       type: CREATE_USER_SUCCESS,
@@ -308,6 +308,54 @@ export const AddSpouseInfo = (form) => async (dispatch) => {
     const message = err.response ? err.response.data : CONNECTION_ERROR;
 
     dispatch({ type: CREATE_USER_FAIL, payload: message });
+  }
+};
+
+export const GetAllRelationInfo =
+  (userId, relationType) => async (dispatch) => {
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
+    try {
+      const { res } = await axios.get(
+        `/user/getAllRelation/${userId}/${relationType}/}`
+      );
+      dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
+    } catch (err) {
+      const message = err.response ? err.response.data : CONNECTION_ERROR;
+      dispatch({ type: GET_USERS_FAIL, payload: message });
+    }
+  };
+
+export const GetRelationInfo = (userId, relationType) => async (dispatch) => {
+  dispatch({
+    type: GET_USER_REQUEST,
+  });
+  try {
+    const { res } = await axios.get(
+      `/user/getRelation/${userId}/${relationType}/}`
+    );
+    dispatch({ type: GET_USER_SUCCESS, payload: res.data });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USER_FAIL, payload: message });
+  }
+};
+
+export const DeleteRelation = (relationId) => async (dispatch) => {
+  dispatch({ type: DELETE_USER_REQUEST });
+
+  try {
+    const { res } = await axios.delete(`/user/deleteRelation/${relationId}`);
+
+    dispatch({
+      type: DELETE_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: DELETE_USER_FAIL, payload: message });
   }
 };
 
@@ -352,9 +400,67 @@ export const AddSchoolPlaceWork = (form) => async (dispatch) => {
   }
 };
 
+export const UpdateRelationInfo = (form) => async (dispatch) => {
+  dispatch({ type: EDIT_USER_REQUEST });
+
+  try {
+    const { res } = await axios.put(`/user/updateRelation`, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
+
+export const UpdateChildSibling = (userId) => async (dispatch) => {
+  const requestPayload = {
+    ProfileId: userId,
+  };
+
+  dispatch({ type: EDIT_USER_REQUEST });
+
+  try {
+    const { res } = await axios.post(`/user/updateChildOrSibling`, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
+export const UpdateSchoolPlaceWork = (form) => async (dispatch) => {
+  const requestPayload = {
+    ProfileId: userId,
+  };
+
+  dispatch({ type: EDIT_USER_REQUEST });
+
+  try {
+    const { res } = await axios.post(`/user/updateSchoolPlaceWork`, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
+
 export const updateUserRole =
   (form) => (dispatch) => (onSuccess) => (onError) => {
-    dispatch({ type: CREATE_USER_REQUEST });
+    dispatch({ type: EDIT_USER_REQUEST });
 
     axios
       .put(`/user/updateUserRole/${form.UserId}`, form)
@@ -369,7 +475,7 @@ export const updateUserRole =
 
       .catch((err) => {
         const message = err.response ? err.response.data : CONNECTION_ERROR;
-        dispatch({ type: CREATE_USER_FAIL, payload: message });
+        dispatch({ type: EDIT_USER_FAIL, payload: message });
         onError(message);
       });
   };

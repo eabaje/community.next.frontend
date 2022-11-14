@@ -67,7 +67,7 @@ export default class MyDocument extends Document {
             <link href="/assets2/css/magnific-popup.css" rel="stylesheet" />
             <link href="/assets2/css/styles.css" rel="stylesheet" />
 
-            {/*  <link rel="stylesheet" href="/assets/css/base.css" /> */}
+            {/*   <link rel="stylesheet" href="/assets/css/base.css" /> */}
           </Head>
           <body>
             <Main />

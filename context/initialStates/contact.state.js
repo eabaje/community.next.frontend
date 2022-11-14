@@ -1,21 +1,21 @@
 export default {
-  Orders: {
+  Contacts: {
     data: [],
     error: null,
     loading: false,
   },
-  Order: {
+  Contact: {
     data: {},
     error: null,
     loading: false,
   },
-  createOrder: {
+  createContact: {
     data: {},
     error: null,
     loading: false,
   },
 
-  deleteOrder: {
+  deleteContact: {
     data: {},
     error: null,
     loading: false,

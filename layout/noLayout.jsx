@@ -5,58 +5,58 @@ import "react-toastify/dist/ReactToastify.css";
 
 const NoLayout = ({ children }) => (
   <>
-    <nav class="navbar navbar-expand-lg fixed-top navbar-dark">
-      <div class="container">
-        <a class="navbar-brand logo-image" href="index.html">
+    <nav className="navbar navbar-expand-lg fixed-top navbar-dark">
+      <div className="container">
+        <a className="navbar-brand logo-image" href="index.html">
           My Area
           {/* <img src="assets2/images/logo.svg" alt="alternative" /> */}
         </a>
 
         <button
-          class="navbar-toggler p-0 border-0"
+          className="navbar-toggler p-0 border-0"
           type="button"
           data-toggle="offcanvas"
         >
-          <span class="navbar-toggler-icon"></span>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         <div
-          class="navbar-collapse offcanvas-collapse"
+          className="navbar-collapse offcanvas-collapse"
           id="navbarsExampleDefault"
         >
-          {/* <ul class="navbar-nav ml-auto">
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#details">
-                Details <span class="sr-only">(current)</span>
+          {/* <ul className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <a className="nav-link page-scroll" href="#details">
+                Details <span className="sr-only">(current)</span>
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#features">
+            <li className="nav-item">
+              <a className="nav-link page-scroll" href="#features">
                 Features
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#about">
+            <li className="nav-item">
+              <a className="nav-link page-scroll" href="#about">
                 About
               </a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link page-scroll" href="#contact">
+            <li className="nav-item">
+              <a className="nav-link page-scroll" href="#contact">
                 Contact
               </a>
             </li>
           </ul>
-          <span class="nav-item social-icons">
-            <span class="fa-stack">
+          <span className="nav-item social-icons">
+            <span className="fa-stack">
               <a href="#your-link">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-facebook-f fa-stack-1x"></i>
+                <i className="fas fa-circle fa-stack-2x"></i>
+                <i className="fab fa-facebook-f fa-stack-1x"></i>
               </a>
             </span>
-            <span class="fa-stack">
+            <span className="fa-stack">
               <a href="#your-link">
-                <i class="fas fa-circle fa-stack-2x"></i>
-                <i class="fab fa-twitter fa-stack-1x"></i>
+                <i className="fas fa-circle fa-stack-2x"></i>
+                <i className="fab fa-twitter fa-stack-1x"></i>
               </a>
             </span>
           </span> */}
@@ -64,50 +64,50 @@ const NoLayout = ({ children }) => (
       </div>
     </nav>
 
-    <div class="header">
-      <div class="ocean">
-        <div class="wave"></div>
-        <div class="wave"></div>
+    <div className="header">
+      <div className="ocean">
+        <div className="wave"></div>
+        <div className="wave"></div>
       </div>
-      <div class="container">
-        <div class="row">{children}</div>
+      <div className="container">
+        <div className="row">{children}</div>
       </div>
       <ToastContainer position="top-center" />
     </div>
 
-    <div class="footer bg-gray">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="social-container">
-              <span class="fa-stack">
+    <div className="footer bg-gray">
+      <div className="container">
+        <div className="row">
+          <div className="col-lg-12">
+            <div className="social-container">
+              <span className="fa-stack">
                 <a href="#your-link">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-facebook-f fa-stack-1x"></i>
+                  <i className="fas fa-circle fa-stack-2x"></i>
+                  <i className="fab fa-facebook-f fa-stack-1x"></i>
                 </a>
               </span>
-              <span class="fa-stack">
+              <span className="fa-stack">
                 <a href="#your-link">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-twitter fa-stack-1x"></i>
+                  <i className="fas fa-circle fa-stack-2x"></i>
+                  <i className="fab fa-twitter fa-stack-1x"></i>
                 </a>
               </span>
-              <span class="fa-stack">
+              <span className="fa-stack">
                 <a href="#your-link">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-pinterest-p fa-stack-1x"></i>
+                  <i className="fas fa-circle fa-stack-2x"></i>
+                  <i className="fab fa-pinterest-p fa-stack-1x"></i>
                 </a>
               </span>
-              <span class="fa-stack">
+              <span className="fa-stack">
                 <a href="#your-link">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-instagram fa-stack-1x"></i>
+                  <i className="fas fa-circle fa-stack-2x"></i>
+                  <i className="fab fa-instagram fa-stack-1x"></i>
                 </a>
               </span>
-              <span class="fa-stack">
+              <span className="fa-stack">
                 <a href="#your-link">
-                  <i class="fas fa-circle fa-stack-2x"></i>
-                  <i class="fab fa-youtube fa-stack-1x"></i>
+                  <i className="fas fa-circle fa-stack-2x"></i>
+                  <i className="fab fa-youtube fa-stack-1x"></i>
                 </a>
               </span>
             </div>

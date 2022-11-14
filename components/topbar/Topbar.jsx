@@ -2,10 +2,11 @@ import "../../styles/topbar.module.css";
 //import { Link } from "react-router-dom";
 import Link from "next/link";
 import { useContext } from "react";
-import { AuthContext } from "../../context/AuthContext";
+
 import { topMenuItemsPublic } from "../navbar/vertical/topBarData";
 import TopBarNav from "../navbar/vertical/topBarNav";
 import { GlobalContext } from "../../context/Provider";
+import { signout } from "../../context/actions/auth/auth.action";
 
 export default function Topbar({ user }) {
   // const { currentUser } = useContext(AuthContext);
@@ -14,6 +15,14 @@ export default function Topbar({ user }) {
   //   authDispatch,
   //   authState: { user, isLoggedIn },
   // } = useContext(GlobalContext);
+  const {
+    authDispatch,
+    authState: { isLoggedIn },
+  } = useContext(GlobalContext);
+
+  const logOut = () => {
+    signout()(authDispatch);
+  };
 
   return (
     <>
@@ -509,7 +518,7 @@ export default function Topbar({ user }) {
                         <li>
                           <i className="flaticon-logout"></i>{" "}
                           <Link href={"#"} passHref>
-                            <a>Logout</a>
+                            <a onClick={logOut}>Logout</a>
                           </Link>
                         </li>
                       </ul>

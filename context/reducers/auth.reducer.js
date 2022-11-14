@@ -13,7 +13,6 @@ const auth = (state, { type, payload }) => {
   switch (type) {
     case LOGIN_REQUEST:
     case REGISTER_REQUEST:
-    
       return {
         ...state,
         loading: true,
@@ -29,7 +28,7 @@ const auth = (state, { type, payload }) => {
     case LOGIN_SUCCESS:
       localStorage.setItem("token", payload.token);
       localStorage.setItem("user", JSON.stringify(payload.user));
-   
+
       return {
         ...state,
         loading: false,
@@ -54,6 +53,8 @@ const auth = (state, { type, payload }) => {
       };
 
     case CLEAR_AUTH_STATE:
+      typeof window !== "undefined" || localStorage.removeItem("user");
+      typeof window !== "undefined" || localStorage.removeItem("token");
       return {
         ...state,
         loading: false,

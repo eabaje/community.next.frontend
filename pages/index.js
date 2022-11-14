@@ -63,8 +63,8 @@ export default function Index() {
           <p class="p-large">
             <ul>
               <li>
-                <i className="fa fa-arrow m-r-5"></i> Trace and connect with
-                your family members
+                <i className="fa fa-arrow m-r-5"></i>Trace and connect with your
+                family members
               </li>
               <li>Trace and connect with old and current classmates</li>
               <li>Trace and connect with old and current colleagues</li>
