@@ -8,8 +8,9 @@ import { fetchData, fetchDataAll } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
-  AddChildSibling, GetAllRelationInfo, GetRelationInfo,
-
+  AddChildSibling,
+  GetAllRelationInfo,
+  GetRelationInfo,
 } from "../../../context/actions/user/user.action";
 
 import DatePicker from "react-datepicker";
@@ -23,7 +24,7 @@ import ImageUpload from "../../../components/upload/uploadImage";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 
-const ChildForm = ( props ) => {
+const ChildForm = (props) => {
   const { userId, relationType } = props;
 
   // const isSingleMode = !userId;
@@ -56,7 +57,7 @@ const ChildForm = ( props ) => {
   const [showPassword, setShowPassword] = useState(false);
   // const [showProfile, setShowProfile] = useState(false);
 
-  //**********page Functions *****************/ 
+  //**********page Functions *****************/
   const popupCloseHandler = (e) => {
     PopUpClose()(userDispatch);
     // setVisibility(e);
@@ -118,28 +119,14 @@ const ChildForm = ( props ) => {
   const {
     authState: { user },
     userDispatch,
-    userState: { createUser,Users },
+    userState: { createUser, Users },
   } = useContext(GlobalContext);
 
   useEffect(() => {
-    addTableRows();
     setCountries((countries) => (countries = Country.getAllCountries()));
-    GetAllRelationInfo(userId,relationType)(userDispatch);
-    fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
-      setRowsData([...rowsData, user])
-      const fields = [
-        "FirstName",
-        "MiddleName",
-        "LastName",
-        "MaidenName",
-        "Nickname",
-        "UserName",
-        "RelationType",
-      ];
-      fields.forEach((field) => setValue(field, user[field]));
-    })((err) => {
-      toast.error(err);
-    });
+    GetAllRelationInfo(userId, relationType)(userDispatch);
+    Users.data ? setRowsData([...rowsData, Users.data]) : addTableRows();
+    Users.error && toast.error(Users.error);
   }, []);
 
   function onSubmit(formdata) {
@@ -296,9 +283,13 @@ const ChildForm = ( props ) => {
                       })}
                     >
                       <option>Gender</option>
-                      
-                      <option value="2" selected={child.Sex === "2"}>Male</option>
-                      <option value="3" selected={child.Sex === "3"}>Female</option>
+
+                      <option value="2" selected={child.Sex === "2"}>
+                        Male
+                      </option>
+                      <option value="3" selected={child.Sex === "3"}>
+                        Female
+                      </option>
                     </select>
                   </div>
                 </div>

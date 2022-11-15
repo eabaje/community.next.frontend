@@ -4,7 +4,7 @@ import { useForm, Controller } from "react-hook-form";
 
 import { Country, State } from "country-state-city";
 
-import { fetchData } from "../../../helpers/query";
+import { fetchData, fetchDataAll } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
@@ -55,29 +55,6 @@ const ParentForm = (props) => {
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   // const [showProfile, setShowProfile] = useState(false);
-
-  function onChange(event) {
-    setValues(event.target.value);
-    // state.companyUser.Specilaization =
-    //   event.target.options[event.target.selectedIndex].text;
-    // console.log(
-    //   "value:",
-    //   event.target.options[event.target.selectedIndex].text
-    //);
-  }
-
-  // Messages
-  const required = "This field is required";
-  const maxLength = "Your input exceed maximum length";
-
-  // Error Component
-  const errorMessage = (error) => {
-    return (
-      <p className="invalid-feedback" style={{ color: "red" }}>
-        {error}
-      </p>
-    );
-  };
 
   const popupCloseHandler = (e) => {
     PopUpClose()(userDispatch);
@@ -132,84 +109,61 @@ const ParentForm = (props) => {
 
   const {
     userDispatch,
-    userState: { User: data, loading, popUpOverLay: open },
+    userState: { createUser, Users },
   } = useContext(GlobalContext);
   const {
     authState: { user },
   } = useContext(GlobalContext);
 
-  const getCompany = (companyId) => {
-    fetchData(
-      "user/findCompany",
-      companyId
-    )((company) => {
-      console.log("company", company);
-      setCompanyInfo(company);
-      const fields2 = [
-        "CompanyName",
-        "ContactEmail",
-        "ContactPhone",
-        "Address",
-        "Region",
+  useEffect(() => {
+    setCountries((countries) => (countries = Country.getAllCountries()));
+    fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
+      const fields = [
+        "FirstName",
+        "MiddleName",
+        "LastName",
+        "MaidenName",
+        "UserName",
+        "Mobile",
+        "Email",
+        "Sex",
+        "Age",
+        "DOB",
+        "BloodGroup",
+        "MaritalStatus",
+        "Languages",
+        "Occupation",
+        "EmploymentStatus",
+        "PasswordHash",
+        "ProfilePicture",
+        "CoverPicture",
+        "City",
+        "HomeTown",
+        "LGA",
+        "State",
         "Country",
-        "CompanyType",
-        "Specialization",
-        "RoleType",
-        "Website",
       ];
-      fields2.forEach((field2) => setValue(field2, company[field2]));
+      fields.forEach((field) => setValue(field, user[field]));
+      setEmail(user["Email"]);
+      // setcompanyId(user["CompanyId"]);
+      setPickUpRegion(
+        (pickUpRegion) =>
+          (pickUpRegion = State.getStatesOfCountry(user["Country"]))
+      );
+
+      setselpickUpRegion(user["Region"]);
     })((err) => {
       toast.error(err);
     });
-  };
-
-  useEffect(() => {
-    setCountries((countries) => (countries = Country.getAllCountries()));
-    // fetchData(
-    //   "user/findOne",
-    //   userId
-    // )((user) => {
-    //   setProfile(user);
-    //   getCompany(user.CompanyId);
-    //   const fields = [
-    //     "FullName",
-    //     "Email",
-    //     "DOB",
-    //     "Address",
-    //     "City",
-    //     "Country",
-    //     "Phone",
-    //     "PicUrl",
-    //   ];
-    //   fields.forEach((field) => setValue(field, user[field]));
-    //   setEmail(user["Email"]);
-    //   // setcompanyId(user["CompanyId"]);
-    //   setPickUpRegion(
-    //     (pickUpRegion) =>
-    //       (pickUpRegion = State.getStatesOfCountry(user["Country"]))
-    //   );
-
-    //   setselpickUpRegion(user["Region"]);
-    // })((err) => {
-    //   toast.error(err);
-    // });
   }, []);
 
   function onSubmit(formdata) {
-    // console.log(`formdata`, formdata);
-    return isAddMode ? null : UpdateDriver(userId, formdata);
+    AddRelationInfo(formdata)(userDispatch);
+    createUser.data
+      ? toast.success(`New Record saved successfully`)
+      : toast.error(createUser.error);
   }
 
-  const UpdateDriver = (data) => {
-    editUser(data)(userDispatch)((res) => {
-      //  console.log(`data`, data);
-      toast.success(`Updated  Driver-${res.data.DriverName} successfully`);
-    })((err) => {
-      toast.error(err);
-    });
-  };
-
- 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
       <div className="input-group mb-3">
@@ -234,7 +188,7 @@ const ParentForm = (props) => {
   console.log("ShowProfile", showProfile);
   return (
     <>
-      <form class="account-setting-form">
+      <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
         <h3>{props.title}</h3>
 
         <input

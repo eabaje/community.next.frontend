@@ -57,29 +57,6 @@ const SchoolForm = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   // const [showProfile, setShowProfile] = useState(false);
 
-  function onChange(event) {
-    setValues(event.target.value);
-    // state.companyUser.Specilaization =
-    //   event.target.options[event.target.selectedIndex].text;
-    // console.log(
-    //   "value:",
-    //   event.target.options[event.target.selectedIndex].text
-    //);
-  }
-
-  // Messages
-  const required = "This field is required";
-  const maxLength = "Your input exceed maximum length";
-
-  // Error Component
-  const errorMessage = (error) => {
-    return (
-      <p className="invalid-feedback" style={{ color: "red" }}>
-        {error}
-      </p>
-    );
-  };
-
   const popupCloseHandler = (e) => {
     PopUpClose()(userDispatch);
     // setVisibility(e);
@@ -149,78 +126,40 @@ const SchoolForm = (props) => {
 
   const {
     userDispatch,
-    userState: { data, loading, error, popUpOverLay: open },
+    userState: { createUser, Users },
   } = useContext(GlobalContext);
   const {
     authState: { user },
   } = useContext(GlobalContext);
 
-  const getCompany = (companyId) => {
-    fetchData(
-      "user/findCompany",
-      companyId
-    )((company) => {
-      console.log("company", company);
-      setCompanyInfo(company);
-      const fields2 = [
-        "CompanyName",
-        "ContactEmail",
-        "ContactPhone",
-        "Address",
-        "Region",
-        "Country",
-        "CompanyType",
-        "Specialization",
-        "RoleType",
-        "Website",
-      ];
-      fields2.forEach((field2) => setValue(field2, company[field2]));
-    })((err) => {
-      toast.error(err);
-    });
-  };
-
   useEffect(() => {
-    addTableRows();
     setCountries((countries) => (countries = Country.getAllCountries()));
-    // fetchData(
-    //   "user/findOne",
-    //   userId
-    // )((user) => {
-    //   setProfile(user);
-    //   getCompany(user.CompanyId);
-    //   const fields = [
-    //     "FullName",
-    //     "Email",
-    //     "DOB",
-    //     "Address",
-    //     "City",
-    //     "Country",
-    //     "Phone",
-    //     "PicUrl",
-    //   ];
-    //   fields.forEach((field) => setValue(field, user[field]));
-    //   setEmail(user["Email"]);
-    //   // setcompanyId(user["CompanyId"]);
-    //   setPickUpRegion(
-    //     (pickUpRegion) =>
-    //       (pickUpRegion = State.getStatesOfCountry(user["Country"]))
-    //   );
+    GetAllRelationInfo(userId, relationType)(userDispatch);
+    Users.data ? setRowsData([...rowsData, Users.data]) : addTableRows();
+    Users.error && toast.error(Users.error);
 
-    //   setselpickUpRegion(user["Region"]);
-    // })((err) => {
-    //   toast.error(err);
-    // });
+    Users.data.map((school, index) => {
+      const fields = [
+        "SchoolName",
+        "Address",
+        "City",
+        "State",
+        "Country",
+        "YearFrom",
+        "YearTo",
+      ];
+      fields.forEach((field) => setValue(field, school[field + index]));
+    });
   }, []);
 
   function onSubmit(formdata) {
     AddSchoolPlaceWork(formdata)(userDispatch);
     //  console.log(`data`, data);
-    if (data) {
+    if (createUser.data) {
       toast.success(`Your entry was saved successfully`);
     }
-    if (error) {
-      toast.error(err);
+    if (createUser.error) {
+      toast.error(createUser.error);
     }
 
     // props.relationType === "sch"
@@ -231,8 +170,6 @@ const SchoolForm = (props) => {
     //   ? "Place Lived"
     //   : "Info";
   }
-
-
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -334,7 +271,6 @@ const SchoolForm = (props) => {
                           : "Name of School"
                       }
                       value={school?.SchoolName}
-                    
                       id={`school[${index}].${
                         props.formTypeControl
                           ? props.formTypeControl
@@ -386,6 +322,7 @@ const SchoolForm = (props) => {
                             className="ui-datepicker"
                             onChange={onChange}
                             selected={value}
+                            value={school?.YearFrom}
                             yearDropdownItemNumber={100}
                             dateFormat="yyyy"
                             scrollableYearDropdown={true}
@@ -417,6 +354,7 @@ const SchoolForm = (props) => {
                             className="ui-datepicker"
                             onChange={onChange}
                             selected={value}
+                            value={school?.YearFromTo}
                             yearDropdownItemNumber={100}
                             // dateFormat="dd-MM-yyyy"
                             scrollableYearDropdown={true}
@@ -445,7 +383,7 @@ const SchoolForm = (props) => {
                     <select
                       className="form-control"
                       // readOnly={readOnly}
-                      
+
                       id={`school[${index}].City`}
                       name={`school[${index}].City`}
                       {...register(`school[${index}].City`, {

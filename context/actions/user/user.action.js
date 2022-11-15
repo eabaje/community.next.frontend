@@ -379,6 +379,38 @@ export const AddChildSibling = (userId) => async (dispatch) => {
     dispatch({ type: CREATE_USER_FAIL, payload: message });
   }
 };
+
+export const GetAllSchoolWorkInfo =
+  (userId, relationType) => async (dispatch) => {
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
+    try {
+      const { res } = await axios.get(
+        `/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`
+      );
+      dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
+    } catch (err) {
+      const message = err.response ? err.response.data : CONNECTION_ERROR;
+      dispatch({ type: GET_USERS_FAIL, payload: message });
+    }
+  };
+
+export const GetSchoolWorkInfo = (userId, relationType) => async (dispatch) => {
+  dispatch({
+    type: GET_USER_REQUEST,
+  });
+  try {
+    const { res } = await axios.get(
+      `/user/getSchoolPlaceWork/${userId}/${relationType}/}`
+    );
+    dispatch({ type: GET_USER_SUCCESS, payload: res.data });
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USER_FAIL, payload: message });
+  }
+};
+
 export const AddSchoolPlaceWork = (form) => async (dispatch) => {
   const requestPayload = {
     ProfileId: userId,
@@ -417,11 +449,7 @@ export const UpdateRelationInfo = (form) => async (dispatch) => {
   }
 };
 
-export const UpdateChildSibling = (userId) => async (dispatch) => {
-  const requestPayload = {
-    ProfileId: userId,
-  };
-
+export const UpdateChildSibling = (form) => async (dispatch) => {
   dispatch({ type: EDIT_USER_REQUEST });
 
   try {
@@ -437,11 +465,8 @@ export const UpdateChildSibling = (userId) => async (dispatch) => {
     dispatch({ type: EDIT_USER_FAIL, payload: message });
   }
 };
-export const UpdateSchoolPlaceWork = (form) => async (dispatch) => {
-  const requestPayload = {
-    ProfileId: userId,
-  };
 
+export const UpdateSchoolPlaceWork = (form) => async (dispatch) => {
   dispatch({ type: EDIT_USER_REQUEST });
 
   try {

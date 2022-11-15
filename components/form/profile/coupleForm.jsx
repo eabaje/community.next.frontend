@@ -96,7 +96,7 @@ const CoupleForm = (props) => {
 
   const {
     userDispatch,
- userState: { createUser,Users },
+    userState: { createUser, Users },
   } = useContext(GlobalContext);
   const {
     authState: { user },
@@ -104,10 +104,8 @@ const CoupleForm = (props) => {
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
-    fetchData(
-      fetchDataAll(`user/getRelation/${userId}/${relationType}`)
-     
-    )((user) => {
+
+    fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
       const fields = [
         "FirstName",
         "MiddleName",
@@ -149,13 +147,11 @@ const CoupleForm = (props) => {
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
-    AddSpouse(formdata);
-  }
-
-  const AddSpouse = (formdata) => {
     AddRelationInfo(formdata)(userDispatch);
-    createUser.data ? toast.success(`New Record saved successfully`) : toast.error(createUser.error);
-  };
+    createUser.data
+      ? toast.success(`New Record saved successfully`)
+      : toast.error(createUser.error);
+  }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
