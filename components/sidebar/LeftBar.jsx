@@ -47,9 +47,7 @@ function LeftBar({ user }) {
     if (typeof window !== "undefined") {
       // $("#sidemenu-nav").metisMenu();
     }
-    // user===null &&  history.push(`sigin`)
-    //  setUser(JSON.parse(localStorage.getItem("user")));
-    //  return () => controller?.abort();
+   
   }, []);
   console.log("router.pathname", user);
   return (
@@ -60,8 +58,8 @@ function LeftBar({ user }) {
             {router.pathname === "/home" && (
               <div className="widget widget-view-profile">
                 <div className="profile-box d-flex justify-content-between align-items-center">
-                  <a href="my-profile.html">
-                    <img src="assets/images/user/user-1.jpg" alt="image" />
+                  <a href="/profile">
+                    <img src={user?.ProfilePicture?user?.ProfilePicture:"assets/images/user/user-1.jpg"} alt="image" />
                   </a>
                   <div className="text ms-2">
                     <h3>

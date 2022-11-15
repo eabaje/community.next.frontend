@@ -28,6 +28,8 @@ const AddEditProfile = ({ query }) => {
 
   // const isSingleMode = !userId;
 
+  //***********State variables **************//
+
   const [profile, setProfile] = useState({});
   const [companyInfo, setCompanyInfo] = useState({});
 
@@ -55,6 +57,9 @@ const AddEditProfile = ({ query }) => {
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
   // const [showProfile, setShowProfile] = useState(false);
+
+
+  //**********page Functions *****************/
 
   const popupCloseHandler = (e) => {
     PopUpClose()(userDispatch);
@@ -90,6 +95,9 @@ const AddEditProfile = ({ query }) => {
   const changeReference = async () => {
     setShowReference(!showReference);
   };
+
+
+  // *************** FORM FUNCTIONS**********//
   const {
     register,
     formState: { errors },
@@ -100,12 +108,27 @@ const AddEditProfile = ({ query }) => {
 
   const {
     userDispatch,
-    userState: { user: data, loading, error },
+    userState: {createUser, User},
   } = useContext(GlobalContext);
   const {
     authState: { user },
   } = useContext(GlobalContext);
 
+  function onSubmit(formdata) {
+    // console.log(`formdata`, formdata);
+    UpdateProfile(formdata);
+  }
+
+  const UpdateProfile = (formdata) => {
+    UpdateUserProfile(formdata)(userDispatch);
+    createUser.data
+      ? toast.success(`Updated your profile info successfully`)
+      : toast.error(createUser.error);
+  };
+
+
+
+  // *************** USE EFFECT**********//
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     fetchData(
@@ -153,18 +176,7 @@ const AddEditProfile = ({ query }) => {
     });
   }, []);
 
-  function onSubmit(formdata) {
-    // console.log(`formdata`, formdata);
-    UpdateProfile(formdata);
-  }
-
-  const UpdateProfile = (formdata) => {
-    UpdateUserProfile(formdata)(userDispatch);
-    data
-      ? toast.success(`Updated your profile info successfully`)
-      : toast.error(error);
-  };
-
+ 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
       <div className="input-group mb-3">
@@ -390,30 +402,6 @@ const AddEditProfile = ({ query }) => {
                   </select>
                 </div>
               </div>
-
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Email"
-                    name="Email"
-                    {...register("Email")}
-                  />
-                </div>
-              </div>
-              {/* <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Backup Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Backup email"
-                    {...register("FirstName")}
-                  />
-                </div>
-              </div> */}
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Date of Birth</label>
@@ -439,6 +427,30 @@ const AddEditProfile = ({ query }) => {
                       );
                     }}
                   />
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    name="Email"
+                    {...register("Email")}
+                  />
+                </div>
+              </div>
+              {/* <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Backup Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Backup email"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div> */}
+             
                   {/* <input
                     type="text"
                     class="form-control"

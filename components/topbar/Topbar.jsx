@@ -476,19 +476,19 @@ export default function Topbar({ user }) {
                     >
                       <div className="menu-profile">
                         <img
-                          src="assets/images/user/user-1.jpg"
+                          src={user?.ProfilePicture?user?.ProfilePicture:"assets/images/user/user-1.jpg"}
                           className="rounded-circle"
                           alt="image"
                         />
-                        <span className="name">{user.FullName}</span>
+                        <span className="name">{user?.FullName}</span>
                         <span className="status-online"></span>
                       </div>
                     </a>
 
                     <div className="dropdown-menu">
                       <div className="profile-header">
-                        <h3>{user.FullName}</h3>
-                        <a href={user.Email}>{user.FullName}</a>
+                        <h3>{user?.FullName}</h3>
+                        <a href={user?.Email}>{user?.FullName}</a>
                       </div>
                       <ul className="profile-body">
                         <li>
