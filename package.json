@@ -32,6 +32,7 @@
     "jquery": "^3.6.0",
     "language-list": "0.0.3",
     "little-state-machine": "^4.2.0",
+    "moment": "^2.29.4",
     "mui-datatables": "^4.2.2",
     "next": "^12.0.8",
     "notistack": "^1.0.9",

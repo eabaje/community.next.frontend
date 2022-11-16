@@ -1,5 +1,6 @@
 import "../../styles/sidebar.module.css";
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { useContext } from "react";
 import dynamic from "next/dynamic";
 import $ from "jquery";
 import { useContext, useEffect } from "react";
@@ -32,93 +33,67 @@ function Friend({ friend }) {
             </div>
 
             <div className="friend-requests-body" data-simplebar>
-              <div className="item d-flex align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-2.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
-                </div>
-
-                <div className="content d-flex justify-content-between align-items-center">
-                  <div className="text">
-                    <h4>
-                      <a href="#">Sandra Cross</a>
-                    </h4>
-                    <span>26 Friends</span>
+              {friend.data.map((friendItem, index) => (
+                <div className="item d-flex align-items-center">
+                  <div className="figure">
+                    <a href="#">
+                      <img
+                        src={
+                          friendItem?.user?.ProfilePicture
+                            ? msgItem?.user?.ProfilePicture
+                            : "assets/images/user/user-11.jpg"
+                        }
+                        className="rounded-circle"
+                        alt="image"
+                      />
+                    </a>
                   </div>
-                  <div className="btn-box d-flex align-items-center">
-                    <button
-                      className="delete-btn d-inline-block me-2"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Delete"
-                      type="button"
-                    >
-                      <i className="ri-close-line"></i>
-                    </button>
 
-                    <button
-                      className="confirm-btn d-inline-block"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Confirm"
-                      type="button"
-                    >
-                      <i className="ri-check-line"></i>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="item d-flex align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-3.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
-                </div>
+                  <div className="content d-flex justify-content-between align-items-center">
+                    <div className="text">
+                      <h4>
+                        <a href="#">{friendItem?.user?.FullName}</a>
+                      </h4>
+                      <span>
+                        {
+                          friend.filter(
+                            (item) =>
+                              item?.TargetId === friendItem?.UserId &&
+                              item?.Type === "friend"
+                          ).length
+                        }{" "}
+                        Friends
+                      </span>
+                    </div>
+                    <div className="btn-box d-flex align-items-center">
+                      <button
+                        className="delete-btn d-inline-block me-2"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Delete"
+                        type="button"
+                      >
+                        <i className="ri-close-line"></i>
+                      </button>
 
-                <div className="content d-flex justify-content-between align-items-center">
-                  <div className="text">
-                    <h4>
-                      <a href="#">Kenneth Crowe</a>
-                    </h4>
-                    <span>53 Friends</span>
-                  </div>
-                  <div className="btn-box d-flex align-items-center">
-                    <button
-                      className="delete-btn d-inline-block me-2"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Delete"
-                      type="button"
-                    >
-                      <i className="ri-close-line"></i>
-                    </button>
-
-                    <button
-                      className="confirm-btn d-inline-block"
-                      data-bs-toggle="tooltip"
-                      data-bs-placement="top"
-                      title="Confirm"
-                      type="button"
-                    >
-                      <i className="ri-check-line"></i>
-                    </button>
+                      <button
+                        className="confirm-btn d-inline-block"
+                        data-bs-toggle="tooltip"
+                        data-bs-placement="top"
+                        title="Confirm"
+                        type="button"
+                      >
+                        <i className="ri-check-line"></i>
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
 
               <div className="view-all-requests-btn">
-                <a href="friends.html" className="default-btn">
-                  View All Requests
-                </a>
+                <Link href={"/friend"} passHref>
+                  <a className="default-btn">View All Requests</a>
+                </Link>
               </div>
             </div>
           </div>

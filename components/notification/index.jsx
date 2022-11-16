@@ -21,11 +21,12 @@ import {
   ThreeDRotation,
 } from "@mui/icons-material";
 
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { useContext } from "react";
 import dynamic from "next/dynamic";
 import { Users } from "../../constants/dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
-
+import moment from "moment";
 import $ from "jquery";
 //import "./loader.js";
 //import "./metismenu.min";
@@ -51,7 +52,7 @@ function Notification({ notify }) {
           >
             <div className="notifications-btn">
               <i className="flaticon-bell"></i>
-              <span>1</span>
+              <span>{notify?.data.length}</span>
             </div>
           </a>
 
@@ -61,24 +62,37 @@ function Notification({ notify }) {
               <i className="flaticon-menu"></i>
             </div>
             <div className="notifications-body" data-simplebar>
-              <div className="item d-flex justify-content-between align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-11.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
+              {notify.data.map((notifyItem, index) => (
+                <div className="item d-flex justify-content-between align-items-center">
+                  <div className="figure">
+                    <a href="#">
+                      <img
+                        src={
+                          notifyItem?.user?.ProfilePicture
+                            ? notifyItem?.user?.ProfilePicture
+                            : "assets/images/user/user-11.jpg"
+                        }
+                        className="rounded-circle"
+                        alt="image"
+                      />
+                    </a>
+                  </div>
+                  <div className="text">
+                    <h4>
+                      <a href="#">{notifyItem?.user?.FirstName}</a>
+                    </h4>
+                    <span>
+                      {notifyItem?.event?.comment
+                        ? notifyItem?.event?.comment
+                        : "Posted A Comment On Your Status"}
+                    </span>
+                    <span className="main-color">
+                      {moment(notifyItem?.event?.createdAt).fromNow()}
+                    </span>
+                  </div>
                 </div>
-                <div className="text">
-                  <h4>
-                    <a href="#">James Vanwin</a>
-                  </h4>
-                  <span>Posted A Comment On Your Status</span>
-                  <span className="main-color">20 Minites Ago</span>
-                </div>
-              </div>
+              ))}
+
               <div className="item d-flex justify-content-between align-items-center">
                 <div className="figure">
                   <a href="#">
@@ -117,9 +131,9 @@ function Notification({ notify }) {
               </div>
 
               <div className="view-all-notifications-btn">
-                <a href="notifications.html" className="default-btn">
-                  View All Notifications
-                </a>
+                <Link href={"/notification"} passHref>
+                  <a className="default-btn">View All Notifications</a>
+                </Link>
               </div>
             </div>
           </div>

@@ -21,7 +21,8 @@ import {
   ThreeDRotation,
 } from "@mui/icons-material";
 
-import { Link, useLocation } from "react-router-dom";
+import Link from "next/link";
+import { useContext } from "react";
 import dynamic from "next/dynamic";
 import { Users } from "../../constants/dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
@@ -51,7 +52,7 @@ function Message({ message }) {
           >
             <div className="messages-btn">
               <i className="flaticon-email"></i>
-              <span>2</span>
+              <span>{message?.data.length}</span>
             </div>
           </a>
 
@@ -73,79 +74,34 @@ function Message({ message }) {
               </form>
             </div>
             <div className="messages-body" data-simplebar>
-              <div className="item d-flex justify-content-between align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-11.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
+              {message.data.map((msgItem, index) => (
+                <div className="item d-flex justify-content-between align-items-center">
+                  <div className="figure">
+                    <a href="#">
+                      <img
+                        src={
+                          msgItem?.user?.ProfilePicture
+                            ? msgItem?.user?.ProfilePicture
+                            : "assets/images/user/user-11.jpg"
+                        }
+                        className="rounded-circle"
+                        alt="image"
+                      />
+                    </a>
+                  </div>
+                  <div className="text">
+                    <h4>
+                      <a href="#">{msgItem?.user?.FullName}</a>
+                    </h4>
+                    <span>{msgItem?.Message}</span>
+                  </div>
                 </div>
-                <div className="text">
-                  <h4>
-                    <a href="#">James Vanwin</a>
-                  </h4>
-                  <span>Hello Dear I Want Talk To You</span>
-                </div>
-              </div>
-              <div className="item d-flex justify-content-between align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-12.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
-                </div>
-                <div className="text">
-                  <h4>
-                    <a href="#">Harry Lopez</a>
-                  </h4>
-                  <span>Hi. I Am looking For UI Designer</span>
-                </div>
-              </div>
+              ))}
 
-              <div className="item d-flex justify-content-between align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-3.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
-                </div>
-                <div className="text">
-                  <h4>
-                    <a href="#">Matthew Smith</a>
-                  </h4>
-                  <span>Thanks For Connecting!</span>
-                </div>
-              </div>
-              <div className="item d-flex justify-content-between align-items-center">
-                <div className="figure">
-                  <a href="#">
-                    <img
-                      src="assets/images/user/user-4.jpg"
-                      className="rounded-circle"
-                      alt="image"
-                    />
-                  </a>
-                </div>
-                <div className="text">
-                  <h4>
-                    <a href="#">Russe Smith</a>
-                  </h4>
-                  <span>Thanks For Connecting!</span>
-                </div>
-              </div>
               <div className="view-all-messages-btn">
-                <a href="messages.html" className="default-btn">
-                  View All Messages
-                </a>
+                <Link href={"/message"} passHref>
+                  <a className="default-btn">View All Messages</a>
+                </Link>
               </div>
             </div>
           </div>
