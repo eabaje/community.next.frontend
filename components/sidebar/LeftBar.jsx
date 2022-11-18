@@ -47,7 +47,6 @@ function LeftBar({ user }) {
     if (typeof window !== "undefined") {
       // $("#sidemenu-nav").metisMenu();
     }
-   
   }, []);
   console.log("router.pathname", user);
   return (
@@ -59,13 +58,20 @@ function LeftBar({ user }) {
               <div className="widget widget-view-profile">
                 <div className="profile-box d-flex justify-content-between align-items-center">
                   <a href="/profile">
-                    <img src={user?.ProfilePicture?user?.ProfilePicture:"assets/images/user/user-1.jpg"} alt="image" />
+                    <img
+                      src={
+                        user?.ProfilePicture
+                          ? user?.ProfilePicture
+                          : "assets/images/user/user-1.jpg"
+                      }
+                      alt="image"
+                    />
                   </a>
                   <div className="text ms-2">
                     <h3>
-                      <a href="my-profile.html">{user.FullName}</a>
+                      <a href="/profile">{user?.FullName}</a>
                     </h3>
-                    <span>{user.Address}</span>
+                    <span>{user?.Address}</span>
                   </div>
                 </div>
                 <ul className="profile-statistics">
@@ -128,31 +134,32 @@ function LeftBar({ user }) {
                   </ul>
                 </div>
                 <div className="profile-btn">
-                  <a href="my-profile.html" className="default-btn">
+                  <a href="/profile" className="default-btn">
                     View Profile
                   </a>
                 </div>
               </div>
             )}
             <Sidebar />
+            <p></p>
             <div className="leftBarDown">
               <SuggestedGroupWidget
-                userId={user.UserId}
+                userId={user?.UserId}
                 title={"My Groups"}
                 showButton={true}
               />
               <SuggestedGroupWidget
-                userId={user.UserId}
+                userId={user?.UserId}
                 title={"Suggested Groups"}
                 showButton={false}
               />
               <SuggestedGroupWidget
-                userId={user.UserId}
+                userId={user?.UserId}
                 title={"Pages you like"}
                 showButton={false}
               />
-              <VideoWidget userId={user.UserId} />
-              <AdvertWidget userId={user.UserId} />
+              <VideoWidget userId={user?.UserId} />
+              <AdvertWidget userId={user?.UserId} />
             </div>
           </aside>
         </div>

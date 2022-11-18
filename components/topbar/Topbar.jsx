@@ -1,7 +1,7 @@
 import "../../styles/topbar.module.css";
 //import { Link } from "react-router-dom";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 
 import { topMenuItemsPublic } from "../navbar/vertical/topBarData";
 import TopBarNav from "../navbar/vertical/topBarNav";
@@ -9,6 +9,7 @@ import { GlobalContext } from "../../context/Provider";
 import { signout } from "../../context/actions/auth/auth.action";
 import Message from "../message";
 import Friend from "../friend";
+import Notification from "../notification";
 
 export default function Topbar({ user }) {
   // const { currentUser } = useContext(AuthContext);
@@ -666,15 +667,15 @@ export default function Topbar({ user }) {
                             className="rounded-circle"
                             alt="image"
                           />
-                          <span className="name">{user.FullName}</span>
+                          <span className="name">{user?.FullName}</span>
                           <span className="status-online"></span>
                         </div>
                       </a>
 
                       <div className="dropdown-menu">
                         <div className="profile-header">
-                          <h3>{user.FullName}</h3>
-                          <a href={user.Email}>{user.Email}</a>
+                          <h3>{user?.FullName}</h3>
+                          <a href={user?.Email}>{user?.Email}</a>
                         </div>
                         <ul className="profile-body">
                           <li>

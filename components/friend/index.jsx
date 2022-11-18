@@ -1,9 +1,8 @@
 import "../../styles/sidebar.module.css";
+import { useContext, useEffect } from "react";
 import Link from "next/link";
-import { useContext } from "react";
 import dynamic from "next/dynamic";
 import $ from "jquery";
-import { useContext, useEffect } from "react";
 
 function Friend({ friend }) {
   useEffect(() => {}, []);
@@ -33,7 +32,7 @@ function Friend({ friend }) {
             </div>
 
             <div className="friend-requests-body" data-simplebar>
-              {friend.data.map((friendItem, index) => (
+              {friend?.data.map((friendItem, index) => (
                 <div className="item d-flex align-items-center">
                   <div className="figure">
                     <a href="#">
@@ -56,7 +55,7 @@ function Friend({ friend }) {
                       </h4>
                       <span>
                         {
-                          friend.filter(
+                          friend?.filter(
                             (item) =>
                               item?.TargetId === friendItem?.UserId &&
                               item?.Type === "friend"

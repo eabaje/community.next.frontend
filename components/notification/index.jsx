@@ -22,7 +22,7 @@ import {
 } from "@mui/icons-material";
 
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import dynamic from "next/dynamic";
 import { Users } from "../../constants/dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";
@@ -30,7 +30,7 @@ import moment from "moment";
 import $ from "jquery";
 //import "./loader.js";
 //import "./metismenu.min";
-import { useContext, useEffect } from "react";
+
 import NavBar from "../navbar/navbar";
 import { menuItemsPublic } from "../navbar/vertical/sidebarData";
 import SideBarMenu from "../navbar/vertical/sidebarMenu";
@@ -62,7 +62,7 @@ function Notification({ notify }) {
               <i className="flaticon-menu"></i>
             </div>
             <div className="notifications-body" data-simplebar>
-              {notify.data.map((notifyItem, index) => (
+              {notify?.data.map((notifyItem, index) => (
                 <div className="item d-flex justify-content-between align-items-center">
                   <div className="figure">
                     <a href="#">

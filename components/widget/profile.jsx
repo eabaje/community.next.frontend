@@ -13,7 +13,7 @@ const ProfileWidget = ({ query }) => {
           </a>
           <div className="text ms-2">
             <h3>
-              <a href="my-profile.html">{user?.FullName}</a>
+              <a href="/profile">{user?.FullName}</a>
             </h3>
             <span>{user?.Region}</span>
           </div>
@@ -77,7 +77,7 @@ const ProfileWidget = ({ query }) => {
           </ul>
         </div>
         <div className="profile-btn">
-          <a href="my-profile.html" className="default-btn">
+          <a href="/profile" className="default-btn">
             View Profile
           </a>
         </div>
