@@ -10,7 +10,7 @@ function Index({ query }) {
     <>
       <MainLayout>
         <div class="page-banner-box bg-5">
-          <h3>Neighbours</h3>
+          <h3>Notification</h3>
         </div>
 
         <div class="content-page-box-area">
