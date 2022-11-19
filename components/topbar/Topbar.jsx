@@ -29,42 +29,42 @@ export default function Topbar({ user }) {
     signout()(authDispatch);
   };
   //
-
-  const queryClient = useQueryClient();
-  useEffect(() => {
-    //Get friend
-    const {
-      isLoading: friendLoading,
-      error: friendError,
-      data: friendData,
-    } = useQuery(["friends"], () =>
-      makeRequest
-        .get(`/relationship/getAllRelationship/?type=friend`)
-        .then((res) => {
-          return res.data;
-        })
-    );
-    //Get Messages
-    const {
-      isLoading: messageLoading,
-      error: messageError,
-      data: messsageData,
-    } = useQuery(["message"], () =>
-      makeRequest.get(`/mesage/getAllMessage/`).then((res) => {
+  //Get friend
+  const {
+    isLoading: friendLoading,
+    error: friendError,
+    data: friendData,
+  } = useQuery(["friends"], () =>
+    makeRequest
+      .get(`/relationship/getAllRelationship/?type=friend/${user.UserId}`)
+      .then((res) => {
         return res.data;
       })
-    );
+  );
+  //Get Messages
+  const {
+    isLoading: messageLoading,
+    error: messageError,
+    data: messsageData,
+  } = useQuery(["message"], () =>
+    makeRequest.get(`/mesage/getAllMessageSent/${user.UserId}`).then((res) => {
+      return res.data;
+    })
+  );
 
-    //Get Notification
+  //Get Notification
 
-    const { isLoading, error, data } = useQuery(["message"], () =>
-      makeRequest
-        .get(`/relationship/getAllRelationship/?type=friend`)
-        .then((res) => {
-          return res.data;
-        })
-    );
-  }, []);
+  const {
+    isLoading: notifyLoading,
+    error: notifyError,
+    data: notifyData,
+  } = useQuery(["notification"], () =>
+    makeRequest.get(`/event/getAllNotification/?type=friend`).then((res) => {
+      return res.data;
+    })
+  );
+
+  useEffect(() => {}, []);
   return (
     <>
       <div className="navbar-area">
@@ -116,9 +116,9 @@ export default function Topbar({ user }) {
                     </a>
                   </Link>
                 </div>
-                <Friend friend={user} />
-                <Message message={user} />
-                <Notification notify={user} />
+                <Friend friend={friendData} />
+                <Message message={messsageData} />
+                <Notification notify={notifyData} />
                 <div className="option-item">
                   <div className="dropdown language-option">
                     <button

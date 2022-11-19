@@ -1,7 +1,8 @@
 import axios from "axios";
+import { API_URL } from "../constants";
 let headers = {};
 
-if (localStorage.token) {
+if (typeof window !== "undefined" && localStorage.token) {
   headers.Authorization = `Bearer ${localStorage.token}`;
 }
 

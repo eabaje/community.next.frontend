@@ -9,6 +9,7 @@ import { GlobalContext } from "../../../context/Provider";
 import { registerUser } from "../../../context/actions/auth/auth.action";
 
 export default function RegisterForm() {
+  const router = useRouter();
   //**************************FORM FUNCTIONS ************* */
 
   const {
@@ -32,7 +33,7 @@ export default function RegisterForm() {
         );
         setTimeout(() => {
           toast.dismiss();
-          router.reload(`/home/?userId=${res.data.UserId}`);
+          router.push(`/home/?userId=${res.data.UserId}`);
         }, 5000);
       }
     })((error) => {
