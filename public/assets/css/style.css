@@ -4602,9 +4602,9 @@ Sidemenu Area CSS
   top: 9rem;
   height: 100%;
   width: 300px;
-  z-index: 100;
+  z-index: 999;
   overflow: scroll;
-  background-color: #f4f7fc;
+  /* background-color: #f4f7fc; */
   opacity: 1;
   -webkit-transition: var(--transition);
   transition: var(--transition);
@@ -14308,8 +14308,6 @@ Profile Authentication Area CSS
 }
 
 @media only screen and (max-width: 1199px) {
- 
-
   .others-link-for-responsive {
     display: block;
   }
@@ -14332,7 +14330,6 @@ Profile Authentication Area CSS
   }
 
   .sidemenu-area {
-
     display: block;
   }
 }

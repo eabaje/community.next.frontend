@@ -10,6 +10,8 @@ import { signout } from "../../context/actions/auth/auth.action";
 import Message from "../message";
 import Friend from "../friend";
 import Notification from "../notification";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../helpers/axios";
 
 export default function Topbar({ user }) {
   // const { currentUser } = useContext(AuthContext);
@@ -26,10 +28,42 @@ export default function Topbar({ user }) {
   const logOut = () => {
     signout()(authDispatch);
   };
+  //
+
+  const queryClient = useQueryClient();
   useEffect(() => {
     //Get friend
+    const {
+      isLoading: friendLoading,
+      error: friendError,
+      data: friendData,
+    } = useQuery(["friends"], () =>
+      makeRequest
+        .get(`/relationship/getAllRelationship/?type=friend`)
+        .then((res) => {
+          return res.data;
+        })
+    );
     //Get Messages
+    const {
+      isLoading: messageLoading,
+      error: messageError,
+      data: messsageData,
+    } = useQuery(["message"], () =>
+      makeRequest.get(`/mesage/getAllMessage/`).then((res) => {
+        return res.data;
+      })
+    );
+
     //Get Notification
+
+    const { isLoading, error, data } = useQuery(["message"], () =>
+      makeRequest
+        .get(`/relationship/getAllRelationship/?type=friend`)
+        .then((res) => {
+          return res.data;
+        })
+    );
   }, []);
   return (
     <>
@@ -82,9 +116,9 @@ export default function Topbar({ user }) {
                     </a>
                   </Link>
                 </div>
-                <Friend />
-                <Message />
-                <Notification />
+                <Friend friend={user} />
+                <Message message={user} />
+                <Notification notify={user} />
                 <div className="option-item">
                   <div className="dropdown language-option">
                     <button

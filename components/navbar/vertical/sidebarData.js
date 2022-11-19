@@ -60,6 +60,16 @@ const menuItemsPublic = (user) => [
     path: `/video/?userId=${user?.UserId}`,
     icon: "fa fa-video",
   },
+  {
+    title: "Event",
+    path: `/event/?userId=${user?.UserId}`,
+    icon: "fa fa-gift",
+  },
+  {
+    title: "Weather",
+    path: `/weather/?userId=${user?.UserId}`,
+    icon: "fa fa-cloud-rain",
+  },
 ];
 
 export { menuItemsPublic };

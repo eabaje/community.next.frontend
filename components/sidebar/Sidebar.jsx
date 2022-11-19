@@ -21,7 +21,6 @@ import {
   ThreeDRotation,
 } from "@mui/icons-material";
 
-import { Link, useLocation } from "react-router-dom";
 import dynamic from "next/dynamic";
 import { Users } from "../../constants/dummyData";
 import CloseFriend from "../closeFriend/CloseFriend";

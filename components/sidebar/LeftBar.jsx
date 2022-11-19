@@ -21,10 +21,7 @@ import {
   ThreeDRotation,
 } from "@mui/icons-material";
 
-import { Link, useLocation } from "react-router-dom";
 import dynamic from "next/dynamic";
-import { Users } from "../../constants/dummyData";
-import CloseFriend from "../closeFriend/CloseFriend";
 
 import $ from "jquery";
 //import "./loader.js";
@@ -55,12 +52,9 @@ function LeftBar({ user }) {
       <div className="leftBar">
         <div className="col-lg-12 col-md-12">
           <aside className="widget-area">
-            {router.pathname === "/home" && (
-              <ProfileWidget user={user}/>
-            
-            )}
+            {router.pathname === "/home" && <ProfileWidget user={user} />}
             <Sidebar user={user} />
-            <p></p>
+
             <div className="leftBarDown">
               <SuggestedGroupWidget
                 userId={user?.UserId}

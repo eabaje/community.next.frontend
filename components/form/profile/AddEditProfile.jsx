@@ -58,7 +58,6 @@ const AddEditProfile = ({ query }) => {
   const [pickUpRegion, setPickUpRegion] = useState([]);
   // const [showProfile, setShowProfile] = useState(false);
 
-
   //**********page Functions *****************/
 
   const popupCloseHandler = (e) => {
@@ -96,7 +95,6 @@ const AddEditProfile = ({ query }) => {
     setShowReference(!showReference);
   };
 
-
   // *************** FORM FUNCTIONS**********//
   const {
     register,
@@ -108,7 +106,7 @@ const AddEditProfile = ({ query }) => {
 
   const {
     userDispatch,
-    userState: {createUser, User},
+    userState: { createUser, User },
   } = useContext(GlobalContext);
   const {
     authState: { user },
@@ -125,8 +123,6 @@ const AddEditProfile = ({ query }) => {
       ? toast.success(`Updated your profile info successfully`)
       : toast.error(createUser.error);
   };
-
-
 
   // *************** USE EFFECT**********//
   useEffect(() => {
@@ -176,7 +172,6 @@ const AddEditProfile = ({ query }) => {
     });
   }, []);
 
- 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
       <div className="input-group mb-3">
@@ -427,19 +422,19 @@ const AddEditProfile = ({ query }) => {
                       );
                     }}
                   />
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Email"
-                    name="Email"
-                    {...register("Email")}
-                  />
-                </div>
-              </div>
-              {/* <div class="col-lg-6 col-md-6">
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        placeholder="Email"
+                        name="Email"
+                        {...register("Email")}
+                      />
+                    </div>
+                  </div>
+                  {/* <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Backup Email</label>
                   <input
@@ -450,7 +445,7 @@ const AddEditProfile = ({ query }) => {
                   />
                 </div>
               </div> */}
-             
+
                   {/* <input
                     type="text"
                     class="form-control"

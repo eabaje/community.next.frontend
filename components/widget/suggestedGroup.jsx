@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const SuggestedGroupWidget = ({ userId, title, showButton }) => {
   return (
@@ -53,9 +54,9 @@ const SuggestedGroupWidget = ({ userId, title, showButton }) => {
         <br />
         {showButton === true && (
           <div class="events-btn">
-            <a href="#" class="default-btn">
-              Add New Group
-            </a>
+            <Link href={`/group/?userid=${userId}`}>
+              <a class="default-btn">Add New Group</a>
+            </Link>
           </div>
         )}
       </div>

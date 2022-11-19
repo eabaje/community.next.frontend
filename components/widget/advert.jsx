@@ -1,6 +1,6 @@
 import React from "react";
 
-const AdvertWidget = ({ userId }) => {
+const AdvertWidget = ({ advert }) => {
   return (
     <>
       <div className="widget widget-advertisement">
@@ -8,7 +8,14 @@ const AdvertWidget = ({ userId }) => {
 
         <div className="advertisement-image">
           <a href="#">
-            <img src="assets/images/advertisement.jpg" alt="image" />
+            <img
+              src={
+                advert?.AdvertImgUrl
+                  ? advert?.AdvertImgUrl
+                  : "assets/images/advertisement.jpg"
+              }
+              alt="image"
+            />
           </a>
         </div>
       </div>
