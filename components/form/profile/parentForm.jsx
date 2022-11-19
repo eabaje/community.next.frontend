@@ -23,7 +23,7 @@ import ImageUpload from "../../../components/upload/uploadImage";
 // import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
-import { RELATION_TYPE } from "../../../constants/enum";
+import { RELATION_TYPE, RELATION_TYPE_2 } from "../../../constants/enum";
 
 const ParentForm = (props) => {
   const { userId, relationType } = props;
@@ -208,7 +208,7 @@ const ParentForm = (props) => {
                 {...register("RelationType")}
               >
                 <option value="">Select Relationship</option>
-                {RELATION_TYPE.map((item) => (
+                {RELATION_TYPE_2.map((item) => (
                   <option key={item.value} value={item.value}>
                     {item.text}
                   </option>
