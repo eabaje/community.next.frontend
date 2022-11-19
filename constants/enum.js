@@ -29,6 +29,18 @@ export const RELATION_TYPE = [
   { value: "gp", text: "GRANDPARENT" },
   { value: "ggp", text: "GREATGRANDPARENT" },
 ];
+export const RELATION_TYPE_2 = [
+  { value: "wf", text: "WIFE" },
+  { value: "pa", text: "PARENT" },
+  { value: "pasib", text: "PARENT SIBLING" },
+  { value: "gp", text: "GRANDPARENT" },
+  { value: "ggp", text: "GREATGRANDPARENT" },
+];
+export const RELATION_TYPE_3 = [
+  { value: "ch", text: "CHILD" },
+  { value: "gch", text: "GRANDCHILD" },
+  { value: "ggch", text: "GREATGRANDCHILD" },
+];
 export const TRACK_SHIPMENT_STATUS = [
   { value: "NotAssigned", text: "Not Assigned" },
   { value: "Assigned", text: "Assigned" },

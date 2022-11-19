@@ -10,7 +10,7 @@ function Index({ query }) {
   return (
     <>
       <MainLayout>
-        <AddEditProfile query={null} />
+        <AddEditProfile query={query} />
       </MainLayout>
     </>
   );

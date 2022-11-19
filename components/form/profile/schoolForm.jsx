@@ -10,6 +10,7 @@ import { GlobalContext } from "../../../context/Provider";
 import {
   AddSchoolPlaceWork,
   editUser,
+  GetAllRelationInfo,
   resetPassword,
   updateCompany,
 } from "../../../context/actions/user/user.action";
@@ -469,9 +470,10 @@ const SchoolForm = (props) => {
             <button
               type="submit"
               class="default-btn"
-              disabled={loading ? "true" : "false"}
+              disabled={createUser.loading ? "false" : "true"}
             >
-              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
+              {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
+              Save
             </button>
           </div>
         </div>

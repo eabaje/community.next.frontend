@@ -454,9 +454,10 @@ const ParentForm = (props) => {
             <button
               type="submit"
               class="default-btn"
-              disabled={loading ? "true" : "false"}
+              disabled={createUser.loading ? "false" : "true"}
             >
-              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
+              {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
+              Save
             </button>
           </div>
         </div>

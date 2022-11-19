@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 //import { IMG_URL } from "../../../constants";
 import { useForm, Controller } from "react-hook-form";
 
-import { Country, State } from "country-state-city";
+import { Country, State, City } from "country-state-city";
 
 import { fetchData } from "../../../helpers/query";
 
@@ -41,7 +41,7 @@ const AddEditProfile = ({ query }) => {
   const [email, setEmail] = useState("");
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
-  const [City, setCity] = useState([]);
+  const [city, setCity] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
   const [selCity, setselCity] = useState("");
@@ -69,6 +69,11 @@ const AddEditProfile = ({ query }) => {
     setCountry((country) => e.target.value);
 
     setRegion((Region = State.getStatesOfCountry(e.target.value)));
+  };
+  const selectCity = async (e) => {
+    // setPickUpRegion((pickUpRegion) => e.target.value);
+
+    setCity((city) => (city = City.getCitiesOfState(country, e.target.value)));
   };
   const SelectGender = async (e) => {
     e.target.value !== null && setGender(e.target.value);
@@ -193,7 +198,7 @@ const AddEditProfile = ({ query }) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("ShowProfile", showProfile);
+  console.log("ShowProfile", profile);
   return (
     <>
       <div class="page-banner-box">
@@ -377,7 +382,7 @@ const AddEditProfile = ({ query }) => {
                   />
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
+              <div class="col-lg-4 col-md-4">
                 <div class="form-group">
                   <label>Age Category</label>
                   <select
@@ -397,7 +402,7 @@ const AddEditProfile = ({ query }) => {
                   </select>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
+              <div class="col-lg-4 col-md-4">
                 <div class="form-group">
                   <label>Date of Birth</label>
                   <Controller
@@ -422,19 +427,21 @@ const AddEditProfile = ({ query }) => {
                       );
                     }}
                   />
-                  <div class="col-lg-6 col-md-6">
-                    <div class="form-group">
-                      <label>Email</label>
-                      <input
-                        type="email"
-                        class="form-control"
-                        placeholder="Email"
-                        name="Email"
-                        {...register("Email")}
-                      />
-                    </div>
-                  </div>
-                  {/* <div class="col-lg-6 col-md-6">
+                </div>
+              </div>
+              <div class="col-lg-4 col-md-4">
+                <div class="form-group">
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Email"
+                    name="Email"
+                    {...register("Email")}
+                  />
+                </div>
+              </div>
+              {/* <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Backup Email</label>
                   <input
@@ -446,7 +453,7 @@ const AddEditProfile = ({ query }) => {
                 </div>
               </div> */}
 
-                  {/* <input
+              {/* <input
                     type="text"
                     class="form-control"
                     placeholder="Date of birth"
@@ -454,8 +461,7 @@ const AddEditProfile = ({ query }) => {
                     name="DOB"
                     {...register("DOB")}
                   /> */}
-                </div>
-              </div>
+
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Phone No:</label>
@@ -613,24 +619,16 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>City</label>
-
+                  <label>Country</label>
                   <select
-                    name="City"
-                    className="form-control"
-                    // readOnly={readOnly}
-                    id="City"
-                    {...register("City", {
-                      required: true,
-                    })}
+                    name="Country"
+                    className="form-select"
+                    {...register("Country")}
+                    onChange={selectCountry}
                   >
-                    <option value=""> Select City </option>
-                    {City.map((item) => (
-                      <option
-                        key={item.isoCode}
-                        selected={selCity === item.isoCode}
-                        value={item.isoCode}
-                      >
+                    <option value="">Select Country</option>
+                    {countries.map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
                         {item.name}
                       </option>
                     ))}
@@ -648,6 +646,7 @@ const AddEditProfile = ({ query }) => {
                     {...register("State", {
                       required: true,
                     })}
+                    onChange={selectCity}
                   >
                     <option value=""> Select Region/State </option>
                     {Region.map((item) => (
@@ -660,29 +659,41 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Country</label>
+                  <label>City</label>
+
                   <select
-                    name="Country"
-                    className="form-select"
-                    {...register("Country")}
-                    onChange={selectCountry}
+                    name="City"
+                    className="form-control"
+                    // readOnly={readOnly}
+                    id="City"
+                    {...register("City", {
+                      required: true,
+                    })}
                   >
-                    <option value="">Select Country</option>
-                    {countries.map((item) => (
-                      <option key={item.isoCode} value={item.isoCode}>
+                    <option value=""> Select City </option>
+                    {city.map((item) => (
+                      <option
+                        key={item.isoCode}
+                        selected={selCity === item.isoCode}
+                        value={item.isoCode}
+                      >
                         {item.name}
                       </option>
                     ))}
                   </select>
                 </div>
               </div>
+
               <div class="col-lg-12 col-md-12">
                 <button
                   type="submit"
                   class="default-btn"
-                  disabled={loading ? "true" : "false"}
+                  disabled={createUser.loading ? "false" : "true"}
                 >
-                  {loading && <i className="fa fa-spinner fa-spin"></i>} Save
+                  {createUser.loading && (
+                    <i className="fa fa-spinner fa-spin"></i>
+                  )}{" "}
+                  Save
                 </button>
               </div>
             </div>
