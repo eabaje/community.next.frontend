@@ -23,6 +23,7 @@ import ImageUpload from "../../../components/upload/uploadImage";
 // import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
+import { RELATION_TYPE_2, RELATION_TYPE_3 } from "../../../constants/enum";
 
 const ChildForm = (props) => {
   const { userId, relationType } = props;
@@ -52,6 +53,8 @@ const ChildForm = (props) => {
   const [visibilityImage, setVisibilityImage] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showBilling, setShowBilling] = useState(false);
+  const [showParent, setShowParent] = useState(false);
+  const [listChild, setListChild] = useState([]);
   const [showCompany, setShowCompany] = useState(false);
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -85,6 +88,16 @@ const ChildForm = (props) => {
   };
   const changeBilling = async () => {
     setShowBilling(!showBilling);
+  };
+  const changeParent = async (e) => {
+    if (e.target.value === "ch") {
+      setShowParent(!showParent);
+
+      GetAllRelationInfo(userId, "ch")(userDispatch);
+      setListChild(Users.data);
+    } else {
+      setShowParent(false);
+    }
   };
   const changeReference = async () => {
     setShowReference(!showReference);
@@ -214,6 +227,47 @@ const ChildForm = (props) => {
                 </div>
               )}
               <div id={index} class="row">
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group">
+                    <label>Relationship Type</label>
+                    <select
+                      name="RelationType"
+                      className="form-select"
+                      {...register("RelationType")}
+                      onChange={changeParent}
+                    >
+                      <option value="">Select Relationship</option>
+                      {RELATION_TYPE_3.map((item) => (
+                        <option key={item.value} value={item.value}>
+                          {item.text}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                {showParent && (
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Parent</label>
+                      <select
+                        name="childen"
+                        className="form-select"
+                        {...register("children")}
+                      >
+                        <option value="">Parent Name</option>
+                        {listChild.map((item) => (
+                          <option
+                            key={item?.RelationId}
+                            value={item?.RelationId}
+                          >
+                            {item?.LastName + "" + item?.FirstName}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+                )}
+
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
                     <label>First Name</label>

@@ -180,20 +180,26 @@ export default function Topbar({ user }) {
                       <ul className="profile-body">
                         <li>
                           <i className="flaticon-user"></i>{" "}
-                          <Link href={"/profile"} passHref>
+                          <Link
+                            href={`/profile/?userId=${user.UserId}`}
+                            passHref
+                          >
                             <a>My Profile</a>
                           </Link>
                         </li>
                         <li>
                           <i className="flaticon-settings"></i>{" "}
-                          <Link href={"/setting"} passHref>
+                          <Link
+                            href={`/setting/?userId=${user.UserId}`}
+                            passHref
+                          >
                             <a>Setting</a>
                           </Link>
                         </li>
                         <li>
                           <i className="flaticon-privacy"></i>{" "}
                           <Link href={"/privacy"} passHref>
-                            <a href="privacy.html">Privacy</a>
+                            <a>Privacy</a>
                           </Link>
                         </li>
                         <li>
