@@ -21,30 +21,24 @@ const MainLayout = ({ children }) => {
 
   // const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
   // const [authLoaded, setAuthLoaded] = React.useState(false);
-  // // const [user, setUser] = useState({});
+   //const [user, setUser] = useState({});
 
-  // const getUser = async () => {
-  //   try {
-  //     // setUser(JSON.parse(localStorage.getItem("user")));
-  //     if (user) {
-  //       setAuthLoaded(true);
-
-  //       setIsAuthenticated(true);
-  //     } else {
-  //       setAuthLoaded(true);
-
-  //       setIsAuthenticated(false);
-
-  //       window.location = "/signin";
-  //     }
-  //   } catch (error) {}
-  // };
+  const getUser = async () => {
+    try {
+      // setUser(JSON.parse(localStorage.getItem("user")));
+      if (!user) {
+       
+     
+        window.location = "/";
+      }
+    } catch (error) {}
+  };
   const a = 1;
   const queryClient = new QueryClient();
   React.useEffect(() => {
     // let controller = new AbortController();
 
-    // getUser();
+     getUser();
     // return () => controller?.abort();
     if (typeof window !== "undefined") {
       $(".go-top").on("click", function () {

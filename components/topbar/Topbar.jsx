@@ -181,7 +181,7 @@ export default function Topbar({ user }) {
                         <li>
                           <i className="flaticon-user"></i>{" "}
                           <Link
-                            href={`/profile/?userId=${user.UserId}`}
+                            href={`/profile/?userId=${user?.UserId}`}
                             passHref
                           >
                             <a>My Profile</a>
@@ -190,7 +190,7 @@ export default function Topbar({ user }) {
                         <li>
                           <i className="flaticon-settings"></i>{" "}
                           <Link
-                            href={`/setting/?userId=${user.UserId}`}
+                            href={`/setting/?userId=${user?.UserId}`}
                             passHref
                           >
                             <a>Setting</a>
@@ -718,27 +718,43 @@ export default function Topbar({ user }) {
                           <a href={user?.Email}>{user?.Email}</a>
                         </div>
                         <ul className="profile-body">
-                          <li>
-                            <i className="flaticon-user"></i>{" "}
-                            <a href="/profile">My Profile</a>
-                          </li>
-                          <li>
-                            <i className="flaticon-settings"></i>{" "}
-                            <a href="/setting">Setting</a>
-                          </li>
-                          <li>
-                            <i className="flaticon-privacy"></i>{" "}
-                            <a href="/privacy">Privacy</a>
-                          </li>
-                          <li>
-                            <i className="flaticon-information"></i>{" "}
-                            <a href="help-and-support.html">Help & Support</a>
-                          </li>
-                          <li>
-                            <i className="flaticon-logout"></i>{" "}
-                            <a href="/">Logout</a>
-                          </li>
-                        </ul>
+                        <li>
+                          <i className="flaticon-user"></i>{" "}
+                          <Link
+                            href={`/profile/?userId=${user?.UserId}`}
+                            passHref
+                          >
+                            <a>My Profile</a>
+                          </Link>
+                        </li>
+                        <li>
+                          <i className="flaticon-settings"></i>{" "}
+                          <Link
+                            href={`/setting/?userId=${user?.UserId}`}
+                            passHref
+                          >
+                            <a>Setting</a>
+                          </Link>
+                        </li>
+                        <li>
+                          <i className="flaticon-privacy"></i>{" "}
+                          <Link href={"/privacy"} passHref>
+                            <a>Privacy</a>
+                          </Link>
+                        </li>
+                        <li>
+                          <i className="flaticon-information"></i>{" "}
+                          <Link href={"/support"} passHref>
+                            <a>Help & Support</a>
+                          </Link>
+                        </li>
+                        <li>
+                          <i className="flaticon-logout"></i>{" "}
+                          <Link href={"#"} passHref>
+                            <a onClick={logOut}>Logout</a>
+                          </Link>
+                        </li>
+                      </ul>
                       </div>
                     </div>
                   </div>

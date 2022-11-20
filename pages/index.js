@@ -16,6 +16,12 @@ import RegisterForm from "../components/form/register/registerform";
 export default function Index() {
   const [showForm, setShowForm] = useState(0);
 
+  const changeShowForm = async (e) => {
+    setShowForm(e)
+
+     
+  };
+
   const router = useRouter();
   // const { login } = useContext(AuthContext);
   const {
@@ -90,7 +96,7 @@ export default function Index() {
       </div>
       <div class="col-lg-6 col-md-12">
         <div class="row">
-          {showForm === 0 ? <LoginForm /> : <RegisterForm />}
+          {showForm === 0 ? <LoginForm /> : <RegisterForm changeShowForm={changeShowForm}/>}
         </div>
       </div>
     </NoLayout>

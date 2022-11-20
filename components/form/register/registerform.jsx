@@ -8,7 +8,7 @@ import dynamic from "next/dynamic";
 import { GlobalContext } from "../../../context/Provider";
 import { registerUser } from "../../../context/actions/auth/auth.action";
 
-export default function RegisterForm() {
+export default function RegisterForm({changeShowForm}) {
   const router = useRouter();
   //**************************FORM FUNCTIONS ************* */
 
@@ -29,11 +29,14 @@ export default function RegisterForm() {
     registerUser(formdata)(authDispatch)((res) => {
       if (res) {
         toast.success(
-          `Congratulations!You have created an account successfully.You will be redirected to your timeline`
+          `Congratulations!You have created an account successfully.Kindly login`
         );
         setTimeout(() => {
           toast.dismiss();
-          router.push(`/home/?userId=${res.data.UserId}`);
+         // router.reload(`/home/?userId=${res?.data?.UserId}`);
+         // router.reload(`/`);
+         changeShowForm(0);
+
         }, 5000);
       }
     })((error) => {
