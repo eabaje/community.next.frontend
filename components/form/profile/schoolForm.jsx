@@ -11,6 +11,7 @@ import {
   AddSchoolPlaceWork,
   editUser,
   GetAllRelationInfo,
+  GetAllSchoolWorkInfo,
   resetPassword,
   updateCompany,
 } from "../../../context/actions/user/user.action";
@@ -135,7 +136,7 @@ const SchoolForm = (props) => {
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
-    GetAllRelationInfo(userId, relationType)(userDispatch);
+    GetAllSchoolWorkInfo(userId, relationType)(userDispatch);
     Users.data ? setRowsData([...rowsData, Users.data]) : addTableRows();
     Users.error && toast.error(Users.error);
 

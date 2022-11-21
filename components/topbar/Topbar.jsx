@@ -36,7 +36,7 @@ export default function Topbar({ user }) {
     data: friendData,
   } = useQuery(["friends"], () =>
     makeRequest
-      .get(`/relationship/getAllRelationship/?type=friend/${user.UserId}`)
+      .get(`/relationship/getAllRelationship/friend/${user.UserId}`)
       .then((res) => {
         return res.data;
       })
@@ -59,9 +59,11 @@ export default function Topbar({ user }) {
     error: notifyError,
     data: notifyData,
   } = useQuery(["notification"], () =>
-    makeRequest.get(`/event/getAllNotification/?type=friend`).then((res) => {
-      return res.data;
-    })
+    makeRequest
+      .get(`/event/getAllNotificationSent/${user.UserId}`)
+      .then((res) => {
+        return res.data;
+      })
   );
 
   useEffect(() => {}, []);
@@ -718,43 +720,43 @@ export default function Topbar({ user }) {
                           <a href={user?.Email}>{user?.Email}</a>
                         </div>
                         <ul className="profile-body">
-                        <li>
-                          <i className="flaticon-user"></i>{" "}
-                          <Link
-                            href={`/profile/?userId=${user?.UserId}`}
-                            passHref
-                          >
-                            <a>My Profile</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <i className="flaticon-settings"></i>{" "}
-                          <Link
-                            href={`/setting/?userId=${user?.UserId}`}
-                            passHref
-                          >
-                            <a>Setting</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <i className="flaticon-privacy"></i>{" "}
-                          <Link href={"/privacy"} passHref>
-                            <a>Privacy</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <i className="flaticon-information"></i>{" "}
-                          <Link href={"/support"} passHref>
-                            <a>Help & Support</a>
-                          </Link>
-                        </li>
-                        <li>
-                          <i className="flaticon-logout"></i>{" "}
-                          <Link href={"#"} passHref>
-                            <a onClick={logOut}>Logout</a>
-                          </Link>
-                        </li>
-                      </ul>
+                          <li>
+                            <i className="flaticon-user"></i>{" "}
+                            <Link
+                              href={`/profile/?userId=${user?.UserId}`}
+                              passHref
+                            >
+                              <a>My Profile</a>
+                            </Link>
+                          </li>
+                          <li>
+                            <i className="flaticon-settings"></i>{" "}
+                            <Link
+                              href={`/setting/?userId=${user?.UserId}`}
+                              passHref
+                            >
+                              <a>Setting</a>
+                            </Link>
+                          </li>
+                          <li>
+                            <i className="flaticon-privacy"></i>{" "}
+                            <Link href={"/privacy"} passHref>
+                              <a>Privacy</a>
+                            </Link>
+                          </li>
+                          <li>
+                            <i className="flaticon-information"></i>{" "}
+                            <Link href={"/support"} passHref>
+                              <a>Help & Support</a>
+                            </Link>
+                          </li>
+                          <li>
+                            <i className="flaticon-logout"></i>{" "}
+                            <Link href={"#"} passHref>
+                              <a onClick={logOut}>Logout</a>
+                            </Link>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </div>

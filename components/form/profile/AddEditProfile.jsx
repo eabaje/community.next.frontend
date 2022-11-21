@@ -603,20 +603,7 @@ const AddEditProfile = ({ query }) => {
                   </select>
                 </div>
               </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Address</label>
-                  <input
-                    type="text"
-                    name="Address"
-                    class="form-control"
-                    placeholder="Address"
-                    {...register("Address", {
-                      required: true,
-                    })}
-                  />
-                </div>
-              </div>
+
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Country</label>
@@ -683,7 +670,20 @@ const AddEditProfile = ({ query }) => {
                   </select>
                 </div>
               </div>
-
+              <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                  <label>Address</label>
+                  <textarea
+                    type="text"
+                    name="Address"
+                    class="form-control"
+                    placeholder="Address"
+                    {...register("Address", {
+                      required: true,
+                    })}
+                  />
+                </div>
+              </div>
               <div class="col-lg-12 col-md-12">
                 <button
                   type="submit"

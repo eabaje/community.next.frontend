@@ -293,7 +293,7 @@ const ParentForm = (props) => {
                 type="text"
                 class="form-control"
                 placeholder="FamilyName"
-                name="Clan"
+                name="FamilyName"
                 {...register("FamilyName")}
               />
             </div>

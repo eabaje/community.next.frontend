@@ -438,6 +438,58 @@ const CoupleForm = (props) => {
               <input type="text" class="form-control" placeholder="Website" />
             </div>
           </div>
+
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>Family Name</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="FamilyName"
+                name="FamilyName"
+                {...register("FamilyName")}
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>Tribe</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Tribe"
+                name="Tribe"
+                {...register("Tribe")}
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>Clan</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Clan"
+                name="Clan"
+                {...register("Clan")}
+              />
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>Kindred</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Kindred"
+                name="Kindred"
+                {...register("Kindred")}
+              />
+            </div>
+          </div>
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
               <label>Language</label>
@@ -473,6 +525,7 @@ const CoupleForm = (props) => {
               </select> */}
             </div>
           </div>
+
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
               <label>Address</label>
