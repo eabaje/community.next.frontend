@@ -227,24 +227,35 @@ const ChildForm = (props) => {
                 </div>
               )}
               <div id={index} class="row">
-                <div class="col-lg-6 col-md-6">
-                  <div class="form-group">
-                    <label>Relationship Type</label>
-                    <select
-                      name="RelationType"
-                      className="form-select"
-                      {...register("RelationType")}
-                      onChange={changeParent}
-                    >
-                      <option value="">Select Relationship</option>
-                      {RELATION_TYPE_3.map((item) => (
-                        <option key={item.value} value={item.value}>
-                          {item.text}
-                        </option>
-                      ))}
-                    </select>
+                {props.relationType === "ch" ? (
+                  <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                      <label>Relationship Type</label>
+                      <select
+                        name="RelationType"
+                        className="form-select"
+                        {...register("RelationType")}
+                        onChange={changeParent}
+                      >
+                        <option value="">Select Relationship</option>
+                        {RELATION_TYPE_3.map((item) => (
+                          <option key={item.value} value={item.value}>
+                            {item.text}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
-                </div>
+                ) : (
+                  <input
+                    type="hidden"
+                    name="RelationType"
+                    value={"sib"}
+                    className="form-control"
+                    {...register("RelationType")}
+                  />
+                )}
+
                 {showParent && (
                   <div class="col-lg-6 col-md-6">
                     <div class="form-group">
@@ -371,7 +382,7 @@ const ChildForm = (props) => {
             <button
               type="submit"
               class="default-btn"
-              disabled={createUser.loading ? "false" : "true"}
+              disabled={createUser.loading}
             >
               {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
               Save

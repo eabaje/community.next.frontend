@@ -12,6 +12,7 @@ import { GlobalContext } from "../../../context/Provider";
 import {
   AddRelationInfo,
   editUser,
+  GetAllRelationInfo,
   resetPassword,
   updateCompany,
 } from "../../../context/actions/user/user.action";
@@ -86,6 +87,10 @@ const CoupleForm = (props) => {
   const changeReference = async () => {
     setShowReference(!showReference);
   };
+
+  const onChangeWifeInfo = async (relationType, e) => {
+    getRelationInfo(relationType, e.target.value);
+  };
   const {
     register,
     formState: { errors },
@@ -102,10 +107,8 @@ const CoupleForm = (props) => {
     authState: { user },
   } = useContext(GlobalContext);
 
-  useEffect(() => {
-    setCountries((countries) => (countries = Country.getAllCountries()));
-
-    fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
+  const getRelationInfo = (relationType, relationId) => {
+    fetchDataAll(`user/getRelation/${relationType}/${relationId}`)((user) => {
       const fields = [
         "FirstName",
         "MiddleName",
@@ -143,6 +146,14 @@ const CoupleForm = (props) => {
     })((err) => {
       toast.error(err);
     });
+  };
+
+  useEffect(() => {
+    setCountries((countries) => (countries = Country.getAllCountries()));
+
+    GetAllRelationInfo(userId, relationType)(userDispatch);
+    Users?.data.length === 1 &&
+      getRelationInfo(relationType, Users?.data[0].RelationId);
   }, []);
 
   function onSubmit(formdata) {
@@ -195,6 +206,28 @@ const CoupleForm = (props) => {
         />
 
         <div class="row">
+          {Users?.data?.length > 1 && (
+            <div class="col-lg-6 col-md-6">
+              <div class="form-group">
+                <label>Wife</label>
+
+                <select
+                  name="Wife"
+                  className="form-control"
+                  // readOnly={readOnly}
+                  id="Wife"
+                  onChange={(e) => onChangeWifeInfo(relationType, e)}
+                >
+                  <option value=""> Select Wife </option>
+                  {Users?.data.map((item) => (
+                    <option key={item.RelationId} value={item.RelationId}>
+                      {item?.FirstName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          )}
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
               <label>First Name</label>
@@ -247,11 +280,11 @@ const CoupleForm = (props) => {
           )}
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
-              <label>Gender</label>
+              <label>Age Category</label>
               <select
                 class="form-select"
-                name="Sex"
-                {...register("Sex", {
+                name="Age"
+                {...register("Age", {
                   required: true,
                 })}
               >
@@ -265,30 +298,6 @@ const CoupleForm = (props) => {
               </select>
             </div>
           </div>
-
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email"
-                name="Email"
-                {...register("Email")}
-              />
-            </div>
-          </div>
-          {/* <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Backup Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Backup email"
-                    {...register("FirstName")}
-                  />
-                </div>
-              </div> */}
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
               <label>Date of Birth</label>
@@ -324,6 +333,30 @@ const CoupleForm = (props) => {
                   /> */}
             </div>
           </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="email"
+                class="form-control"
+                placeholder="Email"
+                name="Email"
+                {...register("Email")}
+              />
+            </div>
+          </div>
+          {/* <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Backup Email</label>
+                  <input
+                    type="email"
+                    class="form-control"
+                    placeholder="Backup email"
+                    {...register("FirstName")}
+                  />
+                </div>
+              </div> */}
+
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
               <label>Phone No:</label>
@@ -609,7 +642,7 @@ const CoupleForm = (props) => {
             <button
               type="submit"
               class="default-btn"
-              disabled={createUser.loading ? "false" : "true"}
+              disabled={createUser.loading}
             >
               {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
               Save

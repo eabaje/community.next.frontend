@@ -125,7 +125,7 @@ const AddEditProfile = ({ query }) => {
   const UpdateProfile = (formdata) => {
     UpdateUserProfile(formdata)(userDispatch);
     createUser.data
-      ? toast.success(`Updated your profile info successfully`)
+      ? toast.success(`${createUser.data.message}`)
       : toast.error(createUser.error);
   };
 
@@ -157,6 +157,7 @@ const AddEditProfile = ({ query }) => {
         "PasswordHash",
         "ProfilePicture",
         "CoverPicture",
+        "Address",
         "City",
         "HomeTown",
         "LGA",
@@ -331,6 +332,13 @@ const AddEditProfile = ({ query }) => {
         >
           <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
             <h3>Profile Information</h3>
+            <input
+              type="hidden"
+              name="UserId"
+              value={userId}
+              className="form-control"
+              {...register("UserId")}
+            />
 
             <div class="row">
               <div class="col-lg-6 col-md-6">
@@ -412,15 +420,10 @@ const AddEditProfile = ({ query }) => {
                     render={({ field: { onChange, value } }) => {
                       return (
                         <DatePicker
-                          wrapperclassName="datePicker"
-                          className="ui-datepicker"
+                          wrapperclassNameName="datePicker"
+                          classNameName="form-control datepicker"
                           onChange={onChange}
-                          selected={value}
-                          yearDropdownItemNumber={100}
-                          // dateFormat="dd-MM-yyyy"
-                          scrollableYearDropdown={true}
-                          showYearDropdown
-                          showMonthDropdown
+                          selected={Date.parse(value)}
                           placeholderText="Enter date"
                           customInput={<CustomInput />}
                         />
@@ -688,7 +691,7 @@ const AddEditProfile = ({ query }) => {
                 <button
                   type="submit"
                   class="default-btn"
-                  disabled={createUser.loading ? "false" : "true"}
+                  disabled={createUser.loading}
                 >
                   {createUser.loading && (
                     <i className="fa fa-spinner fa-spin"></i>

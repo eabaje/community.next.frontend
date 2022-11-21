@@ -278,10 +278,7 @@ export const UpdateUserProfile = (form) => async (dispatch) => {
   dispatch({ type: EDIT_USER_REQUEST });
 
   try {
-    const { res } = await axios.put(
-      `/user/updateUserProfile/${form.UserId}`,
-      form
-    );
+    const { res } = await axios.put(`/user/updateUser/${form.UserId}`, form);
 
     dispatch({
       type: EDIT_USER_SUCCESS,

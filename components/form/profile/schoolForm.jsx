@@ -471,7 +471,7 @@ const SchoolForm = (props) => {
             <button
               type="submit"
               class="default-btn"
-              disabled={createUser.loading ? "false" : "true"}
+              disabled={createUser.loading}
             >
               {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
               Save
