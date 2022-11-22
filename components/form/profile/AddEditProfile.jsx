@@ -2,7 +2,11 @@ import React, { useState, useContext, useEffect } from "react";
 //import { IMG_URL } from "../../../constants";
 import { useForm, Controller } from "react-hook-form";
 
+import { Typeahead } from "react-bootstrap-typeahead";
+import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Country, State, City } from "country-state-city";
+import { getLanguageNames } from "language-list";
+import options from "./data";
 
 import { fetchData } from "../../../helpers/query";
 
@@ -38,6 +42,7 @@ const AddEditProfile = ({ query }) => {
   const [gender, setGender] = useState("");
   const [country, setCountry] = useState("");
   // const [companyId, setcompanyId] = useState("");
+  const [selected, setSelected] = useState([]);
   const [email, setEmail] = useState("");
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
@@ -56,6 +61,7 @@ const AddEditProfile = ({ query }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
+
   // const [showProfile, setShowProfile] = useState(false);
 
   //**********page Functions *****************/
@@ -151,7 +157,7 @@ const AddEditProfile = ({ query }) => {
         "DOB",
         "BloodGroup",
         "MaritalStatus",
-        "Languages",
+        "Language",
         "Occupation",
         "EmploymentStatus",
         "PasswordHash",
@@ -167,17 +173,23 @@ const AddEditProfile = ({ query }) => {
       fields.forEach((field) => setValue(field, user[field]));
       setEmail(user["Email"]);
       // setcompanyId(user["CompanyId"]);
-      setPickUpRegion(
-        (pickUpRegion) =>
-          (pickUpRegion = State.getStatesOfCountry(user["Country"]))
+      //  selectCountry(user["Country"]);
+      setRegion(
+        (Region) => (Region = State.getStatesOfCountry(user["Country"]))
+      );
+      // selectCity(user["City"]);
+      setselRegion(user["State"]);
+
+      setCity(
+        (city) => (city = City.getCitiesOfState(user["Country"], user["State"]))
       );
 
-      setselpickUpRegion(user["Region"]);
+      setselCity(user["City"]);
     })((err) => {
       toast.error(err);
     });
   }, []);
-
+  console.log("Form", createUser);
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
       <div className="input-group mb-3">
@@ -587,23 +599,36 @@ const AddEditProfile = ({ query }) => {
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Language</label>
-                  <select
-                    class="form-select"
+
+                  <Typeahead
+                    id="Language"
                     name="Language"
-                    {...register("Language", {
-                      required: true,
-                    })}
+                    onChange={setSelected}
+                    options={options}
+                    placeholder="Choose a language"
+                    selected={selected}
+                  />
+                  {/* <select
+                class="form-select"
+                name="Language"
+                {...register("Language", {
+                  required: true,
+                })}
+              >
+                <option selected="0">Language</option>
+
+                {getLanguageNames.map((item, index) => (
+                  <option
+                    key={index}
+                    //   selected={seldeliveryCity === item.isoCode}
+                    value={item.language}
                   >
-                    <option selected="1">Language</option>
-                    <option value="2">English</option>
-                    <option value="3">Portuguese</option>
-                    <option value="4">Japanese</option>
-                    <option value="5">Russian</option>
-                    <option value="6">Javanese</option>
-                    <option value="7">Gujarati</option>
-                    <option value="8">Yoruba</option>
-                    <option value="9">Polish</option>
-                  </select>
+                    {item.language}
+                  </option>
+                ))}
+
+              
+              </select> */}
                 </div>
               </div>
 
@@ -640,7 +665,11 @@ const AddEditProfile = ({ query }) => {
                   >
                     <option value=""> Select Region/State </option>
                     {Region.map((item) => (
-                      <option key={item.isoCode} value={item.isoCode}>
+                      <option
+                        key={item.isoCode}
+                        selected={selRegion === item.isoCode}
+                        value={item.isoCode}
+                      >
                         {item.name}
                       </option>
                     ))}
@@ -664,13 +693,25 @@ const AddEditProfile = ({ query }) => {
                     {city.map((item) => (
                       <option
                         key={item.isoCode}
-                        selected={selCity === item.isoCode}
+                        selected={selCity === item.name}
                         value={item.isoCode}
                       >
                         {item.name}
                       </option>
                     ))}
                   </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>HomeTown</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="HomeTown"
+                    name="HomeTown"
+                    {...register("HomeTown")}
+                  />
                 </div>
               </div>
               <div class="col-lg-12 col-md-12">

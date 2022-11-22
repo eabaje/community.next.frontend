@@ -3,7 +3,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { Typeahead } from "react-bootstrap-typeahead";
 import "react-bootstrap-typeahead/css/Typeahead.css";
-import { Country, State } from "country-state-city";
+import { Country, State, City } from "country-state-city";
 import { getLanguageNames } from "language-list";
 import options from "./data";
 import { fetchData, fetchDataAll } from "../../../helpers/query";
