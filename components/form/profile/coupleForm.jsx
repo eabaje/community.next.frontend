@@ -41,7 +41,7 @@ const CoupleForm = (props) => {
   const [IsEdit, setEdit] = useState(false);
   const [country, setCountry] = useState("");
   // const [companyId, setcompanyId] = useState("");
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState({});
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
   const [city, setCity] = useState([]);
@@ -113,13 +113,11 @@ const CoupleForm = (props) => {
   } = useContext(GlobalContext);
 
   const getRelationInfo = (relationType, relationId) => {
-    fetchDataAll(`user/getRelation/${relationType}/${relationId}`)((user) => {
-      const fields = [
-        "FirstName",
-        "MiddleName",
-        "LastName",
-        "MaidenName",
-        "UserName",
+    fetchDataAll(`user/getRelation/${relationId}/${relationType}`)((user) => {
+      const fields = ["FirstName", "MiddleName", "LastName", "MaidenName"];
+      fields.forEach((field) => setValue(field, user[field]));
+
+      const fields1 = [
         "Mobile",
         "Email",
         "Sex",
@@ -127,10 +125,13 @@ const CoupleForm = (props) => {
         "DOB",
         "BloodGroup",
         "MaritalStatus",
-        "Languages",
+        "Language",
         "Occupation",
         "EmploymentStatus",
-        "PasswordHash",
+        "FamilyName",
+        "Kindred",
+        "Clan",
+        "Tribe",
         "ProfilePicture",
         "CoverPicture",
         "City",
@@ -139,20 +140,29 @@ const CoupleForm = (props) => {
         "State",
         "Country",
       ];
-      fields.forEach((field) => setValue(field, user[field]));
-      setEmail(user["Email"]);
+      fields1.forEach((field1) =>
+        setValue(field1, user["Relation_Detail"][field1])
+      );
+      setEmail(user);
       // setcompanyId(user["CompanyId"]);
       setRegion(
-        (Region) => (Region = State.getStatesOfCountry(user["Country"]))
+        (Region) =>
+          (Region = State.getStatesOfCountry(
+            user["Relation_Detail"]["Country"]
+          ))
       );
       // selectCity(user["City"]);
-      setselRegion(user["State"]);
+      setselRegion(user["Relation_Detail"]["State"]);
 
       setCity(
-        (city) => (city = City.getCitiesOfState(user["Country"], user["State"]))
+        (city) =>
+          (city = City.getCitiesOfState(
+            user["Relation_Detail"]["Country"],
+            user["Relation_Detail"]["State"]
+          ))
       );
 
-      setselCity(user["City"]);
+      setselCity(user["Relation_Detail"]["City"]);
     })((err) => {
       toast.error(err);
     });
@@ -162,7 +172,7 @@ const CoupleForm = (props) => {
     setCountries((countries) => (countries = Country.getAllCountries()));
 
     GetAllRelationInfo(userId, relationType)(userDispatch);
-    coupleUsers?.data.length === 1 &&
+    coupleUsers?.data?.data?.length === 1 &&
       getRelationInfo(relationType, coupleUsers?.data[0].RelationId);
   }, []);
 
@@ -195,7 +205,7 @@ const CoupleForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("ShowProfile", relationType);
+  console.log("ShowProfile", coupleUsers?.data?.data);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -216,7 +226,7 @@ const CoupleForm = (props) => {
         />
 
         <div class="row">
-          {coupleUsers?.data?.length > 1 && (
+          {coupleUsers?.data?.data?.length > 1 && (
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Wife</label>
@@ -229,7 +239,7 @@ const CoupleForm = (props) => {
                   onChange={(e) => onChangeWifeInfo(relationType, e)}
                 >
                   <option value=""> Select Wife </option>
-                  {coupleUsers?.data.map((item) => (
+                  {coupleUsers?.data?.data?.map((item) => (
                     <option key={item.RelationId} value={item.RelationId}>
                       {item?.FirstName}
                     </option>
@@ -318,10 +328,10 @@ const CoupleForm = (props) => {
                 render={({ field: { onChange, value } }) => {
                   return (
                     <DatePicker
-                      wrapperclassName="datePicker"
-                      className="ui-datepicker"
+                      wrapperclassNameName="datePicker"
+                      classNameName="form-control datepicker"
                       onChange={onChange}
-                      selected={value}
+                      selected={Date.parse(value)}
                       yearDropdownItemNumber={100}
                       // dateFormat="dd-MM-yyyy"
                       scrollableYearDropdown={true}

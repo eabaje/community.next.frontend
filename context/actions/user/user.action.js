@@ -315,9 +315,11 @@ export const GetAllRelationInfo =
     });
     try {
       const res = await axios.get(
-        `/user/getAllRelation/${userId}/${relationType}/}`
+        `/user/getAllRelation/${userId}/${relationType}`
       );
+
       dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
+      console.log("getRelationData", res.data);
     } catch (err) {
       const message = err.response ? err.response.data : CONNECTION_ERROR;
       dispatch({ type: GET_USERS_FAIL, payload: message });
@@ -330,7 +332,7 @@ export const GetRelationInfo = (userId, relationType) => async (dispatch) => {
   });
   try {
     const { res } = await axios.get(
-      `/user/getRelation/${userId}/${relationType}/}`
+      `/user/getRelation/${userId}/${relationType}`
     );
     dispatch({ type: GET_USER_SUCCESS, payload: res.data });
   } catch (err) {
@@ -356,15 +358,11 @@ export const DeleteRelation = (relationId) => async (dispatch) => {
   }
 };
 
-export const AddChildSibling = (userId) => async (dispatch) => {
-  const requestPayload = {
-    ProfileId: userId,
-  };
-
+export const AddChildSibling = (form) => async (dispatch) => {
   dispatch({ type: CREATE_USER_REQUEST });
 
   try {
-    const { res } = await axios.post(`/user/addChildOrSibling`, form);
+    const res = await axios.post(`/user/addChildOrSibling`, form);
 
     dispatch({
       type: CREATE_USER_SUCCESS,

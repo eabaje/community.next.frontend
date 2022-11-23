@@ -94,7 +94,7 @@ const ChildForm = (props) => {
       setShowParent(!showParent);
 
       GetAllRelationInfo(userId, "ch")(userDispatch);
-      setListChild(Users.data);
+      setListChild(childUsers?.data?.data);
     } else {
       setShowParent(false);
     }
@@ -132,14 +132,29 @@ const ChildForm = (props) => {
   const {
     authState: { user },
     userDispatch,
-    userState: { createUser, Users },
+    userState: { createUser, Users: childUsers },
   } = useContext(GlobalContext);
+
+  const getAllRelationInfo = (relationType, relationId) => {
+    fetchDataAll(`user/getAllRelation/${relationId}/${relationType}`)(
+      (user) => {
+        user?.map((item, index) => {
+          const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
+          fields.forEach((field) => setValue(field + index, item[field]));
+        });
+      }
+    )((err) => {
+      toast.error(err);
+    });
+  };
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     GetAllRelationInfo(userId, relationType)(userDispatch);
-    Users.data ? setRowsData([...rowsData, Users.data]) : addTableRows();
-    Users.error && toast.error(Users.error);
+    childUsers?.data?.data
+      ? setRowsData([...rowsData, childUsers?.data?.data])
+      : addTableRows();
+    childUsers?.error && toast.error(childUsers?.error);
   }, []);
 
   function onSubmit(formdata) {
@@ -149,9 +164,9 @@ const ChildForm = (props) => {
 
   const addChild = (formdata) => {
     AddChildSibling(formdata)(userDispatch);
-    createUser.data
-      ? toast.success(`Added new child info successfully`)
-      : toast.error(createUser.error);
+    createUser?.data
+      ? toast.success(createUser?.data?.message)
+      : toast.error(createUser?.error);
   };
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
@@ -175,7 +190,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  // console.log("ShowProfile", showProfile);
+  console.log("listChild", listChild);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -185,7 +200,7 @@ const ChildForm = (props) => {
           name="RelationType"
           value={props.relationType}
           className="form-control"
-          {...register("relationType")}
+          {...register("RelationType")}
         />
         <input
           type="hidden"
@@ -216,7 +231,7 @@ const ChildForm = (props) => {
               </div>
             </div>
           </div>
-          {rowsData.map((child, index) => (
+          {rowsData?.map((child, index) => (
             <>
               {index === 1 && (
                 <div className="form-group row">
@@ -266,7 +281,7 @@ const ChildForm = (props) => {
                         {...register("children")}
                       >
                         <option value="">Parent Name</option>
-                        {listChild.map((item) => (
+                        {listChild?.map((item) => (
                           <option
                             key={item?.RelationId}
                             value={item?.RelationId}
@@ -285,7 +300,6 @@ const ChildForm = (props) => {
                     <input
                       type="text"
                       class="form-control"
-                      value={child?.FirstName}
                       placeholder="First name"
                       id={`child[${index}].FirstName`}
                       name={`child[${index}].FirstName`}
@@ -299,7 +313,6 @@ const ChildForm = (props) => {
                     <input
                       type="text"
                       class="form-control"
-                      value={child?.MiddleName}
                       placeholder="Middle name"
                       id={`child[${index}].MiddleName`}
                       name={`child[${index}].MiddleName`}
@@ -313,7 +326,6 @@ const ChildForm = (props) => {
                     <input
                       type="text"
                       class="form-control"
-                      value={child?.LastName}
                       placeholder="Last name"
                       id={`child[${index}].LastName`}
                       name={`child[${index}].LastName`}
@@ -328,7 +340,6 @@ const ChildForm = (props) => {
                     <input
                       type="text"
                       class="form-control"
-                      value={child?.NickName}
                       placeholder="NickName"
                       id={`child[${index}].NickName`}
                       name={`child[${index}].NickName`}
