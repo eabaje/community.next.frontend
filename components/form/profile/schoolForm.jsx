@@ -194,7 +194,7 @@ const SchoolForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("ShowProfile", showProfile);
+  //  console.log("ShowProfile", showProfile);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>

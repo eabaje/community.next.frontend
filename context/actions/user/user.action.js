@@ -278,8 +278,8 @@ export const UpdateUserProfile = (form) => async (dispatch) => {
   dispatch({ type: EDIT_USER_REQUEST });
 
   try {
-    const { res } = await axios.put(`/user/updateUser/${form.UserId}`, form);
-
+    const res = await axios.put(`/user/updateUser/${form.UserId}`, form);
+    console.log("res.data", res.data);
     dispatch({
       type: EDIT_USER_SUCCESS,
       payload: res.data,
@@ -295,7 +295,7 @@ export const AddRelationInfo = (form) => async (dispatch) => {
   dispatch({ type: CREATE_USER_REQUEST });
 
   try {
-    const { res } = await axios.post(`/user/addRelation`, form);
+    const res = await axios.post(`/user/addRelation`, form);
 
     dispatch({
       type: CREATE_USER_SUCCESS,
@@ -314,7 +314,7 @@ export const GetAllRelationInfo =
       type: GET_USERS_REQUEST,
     });
     try {
-      const { res } = await axios.get(
+      const res = await axios.get(
         `/user/getAllRelation/${userId}/${relationType}/}`
       );
       dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
@@ -393,13 +393,13 @@ export const GetAllSchoolWorkInfo =
     }
   };
 
-export const GetSchoolWorkInfo = (userId, relationType) => async (dispatch) => {
+export const GetSchoolWorkInfo = (Id, relationType) => async (dispatch) => {
   dispatch({
     type: GET_USER_REQUEST,
   });
   try {
     const { res } = await axios.get(
-      `/user/getSchoolPlaceWork/${userId}/${relationType}/}`
+      `/user/getSchoolPlaceWork/${Id}/${relationType}/}`
     );
     dispatch({ type: GET_USER_SUCCESS, payload: res.data });
   } catch (err) {

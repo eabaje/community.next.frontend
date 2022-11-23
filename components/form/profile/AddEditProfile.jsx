@@ -130,9 +130,9 @@ const AddEditProfile = ({ query }) => {
 
   const UpdateProfile = (formdata) => {
     UpdateUserProfile(formdata)(userDispatch);
-    createUser.data
-      ? toast.success(`${createUser.data.message}`)
-      : toast.error(createUser.error);
+    createUser?.data
+      ? toast.success(createUser?.data?.message)
+      : toast.error(createUser?.error);
   };
 
   // *************** USE EFFECT**********//
@@ -171,6 +171,7 @@ const AddEditProfile = ({ query }) => {
         "Country",
       ];
       fields.forEach((field) => setValue(field, user[field]));
+      //  setValue(fields["ddLanguage"], user["Language"]);
       setEmail(user["Email"]);
       // setcompanyId(user["CompanyId"]);
       //  selectCountry(user["Country"]);
@@ -189,7 +190,7 @@ const AddEditProfile = ({ query }) => {
       toast.error(err);
     });
   }, []);
-  console.log("Form", createUser);
+  console.log("Form", createUser?.data?.message);
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
       <div className="input-group mb-3">
@@ -211,7 +212,7 @@ const AddEditProfile = ({ query }) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("ShowProfile", profile);
+
   return (
     <>
       <div class="page-banner-box">
@@ -351,6 +352,12 @@ const AddEditProfile = ({ query }) => {
               className="form-control"
               {...register("UserId")}
             />
+            {/* <input
+              type="hidden"
+              name="Language"
+              value={selected[0]?.code}
+              {...register("Language")}
+            /> */}
 
             <div class="row">
               <div class="col-lg-6 col-md-6">
@@ -600,35 +607,34 @@ const AddEditProfile = ({ query }) => {
                 <div class="form-group">
                   <label>Language</label>
 
-                  <Typeahead
-                    id="Language"
-                    name="Language"
+                  {/* <Typeahead
+                    id="ddLanguage"
+                    name="ddLanguage"
                     onChange={setSelected}
                     options={options}
                     placeholder="Choose a language"
                     selected={selected}
-                  />
-                  {/* <select
-                class="form-select"
-                name="Language"
-                {...register("Language", {
-                  required: true,
-                })}
-              >
-                <option selected="0">Language</option>
-
-                {getLanguageNames.map((item, index) => (
-                  <option
-                    key={index}
-                    //   selected={seldeliveryCity === item.isoCode}
-                    value={item.language}
+                   
+                  /> */}
+                  <select
+                    class="form-select"
+                    name="Language"
+                    {...register("Language", {
+                      required: true,
+                    })}
                   >
-                    {item.language}
-                  </option>
-                ))}
+                    <option selected="0">Language</option>
 
-              
-              </select> */}
+                    {options.map((item, index) => (
+                      <option
+                        key={index}
+                        //   selected={seldeliveryCity === item.isoCode}
+                        value={item.code}
+                      >
+                        {item.label}
+                      </option>
+                    ))}
+                  </select>
                 </div>
               </div>
 
@@ -748,7 +754,7 @@ const AddEditProfile = ({ query }) => {
           <CoupleForm
             sex={gender}
             relationType={"sp"}
-            UserId={user.UserId}
+            userId={userId}
             title={"Spousal Information"}
           />
         </div>
@@ -757,7 +763,7 @@ const AddEditProfile = ({ query }) => {
           <ChildForm
             title={"Children Information"}
             relationType={"ch"}
-            UserId={user.UserId}
+            userId={userId}
           />
         </div>
 
@@ -765,22 +771,22 @@ const AddEditProfile = ({ query }) => {
           <ChildForm
             title={"Sibling Information"}
             relationType={"sib"}
-            UserId={user.UserId}
+            userId={user.UserId}
           />
         </div>
 
         <div class="tab-pane fade" id="paternal" role="tabpanel">
-          <ParentForm title={"Paternal Information"} UserId={user.UserId} />
+          <ParentForm title={"Paternal Information"} userId={user.UserId} />
         </div>
 
         <div class="tab-pane fade" id="maternal" role="tabpanel">
-          <ParentForm title={"Maternal Information"} UserId={user.UserId} />
+          <ParentForm title={"Maternal Information"} userId={user.UserId} />
         </div>
 
         <div class="tab-pane fade" id="school" role="tabpanel">
           <SchoolForm
             title={"School Information"}
-            UserId={user.UserId}
+            userId={user.UserId}
             formTypeName={"School Name"}
             formTypeControl={"SchoolName"}
             relationType={"sch"}
@@ -790,7 +796,7 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="place" role="tabpanel">
           <SchoolForm
             title={"Places lived"}
-            UserId={user.UserId}
+            userId={user.UserId}
             formTypeName={"Place lived"}
             formTypeControl={"NeighborhoodName"}
             relationType={"pl"}
@@ -799,7 +805,7 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="work" role="tabpanel">
           <SchoolForm
             title={"Work History"}
-            UserId={user.UserId}
+            userId={user.UserId}
             formTypeName={"Neighbourhood"}
             formTypeControl={"Neighbourhood"}
             relationType={"wk"}

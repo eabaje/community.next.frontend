@@ -44,7 +44,7 @@ const CoupleForm = (props) => {
   const [email, setEmail] = useState("");
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
-  const [City, setCity] = useState([]);
+  const [city, setCity] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
   const [selCity, setselCity] = useState("");
@@ -65,6 +65,11 @@ const CoupleForm = (props) => {
     setCountry((country) => e.target.value);
 
     setRegion((Region = State.getStatesOfCountry(e.target.value)));
+  };
+  const selectCity = async (e) => {
+    // setPickUpRegion((pickUpRegion) => e.target.value);
+
+    setCity((city) => (city = City.getCitiesOfState(country, e.target.value)));
   };
   const popupCloseHandlerImage = (e) => {
     setVisibilityImage(e);
@@ -101,7 +106,7 @@ const CoupleForm = (props) => {
 
   const {
     userDispatch,
-    userState: { createUser, Users },
+    userState: { createUser, Users: coupleUsers },
   } = useContext(GlobalContext);
   const {
     authState: { user },
@@ -137,12 +142,17 @@ const CoupleForm = (props) => {
       fields.forEach((field) => setValue(field, user[field]));
       setEmail(user["Email"]);
       // setcompanyId(user["CompanyId"]);
-      setPickUpRegion(
-        (pickUpRegion) =>
-          (pickUpRegion = State.getStatesOfCountry(user["Country"]))
+      setRegion(
+        (Region) => (Region = State.getStatesOfCountry(user["Country"]))
+      );
+      // selectCity(user["City"]);
+      setselRegion(user["State"]);
+
+      setCity(
+        (city) => (city = City.getCitiesOfState(user["Country"], user["State"]))
       );
 
-      setselpickUpRegion(user["Region"]);
+      setselCity(user["City"]);
     })((err) => {
       toast.error(err);
     });
@@ -152,16 +162,16 @@ const CoupleForm = (props) => {
     setCountries((countries) => (countries = Country.getAllCountries()));
 
     GetAllRelationInfo(userId, relationType)(userDispatch);
-    Users?.data.length === 1 &&
-      getRelationInfo(relationType, Users?.data[0].RelationId);
+    coupleUsers?.data.length === 1 &&
+      getRelationInfo(relationType, coupleUsers?.data[0].RelationId);
   }, []);
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
     AddRelationInfo(formdata)(userDispatch);
-    createUser.data
-      ? toast.success(`New Record saved successfully`)
-      : toast.error(createUser.error);
+    createUser?.data
+      ? toast.success(createUser?.data?.message)
+      : toast.error(createUser?.error);
   }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
@@ -185,7 +195,7 @@ const CoupleForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("ShowProfile", showProfile);
+  console.log("ShowProfile", relationType);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -206,7 +216,7 @@ const CoupleForm = (props) => {
         />
 
         <div class="row">
-          {Users?.data?.length > 1 && (
+          {coupleUsers?.data?.length > 1 && (
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
                 <label>Wife</label>
@@ -219,7 +229,7 @@ const CoupleForm = (props) => {
                   onChange={(e) => onChangeWifeInfo(relationType, e)}
                 >
                   <option value=""> Select Wife </option>
-                  {Users?.data.map((item) => (
+                  {coupleUsers?.data.map((item) => (
                     <option key={item.RelationId} value={item.RelationId}>
                       {item?.FirstName}
                     </option>
@@ -527,15 +537,16 @@ const CoupleForm = (props) => {
             <div class="form-group">
               <label>Language</label>
 
-              <Typeahead
-                id="Language"
-                name="Language"
-                onChange={setSelected}
-                options={options}
-                placeholder="Choose a language"
-                selected={selected}
-              />
-              {/* <select
+              {/* <Typeahead
+                    id="ddLanguage"
+                    name="ddLanguage"
+                    onChange={setSelected}
+                    options={options}
+                    placeholder="Choose a language"
+                    selected={selected}
+                   
+                  /> */}
+              <select
                 class="form-select"
                 name="Language"
                 {...register("Language", {
@@ -544,55 +555,31 @@ const CoupleForm = (props) => {
               >
                 <option selected="0">Language</option>
 
-                {getLanguageNames.map((item, index) => (
+                {options.map((item, index) => (
                   <option
                     key={index}
                     //   selected={seldeliveryCity === item.isoCode}
-                    value={item.language}
+                    value={item.code}
                   >
-                    {item.language}
+                    {item.label}
                   </option>
                 ))}
-
-              
-              </select> */}
+              </select>
             </div>
           </div>
 
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
-              <label>Address</label>
-              <input
-                type="text"
-                name="Address"
-                class="form-control"
-                placeholder="Address"
-                {...register("Address", {
-                  required: true,
-                })}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>City</label>
-
+              <label>Country</label>
               <select
-                name="City"
-                className="form-control"
-                // readOnly={readOnly}
-                id="City"
-                {...register("City", {
-                  required: true,
-                })}
+                name="Country"
+                className="form-select"
+                {...register("Country")}
+                onChange={selectCountry}
               >
-                <option value=""> Select City </option>
-                {City.map((item) => (
-                  <option
-                    key={item.isoCode}
-                    selected={selCity === item.isoCode}
-                    value={item.isoCode}
-                  >
+                <option value="">Select Country</option>
+                {countries.map((item) => (
+                  <option key={item.isoCode} value={item.isoCode}>
                     {item.name}
                   </option>
                 ))}
@@ -610,10 +597,15 @@ const CoupleForm = (props) => {
                 {...register("State", {
                   required: true,
                 })}
+                onChange={selectCity}
               >
                 <option value=""> Select Region/State </option>
                 {Region.map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
+                  <option
+                    key={item.isoCode}
+                    selected={selRegion === item.isoCode}
+                    value={item.isoCode}
+                  >
                     {item.name}
                   </option>
                 ))}
@@ -622,20 +614,54 @@ const CoupleForm = (props) => {
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
-              <label>Country</label>
+              <label>City</label>
+
               <select
-                name="Country"
-                className="form-select"
-                {...register("Country")}
-                onChange={selectCountry}
+                name="City"
+                className="form-control"
+                // readOnly={readOnly}
+                id="City"
+                {...register("City", {
+                  required: true,
+                })}
               >
-                <option value="">Select Country</option>
-                {countries.map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
+                <option value=""> Select City </option>
+                {city.map((item) => (
+                  <option
+                    key={item.isoCode}
+                    selected={selCity === item.name}
+                    value={item.isoCode}
+                  >
                     {item.name}
                   </option>
                 ))}
               </select>
+            </div>
+          </div>
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>HomeTown</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="HomeTown"
+                name="HomeTown"
+                {...register("HomeTown")}
+              />
+            </div>
+          </div>
+          <div class="col-lg-12 col-md-12">
+            <div class="form-group">
+              <label>Address</label>
+              <textarea
+                type="text"
+                name="Address"
+                class="form-control"
+                placeholder="Address"
+                {...register("Address", {
+                  required: true,
+                })}
+              />
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
