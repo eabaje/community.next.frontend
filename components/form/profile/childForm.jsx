@@ -24,6 +24,8 @@ import ImageUpload from "../../../components/upload/uploadImage";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 import { RELATION_TYPE_2, RELATION_TYPE_3 } from "../../../constants/enum";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../../helpers/axios";
 
 const ChildForm = (props) => {
   const { userId, relationType } = props;
@@ -132,7 +134,7 @@ const ChildForm = (props) => {
   const {
     authState: { user },
     userDispatch,
-    userState: { createUser, Users: childUsers },
+    userState: { createUser, Users },
   } = useContext(GlobalContext);
 
   const getAllRelationInfo = (relationType, relationId) => {
@@ -148,13 +150,25 @@ const ChildForm = (props) => {
     });
   };
 
+  const {
+    isLoading: childLoading,
+    error: childError,
+    data: childUsers,
+  } = useQuery(["child"], () =>
+    makeRequest
+      .get(`/relation/getAllRelation/${userId}/${relationType}`)
+      .then((res) => {
+        return res.data;
+      })
+  );
+
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
-    GetAllRelationInfo(userId, relationType)(userDispatch);
+    // GetAllRelationInfo(userId, relationType)(userDispatch);
     childUsers?.data?.data
       ? setRowsData([...rowsData, childUsers?.data?.data])
       : addTableRows();
-    childUsers?.error && toast.error(childUsers?.error);
+    childError && toast.error(childUsers?.error);
   }, []);
 
   function onSubmit(formdata) {
@@ -190,7 +204,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("listChild", listChild);
+  console.log("listChild", rowsData);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -205,7 +219,7 @@ const ChildForm = (props) => {
         <input
           type="hidden"
           name="UserId"
-          value={props.UserId}
+          value={props.userId}
           className="form-control"
           {...register("UserId")}
         />

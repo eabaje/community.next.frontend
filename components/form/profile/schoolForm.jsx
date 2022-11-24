@@ -26,6 +26,8 @@ import ImageUpload from "../../../components/upload/uploadImage";
 // import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../../helpers/axios";
 
 const SchoolForm = (props) => {
   const { userId, relationType } = props;

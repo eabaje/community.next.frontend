@@ -239,7 +239,7 @@ const CoupleForm = (props) => {
                   onChange={(e) => onChangeWifeInfo(relationType, e)}
                 >
                   <option value=""> Select Wife </option>
-                  {coupleUsers?.data?.data?.map((item) => (
+                  {coupleUsers?.data?.data.map((item) => (
                     <option key={item.RelationId} value={item.RelationId}>
                       {item?.FirstName}
                     </option>
