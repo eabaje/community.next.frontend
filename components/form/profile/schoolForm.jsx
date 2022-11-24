@@ -136,13 +136,27 @@ const SchoolForm = (props) => {
     authState: { user },
   } = useContext(GlobalContext);
 
+  const {
+    isLoading: schoolLoading,
+    error: schoolError,
+    data: schoolUsers,
+  } = useQuery(["school"], () =>
+    makeRequest
+      .get(`/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`)
+      .then((res) => {
+        return res.data.data;
+      })
+  );
+
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
-    GetAllSchoolWorkInfo(userId, relationType)(userDispatch);
-    Users.data ? setRowsData([...rowsData, Users.data]) : addTableRows();
-    Users.error && toast.error(Users.error);
+    // GetAllSchoolWorkInfo(userId, relationType)(userDispatch);
+    schoolUsers?.data
+      ? setRowsData([...rowsData, schoolUsers?.data])
+      : addTableRows();
+    schoolError && toast.error(schoolError);
 
-    Users.data.map((school, index) => {
+    schoolUsers?.data.map((school, index) => {
       const fields = [
         "SchoolName",
         "Address",

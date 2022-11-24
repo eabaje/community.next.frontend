@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 //import { IMG_URL } from "../../../constants";
 import { useForm, Controller } from "react-hook-form";
 
-import { Country, State } from "country-state-city";
+import { Country, State, City } from "country-state-city";
 
 import { fetchData, fetchDataAll } from "../../../helpers/query";
 
@@ -43,7 +43,7 @@ const ParentForm = (props) => {
   const [email, setEmail] = useState("");
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
-  const [City, setCity] = useState([]);
+  const [city, setCity] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
   const [selCity, setselCity] = useState("");
@@ -67,6 +67,10 @@ const ParentForm = (props) => {
     setCountry((country) => e.target.value);
 
     setRegion((Region = State.getStatesOfCountry(e.target.value)));
+  };
+
+  const selectCity = async (e) => {
+    setCity((city) => (city = City.getCitiesOfState(country, e.target.value)));
   };
 
   const SelectGender = async (e) => {
@@ -146,14 +150,18 @@ const ParentForm = (props) => {
         "Country",
       ];
       fields.forEach((field) => setValue(field, user[field]));
-      setEmail(user["Email"]);
-      // setcompanyId(user["CompanyId"]);
-      setPickUpRegion(
-        (pickUpRegion) =>
-          (pickUpRegion = State.getStatesOfCountry(user["Country"]))
+
+      setRegion(
+        (Region) => (Region = State.getStatesOfCountry(user["Country"]))
+      );
+      // selectCity(user["City"]);
+      setselRegion(user["State"]);
+
+      setCity(
+        (city) => (city = City.getCitiesOfState(user["Country"], user["State"]))
       );
 
-      setselpickUpRegion(user["Region"]);
+      setselCity(user["City"]);
     })((err) => {
       toast.error(err);
     });
@@ -161,8 +169,8 @@ const ParentForm = (props) => {
 
   function onSubmit(formdata) {
     AddRelationInfo(formdata)(userDispatch);
-    createUser.data
-      ? toast.success(`New Record saved successfully`)
+    createUser?.data
+      ? toast.success(createUser?.data?.message)
       : toast.error(createUser.error);
   }
 

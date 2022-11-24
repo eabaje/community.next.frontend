@@ -156,7 +156,7 @@ const ChildForm = (props) => {
     data: childUsers,
   } = useQuery(["child"], () =>
     makeRequest
-      .get(`/relation/getAllRelation/${userId}/${relationType}`)
+      .get(`/user/getAllRelation/${userId}/${relationType}`)
       .then((res) => {
         return res.data;
       })
@@ -165,8 +165,8 @@ const ChildForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    childUsers?.data?.data
-      ? setRowsData([...rowsData, childUsers?.data?.data])
+    childUsers?.data
+      ? setRowsData([...rowsData, childUsers?.data])
       : addTableRows();
     childError && toast.error(childUsers?.error);
   }, []);
