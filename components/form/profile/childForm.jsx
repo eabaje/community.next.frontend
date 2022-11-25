@@ -106,15 +106,18 @@ const ChildForm = (props) => {
   };
 
   const [rowsData, setRowsData] = useState([]);
+  const [childData, setChildData] = useState([]);
 
-  const addTableRows = () => {
+  const addTableRows = (childData) => {
     const rowsInput = {
       FirstName: "",
       LastName: "",
       MiddleName: "",
       NickName: "",
     };
-    setRowsData([...rowsData, rowsInput]);
+    childData?.length > 0
+      ? setRowsData([...rowsData, childData])
+      : setRowsData([...rowsData, rowsInput]);
   };
 
   const deleteTableRows = (index) => {
@@ -140,35 +143,40 @@ const ChildForm = (props) => {
   const getAllRelationInfo = (relationType, relationId) => {
     fetchDataAll(`user/getAllRelation/${relationId}/${relationType}`)(
       (user) => {
-        user?.map((item, index) => {
-          const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
-          fields.forEach((field) => setValue(field + index, item[field]));
-        });
+        setChildData(user);
+        //  user?.length > 0 ? setRowsData([...rowsData, user]) : addTableRows();
+        // user?.map((item, index) => {
+        //   const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
+        //   fields.forEach((field) => setValue(field + index, item[field]));
+        // });
       }
     )((err) => {
       toast.error(err);
     });
   };
 
-  const {
-    isLoading: childLoading,
-    error: childError,
-    data: childUsers,
-  } = useQuery(["user"], () =>
-    makeRequest
-      .get(`/user/getAllRelation/${userId}/${relationType}`)
-      .then((res) => {
-        return res.data;
-      })
-  );
+  // const {
+  //   isLoading: childLoading,
+  //   error: childError,
+  //   data: childUsers,
+  // } = useQuery(["child"], () =>
+  //   makeRequest
+  //     .get(`/user/getAllRelation/${userId}/${relationType}`)
+  //     .then((res) => {
+  //       return res.data;
+  //     })
+  // );
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    childUsers?.data.length > 0
-      ? setRowsData([...rowsData, childUsers?.data])
-      : addTableRows();
-    childError && toast.error(childUsers?.error);
+    getAllRelationInfo(relationType, userId);
+
+    addTableRows(childData);
+    // childUsers?.data.length > 0
+    //   ? setRowsData([...rowsData, childUsers?.data])
+    //   : addTableRows();
+    // childError && toast.error(childError);
   }, []);
 
   function onSubmit(formdata) {
@@ -204,7 +212,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("listChild", childUsers);
+  console.log("listChild", childData);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
