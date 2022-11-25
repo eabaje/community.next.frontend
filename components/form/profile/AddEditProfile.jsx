@@ -773,48 +773,48 @@ const AddEditProfile = ({ query }) => {
         </div>
 
         <div class="tab-pane fade" id="sibling" role="tabpanel">
-          {/* <ChildForm
+          <ChildForm
             title={"Sibling Information"}
             relationType={"sib"}
             userId={user.UserId}
-          /> */}
+          />
         </div>
 
         <div class="tab-pane fade" id="paternal" role="tabpanel">
-          {/* <ParentForm title={"Paternal Information"} userId={user.UserId} /> */}
+          <ParentForm title={"Paternal Information"} userId={user.UserId} />
         </div>
 
         <div class="tab-pane fade" id="maternal" role="tabpanel">
-          {/* <ParentForm title={"Maternal Information"} userId={user.UserId} /> */}
+          <ParentForm title={"Maternal Information"} userId={user.UserId} />
         </div>
 
         <div class="tab-pane fade" id="school" role="tabpanel">
-          {/* <SchoolForm
+          <SchoolForm
             title={"School Information"}
             userId={user.UserId}
             formTypeName={"School Name"}
             formTypeControl={"SchoolName"}
             relationType={"sch"}
-          /> */}
+          />
         </div>
 
         <div class="tab-pane fade" id="place" role="tabpanel">
-          {/* <SchoolForm
+          <SchoolForm
             title={"Places lived"}
             userId={user.UserId}
             formTypeName={"Place lived"}
             formTypeControl={"NeighborhoodName"}
             relationType={"pl"}
-          /> */}
+          />
         </div>
         <div class="tab-pane fade" id="work" role="tabpanel">
-          {/* <SchoolForm
+          <SchoolForm
             title={"Work History"}
             userId={user.UserId}
             formTypeName={"Neighbourhood"}
             formTypeControl={"Neighbourhood"}
             relationType={"wk"}
-          /> */}
+          />
         </div>
       </div>
     </>
