@@ -154,7 +154,7 @@ const ChildForm = (props) => {
     isLoading: childLoading,
     error: childError,
     data: childUsers,
-  } = useQuery(["child"], () =>
+  } = useQuery(["user"], () =>
     makeRequest
       .get(`/user/getAllRelation/${userId}/${relationType}`)
       .then((res) => {
@@ -165,7 +165,7 @@ const ChildForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    childUsers?.data
+    childUsers?.data.length > 0
       ? setRowsData([...rowsData, childUsers?.data])
       : addTableRows();
     childError && toast.error(childUsers?.error);
@@ -204,7 +204,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("listChild", rowsData);
+  console.log("listChild", childUsers);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
