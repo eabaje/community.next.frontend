@@ -17,9 +17,7 @@ export default function Index() {
   const [showForm, setShowForm] = useState(0);
 
   const changeShowForm = async (e) => {
-    setShowForm(e)
-
-     
+    setShowForm(e);
   };
 
   const router = useRouter();
@@ -51,6 +49,7 @@ export default function Index() {
       //   : (window.location.href = `/user/user-profile/?userId=${res.user.UserId}&companyId=${res.user.CompanyId}`);
 
       window.location.href = "/home/";
+      // router.push(`/home/${res.data._id}`);
       // history.push("/dashboard");
     })((err) => {
       console.log(`err`, err);
@@ -96,7 +95,11 @@ export default function Index() {
       </div>
       <div class="col-lg-6 col-md-12">
         <div class="row">
-          {showForm === 0 ? <LoginForm /> : <RegisterForm changeShowForm={changeShowForm}/>}
+          {showForm === 0 ? (
+            <LoginForm />
+          ) : (
+            <RegisterForm changeShowForm={changeShowForm} />
+          )}
         </div>
       </div>
     </NoLayout>

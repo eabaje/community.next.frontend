@@ -105,20 +105,8 @@ const ChildForm = (props) => {
     setShowReference(!showReference);
   };
 
-  const [rowsData, setRowsData] = useState([]);
-  const [childData, setChildData] = useState([]);
-
-  const addTableRows = (childData) => {
-    const rowsInput = {
-      FirstName: "",
-      LastName: "",
-      MiddleName: "",
-      NickName: "",
-    };
-    childData?.length > 0
-      ? setRowsData([...rowsData, childData])
-      : setRowsData([...rowsData, rowsInput]);
-  };
+  const [rowsData, setRowsData] = useState([{}]);
+  const [childData, setChildData] = useState([{}]);
 
   const deleteTableRows = (index) => {
     const rows = [...rowsData];
@@ -143,7 +131,9 @@ const ChildForm = (props) => {
   const getAllRelationInfo = (relationType, relationId) => {
     fetchDataAll(`user/getAllRelation/${relationId}/${relationType}`)(
       (user) => {
-        setChildData(user);
+        //  setChildData(user);
+        addTableRows(user);
+
         //  user?.length > 0 ? setRowsData([...rowsData, user]) : addTableRows();
         // user?.map((item, index) => {
         //   const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
@@ -166,13 +156,52 @@ const ChildForm = (props) => {
   //       return res.data;
   //     })
   // );
+  function selectProps(...props) {
+    return function (obj) {
+      const newObj = {};
+      props.forEach((name) => {
+        newObj[name] = obj[name];
+      });
+
+      return newObj;
+    };
+  }
+
+  const addTableRows = (childDt) => {
+    const rowsInput = {
+      FirstName: "",
+      LastName: "",
+      MiddleName: "",
+      NickName: "",
+    };
+    const newChildArray = childDt.map(
+      selectProps("FirstName", "MiddleName", "LastName", "NickName")
+    );
+    if (newChildArray.length > 0) {
+      alert(newChildArray);
+      alert(rowsData);
+      setRowsData([...rowsData, newChildArray]);
+      setChildData(newChildArray);
+      const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
+      childDt?.map((item, index) => {
+        fields.forEach((field) =>
+          setValue(`child[${index}].${field}`, item[field])
+        );
+      });
+    } else {
+      setRowsData([...rowsData, rowsInput]);
+    }
+    // childData
+    //   ? setRowsData([...rowsData, childData])
+    //   : setRowsData([...rowsData, rowsInput]);
+  };
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
     getAllRelationInfo(relationType, userId);
 
-    addTableRows(childData);
+    // addTableRows(childData);
     // childUsers?.data.length > 0
     //   ? setRowsData([...rowsData, childUsers?.data])
     //   : addTableRows();
@@ -213,6 +242,7 @@ const ChildForm = (props) => {
   });
   CustomInput.displayName = "CustomInput";
   console.log("listChild", childData);
+  console.log("rowData", rowsData);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>

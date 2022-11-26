@@ -8,7 +8,7 @@ import { Country, State, City } from "country-state-city";
 import { getLanguageNames } from "language-list";
 import options from "./data";
 
-import { fetchData } from "../../../helpers/query";
+import { fetchData, fetchDataAll } from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
@@ -61,6 +61,7 @@ const AddEditProfile = ({ query }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
+  const [childData, setChildData] = useState([{}]);
 
   // const [showProfile, setShowProfile] = useState(false);
 
@@ -135,9 +136,17 @@ const AddEditProfile = ({ query }) => {
       : toast.error(createUser?.error);
   };
 
+  const getAllChildInfo = (relationId, relationType) => {
+    fetchDataAll(`user/getAllRelation/${relationId}/ch`)((user) => {
+      setChildData(user);
+    })((err) => {
+      toast.error(err);
+    });
+  };
   // *************** USE EFFECT**********//
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
+
     fetchData(
       "user/findUser",
       userId
@@ -767,6 +776,7 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="child" role="tabpanel">
           <ChildForm
             title={"Children Information"}
+            data={childData}
             relationType={"ch"}
             userId={userId}
           />

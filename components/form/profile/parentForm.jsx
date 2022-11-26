@@ -409,7 +409,7 @@ const ParentForm = (props) => {
                 })}
               >
                 <option value=""> Select City </option>
-                {City.map((item) => (
+                {city.map((item) => (
                   <option
                     key={item.isoCode}
                     selected={selCity === item.isoCode}
