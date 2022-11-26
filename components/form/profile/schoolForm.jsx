@@ -101,7 +101,18 @@ const SchoolForm = (props) => {
   };
   const [rowsData, setRowsData] = useState([]);
 
-  const addTableRows = () => {
+  function selectProps(...props) {
+    return function (obj) {
+      const newObj = {};
+      props.forEach((name) => {
+        newObj[name] = obj[name];
+      });
+
+      return newObj;
+    };
+  }
+
+  const addTableRows = (childDt) => {
     const rowsInput = {
       SchoolName: "",
       Address: "",
@@ -111,7 +122,40 @@ const SchoolForm = (props) => {
       YearFrom: "",
       YearTo: "",
     };
-    setRowsData([...rowsData, rowsInput]);
+    const newChildArray = childDt.map(
+      selectProps(
+        "SchoolName",
+        "Address",
+        "City",
+        "State",
+        "Country",
+        "YearFrom",
+        "YearTo"
+      )
+    );
+    if (newChildArray.length > 0) {
+      setRowsData([...rowsData, newChildArray]);
+      //  setChildData(newChildArray);
+      const fields = [
+        "SchoolName",
+        "Address",
+        "City",
+        "State",
+        "Country",
+        "YearFrom",
+        "YearTo",
+      ];
+      childDt?.map((item, index) => {
+        fields.forEach((field) =>
+          setValue(`child[${index}].${field}`, item[field])
+        );
+      });
+    } else {
+      setRowsData([...rowsData, rowsInput]);
+    }
+    // childData
+    //   ? setRowsData([...rowsData, childData])
+    //   : setRowsData([...rowsData, rowsInput]);
   };
 
   const deleteTableRows = (index) => {
@@ -136,38 +180,23 @@ const SchoolForm = (props) => {
     authState: { user },
   } = useContext(GlobalContext);
 
-  const {
-    isLoading: schoolLoading,
-    error: schoolError,
-    data: schoolUsers,
-  } = useQuery(["school"], () =>
-    makeRequest
-      .get(`/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`)
-      .then((res) => {
-        return res.data.data;
-      })
-  );
+  // const {
+  //   isLoading: schoolLoading,
+  //   error: schoolError,
+  //   data: schoolUsers,
+  // } = useQuery(["school"], () =>
+  //   makeRequest
+  //     .get(`/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`)
+  //     .then((res) => {
+  //       return res.data.data;
+  //     })
+  // );
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllSchoolWorkInfo(userId, relationType)(userDispatch);
-    schoolUsers?.data
-      ? setRowsData([...rowsData, schoolUsers?.data])
-      : addTableRows();
-    schoolError && toast.error(schoolError);
 
-    schoolUsers?.data.map((school, index) => {
-      const fields = [
-        "SchoolName",
-        "Address",
-        "City",
-        "State",
-        "Country",
-        "YearFrom",
-        "YearTo",
-      ];
-      fields.forEach((field) => setValue(field, school[field + index]));
-    });
+    addTableRows(props.dt);
   }, []);
 
   function onSubmit(formdata) {

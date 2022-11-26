@@ -62,6 +62,12 @@ const AddEditProfile = ({ query }) => {
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
   const [childData, setChildData] = useState([{}]);
+  const [sibData, setSibData] = useState([{}]);
+  const [paternalData, setPaternalData] = useState([{}]);
+  const [maternalData, setMaternalData] = useState([{}]);
+  const [schoolData, setSchoolData] = useState([{}]);
+  const [workData, setWorkData] = useState([{}]);
+  const [placeData, setPlaceData] = useState([{}]);
 
   // const [showProfile, setShowProfile] = useState(false);
 
@@ -136,9 +142,56 @@ const AddEditProfile = ({ query }) => {
       : toast.error(createUser?.error);
   };
 
-  const getAllChildInfo = (relationId, relationType) => {
-    fetchDataAll(`user/getAllRelation/${relationId}/ch`)((user) => {
+  const getAllChildInfo = (userId) => {
+    fetchDataAll(`user/getAllRelation/${userId}/ch`)((user) => {
       setChildData(user);
+    })((err) => {
+      toast.error(err);
+    });
+  };
+
+  const getAllSiblingInfo = (userId) => {
+    fetchDataAll(`user/getAllRelation/${userId}/sib`)((user) => {
+      setSibData(user);
+    })((err) => {
+      toast.error(err);
+    });
+  };
+  const getAllPaternalInfo = (userId) => {
+    fetchDataAll(`user/getAllRelation/${userId}/p`)((user) => {
+      setPaternalData(user.filter((u) => u.RELATION_DETAIL.Sex === "2"));
+    })((err) => {
+      toast.error(err);
+    });
+  };
+
+  const getAllMaternalInfo = (userId) => {
+    fetchDataAll(`user/getAllRelation/${userId}/m`)((user) => {
+      setMaternalData(user.filter((u) => u.RELATION_DETAIL.Sex === "3"));
+    })((err) => {
+      toast.error(err);
+    });
+  };
+
+  const getAllSchoolInfo = (userId) => {
+    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/sch`)((user) => {
+      setSchoolData(user);
+    })((err) => {
+      toast.error(err);
+    });
+  };
+
+  const getAllPlaceInfo = (userId) => {
+    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/pl`)((user) => {
+      setPlaceData(user);
+    })((err) => {
+      toast.error(err);
+    });
+  };
+
+  const getAllWorkInfo = (userId) => {
+    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/wk`)((user) => {
+      setWorkData(user);
     })((err) => {
       toast.error(err);
     });
@@ -146,6 +199,13 @@ const AddEditProfile = ({ query }) => {
   // *************** USE EFFECT**********//
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
+    getAllChildInfo(userId);
+    getAllSiblingInfo(userId);
+    getAllPaternalInfo(userId);
+    getAllMaternalInfo(userId);
+    getAllSchoolInfo(userId);
+    getAllPlaceInfo(userId);
+    getAllWorkInfo(userId);
 
     fetchData(
       "user/findUser",
@@ -776,7 +836,7 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="child" role="tabpanel">
           <ChildForm
             title={"Children Information"}
-            data={childData}
+            dt={childData}
             relationType={"ch"}
             userId={userId}
           />
@@ -786,21 +846,31 @@ const AddEditProfile = ({ query }) => {
           <ChildForm
             title={"Sibling Information"}
             relationType={"sib"}
+            dt={sibData}
             userId={user.UserId}
           />
         </div>
 
         <div class="tab-pane fade" id="paternal" role="tabpanel">
-          <ParentForm title={"Paternal Information"} userId={user.UserId} />
+          <ParentForm
+            title={"Paternal Information"}
+            dt={paternalData}
+            userId={user.UserId}
+          />
         </div>
 
         <div class="tab-pane fade" id="maternal" role="tabpanel">
-          <ParentForm title={"Maternal Information"} userId={user.UserId} />
+          <ParentForm
+            title={"Maternal Information"}
+            dt={maternalData}
+            userId={user.UserId}
+          />
         </div>
 
         <div class="tab-pane fade" id="school" role="tabpanel">
           <SchoolForm
             title={"School Information"}
+            dt={schoolData}
             userId={user.UserId}
             formTypeName={"School Name"}
             formTypeControl={"SchoolName"}
@@ -811,6 +881,7 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="place" role="tabpanel">
           <SchoolForm
             title={"Places lived"}
+            dt={placeData}
             userId={user.UserId}
             formTypeName={"Place lived"}
             formTypeControl={"NeighborhoodName"}
@@ -820,6 +891,7 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="work" role="tabpanel">
           <SchoolForm
             title={"Work History"}
+            dt={workData}
             userId={user.UserId}
             formTypeName={"Neighbourhood"}
             formTypeControl={"Neighbourhood"}

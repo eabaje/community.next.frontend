@@ -128,38 +128,10 @@ const ChildForm = (props) => {
     userState: { createUser, Users },
   } = useContext(GlobalContext);
 
-  const getAllRelationInfo = (relationType, relationId) => {
-    fetchDataAll(`user/getAllRelation/${relationId}/${relationType}`)(
-      (user) => {
-        //  setChildData(user);
-        addTableRows(user);
-
-        //  user?.length > 0 ? setRowsData([...rowsData, user]) : addTableRows();
-        // user?.map((item, index) => {
-        //   const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
-        //   fields.forEach((field) => setValue(field + index, item[field]));
-        // });
-      }
-    )((err) => {
-      toast.error(err);
-    });
-  };
-
-  // const {
-  //   isLoading: childLoading,
-  //   error: childError,
-  //   data: childUsers,
-  // } = useQuery(["child"], () =>
-  //   makeRequest
-  //     .get(`/user/getAllRelation/${userId}/${relationType}`)
-  //     .then((res) => {
-  //       return res.data;
-  //     })
-  // );
-  function selectProps(...props) {
+  function selectProps(...prop) {
     return function (obj) {
       const newObj = {};
-      props.forEach((name) => {
+      prop.forEach((name) => {
         newObj[name] = obj[name];
       });
 
@@ -178,8 +150,8 @@ const ChildForm = (props) => {
       selectProps("FirstName", "MiddleName", "LastName", "NickName")
     );
     if (newChildArray.length > 0) {
-      alert(newChildArray);
-      alert(rowsData);
+      // alert(newChildArray);
+      // alert(rowsData);
       setRowsData([...rowsData, newChildArray]);
       setChildData(newChildArray);
       const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
@@ -199,7 +171,7 @@ const ChildForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    getAllRelationInfo(relationType, userId);
+    addTableRows(props.dt);
 
     // addTableRows(childData);
     // childUsers?.data.length > 0
@@ -241,7 +213,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("listChild", childData);
+  console.log("listChild", props.dt);
   console.log("rowData", rowsData);
   return (
     <>
