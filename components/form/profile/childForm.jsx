@@ -9,7 +9,9 @@ import { fetchData, fetchDataAll } from "../../../helpers/query";
 import { GlobalContext } from "../../../context/Provider";
 import {
   AddChildSibling,
+  AddChildSibling2,
   GetAllRelationInfo,
+  GetAllRelationInfo2,
   GetRelationInfo,
 } from "../../../context/actions/user/user.action";
 
@@ -28,7 +30,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
 
 const ChildForm = (props) => {
-  const { userId, relationType } = props;
+  const { userId, relationType, dt } = props;
 
   // const isSingleMode = !userId;
 
@@ -60,7 +62,7 @@ const ChildForm = (props) => {
   const [showCompany, setShowCompany] = useState(false);
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  // const [showProfile, setShowProfile] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   //**********page Functions *****************/
   const popupCloseHandler = (e) => {
@@ -95,8 +97,11 @@ const ChildForm = (props) => {
     if (e.target.value === "ch") {
       setShowParent(!showParent);
 
-      GetAllRelationInfo(userId, "ch")(userDispatch);
-      setListChild(childUsers?.data?.data);
+      GetAllRelationInfo2(userId, "ch")
+        .then((res) => {
+          setListChild(childUsers?.data?.data);
+        })
+        .catch((e) => {});
     } else {
       setShowParent(false);
     }
@@ -117,16 +122,16 @@ const ChildForm = (props) => {
   // *************** FORM FUNCTIONS**********//
   const {
     register,
-    formState: { errors4 },
+    formState: { errors },
     setValue: setValue,
     handleSubmit,
   } = useForm();
 
-  const {
-    authState: { user },
-    userDispatch,
-    userState: { createUser, Users },
-  } = useContext(GlobalContext);
+  // const {
+  //   authState: { user },
+  //   userDispatch,
+  //   userState: { createUser, Users },
+  // } = useContext(GlobalContext);
 
   function selectProps(...prop) {
     return function (obj) {
@@ -171,7 +176,7 @@ const ChildForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    addTableRows(props.dt);
+    addTableRows(dt);
 
     // addTableRows(childData);
     // childUsers?.data.length > 0
@@ -186,10 +191,19 @@ const ChildForm = (props) => {
   }
 
   const addChild = (formdata) => {
-    AddChildSibling(formdata)(userDispatch);
-    createUser?.data
-      ? toast.success(createUser?.data?.message)
-      : toast.error(createUser?.error);
+    !setLoading;
+    AddChildSibling2(formdata)
+      .then((res) => {
+        !setLoading;
+        toast.success(res?.data?.message);
+      })
+      .catch((e) => {
+        !setLoading;
+        toast.error(e.message);
+      });
+    //   createUser?.data
+    //     ? toast.success(createUser?.data?.message)
+    //     : toast.error(createUser?.error);
   };
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
@@ -414,13 +428,8 @@ const ChildForm = (props) => {
           ))}
 
           <div class="col-lg-12 col-md-12">
-            <button
-              type="submit"
-              class="default-btn"
-              disabled={createUser.loading}
-            >
-              {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
-              Save
+            <button type="submit" class="default-btn" disabled={loading}>
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
             </button>
           </div>
         </div>

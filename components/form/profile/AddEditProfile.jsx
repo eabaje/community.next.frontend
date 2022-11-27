@@ -259,6 +259,7 @@ const AddEditProfile = ({ query }) => {
       toast.error(err);
     });
   }, []);
+  console.log("SibData", sibData);
   console.log("Form", createUser?.data?.message);
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -847,7 +848,7 @@ const AddEditProfile = ({ query }) => {
             title={"Sibling Information"}
             relationType={"sib"}
             dt={sibData}
-            userId={user.UserId}
+            userId={userId}
           />
         </div>
 
@@ -855,7 +856,7 @@ const AddEditProfile = ({ query }) => {
           <ParentForm
             title={"Paternal Information"}
             dt={paternalData}
-            userId={user.UserId}
+            userId={userId}
           />
         </div>
 
@@ -863,7 +864,7 @@ const AddEditProfile = ({ query }) => {
           <ParentForm
             title={"Maternal Information"}
             dt={maternalData}
-            userId={user.UserId}
+            userId={userId}
           />
         </div>
 
@@ -871,7 +872,7 @@ const AddEditProfile = ({ query }) => {
           <SchoolForm
             title={"School Information"}
             dt={schoolData}
-            userId={user.UserId}
+            userId={userId}
             formTypeName={"School Name"}
             formTypeControl={"SchoolName"}
             relationType={"sch"}
@@ -882,7 +883,7 @@ const AddEditProfile = ({ query }) => {
           <SchoolForm
             title={"Places lived"}
             dt={placeData}
-            userId={user.UserId}
+            userId={userId}
             formTypeName={"Place lived"}
             formTypeControl={"NeighborhoodName"}
             relationType={"pl"}
@@ -892,7 +893,7 @@ const AddEditProfile = ({ query }) => {
           <SchoolForm
             title={"Work History"}
             dt={workData}
-            userId={user.UserId}
+            userId={userId}
             formTypeName={"Neighbourhood"}
             formTypeControl={"Neighbourhood"}
             relationType={"wk"}

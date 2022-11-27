@@ -326,6 +326,18 @@ export const GetAllRelationInfo =
     }
   };
 
+export const GetAllRelationInfo2 = async (userId, relationType) => {
+  try {
+    const res = await axios.get(
+      `/user/getAllRelation/${userId}/${relationType}`
+    );
+    return res.data;
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+    return message;
+  }
+};
+
 export const GetRelationInfo = (userId, relationType) => async (dispatch) => {
   dispatch({
     type: GET_USER_REQUEST,
@@ -372,6 +384,18 @@ export const AddChildSibling = (form) => async (dispatch) => {
     const message = err.response ? err.response.data : CONNECTION_ERROR;
 
     dispatch({ type: CREATE_USER_FAIL, payload: message });
+  }
+};
+
+export const AddChildSibling2 = async (form) => {
+  try {
+    const res = await axios.post(`/user/addChildOrSibling`, form);
+
+    return res.data;
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+    return message;
   }
 };
 
