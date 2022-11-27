@@ -144,17 +144,20 @@ const ChildForm = (props) => {
     };
   }
 
-  const addTableRows = (childDt) => {
+  const addTableRows = (childDt = null) => {
     const rowsInput = {
       FirstName: "",
       LastName: "",
       MiddleName: "",
       NickName: "",
     };
-    const newChildArray = childDt.map(
-      selectProps("FirstName", "MiddleName", "LastName", "NickName")
-    );
-    if (newChildArray.length > 0) {
+    alert(childDt);
+
+    if (childDt) {
+      const newChildArray = childDt.map(
+        selectProps("FirstName", "MiddleName", "LastName", "NickName")
+      );
+      //  if (newChildArray.length > 0) {
       // alert(newChildArray);
       // alert(rowsData);
       setRowsData([...rowsData, newChildArray]);
@@ -165,7 +168,9 @@ const ChildForm = (props) => {
           setValue(`child[${index}].${field}`, item[field])
         );
       });
+      //}
     } else {
+      setRowsData([...rowsData, {}]);
       setRowsData([...rowsData, rowsInput]);
     }
     // childData
@@ -176,14 +181,8 @@ const ChildForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    addTableRows(dt);
-
-    // addTableRows(childData);
-    // childUsers?.data.length > 0
-    //   ? setRowsData([...rowsData, childUsers?.data])
-    //   : addTableRows();
-    // childError && toast.error(childError);
-  }, []);
+    addTableRows(props.dt);
+  }, [dt]);
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
@@ -191,14 +190,15 @@ const ChildForm = (props) => {
   }
 
   const addChild = (formdata) => {
-    !setLoading;
+    setLoading(true);
     AddChildSibling2(formdata)
       .then((res) => {
-        !setLoading;
+        setLoading(false);
+
         toast.success(res?.data?.message);
       })
       .catch((e) => {
-        !setLoading;
+        setLoading(false);
         toast.error(e.message);
       });
     //   createUser?.data
@@ -227,7 +227,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("listChild", props.dt);
+  console.log("listChild", childData);
   console.log("rowData", rowsData);
   return (
     <>

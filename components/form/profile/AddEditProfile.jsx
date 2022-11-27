@@ -847,7 +847,7 @@ const AddEditProfile = ({ query }) => {
           <ChildForm
             title={"Sibling Information"}
             relationType={"sib"}
-            dt={sibData}
+            dt={sibData.length > 0 ? sibData : null}
             userId={userId}
           />
         </div>
