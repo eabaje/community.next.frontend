@@ -151,7 +151,6 @@ const ChildForm = (props) => {
       MiddleName: "",
       NickName: "",
     };
-    alert(childDt);
 
     if (childDt) {
       const newChildArray = childDt.map(
@@ -162,7 +161,13 @@ const ChildForm = (props) => {
       // alert(rowsData);
       setRowsData([...rowsData, newChildArray]);
       setChildData(newChildArray);
-      const fields = ["FirstName", "MiddleName", "LastName", "NickName"];
+      const fields = [
+        "RelationId",
+        "FirstName",
+        "MiddleName",
+        "LastName",
+        "NickName",
+      ];
       childDt?.map((item, index) => {
         fields.forEach((field) =>
           setValue(`child[${index}].${field}`, item[field])
@@ -331,7 +336,12 @@ const ChildForm = (props) => {
                     </div>
                   </div>
                 )}
-
+                <input
+                  type="hidden"
+                  name="RelationId"
+                  className="form-control"
+                  {...register("RelationId")}
+                />
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
                     <label>First Name</label>

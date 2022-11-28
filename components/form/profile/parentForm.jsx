@@ -6,26 +6,18 @@ import { Country, State, City } from "country-state-city";
 
 import { fetchData, fetchDataAll } from "../../../helpers/query";
 
-import { GlobalContext } from "../../../context/Provider";
-import {
-  editUser,
-  resetPassword,
-  updateCompany,
-} from "../../../context/actions/user/user.action";
+import { getLanguageNames } from "language-list";
+import options from "./data";
 
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import CustomButton from "../../../components/button/customButton";
-import ImageUpload from "../../../components/upload/uploadImage";
-//import "../../../styles/form.module.css";
-// import { SPECIALIZATION_TYPE } from "../../../constants/enum";
-// import CustomPopup from "../../../components/popup/popup.component";
-// import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
+import { GlobalContext } from "../../../context/Provider";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 import { RELATION_TYPE, RELATION_TYPE_2 } from "../../../constants/enum";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
+import { AddRelationInfo } from "../../../context/actions/user/user.action";
 
 const ParentForm = (props) => {
   const { userId, relationType } = props;
@@ -347,21 +339,19 @@ const ParentForm = (props) => {
               />
             </div>
           </div>
-          {/* <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Backup Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Backup email"
-                    {...register("FirstName")}
-                  />
-                </div>
-              </div> */}
-
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
               <label>Language</label>
+
+              {/* <Typeahead
+                    id="ddLanguage"
+                    name="ddLanguage"
+                    onChange={setSelected}
+                    options={options}
+                    placeholder="Choose a language"
+                    selected={selected}
+                   
+                  /> */}
               <select
                 class="form-select"
                 name="Language"
@@ -369,30 +359,63 @@ const ParentForm = (props) => {
                   required: true,
                 })}
               >
-                <option selected="1">Language</option>
-                <option value="2">English</option>
-                <option value="3">Portuguese</option>
-                <option value="4">Japanese</option>
-                <option value="5">Russian</option>
-                <option value="6">Javanese</option>
-                <option value="7">Gujarati</option>
-                <option value="8">Yoruba</option>
-                <option value="9">Polish</option>
+                <option selected="0">Language</option>
+
+                {options.map((item, index) => (
+                  <option
+                    key={index}
+                    //   selected={seldeliveryCity === item.isoCode}
+                    value={item.code}
+                  >
+                    {item.label}
+                  </option>
+                ))}
+              </select>
+            </div>
+          </div>
+
+          <div class="col-lg-6 col-md-6">
+            <div class="form-group">
+              <label>Country</label>
+              <select
+                name="Country"
+                className="form-select"
+                {...register("Country")}
+                onChange={selectCountry}
+              >
+                <option value="">Select Country</option>
+                {countries.map((item) => (
+                  <option key={item.isoCode} value={item.isoCode}>
+                    {item.name}
+                  </option>
+                ))}
               </select>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
-              <label>Address</label>
-              <input
-                type="text"
-                name="Address"
-                class="form-control"
-                placeholder="Address"
-                {...register("Address", {
+              <label>State</label>
+
+              <select
+                name="State"
+                className="form-select"
+                id="State"
+                {...register("State", {
                   required: true,
                 })}
-              />
+                onChange={selectCity}
+              >
+                <option value=""> Select Region/State </option>
+                {Region.map((item) => (
+                  <option
+                    key={item.isoCode}
+                    selected={selRegion === item.isoCode}
+                    value={item.isoCode}
+                  >
+                    {item.name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div class="col-lg-6 col-md-6">
@@ -412,7 +435,7 @@ const ParentForm = (props) => {
                 {city.map((item) => (
                   <option
                     key={item.isoCode}
-                    selected={selCity === item.isoCode}
+                    selected={selCity === item.name}
                     value={item.isoCode}
                   >
                     {item.name}
@@ -423,41 +446,28 @@ const ParentForm = (props) => {
           </div>
           <div class="col-lg-6 col-md-6">
             <div class="form-group">
-              <label>State</label>
-
-              <select
-                name="State"
-                className="form-select"
-                id="State"
-                {...register("State", {
-                  required: true,
-                })}
-              >
-                <option value=""> Select Region/State </option>
-                {Region.map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
+              <label>HomeTown</label>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="HomeTown"
+                name="HomeTown"
+                {...register("HomeTown")}
+              />
             </div>
           </div>
-          <div class="col-lg-6 col-md-6">
+          <div class="col-lg-12 col-md-12">
             <div class="form-group">
-              <label>Country</label>
-              <select
-                name="Country"
-                className="form-select"
-                {...register("Country")}
-                onChange={selectCountry}
-              >
-                <option value="">Select Country</option>
-                {countries.map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
+              <label>Address</label>
+              <textarea
+                type="text"
+                name="Address"
+                class="form-control"
+                placeholder="Address"
+                {...register("Address", {
+                  required: true,
+                })}
+              />
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
