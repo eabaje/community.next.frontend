@@ -114,10 +114,11 @@ const CoupleForm = (props) => {
 
   const getRelationInfo = (relationType, relationId) => {
     fetchDataAll(`user/getRelation/${relationId}/${relationType}`)((user) => {
-      const fields = ["FirstName", "MiddleName", "LastName", "MaidenName"];
+      const fields = ["RelationId","FirstName", "MiddleName", "LastName", "MaidenName"];
       fields.forEach((field) => setValue(field, user[field]));
 
       const fields1 = [
+        "RelationDetailId",
         "Mobile",
         "Email",
         "Sex",
@@ -224,7 +225,20 @@ const CoupleForm = (props) => {
           className="form-control"
           {...register("UserId")}
         />
-
+  <input
+          type="hidden"
+          name="RelationId"
+         
+          className="form-control"
+          {...register("RelationId")}
+        />
+         <input
+          type="hidden"
+          name="RelationDetailId"
+         
+          className="form-control"
+          {...register("RelationDetailId")}
+        />
         <div class="row">
           {coupleUsers?.data?.data?.length > 1 && (
             <div class="col-lg-6 col-md-6">

@@ -30,7 +30,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
 
 const SchoolForm = (props) => {
-  const { userId, relationType } = props;
+  const { userId, relationType,dt } = props;
 
   // const isSingleMode = !userId;
 
@@ -197,7 +197,7 @@ const SchoolForm = (props) => {
     // GetAllSchoolWorkInfo(userId, relationType)(userDispatch);
 
     addTableRows(props.dt);
-  }, []);
+  }, [dt]);
 
   function onSubmit(formdata) {
     AddSchoolPlaceWork(formdata)(userDispatch);

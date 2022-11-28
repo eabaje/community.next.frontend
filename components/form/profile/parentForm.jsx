@@ -117,6 +117,7 @@ const ParentForm = (props) => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     fetchDataAll(`user/getRelation/${userId}/${relationType}`)((user) => {
       const fields = [
+        "RelationId",
         "FirstName",
         "MiddleName",
         "LastName",
@@ -199,6 +200,13 @@ const ParentForm = (props) => {
           value={props.UserId}
           className="form-control"
           {...register("UserId")}
+        />
+         <input
+          type="hidden"
+          name="RelationId"
+          
+          className="form-control"
+          {...register("RelationId")}
         />
         <div class="row">
           <div class="col-lg-6 col-md-6">
