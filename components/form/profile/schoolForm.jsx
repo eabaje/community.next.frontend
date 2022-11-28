@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 //import { IMG_URL } from "../../../constants";
 import { useForm, Controller } from "react-hook-form";
 
-import { Country, State } from "country-state-city";
+import { Country, State, City } from "country-state-city";
 
 import { fetchData } from "../../../helpers/query";
 
@@ -30,7 +30,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
 
 const SchoolForm = (props) => {
-  const { userId, relationType,dt } = props;
+  const { userId, relationType, dt } = props;
 
   // const isSingleMode = !userId;
 
@@ -45,7 +45,7 @@ const SchoolForm = (props) => {
   const [email, setEmail] = useState("");
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
-  const [City, setCity] = useState([]);
+  const [city, setCity] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
   const [selCity, setselCity] = useState("");
@@ -149,6 +149,19 @@ const SchoolForm = (props) => {
         fields.forEach((field) =>
           setValue(`child[${index}].${field}`, item[field])
         );
+
+        setRegion(
+          (Region) => (Region = State.getStatesOfCountry(user["Country"]))
+        );
+        // selectCity(user["City"]);
+        setselRegion(user["State"]);
+
+        setCity(
+          (city) =>
+            (city = City.getCitiesOfState(user["Country"], user["State"]))
+        );
+
+        setselCity(user["City"]);
       });
     } else {
       setRowsData([...rowsData, rowsInput]);
@@ -425,25 +438,19 @@ const SchoolForm = (props) => {
                 </div>
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
-                    <label>City</label>
-
+                    <label>Country</label>
                     <select
-                      className="form-control"
-                      // readOnly={readOnly}
-
-                      id={`school[${index}].City`}
-                      name={`school[${index}].City`}
-                      {...register(`school[${index}].City`, {
+                      className="form-select"
+                      id={`school[${index}].Country`}
+                      name={`school[${index}].Country`}
+                      {...register(`school[${index}].Country`, {
                         required: true,
                       })}
+                      onChange={selectCountry}
                     >
-                      <option value=""> Select City </option>
-                      {City.map((item) => (
-                        <option
-                          key={item.isoCode}
-                          selected={school?.City === item.isoCode}
-                          value={item.isoCode}
-                        >
+                      <option value="">Select Country</option>
+                      {countries.map((item) => (
+                        <option key={item.isoCode} value={item.isoCode}>
                           {item.name}
                         </option>
                       ))}
@@ -473,25 +480,32 @@ const SchoolForm = (props) => {
                 </div>
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
-                    <label>Country</label>
+                    <label>City</label>
+
                     <select
-                      className="form-select"
-                      id={`school[${index}].Country`}
-                      name={`school[${index}].Country`}
-                      {...register(`school[${index}].Country`, {
+                      className="form-control"
+                      // readOnly={readOnly}
+
+                      id={`school[${index}].City`}
+                      name={`school[${index}].City`}
+                      {...register(`school[${index}].City`, {
                         required: true,
                       })}
-                      onChange={selectCountry}
                     >
-                      <option value="">Select Country</option>
-                      {countries.map((item) => (
-                        <option key={item.isoCode} value={item.isoCode}>
+                      <option value=""> Select City </option>
+                      {city.map((item) => (
+                        <option
+                          key={item.isoCode}
+                          selected={school?.City === item.isoCode}
+                          value={item.isoCode}
+                        >
                           {item.name}
                         </option>
                       ))}
                     </select>
                   </div>
                 </div>
+
                 {index > 0 && (
                   <div className="form-group row">
                     <div
