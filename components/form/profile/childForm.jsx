@@ -196,16 +196,15 @@ const ChildForm = (props) => {
 
   const addChild = (formdata) => {
     setLoading(true);
-    AddChildSibling2(formdata)
-      .then((res) => {
-        setLoading(false);
+    AddRelationInfo2(formdata)((res) => {
+      setLoading(false);
+      alert(res?.message);
 
-        toast.success(res?.data?.message);
-      })
-      .catch((e) => {
-        setLoading(false);
-        toast.error(e.message);
-      });
+      toast.success(res?.message);
+    })((e) => {
+      setLoading(false);
+      toast.error(e.message);
+    });
     //   createUser?.data
     //     ? toast.success(createUser?.data?.message)
     //     : toast.error(createUser?.error);

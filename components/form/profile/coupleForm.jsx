@@ -11,6 +11,7 @@ import { fetchData, fetchDataAll } from "../../../helpers/query";
 import { GlobalContext } from "../../../context/Provider";
 import {
   AddRelationInfo,
+  AddRelationInfo2,
   editUser,
   GetAllRelationInfo,
   resetPassword,
@@ -59,6 +60,8 @@ const CoupleForm = (props) => {
   const [showPassword, setShowPassword] = useState(false);
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
+  const [loading, setLoading] = useState(false);
+
   // const [showProfile, setShowProfile] = useState(false);
 
   const selectCountry = async (e) => {
@@ -114,7 +117,13 @@ const CoupleForm = (props) => {
 
   const getRelationInfo = (relationType, relationId) => {
     fetchDataAll(`user/getRelation/${relationId}/${relationType}`)((user) => {
-      const fields = ["RelationId","FirstName", "MiddleName", "LastName", "MaidenName"];
+      const fields = [
+        "RelationId",
+        "FirstName",
+        "MiddleName",
+        "LastName",
+        "MaidenName",
+      ];
       fields.forEach((field) => setValue(field, user[field]));
 
       const fields1 = [
@@ -179,10 +188,21 @@ const CoupleForm = (props) => {
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
-    AddRelationInfo(formdata)(userDispatch);
-    createUser?.data
-      ? toast.success(createUser?.data?.message)
-      : toast.error(createUser?.error);
+    setLoading(true);
+    AddRelationInfo2(formdata)((res) => {
+      setLoading(false);
+      alert(res?.message);
+
+      toast.success(res?.message);
+    })((e) => {
+      setLoading(false);
+      toast.error(e.message);
+    });
+
+    // AddRelationInfo(formdata)(userDispatch);
+    // createUser?.data
+    //   ? toast.success(createUser?.data?.message)
+    //   : toast.error(createUser?.error);
   }
 
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
@@ -206,7 +226,7 @@ const CoupleForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("ShowProfile", coupleUsers?.data?.data);
+  // console.log("ShowProfile", imgUrl);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -214,28 +234,26 @@ const CoupleForm = (props) => {
         <input
           type="hidden"
           name="RelationType"
-          value={props.relationType}
+          value={relationType}
           className="form-control"
           {...register("RelationType")}
         />
         <input
           type="hidden"
           name="UserId"
-          value={props.UserId}
+          value={userId}
           className="form-control"
           {...register("UserId")}
         />
-  <input
+        <input
           type="hidden"
           name="RelationId"
-         
           className="form-control"
           {...register("RelationId")}
         />
-         <input
+        <input
           type="hidden"
           name="RelationDetailId"
-         
           className="form-control"
           {...register("RelationDetailId")}
         />
@@ -689,13 +707,8 @@ const CoupleForm = (props) => {
             </div>
           </div>
           <div class="col-lg-12 col-md-12">
-            <button
-              type="submit"
-              class="default-btn"
-              disabled={createUser.loading}
-            >
-              {createUser.loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
-              Save
+            <button type="submit" class="default-btn" disabled={loading}>
+              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
             </button>
           </div>
         </div>

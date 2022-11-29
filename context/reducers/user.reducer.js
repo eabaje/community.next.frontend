@@ -247,19 +247,6 @@ const user = (state, { type, payload }) => {
           data: payload,
           error: null,
         },
-
-        Users: {
-          ...state.Users,
-          loading: false,
-          data: state.Users.data.map((item) => {
-            if (item.Id === payload.id) {
-              return payload;
-            } else {
-              return item;
-            }
-          }),
-          error: null,
-        },
       };
 
     case EDIT_USER_FAIL:

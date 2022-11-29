@@ -308,6 +308,32 @@ export const AddRelationInfo = (form) => async (dispatch) => {
   }
 };
 
+// export const AddRelationInfo2 = async (form) => {
+//   try {
+//     const res = await axios.post(`/user/addRelation`, form);
+
+//     return res.data;
+//   } catch (err) {
+//     const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+//     return message;
+//   }
+// };
+
+export const AddRelationInfo2 = (form) => (onSuccess) => (onError) => {
+  axios
+    .post(`/user/addRelation`, form)
+    .then((res) => {
+      onSuccess(res.data);
+    })
+
+    .catch((err) => {
+      const message = err.response ? err.response.data : CONNECTION_ERROR;
+
+      onError(message);
+    });
+};
+
 export const GetAllRelationInfo =
   (userId, relationType) => async (dispatch) => {
     dispatch({
