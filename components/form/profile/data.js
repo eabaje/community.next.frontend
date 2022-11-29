@@ -178,4 +178,5 @@ export default [
   { label: "Zhuang", code: "za" },
   { label: "Chinese", code: "zh" },
   { label: "Zulu", code: "zu" },
+  { label: "Others", code: "other" },
 ];

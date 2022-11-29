@@ -881,10 +881,10 @@ const AddEditProfile = ({ query }) => {
 
         <div class="tab-pane fade" id="place" role="tabpanel">
           <SchoolForm
-            title={"Places lived"}
+            title={"Neigbourhood I lived"}
             dt={placeData}
             userId={userId}
-            formTypeName={"Place lived"}
+            formTypeName={"Neigbourhood I lived"}
             formTypeControl={"NeighborhoodName"}
             relationType={"pl"}
           />
@@ -894,7 +894,7 @@ const AddEditProfile = ({ query }) => {
             title={"Work History"}
             dt={workData}
             userId={userId}
-            formTypeName={"Neighbourhood"}
+            formTypeName={"Name of work"}
             formTypeControl={"Neighbourhood"}
             relationType={"wk"}
           />

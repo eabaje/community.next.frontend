@@ -297,7 +297,7 @@ const SchoolForm = (props) => {
                       : props.relationType === "wk"
                       ? "Work Info"
                       : props.relationType === "pl"
-                      ? "Place Lived"
+                      ? "Neighbourhood "
                       : "Info"}
                   </button>
                 </h6>
@@ -488,9 +488,7 @@ const SchoolForm = (props) => {
 
                       id={`school[${index}].City`}
                       name={`school[${index}].City`}
-                      {...register(`school[${index}].City`, {
-                        required: true,
-                      })}
+                      {...register(`school[${index}].City`)}
                     >
                       <option value=""> Select City </option>
                       {city.map((item) => (
@@ -505,7 +503,39 @@ const SchoolForm = (props) => {
                     </select>
                   </div>
                 </div>
-
+                { props.relationType === "pl"
+                      && (  <>
+                      <div class="col-lg-6 col-md-6">
+                      <div class="form-group">
+                        <label>village/HomeTown</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          placeholder="HomeTown"
+                          
+                          id={`school[${index}].HomeTown`}
+                          name={`school[${index}].HomeTown`}
+                          {...register(`school[${index}].HomeTown`)}
+                        />
+                      </div>
+                    </div>
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group">
+                        <label>Address</label>
+                        <textarea
+                          type="text"
+                          class="form-control"
+                          placeholder="Address"
+                          id={`school[${index}].Address`}
+                          name={`school[${index}].Address`}
+                          {...register(`school[${index}].Address`)}
+                        />
+                      </div>
+                    </div>
+                    </>
+                    )}
+                               
+              
                 {index > 0 && (
                   <div className="form-group row">
                     <div
