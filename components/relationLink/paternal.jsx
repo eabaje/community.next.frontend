@@ -28,6 +28,7 @@ const PaternalLink = ({ user }) => {
             <a href="#">{user?.FullName ? user?.FullName : "Eze Chinnwe"}</a>
           </h4>
           <span>1215 Members</span>
+          <span className="status-online"></span>
         </div>
       </article>
     </>

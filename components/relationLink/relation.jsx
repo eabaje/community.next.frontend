@@ -40,6 +40,7 @@ const OtherRelationLink = ({ user }) => {
                       <a href="#">Chief Eze Nwannu</a>
                     </h4>
                     <span>1215 Members</span>
+                    <span className="status-online"></span>
                   </div>
                 </article>
                 <article className="item">
@@ -52,6 +53,7 @@ const OtherRelationLink = ({ user }) => {
                       <a href="#">Digital Marketing</a>
                     </h4>
                     <span>1865 Members</span>
+                    <span className="status-offline"></span>
                   </div>
                 </article>
                 <article className="item">
@@ -85,6 +87,7 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Chief Eze Nwannu</a>
                   </h4>
                   <span>1215 Members</span>
+                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
@@ -97,6 +100,7 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Digital Marketing</a>
                   </h4>
                   <span>1865 Members</span>
+                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
@@ -109,6 +113,7 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Fitness Club</a>
                   </h4>
                   <span>2051 Members</span>
+                  <span className="status-online"></span>
                 </div>
               </article>
             </div>
@@ -129,6 +134,7 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Chief Eze Nwannu</a>
                   </h4>
                   <span>1215 Members</span>
+                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
@@ -141,6 +147,7 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Digital Marketing</a>
                   </h4>
                   <span>1865 Members</span>
+                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
@@ -153,6 +160,7 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Fitness Club</a>
                   </h4>
                   <span>2051 Members</span>
+                  <span className="status-offline"></span>
                 </div>
               </article>
             </div>
