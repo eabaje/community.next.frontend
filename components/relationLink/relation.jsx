@@ -24,7 +24,7 @@ const OtherRelationLink = ({ user }) => {
             <div className="moreSpace">
               <div className="widget widget-page-you-like">
                 <div className="d-flex justify-content-between align-items-center">
-                  <h3 className="widget-title">My Paternal Links</h3>
+                  <h3 className="widget-title">My Paternal Relations</h3>
                   <span className="d-flex justify-content-between align-items-center">
                     <a href="#">See All</a>
                   </span>
@@ -32,6 +32,7 @@ const OtherRelationLink = ({ user }) => {
 
                 <article className="item">
                   <a href="#" className="thumb">
+                    <span className="status-online"></span>
                     <span className="fullimage bg1" role="img"></span>
                   </a>
 
@@ -40,11 +41,11 @@ const OtherRelationLink = ({ user }) => {
                       <a href="#">Chief Eze Nwannu</a>
                     </h4>
                     <span>1215 Members</span>
-                    <span className="status-online"></span>
                   </div>
                 </article>
                 <article className="item">
                   <a href="#" className="thumb">
+                    <span className="status-offline"></span>
                     <span className="fullimage bg2" role="img"></span>
                   </a>
 
@@ -53,7 +54,6 @@ const OtherRelationLink = ({ user }) => {
                       <a href="#">Digital Marketing</a>
                     </h4>
                     <span>1865 Members</span>
-                    <span className="status-offline"></span>
                   </div>
                 </article>
                 <article className="item">
@@ -75,10 +75,11 @@ const OtherRelationLink = ({ user }) => {
         <div className="col-lg-4 col-sm-6">
           <aside className="widget-area">
             <div className="widget widget-page-you-like">
-              <h3 className="widget-title">My Maternal Links</h3>
+              <h3 className="widget-title">My Maternal Relations</h3>
 
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg1" role="img"></span>
                 </a>
 
@@ -87,11 +88,11 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Chief Eze Nwannu</a>
                   </h4>
                   <span>1215 Members</span>
-                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg2" role="img"></span>
                 </a>
 
@@ -100,11 +101,11 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Digital Marketing</a>
                   </h4>
                   <span>1865 Members</span>
-                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg3" role="img"></span>
                 </a>
 
@@ -113,7 +114,6 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Fitness Club</a>
                   </h4>
                   <span>2051 Members</span>
-                  <span className="status-online"></span>
                 </div>
               </article>
             </div>
@@ -122,10 +122,11 @@ const OtherRelationLink = ({ user }) => {
         <div className="col-lg-4 col-sm-6">
           <aside className="widget-area">
             <div className="widget widget-page-you-like">
-              <h3 className="widget-title">My Spousal Links</h3>
+              <h3 className="widget-title">My Spousal Relations</h3>
 
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg1" role="img"></span>
                 </a>
 
@@ -134,11 +135,11 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Chief Eze Nwannu</a>
                   </h4>
                   <span>1215 Members</span>
-                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg2" role="img"></span>
                 </a>
 
@@ -147,11 +148,11 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Digital Marketing</a>
                   </h4>
                   <span>1865 Members</span>
-                  <span className="status-online"></span>
                 </div>
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg3" role="img"></span>
                 </a>
 
@@ -160,7 +161,6 @@ const OtherRelationLink = ({ user }) => {
                     <a href="#">Fitness Club</a>
                   </h4>
                   <span>2051 Members</span>
-                  <span className="status-offline"></span>
                 </div>
               </article>
             </div>
@@ -174,6 +174,7 @@ const OtherRelationLink = ({ user }) => {
 
                 <article className="item">
                   <a href="#" className="thumb">
+                    <span className="status-online"></span>
                     <span className="fullimage bg1" role="img"></span>
                   </a>
 
@@ -186,6 +187,7 @@ const OtherRelationLink = ({ user }) => {
                 </article>
                 <article className="item">
                   <a href="#" className="thumb">
+                    <span className="status-online"></span>
                     <span className="fullimage bg2" role="img"></span>
                   </a>
 
@@ -198,6 +200,7 @@ const OtherRelationLink = ({ user }) => {
                 </article>
                 <article className="item">
                   <a href="#" className="thumb">
+                    <span className="status-online"></span>
                     <span className="fullimage bg3" role="img"></span>
                   </a>
 
@@ -219,6 +222,7 @@ const OtherRelationLink = ({ user }) => {
 
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg1" role="img"></span>
                 </a>
 
@@ -231,6 +235,7 @@ const OtherRelationLink = ({ user }) => {
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg2" role="img"></span>
                 </a>
 
@@ -243,6 +248,7 @@ const OtherRelationLink = ({ user }) => {
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg3" role="img"></span>
                 </a>
 
@@ -263,6 +269,7 @@ const OtherRelationLink = ({ user }) => {
 
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg1" role="img"></span>
                 </a>
 
@@ -275,6 +282,7 @@ const OtherRelationLink = ({ user }) => {
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-offline"></span>
                   <span className="fullimage bg2" role="img"></span>
                 </a>
 
@@ -287,6 +295,7 @@ const OtherRelationLink = ({ user }) => {
               </article>
               <article className="item">
                 <a href="#" className="thumb">
+                  <span className="status-online"></span>
                   <span className="fullimage bg3" role="img"></span>
                 </a>
 

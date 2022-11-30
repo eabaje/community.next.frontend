@@ -28,6 +28,8 @@ import ImageUpload from "../../../components/upload/uploadImage";
 // import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
+import OccupationDDL from "../../formInput/occupation.select";
+import AutoSuggestInput from "../../formInput/autoSuggest.text";
 
 const CoupleForm = (props) => {
   const { userId, relationType } = props;
@@ -63,6 +65,24 @@ const CoupleForm = (props) => {
   const [loading, setLoading] = useState(false);
 
   // const [showProfile, setShowProfile] = useState(false);
+
+  const [rowsData, setRowsData] = useState([{}]);
+  const [childData, setChildData] = useState([{}]);
+
+  const deleteTableRows = (index) => {
+    const rows = [...rowsData];
+    rows.splice(index, 1);
+    setRowsData(rows);
+  };
+  const addTableRows = () => {
+    const rowsInput = {
+      FirstName: "",
+      LastName: "",
+      MiddleName: "",
+      NickName: "",
+    };
+    setRowsData([...rowsData, rowsInput]);
+  };
 
   const selectCountry = async (e) => {
     setCountry((country) => e.target.value);
@@ -181,6 +201,8 @@ const CoupleForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
 
+    //  addTableRows();
+
     GetAllRelationInfo(userId, relationType)(userDispatch);
     coupleUsers?.data?.data?.length === 1 &&
       getRelationInfo(relationType, coupleUsers?.data[0].RelationId);
@@ -257,7 +279,24 @@ const CoupleForm = (props) => {
           className="form-control"
           {...register("RelationDetailId")}
         />
+
         <div class="row">
+          <div className="form-group row">
+            <div className="col-md-12">
+              <div className="col-md-12 alert alert-success">
+                <h6 style={{ textAlign: "right" }}>
+                  {" "}
+                  <button
+                    type="button"
+                    class="default-btn"
+                    onClick={addTableRows}
+                  >
+                    + Add Spouse Info{" "}
+                  </button>
+                </h6>
+              </div>
+            </div>
+          </div>
           {coupleUsers?.data?.data?.length > 1 && (
             <div class="col-lg-6 col-md-6">
               <div class="form-group">
@@ -280,102 +319,111 @@ const CoupleForm = (props) => {
               </div>
             </div>
           )}
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="First name"
-                name="FirstName"
-                {...register("FirstName")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Middle Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Middle name"
-                name="MiddleName"
-                {...register("MiddleName")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Last name"
-                name="LastName"
-                {...register("LastName")}
-              />
-            </div>
-          </div>
-          {props.sex === "female" && (
-            <div class="col-lg-6 col-md-6">
-              <div class="form-group">
-                <label>Maiden Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Maiden Name"
-                  name="MaidenName"
-                  {...register("MaidenName")}
-                />
+
+          {rowsData?.map((spouse, index) => (
+            <>
+              {index === 1 && (
+                <div className="form-group row">
+                  <div
+                    className="col-md-12 alert alert-success"
+                    style={{ textAlign: "right" }}
+                  ></div>
+                </div>
+              )}
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First name"
+                    name={`spouse[${index}].FirstName`}
+                    {...register(`spouse[${index}].FirstName`)}
+                  />
+                </div>
               </div>
-            </div>
-          )}
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Age Category</label>
-              <select
-                class="form-select"
-                name="Age"
-                {...register("Age", {
-                  required: true,
-                })}
-              >
-                <option value=""></option>
-                <option value="<18">{"<18"}</option>
-                <option value="18-30">18-30</option>
-                <option value="31-40">31-40</option>
-                <option value="41-50">41-50</option>
-                <option value="51-60">51-60</option>
-                <option value="61 and above">61 and above</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Date of Birth</label>
-              <Controller
-                name={"DOB"}
-                control={control}
-                // defaultValue={new Date()}
-                render={({ field: { onChange, value } }) => {
-                  return (
-                    <DatePicker
-                      wrapperclassNameName="datePicker"
-                      classNameName="form-control datepicker"
-                      onChange={onChange}
-                      selected={Date.parse(value)}
-                      yearDropdownItemNumber={100}
-                      // dateFormat="dd-MM-yyyy"
-                      scrollableYearDropdown={true}
-                      showYearDropdown
-                      showMonthDropdown
-                      placeholderText="Enter date"
-                      customInput={<CustomInput />}
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Middle Name"
+                    name={`spouse[${index}].MiddleName`}
+                    {...register(`spouse[${index}].MiddleName`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
+                    name={`spouse[${index}].LastName`}
+                    {...register(`spouse[${index}].LastName`)}
+                  />
+                </div>
+              </div>
+              {props.sex === "female" && (
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group">
+                    <label>Maiden Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Maiden Name"
+                      name={`spouse[${index}].MaidenName`}
+                      {...register(`spouse[${index}].MaidenName`)}
                     />
-                  );
-                }}
-              />
-              {/* <input
+                  </div>
+                </div>
+              )}
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Age Category</label>
+                  <select
+                    class="form-select"
+                    name={`spouse[${index}].Age`}
+                    {...register(`spouse[${index}].Age`)}
+                  >
+                    <option value=""></option>
+                    <option value="<18">{"<18"}</option>
+                    <option value="18-30">18-30</option>
+                    <option value="31-40">31-40</option>
+                    <option value="41-50">41-50</option>
+                    <option value="51-60">51-60</option>
+                    <option value="61 and above">61 and above</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Date of Birth</label>
+                  <Controller
+                    name={`spouse[${index}].DOB`}
+                    control={control}
+                    // defaultValue={new Date()}
+                    render={({ field: { onChange, value } }) => {
+                      return (
+                        <DatePicker
+                          wrapperclassNameName="datePicker"
+                          classNameName="form-control datepicker"
+                          onChange={onChange}
+                          selected={Date.parse(value)}
+                          yearDropdownItemNumber={100}
+                          // dateFormat="dd-MM-yyyy"
+                          scrollableYearDropdown={true}
+                          showYearDropdown
+                          showMonthDropdown
+                          placeholderText="Enter date"
+                          customInput={<CustomInput />}
+                        />
+                      );
+                    }}
+                  />
+                  {/* <input
                     type="text"
                     class="form-control"
                     placeholder="Date of birth"
@@ -383,203 +431,180 @@ const CoupleForm = (props) => {
                     name="DOB"
                     {...register("DOB")}
                   /> */}
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Email</label>
-              <input
-                type="email"
-                class="form-control"
-                placeholder="Email"
-                name="Email"
-                {...register("Email")}
-              />
-            </div>
-          </div>
-          {/* <div class="col-lg-6 col-md-6">
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Backup Email</label>
+                  <label>Email</label>
                   <input
                     type="email"
                     class="form-control"
-                    placeholder="Backup email"
-                    {...register("FirstName")}
+                    placeholder="Email"
+                    name={`spouse[${index}].Email`}
+                    {...register(`spouse[${index}].Email`)}
                   />
                 </div>
-              </div> */}
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Phone No:</label>
-              <input
-                type="number"
-                class="form-control"
-                placeholder="Phone no"
-                name="Mobile"
-                {...register("Mobile")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Gender</label>
-              <select
-                class="form-select"
-                name="Sex"
-                {...register("Sex", {
-                  required: true,
-                })}
-              >
-                <option selected="1">Gender</option>
-                <option value="2">Male</option>
-                <option value="3">Female</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Occupation</label>
-              <select
-                class="form-select"
-                name="Occupation"
-                {...register("Occupation", {
-                  required: true,
-                })}
-              >
-                <option selected="1">Occupation</option>
-                <option value="2">Software Developer</option>
-                <option value="3">Biomedical Engineer</option>
-                <option value="4">Civil Engineer</option>
-                <option value="5">General Practitioner</option>
-                <option value="6">Structural Engineer</option>
-                <option value="7">Pharmacy Technician</option>
-                <option value="8">Mechanical Engineer</option>
-                <option value="9">Petroleum Engineer</option>
-                <option value="10">Technician</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Employment Status</label>
-              <select
-                class="form-select"
-                name="EmploymentStatus"
-                {...register("EmploymentStatus", {
-                  required: true,
-                })}
-              >
-                <option selected="0">Employment Status</option>
-                <option value="2">Employed</option>
-                <option value="3">Entrepreneur</option>
-                <option value="4">Unemployed</option>
-              </select>
-            </div>
-          </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Phone No:</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    placeholder="Phone no"
+                    name={`spouse[${index}].Mobile`}
+                    {...register(`spouse[${index}].Mobile`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select
+                    class="form-select"
+                    name={`spouse[${index}].Sex`}
+                    {...register(`spouse[${index}].Sex`)}
+                  >
+                    <option selected="1">Gender</option>
+                    <option value="2">Male</option>
+                    <option value="3">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Occupation</label>
+                  <OccupationDDL
+                    formVariable={register(`spouse[${index}].Occupation`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Employment Status</label>
+                  <select
+                    class="form-select"
+                    name={`spouse[${index}].EmploymentStatus`}
+                    {...register(`spouse[${index}].EmploymentStatus`)}
+                  >
+                    <option selected="0">Employment Status</option>
+                    <option value="2">Employed</option>
+                    <option value="3">Entrepreneur</option>
+                    <option value="4">Unemployed</option>
+                  </select>
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Relation Status</label>
-              <select
-                class="form-select"
-                name="MaritalStatus"
-                {...register("MaritalStatus", {
-                  required: true,
-                })}
-              >
-                <option selected="0">Relation Status</option>
-                <option value="1">Married</option>
-                <option value="2">Unmarried</option>
-                <option value="3">Single</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Blood Group</label>
-              <select
-                class="form-select"
-                name="BloodGroup"
-                {...register("BloodGroup", {
-                  required: true,
-                })}
-              >
-                <option selected="1">Blood Group</option>
-                <option value="2">A+</option>
-                <option value="3">A-</option>
-                <option value="4">B+</option>
-                <option value="5">B-</option>
-                <option value="6">O+</option>
-                <option value="7">O-</option>
-                <option value="8">AB+</option>
-                <option value="9">AB-</option>
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Website</label>
-              <input type="text" class="form-control" placeholder="Website" />
-            </div>
-          </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Relation Status</label>
+                  <select
+                    class="form-select"
+                    name={`spouse[${index}].MaritalStatus`}
+                    {...register(`spouse[${index}].MaritalStatus`)}
+                  >
+                    <option selected="0">Relation Status</option>
+                    <option value="1">Married</option>
+                    <option value="2">Unmarried</option>
+                    <option value="3">Single</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Blood Group</label>
+                  <select
+                    class="form-select"
+                    name="BloodGroup"
+                    {...register("BloodGroup", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="1">Blood Group</option>
+                    <option value="2">A+</option>
+                    <option value="3">A-</option>
+                    <option value="4">B+</option>
+                    <option value="5">B-</option>
+                    <option value="6">O+</option>
+                    <option value="7">O-</option>
+                    <option value="8">AB+</option>
+                    <option value="9">AB-</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Website</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Website"
+                  />
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Family Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="FamilyName"
-                name="FamilyName"
-                {...register("FamilyName")}
-              />
-            </div>
-          </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Family Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Father's Family Name"
+                    name={`spouse[${index}].FamilyName`}
+                    {...register(`spouse[${index}].FamilyName`)}
+                  />
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Tribe</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Tribe"
-                name="Tribe"
-                {...register("Tribe")}
-              />
-            </div>
-          </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Tribe</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Father's Tribe"
+                    name={`spouse[${index}].Tribe`}
+                    {...register(`spouse[${index}].Tribe`)}
+                  />
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Clan</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Clan"
-                name="Clan"
-                {...register("Clan")}
-              />
-            </div>
-          </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Clan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Father's Clan"
+                    name={`spouse[${index}].Clan`}
+                    {...register(`spouse[${index}].Clan`)}
+                  />
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Kindred</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Kindred"
-                name="Kindred"
-                {...register("Kindred")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Language</label>
-
-              {/* <Typeahead
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Kindred</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Father's Kindred"
+                    name={`spouse[${index}].Kindred`}
+                    {...register(`spouse[${index}].Kindred`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Language</label>
+                  <AutoSuggestInput
+                    name={"Language"}
+                    className={"form-control"}
+                    dataSource={options}
+                    {...register("Language")}
+                  />
+                  {/* <Typeahead
                     id="ddLanguage"
                     name="ddLanguage"
                     onChange={setSelected}
@@ -587,7 +612,7 @@ const CoupleForm = (props) => {
                     placeholder="Choose a language"
                     selected={selected}
                    
-                  /> */}
+                  /> 
               <select
                 class="form-select"
                 name="Language"
@@ -606,106 +631,118 @@ const CoupleForm = (props) => {
                     {item.label}
                   </option>
                 ))}
-              </select>
-            </div>
-          </div>
+              </select>*/}
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Country</label>
-              <select
-                name="Country"
-                className="form-select"
-                {...register("Country")}
-                onChange={selectCountry}
-              >
-                <option value="">Select Country</option>
-                {countries.map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>State</label>
-
-              <select
-                name="State"
-                className="form-select"
-                id="State"
-                {...register("State", {
-                  required: true,
-                })}
-                onChange={selectCity}
-              >
-                <option value=""> Select Region/State </option>
-                {Region.map((item) => (
-                  <option
-                    key={item.isoCode}
-                    selected={selRegion === item.isoCode}
-                    value={item.isoCode}
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Country of Origin</label>
+                  <select
+                    name={`spouse[${index}].Country`}
+                    className="form-select"
+                    {...register(`spouse[${index}].Country`)}
+                    onChange={selectCountry}
                   >
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>City</label>
+                    <option value="">Select Country</option>
+                    {countries.map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's State of Origin</label>
 
-              <select
-                name="City"
-                className="form-control"
-                // readOnly={readOnly}
-                id="City"
-                {...register("City", {
-                  required: true,
-                })}
-              >
-                <option value=""> Select City </option>
-                {city.map((item) => (
-                  <option
-                    key={item.isoCode}
-                    selected={selCity === item.name}
-                    value={item.isoCode}
+                  <select
+                    name={`spouse[${index}].State`}
+                    className="form-select"
+                    id="State"
+                    {...register(`spouse[${index}].State`)}
+                    onChange={selectCity}
                   >
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>HomeTown</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="HomeTown"
-                name="HomeTown"
-                {...register("HomeTown")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-12 col-md-12">
-            <div class="form-group">
-              <label>Address</label>
-              <textarea
-                type="text"
-                name="Address"
-                class="form-control"
-                placeholder="Address"
-                {...register("Address", {
-                  required: true,
-                })}
-              />
-            </div>
-          </div>
+                    <option value=""> Select Region/State </option>
+                    {Region.map((item) => (
+                      <option
+                        key={item.isoCode}
+                        selected={selRegion === item.isoCode}
+                        value={item.isoCode}
+                      >
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's LGA/City</label>
+
+                  <select
+                    name={`spouse[${index}].City`}
+                    className="form-control"
+                    // readOnly={readOnly}
+                    id="City"
+                    {...register(`spouse[${index}].City`)}
+                  >
+                    <option value=""> Select LGA/City </option>
+                    {city.map((item) => (
+                      <option
+                        key={item.isoCode}
+                        selected={selCity === item.name}
+                        value={item.isoCode}
+                      >
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's Village/Town</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Father's Village/Town"
+                    name={`spouse[${index}].HomeTown`}
+                    {...register(`spouse[${index}].HomeTown`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                <div class="form-group">
+                  <label>Father's Address</label>
+                  <textarea
+                    type="text"
+                    name={`spouse[${index}].Address`}
+                    class="form-control"
+                    placeholder="Father's Address"
+                    {...register(`spouse[${index}].Address`)}
+                  />
+                </div>
+                {index > 0 && (
+                  <div className="form-group row">
+                    <div
+                      className="col-md-12 alert alert-success"
+                      style={{ textAlign: "right" }}
+                    >
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger right"
+                        onClick={() => deleteTableRows(index)}
+                      >
+                        x
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          ))}
           <div class="col-lg-12 col-md-12">
             <button type="submit" class="default-btn" disabled={loading}>
               {loading && <i className="fa fa-spinner fa-spin"></i>} Save

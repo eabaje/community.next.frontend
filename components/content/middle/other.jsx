@@ -7,11 +7,36 @@ import ContentWidget from "../../widget";
 import StyledTree from "../../tree/hTree";
 import Tree from "../../tree";
 import { useRouter } from "next/router";
-
+import { fetchDataAll } from "../../../helpers/query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../helpers/axios";
 const isBrowser = typeof window !== "undefined";
 
 function SecondMiddleContent({ query }) {
+
+  const {type}=query
   const router = useRouter();
+  const [relation, setRelation] = useState([{}]);
+
+  const getAllSiblingInfo = (userId) => {
+    fetchDataAll(`user/getAllRelation/${userId}/${type}`)((user) => {
+      setRelation(user);
+    })((err) => {
+      toast.error(err);
+    });
+  };
+  
+  const {
+    isLoading: relationLoading,
+    error: relationError,
+    data: relationData,
+  } = useQuery(["user"], () =>
+    makeRequest
+      .get(`/user/getAllRelation/${user.UserId}/${type}`)
+      .then((res) => {
+        return res.data;
+      })
+  );
 
   return isBrowser ? (
     <>
@@ -26,7 +51,10 @@ function SecondMiddleContent({ query }) {
               {/*  <Tree user={null} />
 
                  <Chart />*/}
-              <StyledTree user={null} />
+                 {relationData? ( <StyledTree user={null} />):(
+                  "No link found!Update your profile."
+                 )}
+             
             </div>
           </div>
         </div>

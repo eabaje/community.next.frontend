@@ -26,6 +26,8 @@ import CoupleForm from "./coupleForm";
 import ChildForm from "./childForm";
 import ParentForm from "./parentForm";
 import SchoolForm from "./schoolForm";
+import OccupationDDL from "../../formInput/occupation.select";
+import AutoSuggestInput from "../../formInput/autoSuggest.text";
 
 const AddEditProfile = ({ query }) => {
   const { userId } = query;
@@ -591,24 +593,11 @@ const AddEditProfile = ({ query }) => {
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Occupation</label>
-                  <select
-                    class="form-select"
-                    name="Occupation"
-                    {...register("Occupation", {
+                  <OccupationDDL
+                    formVariable={register("Occupation", {
                       required: true,
                     })}
-                  >
-                    <option selected="1">Occupation</option>
-                    <option value="2">Software Developer</option>
-                    <option value="3">Biomedical Engineer</option>
-                    <option value="4">Civil Engineer</option>
-                    <option value="5">General Practitioner</option>
-                    <option value="6">Structural Engineer</option>
-                    <option value="7">Pharmacy Technician</option>
-                    <option value="8">Mechanical Engineer</option>
-                    <option value="9">Petroleum Engineer</option>
-                    <option value="10">Technician</option>
-                  </select>
+                  />
                 </div>
               </div>
               <div class="col-lg-6 col-md-6">
@@ -681,7 +670,12 @@ const AddEditProfile = ({ query }) => {
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Language</label>
-
+                  <AutoSuggestInput
+                    name={"Language"}
+                    className={"form-control"}
+                    dataSource={options}
+                    {...register("Language")}
+                  />
                   {/* <Typeahead
                     id="ddLanguage"
                     name="ddLanguage"
@@ -690,7 +684,7 @@ const AddEditProfile = ({ query }) => {
                     placeholder="Choose a language"
                     selected={selected}
                    
-                  /> */}
+                  /> 
                   <select
                     class="form-select"
                     name="Language"
@@ -709,7 +703,7 @@ const AddEditProfile = ({ query }) => {
                         {item.label}
                       </option>
                     ))}
-                  </select>
+                  </select>*/}
                 </div>
               </div>
 
@@ -719,7 +713,9 @@ const AddEditProfile = ({ query }) => {
                   <select
                     name="Country"
                     className="form-select"
-                    {...register("Country")}
+                    {...register("Country", {
+                      required: true,
+                    })}
                     onChange={selectCountry}
                   >
                     <option value="">Select Country</option>
@@ -739,9 +735,7 @@ const AddEditProfile = ({ query }) => {
                     name="State"
                     className="form-select"
                     id="State"
-                    {...register("State", {
-                      required: true,
-                    })}
+                    {...register("State")}
                     onChange={selectCity}
                   >
                     <option value=""> Select Region/State </option>
@@ -766,9 +760,7 @@ const AddEditProfile = ({ query }) => {
                     className="form-control"
                     // readOnly={readOnly}
                     id="City"
-                    {...register("City", {
-                      required: true,
-                    })}
+                    {...register("City")}
                   >
                     <option value=""> Select City </option>
                     {city.map((item) => (
@@ -785,7 +777,7 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>HomeTown</label>
+                  <label>Village/HomeTown</label>
                   <input
                     type="text"
                     class="form-control"
@@ -857,6 +849,7 @@ const AddEditProfile = ({ query }) => {
             title={"Paternal Information"}
             dt={paternalData}
             userId={userId}
+            relationType={"paternal"}
           />
         </div>
 
@@ -865,6 +858,7 @@ const AddEditProfile = ({ query }) => {
             title={"Maternal Information"}
             dt={maternalData}
             userId={userId}
+            relationType={"maternal"}
           />
         </div>
 
@@ -884,6 +878,7 @@ const AddEditProfile = ({ query }) => {
             title={"Neigbourhood I lived"}
             dt={placeData}
             userId={userId}
+            labelAddress={"Neigbourhood Address"}
             formTypeName={"Neigbourhood I lived"}
             formTypeControl={"NeighborhoodName"}
             relationType={"pl"}
@@ -894,7 +889,8 @@ const AddEditProfile = ({ query }) => {
             title={"Work History"}
             dt={workData}
             userId={userId}
-            formTypeName={"Name of work"}
+            labelAddress={"Address of Work Place"}
+            formTypeName={"Name of Work Place"}
             formTypeControl={"Neighbourhood"}
             relationType={"wk"}
           />

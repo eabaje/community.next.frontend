@@ -1,22 +1,22 @@
 const topMenuItemsPublic = (user) => [
   {
     title: "Timeline",
-    path: `/timeline/?userId=${user?.UserId}`,
+    path: `/home/?userId=${user?.UserId}`,
     icon: `fa fa-clock-four`,
   },
 
   {
-    title: "Spousal Links",
+    title: "Spousal Relations",
     path: `/relation/?userId=${user?.UserId}&type=spousal`,
     icon: "fa fa-female",
   },
   {
-    title: "Paternal Links",
+    title: "Paternal Relations",
     path: `/relation/?userId=${user?.UserId}&type=paternal`,
     icon: "fa fa-male",
   },
   {
-    title: "Maternal Links",
+    title: "Maternal Relations",
     path: `/relation/?userId=${user?.UserId}&type=maternal`,
     icon: "fa fa-female",
   },

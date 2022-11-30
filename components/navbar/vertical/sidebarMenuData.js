@@ -15,17 +15,17 @@ const sideBarMenuItems = (user) => [
     icon: "flaticon-team",
   },
   {
-    title: "Spousal Links",
+    title: "Spousal Relations",
     path: `/relation/?userId=${user?.UserId}&type=spousal`,
     icon: "fa fa-female",
   },
   {
-    title: "Paternal Links",
+    title: "Paternal Relations",
     path: `/relation/?userId=${user?.UserId}&type=paternal`,
     icon: "fa fa-male",
   },
   {
-    title: "Maternal Links",
+    title: "Maternal Relations",
     path: `/relation/?userId=${user?.UserId}&type=maternal`,
     icon: "fa fa-female",
   },

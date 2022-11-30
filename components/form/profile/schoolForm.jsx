@@ -71,6 +71,10 @@ const SchoolForm = (props) => {
 
     setRegion((Region = State.getStatesOfCountry(e.target.value)));
   };
+
+  const selectCity = async (e) => {
+    setCity((city) => (city = City.getCitiesOfState(country, e.target.value)));
+  };
   const popupCloseHandlerImage = (e) => {
     setVisibilityImage(e);
   };
@@ -147,7 +151,7 @@ const SchoolForm = (props) => {
       ];
       childDt?.map((item, index) => {
         fields.forEach((field) =>
-          setValue(`child[${index}].${field}`, item[field])
+          setValue(`school[${index}].${field}`, item[field])
         );
 
         setRegion(
@@ -346,18 +350,26 @@ const SchoolForm = (props) => {
                           props.formTypeControl
                             ? props.formTypeControl
                             : "SchoolName"
-                        }`
+                        }`,
+                        {
+                          required: true,
+                        }
                       )}
                     />
                   </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
-                    <label>Address</label>
+                    <label>
+                      {" "}
+                      {props.labelAddress ? props.labelAddress : "Address"}
+                    </label>
                     <input
                       type="text"
                       class="form-control"
-                      placeholder="Address"
+                      placeholder={
+                        props.labelAddress ? props.labelAddress : "Address"
+                      }
                       value={school?.NickName}
                       id={`school[${index}].Address`}
                       name={`school[${index}].Address`}
@@ -416,7 +428,7 @@ const SchoolForm = (props) => {
                             selected={value}
                             value={school?.YearFromTo}
                             yearDropdownItemNumber={100}
-                            // dateFormat="dd-MM-yyyy"
+                            dateFormat="yyyy"
                             scrollableYearDropdown={true}
                             showYearDropdown
                             placeholderText="Enter date"
@@ -468,6 +480,7 @@ const SchoolForm = (props) => {
                       {...register(`school[${index}].State`, {
                         required: true,
                       })}
+                      onChange={selectCity}
                     >
                       <option value=""> Select Region/State </option>
                       {Region.map((item) => (
@@ -503,39 +516,34 @@ const SchoolForm = (props) => {
                     </select>
                   </div>
                 </div>
-                { props.relationType === "pl"
-                      && (  <>
-                      <div class="col-lg-6 col-md-6">
-                      <div class="form-group">
-                        <label>village/HomeTown</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          placeholder="HomeTown"
-                          
-                          id={`school[${index}].HomeTown`}
-                          name={`school[${index}].HomeTown`}
-                          {...register(`school[${index}].HomeTown`)}
-                        />
-                      </div>
-                    </div>
-                    <div class="col-lg-12 col-md-12">
-                      <div class="form-group">
-                        <label>Address</label>
-                        <textarea
-                          type="text"
-                          class="form-control"
-                          placeholder="Address"
-                          id={`school[${index}].Address`}
-                          name={`school[${index}].Address`}
-                          {...register(`school[${index}].Address`)}
-                        />
-                      </div>
-                    </div>
-                    </>
-                    )}
-                               
-              
+
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group">
+                    <label>Village/Town</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Village/Town"
+                      id={`school[${index}].HomeTown`}
+                      name={`school[${index}].HomeTown`}
+                      {...register(`school[${index}].HomeTown`)}
+                    />
+                  </div>
+                </div>
+                <div class="col-lg-12 col-md-12">
+                  <div class="form-group">
+                    <label>Address</label>
+                    <textarea
+                      type="text"
+                      class="form-control"
+                      placeholder="Address"
+                      id={`school[${index}].Address`}
+                      name={`school[${index}].Address`}
+                      {...register(`school[${index}].Address`)}
+                    />
+                  </div>
+                </div>
+
                 {index > 0 && (
                   <div className="form-group row">
                     <div

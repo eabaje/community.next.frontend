@@ -198,7 +198,6 @@ const ChildForm = (props) => {
     setLoading(true);
     AddRelationInfo2(formdata)((res) => {
       setLoading(false);
-      alert(res?.message);
 
       toast.success(res?.message);
     })((e) => {
@@ -341,6 +340,7 @@ const ChildForm = (props) => {
                   className="form-control"
                   {...register("RelationId")}
                 />
+
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
                     <label>First Name</label>
@@ -414,6 +414,18 @@ const ChildForm = (props) => {
                         Female
                       </option>
                     </select>
+                  </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group">
+                    <label>Father's Family Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Father's Family Name"
+                      name={`child[${index}].FamilyName`}
+                      {...register(`child[${index}].FamilyName`)}
+                    />
                   </div>
                 </div>
                 {index > 0 && (

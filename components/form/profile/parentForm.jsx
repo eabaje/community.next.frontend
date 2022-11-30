@@ -14,10 +14,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import { GlobalContext } from "../../../context/Provider";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
-import { RELATION_TYPE, RELATION_TYPE_2 } from "../../../constants/enum";
+import { RELATION_TYPE, RELATION_TYPE_2, TITLE } from "../../../constants/enum";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
 import { AddRelationInfo } from "../../../context/actions/user/user.action";
+import AutoSuggestInput from "../../formInput/autoSuggest.text";
 
 const ParentForm = (props) => {
   const { userId, relationType } = props;
@@ -49,6 +50,24 @@ const ParentForm = (props) => {
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   // const [showProfile, setShowProfile] = useState(false);
+
+  const [rowsData, setRowsData] = useState([{}]);
+  const [childData, setChildData] = useState([{}]);
+
+  const deleteTableRows = (index) => {
+    const rows = [...rowsData];
+    rows.splice(index, 1);
+    setRowsData(rows);
+  };
+  const addTableRows = () => {
+    const rowsInput = {
+      FirstName: "",
+      LastName: "",
+      MiddleName: "",
+      NickName: "",
+    };
+    setRowsData([...rowsData, rowsInput]);
+  };
 
   const popupCloseHandler = (e) => {
     PopUpClose()(userDispatch);
@@ -163,7 +182,7 @@ const ParentForm = (props) => {
   function onSubmit(formdata) {
     AddRelationInfo(formdata)(userDispatch);
     createUser?.data
-      ? toast.success(createUser?.data?.message)
+      ? toast.success(createUser?.message)
       : toast.error(createUser.error);
   }
 
@@ -201,157 +220,169 @@ const ParentForm = (props) => {
           className="form-control"
           {...register("UserId")}
         />
-         <input
-          type="hidden"
-          name="RelationId"
-          
-          className="form-control"
-          {...register("RelationId")}
-        />
+
         <div class="row">
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Relationship Type</label>
-              <select
-                name="RelationType"
-                className="form-select"
-                {...register("RelationType")}
-              >
-                <option value="">Select Relationship</option>
-                {RELATION_TYPE_2.map((item) => (
-                  <option key={item.value} value={item.value}>
-                    {item.text}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Gender</label>
-              <select
-                class="form-select"
-                name="Sex"
-                onchange={SelectGender}
-                {...register("Sex", {
-                  required: true,
-                })}
-              >
-                <option selected="1">Gender</option>
-                <option value="2">Male</option>
-                <option value="3">Female</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>First Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="First name"
-                name="FirstName"
-                {...register("FirstName")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Middle Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Middle name"
-                name="MiddleName"
-                {...register("MiddleName")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Last Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Last name"
-                name="LastName"
-                {...register("LastName")}
-              />
-            </div>
-          </div>
-
-          {gender === "2" && (
-            <div class="col-lg-6 col-md-6">
-              <div class="form-group">
-                <label>Maiden Name</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Maiden Name"
-                  name="MaidenName"
-                  {...register("MaidenName")}
-                />
+          <div className="form-group row">
+            <div className="col-md-12">
+              <div className="col-md-12 alert alert-success">
+                <h6 style={{ textAlign: "right" }}>
+                  {" "}
+                  <button
+                    type="button"
+                    class="default-btn"
+                    onClick={addTableRows}
+                  >
+                    + Add{" "}
+                    {props.relationType === "paternal"
+                      ? "Paternal "
+                      : "Maternal "}
+                    Info
+                  </button>
+                </h6>
               </div>
             </div>
-          )}
-
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Family Name</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="FamilyName"
-                name="FamilyName"
-                {...register("FamilyName")}
-              />
-            </div>
           </div>
-
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Tribe</label>
+          {rowsData?.map((parent, index) => (
+            <>
               <input
-                type="text"
-                class="form-control"
-                placeholder="Tribe"
-                name="Tribe"
-                {...register("Tribe")}
+                type="hidden"
+                name={`parent[${index}].RelationId`}
+                className="form-control"
+                {...register(`parent[${index}].RelationId`)}
               />
-            </div>
-          </div>
+              {index === 1 && (
+                <div className="form-group row">
+                  <div
+                    className="col-md-12 alert alert-success"
+                    style={{ textAlign: "right" }}
+                  ></div>
+                </div>
+              )}
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Relationship Type</label>
+                  <select
+                    name={`parent[${index}].RelationType`}
+                    className="form-select"
+                    {...register(`parent[${index}].RelationType`)}
+                  >
+                    <option value="">Select Relationship</option>
+                    {RELATION_TYPE_2.map((item) => (
+                      <option key={item.value} value={item.value}>
+                        {item.text}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select
+                    class="form-select"
+                    name={`parent[${index}].Sex`}
+                    onchange={SelectGender}
+                    {...register("Sex", {
+                      required: true,
+                    })}
+                  >
+                    <option selected="1">Gender</option>
+                    <option value="2">Male</option>
+                    <option value="3">Female</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Title</label>
+                  <select
+                    name={`parent[${index}].Title`}
+                    className="form-select"
+                    {...register(`parent[${index}].Title`)}
+                  >
+                    <option value="">--Title--</option>
+                    {TITLE.map((item) => (
+                      <option key={item.value} value={item.value}>
+                        {item.text}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>First Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="First name"
+                    name={`parent[${index}].FirstName`}
+                    {...register(`parent[${index}].FirstName`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Middle Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Middle name"
+                    name={`parent[${index}].MiddleName`}
+                    {...register(`parent[${index}].MiddleName`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Last Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Last name"
+                    name={`parent[${index}].LastName`}
+                    {...register(`parent[${index}].LastName`)}
+                  />
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Clan</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Clan"
-                name="Clan"
-                {...register("Clan")}
-              />
-            </div>
-          </div>
+              {gender === "2" && (
+                <div class="col-lg-6 col-md-6">
+                  <div class="form-group">
+                    <label>Maiden Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Maiden Name"
+                      name={`parent[${index}].MaidenName`}
+                      {...register(`parent[${index}].MaidenName`)}
+                    />
+                  </div>
+                </div>
+              )}
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Kindred</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Kindred"
-                name="Kindred"
-                {...register("Kindred")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Language</label>
-
-              {/* <Typeahead
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Family Name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Family Name"
+                    name={`parent[${index}].FamilyName`}
+                    {...register(`parent[${index}].FamilyName`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Language</label>
+                  <AutoSuggestInput
+                    name={`parent[${index}].Language`}
+                    className={"form-control"}
+                    dataSource={options}
+                    {...register(`parent[${index}].Language`)}
+                  />
+                  {/* <Typeahead
                     id="ddLanguage"
                     name="ddLanguage"
                     onChange={setSelected}
@@ -359,7 +390,7 @@ const ParentForm = (props) => {
                     placeholder="Choose a language"
                     selected={selected}
                    
-                  /> */}
+                  /> 
               <select
                 class="form-select"
                 name="Language"
@@ -378,106 +409,161 @@ const ParentForm = (props) => {
                     {item.label}
                   </option>
                 ))}
-              </select>
-            </div>
-          </div>
+              </select>*/}
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Tribe</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Tribe"
+                    name={`parent[${index}].Tribe`}
+                    {...register(`parent[${index}].Tribe`)}
+                  />
+                </div>
+              </div>
 
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>Country</label>
-              <select
-                name="Country"
-                className="form-select"
-                {...register("Country")}
-                onChange={selectCountry}
-              >
-                <option value="">Select Country</option>
-                {countries.map((item) => (
-                  <option key={item.isoCode} value={item.isoCode}>
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>State</label>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Clan</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Clan"
+                    name={`parent[${index}].Clan`}
+                    {...register(`parent[${index}].Clan`)}
+                  />
+                </div>
+              </div>
 
-              <select
-                name="State"
-                className="form-select"
-                id="State"
-                {...register("State", {
-                  required: true,
-                })}
-                onChange={selectCity}
-              >
-                <option value=""> Select Region/State </option>
-                {Region.map((item) => (
-                  <option
-                    key={item.isoCode}
-                    selected={selRegion === item.isoCode}
-                    value={item.isoCode}
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Kindred</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="Kindred"
+                    name={`parent[${index}].Kindred`}
+                    {...register(`parent[${index}].Kindred`)}
+                  />
+                </div>
+              </div>
+
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Country</label>
+                  <select
+                    name={`parent[${index}].Country`}
+                    className="form-select"
+                    {...register(`parent[${index}].Country`, {
+                      required: true,
+                    })}
+                    onChange={selectCountry}
                   >
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>City</label>
+                    <option value="">Select Country</option>
+                    {countries.map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>State</label>
 
-              <select
-                name="City"
-                className="form-control"
-                // readOnly={readOnly}
-                id="City"
-                {...register("City", {
-                  required: true,
-                })}
-              >
-                <option value=""> Select City </option>
-                {city.map((item) => (
-                  <option
-                    key={item.isoCode}
-                    selected={selCity === item.name}
-                    value={item.isoCode}
+                  <select
+                    name={`parent[${index}].State`}
+                    className="form-select"
+                    id="State"
+                    {...register(`parent[${index}].State`)}
+                    onChange={selectCity}
                   >
-                    {item.name}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </div>
-          <div class="col-lg-6 col-md-6">
-            <div class="form-group">
-              <label>HomeTown</label>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="HomeTown"
-                name="HomeTown"
-                {...register("HomeTown")}
-              />
-            </div>
-          </div>
-          <div class="col-lg-12 col-md-12">
-            <div class="form-group">
-              <label>Address</label>
-              <textarea
-                type="text"
-                name="Address"
-                class="form-control"
-                placeholder="Address"
-                {...register("Address", {
-                  required: true,
-                })}
-              />
-            </div>
-          </div>
+                    <option value=""> Select Region/State </option>
+                    {Region.map((item) => (
+                      <option
+                        key={item.isoCode}
+                        selected={selRegion === item.isoCode}
+                        value={item.isoCode}
+                      >
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>City</label>
+
+                  <select
+                    name={`parent[${index}].City`}
+                    className="form-control"
+                    // readOnly={readOnly}
+                    id="City"
+                    {...register(`parent[${index}].City`)}
+                  >
+                    <option value=""> Select City </option>
+                    {city.map((item) => (
+                      <option
+                        key={item.isoCode}
+                        selected={selCity === item.name}
+                        value={item.isoCode}
+                      >
+                        {item.name}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Village/Town</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="HomeTown"
+                    name={`parent[${index}].HomeTown`}
+                    {...register(`parent[${index}].HomeTown`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Address</label>
+                  <textarea
+                    type="text"
+                    name={`parent[${index}].Address`}
+                    class="form-control"
+                    placeholder="Address"
+                    {...register(`parent[${index}].Address`)}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-12 col-md-12">
+                {index > 0 && (
+                  <div className="form-group row">
+                    <div
+                      className="col-md-12 alert alert-success"
+                      style={{ textAlign: "right" }}
+                    >
+                      <button
+                        type="button"
+                        className="btn btn-outline-danger right"
+                        onClick={() => deleteTableRows(index)}
+                      >
+                        x
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </>
+          ))}
+
           <div class="col-lg-12 col-md-12">
             <button
               type="submit"
