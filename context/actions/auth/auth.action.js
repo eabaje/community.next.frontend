@@ -108,6 +108,40 @@ export const signin2 = (form) => (dispatch) => (onSuccess) => (onError) => {
     });
 };
 
+export const passwordReset =
+  (form) => (dispatch) => (onSuccess) => (onError) => {
+    const requestPayload = {
+      Email: form.Email,
+      Password: form.Password,
+    };
+
+    dispatch({
+      type: LOGIN_REQUEST,
+    });
+    axiosInstance()
+      .post(`auth/reset`, form)
+      .then((res) => {
+        dispatch({
+          type: LOGIN_SUCCESS,
+          payload: res.data,
+        });
+        console.log(`res`, res);
+        onSuccess(res.data);
+      })
+      .catch((err) => {
+        const message = err.response
+          ? err.response.data.message
+          : CONNECTION_ERROR;
+
+        dispatch({
+          type: LOGIN_FAIL,
+          payload: message,
+        });
+
+        onError(message);
+      });
+  };
+
 export const signout = () => (dispatch) => {
   localStorage.removeItem("user");
   localStorage.removeItem("token");

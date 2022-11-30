@@ -99,7 +99,7 @@ const ChildForm = (props) => {
 
       GetAllRelationInfo2(userId, "ch")
         .then((res) => {
-          setListChild(childUsers?.data?.data);
+          setListChild(objItemUsers?.data?.data);
         })
         .catch((e) => {});
     } else {
@@ -111,7 +111,7 @@ const ChildForm = (props) => {
   };
 
   const [rowsData, setRowsData] = useState([{}]);
-  const [childData, setChildData] = useState([{}]);
+  const [objItemData, setChildData] = useState([{}]);
 
   const deleteTableRows = (index) => {
     const rows = [...rowsData];
@@ -144,7 +144,7 @@ const ChildForm = (props) => {
     };
   }
 
-  const addTableRows = (childDt = null) => {
+  const addTableRows = (objItemDt = null) => {
     const rowsInput = {
       FirstName: "",
       LastName: "",
@@ -152,8 +152,8 @@ const ChildForm = (props) => {
       NickName: "",
     };
 
-    if (childDt) {
-      const newChildArray = childDt.map(
+    if (objItemDt) {
+      const newChildArray = objItemDt.map(
         selectProps("FirstName", "MiddleName", "LastName", "NickName")
       );
       //  if (newChildArray.length > 0) {
@@ -168,9 +168,9 @@ const ChildForm = (props) => {
         "LastName",
         "NickName",
       ];
-      childDt?.map((item, index) => {
+      objItemDt?.map((item, index) => {
         fields.forEach((field) =>
-          setValue(`child[${index}].${field}`, item[field])
+          setValue(`objItem[${index}].${field}`, item[field])
         );
       });
       //}
@@ -178,8 +178,8 @@ const ChildForm = (props) => {
       setRowsData([...rowsData, {}]);
       setRowsData([...rowsData, rowsInput]);
     }
-    // childData
-    //   ? setRowsData([...rowsData, childData])
+    // objItemData
+    //   ? setRowsData([...rowsData, objItemData])
     //   : setRowsData([...rowsData, rowsInput]);
   };
 
@@ -230,7 +230,7 @@ const ChildForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  console.log("listChild", childData);
+  console.log("listChild", objItemData);
   console.log("rowData", rowsData);
   return (
     <>
@@ -272,7 +272,7 @@ const ChildForm = (props) => {
               </div>
             </div>
           </div>
-          {rowsData?.map((child, index) => (
+          {rowsData?.map((objItem, index) => (
             <>
               {index === 1 && (
                 <div className="form-group row">
@@ -317,9 +317,9 @@ const ChildForm = (props) => {
                     <div class="form-group">
                       <label>Parent</label>
                       <select
-                        name="childen"
+                        name="objItemen"
                         className="form-select"
-                        {...register("children")}
+                        {...register("objItemren")}
                       >
                         <option value="">Parent Name</option>
                         {listChild?.map((item) => (
@@ -348,9 +348,9 @@ const ChildForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="First name"
-                      id={`child[${index}].FirstName`}
-                      name={`child[${index}].FirstName`}
-                      {...register(`child[${index}].FirstName`)}
+                      id={`objItem[${index}].FirstName`}
+                      name={`objItem[${index}].FirstName`}
+                      {...register(`objItem[${index}].FirstName`)}
                     />
                   </div>
                 </div>
@@ -361,9 +361,9 @@ const ChildForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Middle name"
-                      id={`child[${index}].MiddleName`}
-                      name={`child[${index}].MiddleName`}
-                      {...register(`child[${index}].MiddleName`)}
+                      id={`objItem[${index}].MiddleName`}
+                      name={`objItem[${index}].MiddleName`}
+                      {...register(`objItem[${index}].MiddleName`)}
                     />
                   </div>
                 </div>
@@ -374,9 +374,9 @@ const ChildForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Last name"
-                      id={`child[${index}].LastName`}
-                      name={`child[${index}].LastName`}
-                      {...register(`child[${index}].LastName`)}
+                      id={`objItem[${index}].LastName`}
+                      name={`objItem[${index}].LastName`}
+                      {...register(`objItem[${index}].LastName`)}
                     />
                   </div>
                 </div>
@@ -388,9 +388,9 @@ const ChildForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="NickName"
-                      id={`child[${index}].NickName`}
-                      name={`child[${index}].NickName`}
-                      {...register(`child[${index}].NickName`)}
+                      id={`objItem[${index}].NickName`}
+                      name={`objItem[${index}].NickName`}
+                      {...register(`objItem[${index}].NickName`)}
                     />
                   </div>
                 </div>
@@ -399,18 +399,18 @@ const ChildForm = (props) => {
                     <label>Gender</label>
                     <select
                       class="form-select"
-                      id={`child[${index}].Sex`}
-                      name={`child[${index}].Sex`}
-                      {...register(`child[${index}].Sex`, {
+                      id={`objItem[${index}].Sex`}
+                      name={`objItem[${index}].Sex`}
+                      {...register(`objItem[${index}].Sex`, {
                         required: true,
                       })}
                     >
                       <option>Gender</option>
 
-                      <option value="2" selected={child.Sex === "2"}>
+                      <option value="2" selected={objItem.Sex === "2"}>
                         Male
                       </option>
-                      <option value="3" selected={child.Sex === "3"}>
+                      <option value="3" selected={objItem.Sex === "3"}>
                         Female
                       </option>
                     </select>
@@ -423,8 +423,8 @@ const ChildForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Father's Family Name"
-                      name={`child[${index}].FamilyName`}
-                      {...register(`child[${index}].FamilyName`)}
+                      name={`objItem[${index}].FamilyName`}
+                      {...register(`objItem[${index}].FamilyName`)}
                     />
                   </div>
                 </div>

@@ -151,7 +151,7 @@ const SchoolForm = (props) => {
       ];
       childDt?.map((item, index) => {
         fields.forEach((field) =>
-          setValue(`school[${index}].${field}`, item[field])
+          setValue(`objItem[${index}].${field}`, item[field])
         );
 
         setRegion(
@@ -198,10 +198,10 @@ const SchoolForm = (props) => {
   } = useContext(GlobalContext);
 
   // const {
-  //   isLoading: schoolLoading,
-  //   error: schoolError,
-  //   data: schoolUsers,
-  // } = useQuery(["school"], () =>
+  //   isLoading: objItemLoading,
+  //   error: objItemError,
+  //   data: objItemUsers,
+  // } = useQuery(["objItem"], () =>
   //   makeRequest
   //     .get(`/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`)
   //     .then((res) => {
@@ -308,7 +308,7 @@ const SchoolForm = (props) => {
               </div>
             </div>
           </div>
-          {rowsData.map((school, index) => (
+          {rowsData.map((objItem, index) => (
             <>
               {index === 1 && (
                 <div className="form-group row">
@@ -334,19 +334,19 @@ const SchoolForm = (props) => {
                           ? props.formTypeName
                           : "Name of School"
                       }
-                      value={school?.SchoolName}
-                      id={`school[${index}].${
+                      value={objItem?.SchoolName}
+                      id={`objItem[${index}].${
                         props.formTypeControl
                           ? props.formTypeControl
                           : "SchoolName"
                       }`}
-                      name={`school[${index}].${
+                      name={`objItem[${index}].${
                         props.formTypeControl
                           ? props.formTypeControl
                           : "SchoolName"
                       }`}
                       {...register(
-                        `school[${index}].${
+                        `objItem[${index}].${
                           props.formTypeControl
                             ? props.formTypeControl
                             : "SchoolName"
@@ -370,10 +370,10 @@ const SchoolForm = (props) => {
                       placeholder={
                         props.labelAddress ? props.labelAddress : "Address"
                       }
-                      value={school?.NickName}
-                      id={`school[${index}].Address`}
-                      name={`school[${index}].Address`}
-                      {...register(`school[${index}].Address`, {
+                      value={objItem?.NickName}
+                      id={`objItem[${index}].Address`}
+                      name={`objItem[${index}].Address`}
+                      {...register(`objItem[${index}].Address`, {
                         required: true,
                       })}
                     />
@@ -384,7 +384,7 @@ const SchoolForm = (props) => {
                     <label>From Year </label>
 
                     <Controller
-                      name={`school[${index}].YearFrom`}
+                      name={`objItem[${index}].YearFrom`}
                       control={control}
                       // defaultValue={new Date()}
                       render={({ field: { onChange, value } }) => {
@@ -394,7 +394,7 @@ const SchoolForm = (props) => {
                             className="ui-datepicker"
                             onChange={onChange}
                             selected={value}
-                            value={school?.YearFrom}
+                            value={objItem?.YearFrom}
                             yearDropdownItemNumber={100}
                             dateFormat="yyyy"
                             scrollableYearDropdown={true}
@@ -416,7 +416,7 @@ const SchoolForm = (props) => {
                   <div class="form-group">
                     <label>To Year</label>
                     <Controller
-                      name={`school[${index}].YearTo`}
+                      name={`objItem[${index}].YearTo`}
                       control={control}
                       // defaultValue={new Date()}
                       render={({ field: { onChange, value } }) => {
@@ -426,7 +426,7 @@ const SchoolForm = (props) => {
                             className="ui-datepicker"
                             onChange={onChange}
                             selected={value}
-                            value={school?.YearFromTo}
+                            value={objItem?.YearFromTo}
                             yearDropdownItemNumber={100}
                             dateFormat="yyyy"
                             scrollableYearDropdown={true}
@@ -453,9 +453,9 @@ const SchoolForm = (props) => {
                     <label>Country</label>
                     <select
                       className="form-select"
-                      id={`school[${index}].Country`}
-                      name={`school[${index}].Country`}
-                      {...register(`school[${index}].Country`, {
+                      id={`objItem[${index}].Country`}
+                      name={`objItem[${index}].Country`}
+                      {...register(`objItem[${index}].Country`, {
                         required: true,
                       })}
                       onChange={selectCountry}
@@ -475,9 +475,9 @@ const SchoolForm = (props) => {
 
                     <select
                       className="form-select"
-                      id={`school[${index}].State`}
-                      name={`school[${index}].State`}
-                      {...register(`school[${index}].State`, {
+                      id={`objItem[${index}].State`}
+                      name={`objItem[${index}].State`}
+                      {...register(`objItem[${index}].State`, {
                         required: true,
                       })}
                       onChange={selectCity}
@@ -499,15 +499,15 @@ const SchoolForm = (props) => {
                       className="form-control"
                       // readOnly={readOnly}
 
-                      id={`school[${index}].City`}
-                      name={`school[${index}].City`}
-                      {...register(`school[${index}].City`)}
+                      id={`objItem[${index}].City`}
+                      name={`objItem[${index}].City`}
+                      {...register(`objItem[${index}].City`)}
                     >
                       <option value=""> Select City </option>
                       {city.map((item) => (
                         <option
                           key={item.isoCode}
-                          selected={school?.City === item.isoCode}
+                          selected={objItem?.City === item.isoCode}
                           value={item.isoCode}
                         >
                           {item.name}
@@ -524,9 +524,9 @@ const SchoolForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Village/Town"
-                      id={`school[${index}].HomeTown`}
-                      name={`school[${index}].HomeTown`}
-                      {...register(`school[${index}].HomeTown`)}
+                      id={`objItem[${index}].HomeTown`}
+                      name={`objItem[${index}].HomeTown`}
+                      {...register(`objItem[${index}].HomeTown`)}
                     />
                   </div>
                 </div>
@@ -537,9 +537,9 @@ const SchoolForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Address"
-                      id={`school[${index}].Address`}
-                      name={`school[${index}].Address`}
-                      {...register(`school[${index}].Address`)}
+                      id={`objItem[${index}].Address`}
+                      name={`objItem[${index}].Address`}
+                      {...register(`objItem[${index}].Address`)}
                     />
                   </div>
                 </div>

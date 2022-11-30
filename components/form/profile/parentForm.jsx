@@ -242,13 +242,13 @@ const ParentForm = (props) => {
               </div>
             </div>
           </div>
-          {rowsData?.map((parent, index) => (
+          {rowsData?.map((objItem, index) => (
             <>
               <input
                 type="hidden"
-                name={`parent[${index}].RelationId`}
+                name={`objItem[${index}].RelationId`}
                 className="form-control"
-                {...register(`parent[${index}].RelationId`)}
+                {...register(`objItem[${index}].RelationId`)}
               />
               {index === 1 && (
                 <div className="form-group row">
@@ -262,9 +262,9 @@ const ParentForm = (props) => {
                 <div class="form-group">
                   <label>Relationship Type</label>
                   <select
-                    name={`parent[${index}].RelationType`}
+                    name={`objItem[${index}].RelationType`}
                     className="form-select"
-                    {...register(`parent[${index}].RelationType`)}
+                    {...register(`objItem[${index}].RelationType`)}
                   >
                     <option value="">Select Relationship</option>
                     {RELATION_TYPE_2.map((item) => (
@@ -280,7 +280,7 @@ const ParentForm = (props) => {
                   <label>Gender</label>
                   <select
                     class="form-select"
-                    name={`parent[${index}].Sex`}
+                    name={`objItem[${index}].Sex`}
                     onchange={SelectGender}
                     {...register("Sex", {
                       required: true,
@@ -296,9 +296,9 @@ const ParentForm = (props) => {
                 <div class="form-group">
                   <label>Title</label>
                   <select
-                    name={`parent[${index}].Title`}
+                    name={`objItem[${index}].Title`}
                     className="form-select"
-                    {...register(`parent[${index}].Title`)}
+                    {...register(`objItem[${index}].Title`)}
                   >
                     <option value="">--Title--</option>
                     {TITLE.map((item) => (
@@ -316,8 +316,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="First name"
-                    name={`parent[${index}].FirstName`}
-                    {...register(`parent[${index}].FirstName`)}
+                    name={`objItem[${index}].FirstName`}
+                    {...register(`objItem[${index}].FirstName`)}
                   />
                 </div>
               </div>
@@ -328,8 +328,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Middle name"
-                    name={`parent[${index}].MiddleName`}
-                    {...register(`parent[${index}].MiddleName`)}
+                    name={`objItem[${index}].MiddleName`}
+                    {...register(`objItem[${index}].MiddleName`)}
                   />
                 </div>
               </div>
@@ -340,8 +340,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Last name"
-                    name={`parent[${index}].LastName`}
-                    {...register(`parent[${index}].LastName`)}
+                    name={`objItem[${index}].LastName`}
+                    {...register(`objItem[${index}].LastName`)}
                   />
                 </div>
               </div>
@@ -354,8 +354,8 @@ const ParentForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Maiden Name"
-                      name={`parent[${index}].MaidenName`}
-                      {...register(`parent[${index}].MaidenName`)}
+                      name={`objItem[${index}].MaidenName`}
+                      {...register(`objItem[${index}].MaidenName`)}
                     />
                   </div>
                 </div>
@@ -368,8 +368,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Family Name"
-                    name={`parent[${index}].FamilyName`}
-                    {...register(`parent[${index}].FamilyName`)}
+                    name={`objItem[${index}].FamilyName`}
+                    {...register(`objItem[${index}].FamilyName`)}
                   />
                 </div>
               </div>
@@ -377,10 +377,10 @@ const ParentForm = (props) => {
                 <div class="form-group">
                   <label>Language</label>
                   <AutoSuggestInput
-                    name={`parent[${index}].Language`}
+                    name={`objItem[${index}].Language`}
                     className={"form-control"}
                     dataSource={options}
-                    {...register(`parent[${index}].Language`)}
+                    {...register(`objItem[${index}].Language`)}
                   />
                   {/* <Typeahead
                     id="ddLanguage"
@@ -419,8 +419,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Tribe"
-                    name={`parent[${index}].Tribe`}
-                    {...register(`parent[${index}].Tribe`)}
+                    name={`objItem[${index}].Tribe`}
+                    {...register(`objItem[${index}].Tribe`)}
                   />
                 </div>
               </div>
@@ -432,8 +432,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Clan"
-                    name={`parent[${index}].Clan`}
-                    {...register(`parent[${index}].Clan`)}
+                    name={`objItem[${index}].Clan`}
+                    {...register(`objItem[${index}].Clan`)}
                   />
                 </div>
               </div>
@@ -445,8 +445,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Kindred"
-                    name={`parent[${index}].Kindred`}
-                    {...register(`parent[${index}].Kindred`)}
+                    name={`objItem[${index}].Kindred`}
+                    {...register(`objItem[${index}].Kindred`)}
                   />
                 </div>
               </div>
@@ -455,9 +455,9 @@ const ParentForm = (props) => {
                 <div class="form-group">
                   <label>Country</label>
                   <select
-                    name={`parent[${index}].Country`}
+                    name={`objItem[${index}].Country`}
                     className="form-select"
-                    {...register(`parent[${index}].Country`, {
+                    {...register(`objItem[${index}].Country`, {
                       required: true,
                     })}
                     onChange={selectCountry}
@@ -476,10 +476,10 @@ const ParentForm = (props) => {
                   <label>State</label>
 
                   <select
-                    name={`parent[${index}].State`}
+                    name={`objItem[${index}].State`}
                     className="form-select"
                     id="State"
-                    {...register(`parent[${index}].State`)}
+                    {...register(`objItem[${index}].State`)}
                     onChange={selectCity}
                   >
                     <option value=""> Select Region/State </option>
@@ -500,11 +500,11 @@ const ParentForm = (props) => {
                   <label>City</label>
 
                   <select
-                    name={`parent[${index}].City`}
+                    name={`objItem[${index}].City`}
                     className="form-control"
                     // readOnly={readOnly}
                     id="City"
-                    {...register(`parent[${index}].City`)}
+                    {...register(`objItem[${index}].City`)}
                   >
                     <option value=""> Select City </option>
                     {city.map((item) => (
@@ -526,8 +526,8 @@ const ParentForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="HomeTown"
-                    name={`parent[${index}].HomeTown`}
-                    {...register(`parent[${index}].HomeTown`)}
+                    name={`objItem[${index}].HomeTown`}
+                    {...register(`objItem[${index}].HomeTown`)}
                   />
                 </div>
               </div>
@@ -536,10 +536,10 @@ const ParentForm = (props) => {
                   <label>Address</label>
                   <textarea
                     type="text"
-                    name={`parent[${index}].Address`}
+                    name={`objItem[${index}].Address`}
                     class="form-control"
                     placeholder="Address"
-                    {...register(`parent[${index}].Address`)}
+                    {...register(`objItem[${index}].Address`)}
                   />
                 </div>
               </div>

@@ -6,12 +6,14 @@ import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import dynamic from "next/dynamic";
 import { GlobalContext } from "../../../context/Provider";
-import { signin2 } from "../../../context/actions/auth/auth.action";
+import {
+  passwordReset,
+  signin2,
+} from "../../../context/actions/auth/auth.action";
 import { API_URL } from "../../../constants";
 
-export default function LoginForm({ changeShowForm }) {
+export default function PasswordRecoveryForm() {
   // const [loading, setLoading] = useState(false);
-  // const [showForm, setShowForm] = useState(0);
 
   const router = useRouter();
   // const { login } = useContext(AuthContext);
@@ -30,9 +32,8 @@ export default function LoginForm({ changeShowForm }) {
   // const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
 
   const onSubmit = async (formdata) => {
-    signin2(formdata)(authDispatch)((res) => {
-      window.location.href = "/home/?userId=" + res.user.UserId;
-      // history.push("/dashboard");
+    passwordReset(formdata)(authDispatch)((res) => {
+      toast.success(res.message);
     })((err) => {
       console.log(`err`, err);
       toast.error(err);
@@ -42,7 +43,7 @@ export default function LoginForm({ changeShowForm }) {
 
   return (
     <div class="account-setting-form">
-      <h2>Login</h2>
+      <h2>Forgot Password</h2>
       <div className="row">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
@@ -58,30 +59,15 @@ export default function LoginForm({ changeShowForm }) {
             />
           </div>
 
-          <div className="form-group">
-            <label>Password</label>
-            <input
-              name="Password"
-              type="password"
-              className="form-control"
-              {...register("Password")}
-              required
-            />
-          </div>
-
           <button type="submit" className="form-control-submit-button">
-            {loading && <i className="fa fa-spinner fa-spin"></i>} Signin
+            {loading && <i className="fa fa-spinner fa-spin"></i>} Submit
           </button>
-          <div className="or-text " style={{ textAlign: "center" }}>
-            <span>Or</span>
-          </div>
-          <button
-            type="button"
-            className="form-control-submit-button"
-            onClick={() => changeShowForm(2)}
-          >
-            Forgot Password
-          </button>
+          {/* <div className="or-text">
+          <span>Or</span>
+        </div>
+        <button type="submit" className="google-btn">
+          Log In with Google
+        </button> */}
         </form>
       </div>
     </div>

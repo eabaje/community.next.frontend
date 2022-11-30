@@ -320,7 +320,7 @@ const CoupleForm = (props) => {
             </div>
           )}
 
-          {rowsData?.map((spouse, index) => (
+          {rowsData?.map((objItem, index) => (
             <>
               {index === 1 && (
                 <div className="form-group row">
@@ -337,8 +337,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="First name"
-                    name={`spouse[${index}].FirstName`}
-                    {...register(`spouse[${index}].FirstName`)}
+                    name={`objItem[${index}].FirstName`}
+                    {...register(`objItem[${index}].FirstName`)}
                   />
                 </div>
               </div>
@@ -349,8 +349,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Middle Name"
-                    name={`spouse[${index}].MiddleName`}
-                    {...register(`spouse[${index}].MiddleName`)}
+                    name={`objItem[${index}].MiddleName`}
+                    {...register(`objItem[${index}].MiddleName`)}
                   />
                 </div>
               </div>
@@ -361,8 +361,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Last name"
-                    name={`spouse[${index}].LastName`}
-                    {...register(`spouse[${index}].LastName`)}
+                    name={`objItem[${index}].LastName`}
+                    {...register(`objItem[${index}].LastName`)}
                   />
                 </div>
               </div>
@@ -374,8 +374,8 @@ const CoupleForm = (props) => {
                       type="text"
                       class="form-control"
                       placeholder="Maiden Name"
-                      name={`spouse[${index}].MaidenName`}
-                      {...register(`spouse[${index}].MaidenName`)}
+                      name={`objItem[${index}].MaidenName`}
+                      {...register(`objItem[${index}].MaidenName`)}
                     />
                   </div>
                 </div>
@@ -385,8 +385,8 @@ const CoupleForm = (props) => {
                   <label>Age Category</label>
                   <select
                     class="form-select"
-                    name={`spouse[${index}].Age`}
-                    {...register(`spouse[${index}].Age`)}
+                    name={`objItem[${index}].Age`}
+                    {...register(`objItem[${index}].Age`)}
                   >
                     <option value=""></option>
                     <option value="<18">{"<18"}</option>
@@ -402,7 +402,7 @@ const CoupleForm = (props) => {
                 <div class="form-group">
                   <label>Date of Birth</label>
                   <Controller
-                    name={`spouse[${index}].DOB`}
+                    name={`objItem[${index}].DOB`}
                     control={control}
                     // defaultValue={new Date()}
                     render={({ field: { onChange, value } }) => {
@@ -440,8 +440,8 @@ const CoupleForm = (props) => {
                     type="email"
                     class="form-control"
                     placeholder="Email"
-                    name={`spouse[${index}].Email`}
-                    {...register(`spouse[${index}].Email`)}
+                    name={`objItem[${index}].Email`}
+                    {...register(`objItem[${index}].Email`)}
                   />
                 </div>
               </div>
@@ -453,8 +453,8 @@ const CoupleForm = (props) => {
                     type="number"
                     class="form-control"
                     placeholder="Phone no"
-                    name={`spouse[${index}].Mobile`}
-                    {...register(`spouse[${index}].Mobile`)}
+                    name={`objItem[${index}].Mobile`}
+                    {...register(`objItem[${index}].Mobile`)}
                   />
                 </div>
               </div>
@@ -463,8 +463,8 @@ const CoupleForm = (props) => {
                   <label>Gender</label>
                   <select
                     class="form-select"
-                    name={`spouse[${index}].Sex`}
-                    {...register(`spouse[${index}].Sex`)}
+                    name={`objItem[${index}].Sex`}
+                    {...register(`objItem[${index}].Sex`)}
                   >
                     <option selected="1">Gender</option>
                     <option value="2">Male</option>
@@ -476,7 +476,7 @@ const CoupleForm = (props) => {
                 <div class="form-group">
                   <label>Occupation</label>
                   <OccupationDDL
-                    formVariable={register(`spouse[${index}].Occupation`)}
+                    formVariable={register(`objItem[${index}].Occupation`)}
                   />
                 </div>
               </div>
@@ -485,8 +485,8 @@ const CoupleForm = (props) => {
                   <label>Employment Status</label>
                   <select
                     class="form-select"
-                    name={`spouse[${index}].EmploymentStatus`}
-                    {...register(`spouse[${index}].EmploymentStatus`)}
+                    name={`objItem[${index}].EmploymentStatus`}
+                    {...register(`objItem[${index}].EmploymentStatus`)}
                   >
                     <option selected="0">Employment Status</option>
                     <option value="2">Employed</option>
@@ -501,8 +501,8 @@ const CoupleForm = (props) => {
                   <label>Relation Status</label>
                   <select
                     class="form-select"
-                    name={`spouse[${index}].MaritalStatus`}
-                    {...register(`spouse[${index}].MaritalStatus`)}
+                    name={`objItem[${index}].MaritalStatus`}
+                    {...register(`objItem[${index}].MaritalStatus`)}
                   >
                     <option selected="0">Relation Status</option>
                     <option value="1">Married</option>
@@ -551,8 +551,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Father's Family Name"
-                    name={`spouse[${index}].FamilyName`}
-                    {...register(`spouse[${index}].FamilyName`)}
+                    name={`objItem[${index}].FamilyName`}
+                    {...register(`objItem[${index}].FamilyName`)}
                   />
                 </div>
               </div>
@@ -564,8 +564,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Father's Tribe"
-                    name={`spouse[${index}].Tribe`}
-                    {...register(`spouse[${index}].Tribe`)}
+                    name={`objItem[${index}].Tribe`}
+                    {...register(`objItem[${index}].Tribe`)}
                   />
                 </div>
               </div>
@@ -577,8 +577,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Father's Clan"
-                    name={`spouse[${index}].Clan`}
-                    {...register(`spouse[${index}].Clan`)}
+                    name={`objItem[${index}].Clan`}
+                    {...register(`objItem[${index}].Clan`)}
                   />
                 </div>
               </div>
@@ -590,8 +590,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Father's Kindred"
-                    name={`spouse[${index}].Kindred`}
-                    {...register(`spouse[${index}].Kindred`)}
+                    name={`objItem[${index}].Kindred`}
+                    {...register(`objItem[${index}].Kindred`)}
                   />
                 </div>
               </div>
@@ -639,9 +639,9 @@ const CoupleForm = (props) => {
                 <div class="form-group">
                   <label>Father's Country of Origin</label>
                   <select
-                    name={`spouse[${index}].Country`}
+                    name={`objItem[${index}].Country`}
                     className="form-select"
-                    {...register(`spouse[${index}].Country`)}
+                    {...register(`objItem[${index}].Country`)}
                     onChange={selectCountry}
                   >
                     <option value="">Select Country</option>
@@ -658,10 +658,10 @@ const CoupleForm = (props) => {
                   <label>Father's State of Origin</label>
 
                   <select
-                    name={`spouse[${index}].State`}
+                    name={`objItem[${index}].State`}
                     className="form-select"
                     id="State"
-                    {...register(`spouse[${index}].State`)}
+                    {...register(`objItem[${index}].State`)}
                     onChange={selectCity}
                   >
                     <option value=""> Select Region/State </option>
@@ -682,11 +682,11 @@ const CoupleForm = (props) => {
                   <label>Father's LGA/City</label>
 
                   <select
-                    name={`spouse[${index}].City`}
+                    name={`objItem[${index}].City`}
                     className="form-control"
                     // readOnly={readOnly}
                     id="City"
-                    {...register(`spouse[${index}].City`)}
+                    {...register(`objItem[${index}].City`)}
                   >
                     <option value=""> Select LGA/City </option>
                     {city.map((item) => (
@@ -708,8 +708,8 @@ const CoupleForm = (props) => {
                     type="text"
                     class="form-control"
                     placeholder="Father's Village/Town"
-                    name={`spouse[${index}].HomeTown`}
-                    {...register(`spouse[${index}].HomeTown`)}
+                    name={`objItem[${index}].HomeTown`}
+                    {...register(`objItem[${index}].HomeTown`)}
                   />
                 </div>
               </div>
@@ -718,10 +718,10 @@ const CoupleForm = (props) => {
                   <label>Father's Address</label>
                   <textarea
                     type="text"
-                    name={`spouse[${index}].Address`}
+                    name={`objItem[${index}].Address`}
                     class="form-control"
                     placeholder="Father's Address"
-                    {...register(`spouse[${index}].Address`)}
+                    {...register(`objItem[${index}].Address`)}
                   />
                 </div>
                 {index > 0 && (

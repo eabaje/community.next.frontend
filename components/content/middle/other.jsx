@@ -9,12 +9,11 @@ import Tree from "../../tree";
 import { useRouter } from "next/router";
 import { fetchDataAll } from "../../../helpers/query";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { makeRequest } from "../../helpers/axios";
+import { makeRequest } from "../../../helpers/axios";
 const isBrowser = typeof window !== "undefined";
 
 function SecondMiddleContent({ query }) {
-
-  const {type}=query
+  const { type } = query;
   const router = useRouter();
   const [relation, setRelation] = useState([{}]);
 
@@ -25,7 +24,7 @@ function SecondMiddleContent({ query }) {
       toast.error(err);
     });
   };
-  
+
   const {
     isLoading: relationLoading,
     error: relationError,
@@ -51,10 +50,11 @@ function SecondMiddleContent({ query }) {
               {/*  <Tree user={null} />
 
                  <Chart />*/}
-                 {relationData? ( <StyledTree user={null} />):(
-                  "No link found!Update your profile."
-                 )}
-             
+              {relationData ? (
+                <StyledTree user={null} />
+              ) : (
+                "No link found!Update your profile."
+              )}
             </div>
           </div>
         </div>

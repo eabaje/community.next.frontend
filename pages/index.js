@@ -12,6 +12,7 @@ import { GlobalContext } from "../context/Provider";
 import { signin2 } from "../context/actions/auth/auth.action";
 import LoginForm from "../components/form/register/loginForm";
 import RegisterForm from "../components/form/register/registerform";
+import PasswordRecoveryForm from "../components/form/register/passwordForm";
 
 export default function Index() {
   const [showForm, setShowForm] = useState(0);
@@ -38,16 +39,6 @@ export default function Index() {
 
   const onSubmit = async (formdata) => {
     signin2(formdata)(authDispatch)((res) => {
-      // res.user.isConfirmed === true
-      //   ? res.user.isActivated === true
-      //     ? router.push(`/dashboard/`)
-      //     : res.user.roles === "carrier"
-      //     ? (window.location.href = `/carrier/`)
-      //     : res.user.roles === "shipper"
-      //     ? (window.location.href = `/shipment/`)
-      //     : (window.location.href = `/user/user-profile/?userId=${res.user.UserId}&companyId=${res.user.CompanyId}`)
-      //   : (window.location.href = `/user/user-profile/?userId=${res.user.UserId}&companyId=${res.user.CompanyId}`);
-
       window.location.href = "/home/";
       // router.push(`/home/${res.data._id}`);
       // history.push("/dashboard");
@@ -96,9 +87,11 @@ export default function Index() {
       <div class="col-lg-6 col-md-12">
         <div class="row">
           {showForm === 0 ? (
-            <LoginForm />
-          ) : (
+            <LoginForm changeShowForm={changeShowForm} />
+          ) : showForm === 1 ? (
             <RegisterForm changeShowForm={changeShowForm} />
+          ) : (
+            <PasswordRecoveryForm />
           )}
         </div>
       </div>
