@@ -8,8 +8,8 @@ import fetchQueryData from "../../helpers/useQuery";
 function Index({ query }) {
   // const router = useRouter()
   // const { userId,type } = query;
-  const { status, data, error, isFetching } = usePost(postId);
-  fetchQueryData("", "Neighbour");
+  const { status, data, error, isFetching } = fetchQueryData("", "Neighbour");
+
   return (
     <>
       <MainLayout>
