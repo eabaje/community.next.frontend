@@ -51,16 +51,16 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <QueryClientProvider client={queryClient}>
-        {/* <!-- Start Preloader Area --> 
-      <div className="preloader-area">
-        <div className="spinner">
-          <div className="inner">
-            <div className="disc"></div>
-            <div className="disc"></div>
-            <div className="disc"></div>
+        {/* <!-- Start Preloader Area -->  
+        <div className="preloader-area">
+          <div className="spinner">
+            <div className="inner">
+              <div className="disc"></div>
+              <div className="disc"></div>
+              <div className="disc"></div>
+            </div>
           </div>
-        </div>
-      </div>*/}
+        </div>*/}
         {/* <!-- End Preloader Area --> */}
 
         <div className="main-content-wrapper d-flex flex-column">

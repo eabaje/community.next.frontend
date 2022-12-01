@@ -1,15 +1,21 @@
-import FirstMiddleContent from "../../components/content/middle";
 import MainLayout from "../../layout/mainLayout";
 import dynamic from "next/dynamic";
-import SecondMiddleContent from "../../components/content/middle/other";
+
 import { useRouter } from "next/router";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import UserItemWidget from "../../components/widget/user.item.widget";
-import fetchQueryData from "../../helpers/useQuery";
+import { GetAllSchoolWorkAction } from "../../context/actions/user/user.action";
+
 function Index({ query }) {
   // const router = useRouter()
-  // const { userId,type } = query;
-  const { status, data, error, isFetching } = fetchQueryData("", "Neighbour");
-
+  const { userId } = query;
+  const { isLoading, error, data } = useQuery(["place"], () =>
+    GetAllSchoolWorkAction(userId, "pl")
+  );
+  const newChildArray = data.map(
+    selectProps("FirstName", "MiddleName", "LastName", "NickName")
+  );
+  console.log('neighbour',newChildArray)
   return (
     <>
       <MainLayout>

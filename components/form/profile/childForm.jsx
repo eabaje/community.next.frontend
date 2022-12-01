@@ -28,6 +28,7 @@ import dynamic from "next/dynamic";
 import { RELATION_TYPE_2, RELATION_TYPE_3 } from "../../../constants/enum";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
+import { selectProps } from "../../../helpers/selectProps";
 
 const ChildForm = (props) => {
   const { userId, relationType, dt } = props;
@@ -132,17 +133,6 @@ const ChildForm = (props) => {
   //   userDispatch,
   //   userState: { createUser, Users },
   // } = useContext(GlobalContext);
-
-  function selectProps(...prop) {
-    return function (obj) {
-      const newObj = {};
-      prop.forEach((name) => {
-        newObj[name] = obj[name];
-      });
-
-      return newObj;
-    };
-  }
 
   const addTableRows = (objItemDt = null) => {
     const rowsInput = {

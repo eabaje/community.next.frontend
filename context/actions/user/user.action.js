@@ -441,6 +441,17 @@ export const GetAllSchoolWorkInfo =
     }
   };
 
+export const GetAllSchoolWorkAction = async (userId, relationType) => {
+  try {
+    const res = await axios.get(
+      `/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`
+    );
+    return res.data;
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  }
+};
+
 export const GetSchoolWorkInfo = (Id, relationType) => async (dispatch) => {
   dispatch({
     type: GET_USER_REQUEST,
