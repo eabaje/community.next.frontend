@@ -1,6 +1,6 @@
 import React from "react";
 
-const ClassmateWidget = ({ user, className }) => {
+const NeighbourWidget = ({ user, className }) => {
   return (
     <>
       <div class="col-lg-3 col-sm-6">
@@ -19,7 +19,7 @@ const ClassmateWidget = ({ user, className }) => {
                 <h3>
                   <a href="#">{user?.FullName}Graphic Design</a>
                 </h3>
-                <span>Public Classmates{user?.SchoolName}</span>
+                <span>{user?.FullName}Public Neighbours</span>
               </div>
             </div>
             <ul class="statistics">
@@ -51,4 +51,4 @@ const ClassmateWidget = ({ user, className }) => {
     </>
   );
 };
-export default ClassmateWidget;
+export default NeighbourWidget;

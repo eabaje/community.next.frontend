@@ -42,7 +42,7 @@ export default function LoginForm({ changeShowForm }) {
 
   return (
     <div class="account-setting-form">
-      <h2>Login</h2>
+      <h2>Sign In</h2>
       <div className="row">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
