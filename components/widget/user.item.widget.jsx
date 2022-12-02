@@ -7,17 +7,33 @@ const UserItemWidget = ({ user }) => {
         <div class="single-groups-card">
           <div class="groups-image">
             <a href="#">
-              <img src={user?.ProfilePicture} alt="image" />
+              <img
+                src={
+                  user?.ProfilePicture
+                    ? user?.ProfilePicture
+                    : "assets/images/groups/groups-bg-1.jpg"
+                }
+                alt="image"
+              />
             </a>
           </div>
           <div class="groups-content">
             <div class="groups-info d-flex justify-content-between align-items-center">
               <a href="#">
-                <img src={user?.ProfilePicture} alt="image" />
+                <img
+                  src={
+                    user?.ProfilePicture
+                      ? user?.ProfilePicture
+                      : "assets/images/groups/groups-bg-1.jpg"
+                  }
+                  alt="image"
+                />
               </a>
               <div class="text ms-3">
                 <h3>
-                  <a href="#">{user?.FullName}Graphic Design</a>
+                  <a href="#">
+                    {user?.FullName ? user?.FullName : "Graphic Design"}
+                  </a>
                 </h3>
                 <span>{user?.FullName}Public Classmates</span>
               </div>

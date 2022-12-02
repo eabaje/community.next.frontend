@@ -32,7 +32,7 @@ const MainLayout = ({ children }) => {
     } catch (error) {}
   };
   const a = 1;
-  const queryClient = new QueryClient();
+
   React.useEffect(() => {
     // let controller = new AbortController();
 
@@ -50,8 +50,7 @@ const MainLayout = ({ children }) => {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        {/* <!-- Start Preloader Area -->  
+      {/* <!-- Start Preloader Area -->  
         <div className="preloader-area">
           <div className="spinner">
             <div className="inner">
@@ -61,22 +60,21 @@ const MainLayout = ({ children }) => {
             </div>
           </div>
         </div>*/}
-        {/* <!-- End Preloader Area --> */}
+      {/* <!-- End Preloader Area --> */}
 
-        <div className="main-content-wrapper d-flex flex-column">
-          <Header user={user} />
-          {/* <ContentLink /> */}
-          <LeftBar user={user} />
+      <div className="main-content-wrapper d-flex flex-column">
+        <Header user={user} />
+        {/* <ContentLink /> */}
+        <LeftBar user={user} />
 
-          <div className="content-page-box-area">
-            <ToastContainer position="top-center" />
-            <div className="container">{children}</div>
-          </div>
-          <Rightbar user={user} />
+        <div className="content-page-box-area">
+          <ToastContainer position="top-center" />
+          <div className="container">{children}</div>
         </div>
+        <Rightbar user={user} />
+      </div>
 
-        <Footer />
-      </QueryClientProvider>
+      <Footer />
     </>
   );
 };

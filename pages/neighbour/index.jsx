@@ -3,19 +3,35 @@ import dynamic from "next/dynamic";
 
 import { useRouter } from "next/router";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { makeRequest } from "../../helpers/axios";
 import UserItemWidget from "../../components/widget/user.item.widget";
 import { GetAllSchoolWorkAction } from "../../context/actions/user/user.action";
 
 function Index({ query }) {
   // const router = useRouter()
   const { userId } = query;
+
+  //Get Notification
+
+  // const {
+  //   isLoading: notifyLoading,
+  //   error: notifyError,
+  //   data: notifyData,
+  // } = useQuery(["notification"], () =>
+  //   makeRequest
+  //     .get(`/event/getAllNotificationSent/${user.UserId}`)
+  //     .then((res) => {
+  //       return res.data;
+  //     })
+  // );
   const { isLoading, error, data } = useQuery(["place"], () =>
     GetAllSchoolWorkAction(userId, "pl")
   );
-  const newChildArray = data.map(
-    selectProps("FirstName", "MiddleName", "LastName", "NickName")
+  const newChildArray = data?.map(
+    selectProps("Country", "State", "City", "Address")
   );
-  console.log('neighbour',newChildArray)
+
+  //  console.log("neighbour", newChildArray);
   return (
     <>
       <MainLayout>

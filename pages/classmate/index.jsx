@@ -111,7 +111,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -162,7 +162,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -213,7 +213,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -264,7 +264,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -315,7 +315,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -366,7 +366,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -417,7 +417,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -468,7 +468,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -519,7 +519,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -570,7 +570,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -621,7 +621,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -672,7 +672,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -734,7 +734,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -785,7 +785,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -836,7 +836,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -887,7 +887,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -938,7 +938,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -989,7 +989,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -1040,7 +1040,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -1091,7 +1091,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -1142,7 +1142,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -1193,7 +1193,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -1244,7 +1244,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>
@@ -1295,7 +1295,7 @@ function Index({ query }) {
                       </li>
                     </ul>
                     <div class="join-groups-btn">
-                      <button type="submit">Join Group</button>
+                      <button type="submit">Connect</button>
                     </div>
                   </div>
                 </div>

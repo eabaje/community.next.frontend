@@ -3,6 +3,7 @@ import MainLayout from "../../layout/mainLayout";
 import dynamic from "next/dynamic";
 import SecondMiddleContent from "../../components/content/middle/other";
 import { useRouter } from "next/router";
+import GroupWidget from "../../components/widget/group.widget";
 function Index({ query }) {
   // const router = useRouter()
   // const { userId,type } = query;
@@ -62,6 +63,7 @@ function Index({ query }) {
             role="tabpanel"
           >
             <div class="row justify-content-center">
+              <GroupWidget user={null} />
               <div class="col-lg-3 col-sm-6">
                 <div class="single-groups-card">
                   <div class="groups-image">

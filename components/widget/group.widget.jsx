@@ -72,7 +72,7 @@ const GroupWidget = ({ groupItem }) => {
               <li>
                 <a href="#">
                   <span class="item-number">
-                    {moment(groupItem?.createdAt).fromNow()}
+                    {moment(groupItem?.createdAt).year()}
                   </span>
                   <span class="item-text">Since</span>
                 </a>
