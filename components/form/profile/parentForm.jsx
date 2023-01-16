@@ -35,6 +35,7 @@ import {
 } from "../../../context/actions/user/user.action";
 import AutoSuggestInput from "../../formInput/autoSuggest.text";
 import { selectProps } from "../../../helpers/selectProps";
+import { getRelations } from "../../../context/actions/relation/relation.action";
 
 const ParentForm = (props) => {
   const { userId, relationType, relationCategory, dt } = props;
@@ -355,6 +356,11 @@ const ParentForm = (props) => {
         loading: relationLoading,
         error: relationError,
       },
+      Relations: {
+        data: relationsData,
+        loading: relationsLoading,
+        error: relationsError,
+      },
     },
   } = useContext(GlobalContext);
   const {
@@ -373,7 +379,7 @@ const ParentForm = (props) => {
     })((e) => {
       toast.error(e.message);
     });
-
+    getRelations(userId)(relationDispatch);
     GetAllRelationByCategory(userId, relationCategory)(userDispatch);
     parentUsers?.length === 1 &&
       GetRelationInfo(relationType, parentUsers?.data[0].RelationId);
@@ -428,7 +434,7 @@ const ParentForm = (props) => {
   });
   CustomInput.displayName = "CustomInput";
   console.log("paternal", tblData);
-  console.log("getRelationInfo", picFile);
+  console.log("getRelationInfo", relationsData);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -547,11 +553,7 @@ const ParentForm = (props) => {
                         onChange={SelectLevel}
                       >
                         <option value="">Select Relationship</option>
-                        {RELATION_TYPE_2.map((item) => (
-                          <option key={item.value} value={item.value}>
-                            {item.text}
-                          </option>
-                        ))}
+                        {RELATION_TYPE_2(relationsData)}
                       </select>
                     </div>
                   </div>
@@ -608,13 +610,13 @@ const ParentForm = (props) => {
                     class="form-select"
                     name={`objItem[${index}].Sex`}
                     onchange={SelectGender}
-                    {...register("Sex", {
+                    {...register(`objItem[${index}].Sex`, {
                       required: true,
                     })}
                   >
-                    <option selected="1">Gender</option>
-                    <option value="2">Male</option>
-                    <option value="3">Female</option>
+                    <option selected="">Gender</option>
+                    <option value="M">Male</option>
+                    <option value="F">Female</option>
                   </select>
                 </div>
               </div>
