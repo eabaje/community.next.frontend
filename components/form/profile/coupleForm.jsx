@@ -30,9 +30,10 @@ import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 import OccupationDDL from "../../formInput/occupation.select";
 import AutoSuggestInput from "../../formInput/autoSuggest.text";
+import { selectProps } from "../../../helpers/selectProps";
 
 const CoupleForm = (props) => {
-  const { userId, relationType } = props;
+  const { userId, relationType, dt } = props;
 
   // const isSingleMode = !userId;
 
@@ -69,19 +70,102 @@ const CoupleForm = (props) => {
   const [rowsData, setRowsData] = useState([{}]);
   const [childData, setChildData] = useState([{}]);
 
-  const deleteTableRows = (index) => {
-    const rows = [...rowsData];
-    rows.splice(index, 1);
-    setRowsData(rows);
-  };
-  const addTableRows = () => {
+  // ****************Page Functions*****************
+
+  const addTableRows = (objItemDt = null) => {
     const rowsInput = {
       FirstName: "",
       LastName: "",
       MiddleName: "",
       NickName: "",
     };
-    setRowsData([...rowsData, rowsInput]);
+
+    if (objItemDt.length > 0) {
+      const newChildArray = objItemDt.map(
+        selectProps("FirstName", "MiddleName", "LastName", "NickName")
+      );
+      //  if (newChildArray.length > 0) {
+      // alert(newChildArray);
+
+      // setRowsData([...rowsData, ...newChildArray]);
+      //   setChildData(newChildArray);
+      const fields = [
+        "RelationId",
+        "FirstName",
+        "MiddleName",
+        "LastName",
+        "NickName",
+      ];
+      const fields1 = [
+        "RelationDetailId",
+        "Mobile",
+        "Email",
+        "Sex",
+        "Age",
+        "DOB",
+        "BloodGroup",
+        "MaritalStatus",
+        "Language",
+        "Occupation",
+        "EmploymentStatus",
+        "FamilyName",
+        "Kindred",
+        "Clan",
+        "Tribe",
+        "ProfilePicture",
+        "CoverPicture",
+        "City",
+        "HomeTown",
+        "LGA",
+        "State",
+        "Country",
+      ];
+      objItemDt?.map((item, index) => {
+        setRowsData([...newChildArray]);
+        fields.forEach((field) =>
+          setValue(`objItem[${index}].${field}`, item[field])
+        );
+
+        fields1.forEach((field1) =>
+          setValue(
+            `objItem[${index}].${field1}`,
+            item["Relation_Detail"][field1]
+          )
+        );
+
+        setRegion(
+          (Region) =>
+            (Region = State.getStatesOfCountry(
+              item["Relation_Detail"]["Country"]
+            ))
+        );
+        // selectCity(user["City"]);
+        setselRegion(item["Relation_Detail"]["State"]);
+
+        setCity(
+          (city) =>
+            (city = City.getCitiesOfState(
+              item["Relation_Detail"]["Country"],
+              item["Relation_Detail"]["State"]
+            ))
+        );
+
+        setselCity(item["Relation_Detail"]["City"]);
+      });
+      //}
+    } else {
+      setRowsData([...rowsData, {}]);
+      setRowsData([...rowsData, rowsInput]);
+    }
+    // objItemData
+    //   ? setRowsData([...rowsData, objItemData])
+    //   : setRowsData([...rowsData, rowsInput]);
+  };
+
+  const deleteTableRows = (index) => {
+    const rows = [...rowsData];
+    rows.splice(index, 1);
+    setRowsData(rows);
   };
 
   const selectCountry = async (e) => {
@@ -100,25 +184,12 @@ const CoupleForm = (props) => {
   const onChangePicHandler = async (e) => {
     setpicFile((picFile) => e.target.files[0]);
   };
-  const changePassword = async () => {
-    setShowPassword(!showPassword);
-  };
-  const changeAccount = async () => {
-    setShowProfile(!showProfile);
-  };
-  const changeCompany = async () => {
-    setShowCompany(!showCompany);
-  };
-  const changeBilling = async () => {
-    setShowBilling(!showBilling);
-  };
-  const changeReference = async () => {
-    setShowReference(!showReference);
-  };
 
   const onChangeWifeInfo = async (relationType, e) => {
     getRelationInfo(relationType, e.target.value);
   };
+
+  //******************  Form Actions ************************
   const {
     register,
     formState: { errors },
@@ -201,12 +272,12 @@ const CoupleForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
 
-    //  addTableRows();
+    addTableRows(dt);
 
-    GetAllRelationInfo(userId, relationType)(userDispatch);
-    coupleUsers?.data?.data?.length === 1 &&
-      getRelationInfo(relationType, coupleUsers?.data[0].RelationId);
-  }, []);
+    // GetAllRelationInfo(userId, relationType)(userDispatch);
+    // coupleUsers?.data?.data?.length === 1 &&
+    //   getRelationInfo(relationType, coupleUsers?.data[0].RelationId);
+  }, [dt]);
 
   function onSubmit(formdata) {
     // console.log(`formdata`, formdata);
@@ -237,7 +308,6 @@ const CoupleForm = (props) => {
           value={value}
           onClick={onClick}
           placeholder="Click to enter date"
-          required
         />
         <div className="input-group-append">
           <span className="input-group-text" style={{ height: "54px" }}>
@@ -253,13 +323,7 @@ const CoupleForm = (props) => {
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
         <h3>{props.title ? props.title : "Profile Information"}</h3>
-        <input
-          type="hidden"
-          name="RelationType"
-          value={relationType}
-          className="form-control"
-          {...register("RelationType")}
-        />
+
         <input
           type="hidden"
           name="UserId"
@@ -269,15 +333,10 @@ const CoupleForm = (props) => {
         />
         <input
           type="hidden"
-          name="RelationId"
+          name="Level"
+          value={"0"}
           className="form-control"
-          {...register("RelationId")}
-        />
-        <input
-          type="hidden"
-          name="RelationDetailId"
-          className="form-control"
-          {...register("RelationDetailId")}
+          {...register("Level")}
         />
 
         <div class="row">
@@ -322,6 +381,35 @@ const CoupleForm = (props) => {
 
           {rowsData?.map((objItem, index) => (
             <>
+              <input
+                type="hidden"
+                name={`objItem[${index}].RelationCategory`}
+                value={props.relationCategory}
+                className="form-control"
+                {...register(`objItem[${index}].RelationCategory`)}
+              />
+
+              <input
+                type="hidden"
+                name={`objItem[${index}].RelationType`}
+                value={relationType}
+                className="form-control"
+                {...register(`objItem[${index}].RelationType`)}
+              />
+
+              <input
+                type="hidden"
+                name={`objItem[${index}].RelationId`}
+                className="form-control"
+                {...register(`objItem[${index}].RelationId`)}
+              />
+              <input
+                type="hidden"
+                name={`objItem[${index}].RelationDetailId`}
+                className="form-control"
+                {...register(`objItem[${index}].RelationDetailId`)}
+              />
+
               {index === 1 && (
                 <div className="form-group row">
                   <div

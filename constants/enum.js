@@ -16,28 +16,83 @@ export const RELATION_TYPE = [
   { value: "sib", text: "Sibling" },
   { value: "pa", text: "Parent" },
   { value: "pasib", text: "Parent Sibling" },
-  { value: "gp", text: "GrandParent" },
-  { value: "ggp", text: "GreatGrandParent" },
+  { value: "gp", text: "Grand Parent" },
+  { value: "ggp", text: "Great Grand Parent" },
 ];
 export const RELATION_TYPE_2 = [
-  { value: "wf", text: "Wife" },
-  { value: "cou", text: "Cousin" },
-  { value: "pa", text: "Parent" },
-  { value: "pasib", text: "Uncle" },
-  { value: "pasib", text: "Aunty" },
-  { value: "gp", text: "Grand Father" },
-  { value: "gp", text: "Grand Mother" },
-  { value: "gpsib", text: "Grand Father Sibling" },
-  { value: "gpsib", text: "Grand Mother Sibling" },
-  { value: "ggp", text: "Great Grand Father" },
-  { value: "ggp", text: "Great Grand Mother" },
-  { value: "ggpsib", text: "Great Grand Father Sibling" },
-  { value: "ggpsib", text: "Great Grand Mother Sibling" },
+  { value: "0,partner", text: "Wife" },
+  { value: "1,child", text: "Cousin" },
+  { value: "1,parent", text: "Parent" },
+  { value: "2,sibling", text: "Uncle" },
+  { value: "2,sibling", text: "Aunty" },
+  { value: "2,parent", text: "Grand Father" },
+  { value: "2,parent", text: "Grand Mother" },
+  { value: "2,sibling", text: "Grand Father Sibling" },
+  { value: "2,sibling", text: "Grand Mother Sibling" },
+  { value: "3,parent", text: "Great Grand Father" },
+  { value: "3,parent", text: "Great Grand Mother" },
+  { value: "3,sibling", text: "Great Grand Father Sibling" },
+  { value: "3,sibling", text: "Great Grand Mother Sibling" },
+];
+
+export const RELATION_TYPE_LINK_PATERNAL = (userId) => [
+  {
+    value: `/relation-all/?userId=${userId}&level=0&type=partner&gender=3`,
+    text: "Wife",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=1&type=children`,
+    text: "Cousin",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=1&type=parent`,
+    text: "Parent",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=1&type=sibling&gender=2`,
+    text: "Uncle",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=1&type=sibling&gender=3`,
+    text: "Aunty",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=2&type=parent&gender=2`,
+    text: "Grand Father",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=2&type=parent&gender=3`,
+    text: "Grand Mother",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=2&type=sibling`,
+    text: "Grand Father Sibling",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=2&type=sibling&gender=3`,
+    text: "Grand Mother Sibling",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=3&type=parent&gender=2`,
+    text: "Great Grand Father",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=3&type=parent&gender=3`,
+    text: "Great Grand Mother",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=3&type=sibling`,
+    text: "Great Grand Father Sibling",
+  },
+  {
+    value: `/relation-all/?userId=${userId}&level=3&type=sibling`,
+    text: "Great Grand Mother Sibling",
+  },
 ];
 export const RELATION_TYPE_3 = [
-  { value: "ch", text: "Child" },
-  { value: "gch", text: "GrandChild" },
-  { value: "ggch", text: "GreatGrandChild" },
+  { value: "-1,child", text: "Child" },
+  { value: "-2,child", text: "Grand Child" },
+  { value: "-3,child", text: "Great Grand Child" },
 ];
 
 export const PAYMENT_METHOD = [

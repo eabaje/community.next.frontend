@@ -364,6 +364,18 @@ export const GetAllRelationInfo2 = async (userId, relationType) => {
   }
 };
 
+export const GetAllRelationByLevel = async (userId, level, relationType) => {
+  try {
+    const res = await axios.get(
+      `/user/getAllRelationByLevel/${userId}/${level}/${relationType}`
+    );
+    return res.data;
+  } catch (err) {
+    const message = err.response ? err.response.data : CONNECTION_ERROR;
+    return message;
+  }
+};
+
 export const GetRelationInfo = (userId, relationType) => async (dispatch) => {
   dispatch({
     type: GET_USER_REQUEST,

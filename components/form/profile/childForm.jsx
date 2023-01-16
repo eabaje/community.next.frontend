@@ -10,6 +10,7 @@ import { GlobalContext } from "../../../context/Provider";
 import {
   AddChildSibling,
   AddChildSibling2,
+  GetAllRelationByLevel,
   GetAllRelationInfo,
   GetAllRelationInfo2,
   GetRelationInfo,
@@ -64,6 +65,8 @@ const ChildForm = (props) => {
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [level, setLevel] = useState("1");
+  const [relateType, setRelateType] = useState("sibling");
 
   //**********page Functions *****************/
   const popupCloseHandler = (e) => {
@@ -95,10 +98,13 @@ const ChildForm = (props) => {
     setShowBilling(!showBilling);
   };
   const changeParent = async (e) => {
-    if (e.target.value === "ch") {
-      setShowParent(!showParent);
+    const arr = e.target.value.split(",");
 
-      GetAllRelationInfo2(userId, "ch")
+    if (arr[1] === "child") {
+      setShowParent(true);
+      setLevel(arr[0]);
+      setRelateType(arr[1]);
+      GetAllRelationByLevel(userId, arr[0], arr[1])
         .then((res) => {
           setListChild(objItemUsers?.data?.data);
         })
@@ -278,12 +284,12 @@ const ChildForm = (props) => {
                     <div class="form-group">
                       <label>Relationship Type</label>
                       <select
-                        name="RelationType"
+                        name="ddlRelationType"
                         className="form-select"
-                        {...register("RelationType")}
+                        {...register("ddlRelationType")}
                         onChange={changeParent}
                       >
-                        <option value="">Select Relationship</option>
+                        <option value="-5">Select Relationship</option>
                         {RELATION_TYPE_3.map((item) => (
                           <option key={item.value} value={item.value}>
                             {item.text}
@@ -293,23 +299,30 @@ const ChildForm = (props) => {
                     </div>
                   </div>
                 ) : (
-                  <input
-                    type="hidden"
-                    name="RelationType"
-                    value={"sib"}
-                    className="form-control"
-                    {...register("RelationType")}
-                  />
+                  <></>
                 )}
-
+                <input
+                  type="hidden"
+                  name="RelationType"
+                  value={relateType}
+                  className="form-control"
+                  {...register("RelationType")}
+                />
+                <input
+                  type="hidden"
+                  name="Level"
+                  value={level}
+                  className="form-control"
+                  {...register("Level")}
+                />
                 {showParent && (
                   <div class="col-lg-6 col-md-6">
                     <div class="form-group">
                       <label>Parent</label>
                       <select
-                        name="objItemen"
+                        name={`objItem[${index}].Parent`}
                         className="form-select"
-                        {...register("objItemren")}
+                        {...register(`objItem[${index}].Parent`)}
                       >
                         <option value="">Parent Name</option>
                         {listChild?.map((item) => (

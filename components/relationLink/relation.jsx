@@ -1,10 +1,21 @@
 import React, { useState, useEffect, useContext } from "react";
-
+import { useRouter } from "next/router";
 //import "./navbar.scss";
 import Link from "next/link";
 import $ from "jquery";
+import UserWidget from "../widget/user.widget";
+import {
+  RELATION_TYPE_2,
+  RELATION_TYPE_LINK,
+  RELATION_TYPE_LINK_PATERNAL,
+} from "../../constants/enum";
 
-const OtherRelationLink = ({ user }) => {
+const OtherRelationLink = ({ users, userId }) => {
+  const router = useRouter();
+  const selectURL = (e, userId) => {
+    // window.location.href = "/home/";
+    router.push(e.target.value);
+  };
   //destructuring pathname from location
   // const { pathname } = location;
 
@@ -24,12 +35,33 @@ const OtherRelationLink = ({ user }) => {
             <div className="moreSpace">
               <div className="widget widget-page-you-like">
                 <div className="d-flex justify-content-between align-items-center">
-                  <h3 className="widget-title">My Paternal Relations</h3>
+                  <h3 className="widget-title">Paternal Relations</h3>
+                  <select
+                    class="form-select"
+                    style={{
+                      width: "70px",
+                      height: "30px",
+                      fontSize: "10px",
+                    }}
+                    id={`ddlRelations`}
+                    name={`ddlRelations`}
+                    onChange={selectURL}
+                  >
+                    <option value="">Select</option>
+                    <option value="">See All</option>
+                    {RELATION_TYPE_LINK_PATERNAL(userId).map((item) => (
+                      <option key={item.value} value={item.value}>
+                        {item.text}
+                      </option>
+                    ))}
+                  </select>
                   <span className="d-flex justify-content-between align-items-center">
-                    <a href="#">See All</a>
+                    {/* <Link href={`/relation/all/?userId=${userId}&filter=all`}>
+                      <a>See All</a>
+                    </Link> */}
                   </span>
                 </div>
-
+                <UserWidget user={null} />
                 <article className="item">
                   <a href="#" className="thumb">
                     <span className="status-online"></span>

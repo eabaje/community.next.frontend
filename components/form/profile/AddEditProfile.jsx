@@ -64,6 +64,7 @@ const AddEditProfile = ({ query }) => {
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
   const [childData, setChildData] = useState([{}]);
+  const [spouseData, setSpouseData] = useState([]);
   const [sibData, setSibData] = useState([{}]);
   const [paternalData, setPaternalData] = useState([{}]);
   const [maternalData, setMaternalData] = useState([{}]);
@@ -140,8 +141,16 @@ const AddEditProfile = ({ query }) => {
   const UpdateProfile = (formdata) => {
     UpdateUserProfile(formdata)(userDispatch);
     createUser?.data
-      ? toast.success(createUser?.data?.message)
+      ? toast.success(createUser?.message)
       : toast.error(createUser?.error);
+  };
+
+  const getAllSpouseInfo = (userId) => {
+    fetchDataAll(`user/getAllRelation/${userId}/sp`)((user) => {
+      setSpouseData(user);
+    })((err) => {
+      toast.error(err);
+    });
   };
 
   const getAllChildInfo = (userId) => {
@@ -201,6 +210,7 @@ const AddEditProfile = ({ query }) => {
   // *************** USE EFFECT**********//
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
+    getAllSpouseInfo(userId);
     getAllChildInfo(userId);
     getAllSiblingInfo(userId);
     getAllPaternalInfo(userId);
@@ -261,7 +271,7 @@ const AddEditProfile = ({ query }) => {
       toast.error(err);
     });
   }, []);
-  console.log("SibData", sibData);
+  console.log("SpouseData", spouseData);
   console.log("Form", createUser?.data?.message);
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -423,6 +433,20 @@ const AddEditProfile = ({ query }) => {
               value={userId}
               className="form-control"
               {...register("UserId")}
+            />
+            <input
+              type="hidden"
+              name="RelationType"
+              value={"reference"}
+              className="form-control"
+              {...register("RelationType")}
+            />
+            <input
+              type="hidden"
+              name="Level"
+              value={"0"}
+              className="form-control"
+              {...register("Level")}
             />
             {/* <input
               type="hidden"
@@ -821,8 +845,10 @@ const AddEditProfile = ({ query }) => {
           <CoupleForm
             sex={gender}
             relationType={"sp"}
+            relationCategory={"spousal"}
             userId={userId}
             title={"Spousal Information"}
+            dt={spouseData}
           />
         </div>
 
@@ -850,6 +876,7 @@ const AddEditProfile = ({ query }) => {
             dt={paternalData}
             userId={userId}
             relationType={"paternal"}
+            relationCategory={"paternal"}
           />
         </div>
 
@@ -859,6 +886,7 @@ const AddEditProfile = ({ query }) => {
             dt={maternalData}
             userId={userId}
             relationType={"maternal"}
+            relationCategory={"maternal"}
           />
         </div>
 

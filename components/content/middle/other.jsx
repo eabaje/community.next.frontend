@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import { fetchDataAll } from "../../../helpers/query";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
+import { useState } from "react";
 const isBrowser = typeof window !== "undefined";
 
 function SecondMiddleContent({ query }) {
@@ -17,21 +18,19 @@ function SecondMiddleContent({ query }) {
   const router = useRouter();
   const [relation, setRelation] = useState([{}]);
 
-  const getAllSiblingInfo = (userId) => {
-    fetchDataAll(`user/getAllRelation/${userId}/${type}`)((user) => {
-      setRelation(user);
-    })((err) => {
-      toast.error(err);
-    });
-  };
+  {
+    router?.query.type === "paternal"
+      ? "My Paternal Relations"
+      : router?.query?.type === "maternal"
+      ? "My Maternal Relations"
+      : router?.query?.type === "spousal"
+      ? "My Spousal Relations"
+      : "My Relations ";
+  }
 
-  const {
-    isLoading: relationLoading,
-    error: relationError,
-    data: relationData,
-  } = useQuery(["user"], () =>
+  const { isLoading, error, data } = useQuery(["relations"], () =>
     makeRequest
-      .get(`/user/getAllRelation/${user.UserId}/${type}`)
+      .get(`/user/getAllRelationByCategory/${userId}/${type}`)
       .then((res) => {
         return res.data;
       })
@@ -50,10 +49,12 @@ function SecondMiddleContent({ query }) {
               {/*  <Tree user={null} />
 
                  <Chart />*/}
-              {relationData ? (
+              {data ? (
                 <StyledTree user={null} />
               ) : (
-                "No link found!Update your profile."
+                <h4 style={{ textAlign: "center", paddingTop: "40px" }}>
+                  No link found!Update your profile
+                </h4>
               )}
             </div>
           </div>

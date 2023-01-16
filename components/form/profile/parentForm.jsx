@@ -250,6 +250,13 @@ const ParentForm = (props) => {
                 className="form-control"
                 {...register(`objItem[${index}].RelationId`)}
               />
+              <input
+                type="hidden"
+                name={`objItem[${index}].RelationCategory`}
+                value={props.relationCategory}
+                className="form-control"
+                {...register(`objItem[${index}].RelationCategory`)}
+              />
               {index === 1 && (
                 <div className="form-group row">
                   <div

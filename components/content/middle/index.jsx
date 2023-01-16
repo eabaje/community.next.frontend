@@ -4,7 +4,7 @@ import PaternalLink from "../../relationLink/paternal";
 import OtherRelationLink from "../../relationLink/relation";
 import Sidebar from "../../sidebar/Sidebar";
 
-function FirstMiddleContent() {
+function FirstMiddleContent({ userId }) {
   return (
     <>
       <div className="row">
@@ -12,7 +12,7 @@ function FirstMiddleContent() {
           <div className="row">
             <AdvertSlider />
           </div>
-          <OtherRelationLink />
+          <OtherRelationLink users={null} userId={userId} />
           <div className="row">
             <div className="col-lg-9 col-md-12">
               <div className="news-feed-area">
