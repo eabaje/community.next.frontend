@@ -20,10 +20,6 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import CustomButton from "../../../components/button/customButton";
 import ImageUpload from "../../../components/upload/uploadImage";
-//import "../../../styles/form.module.css";
-// import { SPECIALIZATION_TYPE } from "../../../constants/enum";
-// import CustomPopup from "../../../components/popup/popup.component";
-// import UpdateUserFileUpload from "../../../components/upload/edit-user-file-upload";
 import { toast } from "react-toastify";
 import dynamic from "next/dynamic";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
@@ -48,9 +44,11 @@ const SchoolForm = (props) => {
   const [city, setCity] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
-  const [selCity, setselCity] = useState("");
+
   const [imgUrl, setImgUrl] = useState("");
-  const [selRegion, setselRegion] = useState("");
+  const [selCountry, setselCountry] = useState([]);
+  const [selRegion, setselRegion] = useState([]);
+  const [selCity, setselCity] = useState([]);
   const [value, setValues] = useState("");
   const [visibilityImage, setVisibilityImage] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
@@ -59,6 +57,7 @@ const SchoolForm = (props) => {
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
+  const [loading, setLoading] = useState(false);
   // const [showProfile, setShowProfile] = useState(false);
 
   const popupCloseHandler = (e) => {
@@ -81,29 +80,8 @@ const SchoolForm = (props) => {
   const onChangePicHandler = async (e) => {
     setpicFile((picFile) => e.target.files[0]);
   };
-  const changePassword = async () => {
-    setShowPassword(!showPassword);
-  };
-  const changeAccount = async () => {
-    setShowProfile(!showProfile);
-  };
-  const changeCompany = async () => {
-    setShowCompany(!showCompany);
-  };
-  const changeBilling = async () => {
-    setShowBilling(!showBilling);
-  };
-  const changeReference = async () => {
-    setShowReference(!showReference);
-  };
 
-  const handleChangeRaw = (date) => {
-    const newRaw = new Date(date.currentTarget.value);
-    if (newRaw instanceof Date && !isNaN(newRaw)) {
-      setStartDate(newRaw);
-    }
-  };
-  const [rowsData, setRowsData] = useState([]);
+  const [rowsData, setRowsData] = useState([{}]);
 
   function selectProps(...props) {
     return function (obj) {
@@ -115,8 +93,7 @@ const SchoolForm = (props) => {
       return newObj;
     };
   }
-
-  const addTableRows = (childDt) => {
+  const addTableRows = () => {
     const rowsInput = {
       SchoolName: "",
       Address: "",
@@ -126,9 +103,22 @@ const SchoolForm = (props) => {
       YearFrom: "",
       YearTo: "",
     };
-    const newChildArray = childDt.map(
+    setRowsData([...rowsData, rowsInput]);
+  };
+
+  const loadTableRows = (objItemDt = null) => {
+    const rowsInput = {
+      SchoolName: "",
+      Address: "",
+      City: "",
+      State: "",
+      Country: "",
+      YearFrom: "",
+      YearTo: "",
+    };
+    const newChildArray = objItemDt.map(
       selectProps(
-        "SchoolName",
+        props.formTypeControl,
         "Address",
         "City",
         "State",
@@ -137,42 +127,35 @@ const SchoolForm = (props) => {
         "YearTo"
       )
     );
-    if (newChildArray.length > 0) {
-      setRowsData([...rowsData, newChildArray]);
+    if (objItemDt?.length > 0) {
       //  setChildData(newChildArray);
       const fields = [
-        "SchoolName",
+        props.formTypeControlHidden,
+        props.formTypeControl,
         "Address",
         "City",
+        "HomeTown",
         "State",
         "Country",
         "YearFrom",
         "YearTo",
       ];
-      childDt?.map((item, index) => {
+      objItemDt?.map((item, index) => {
+        setRowsData([...newChildArray]);
+        // selCountry.push(item["Country"]);
+
+        // selRegion.push(item["State"]);
+        // selCity.push(item["City"]);
+        Region.push(State.getStatesOfCountry(item["Country"]));
+
+        city.push(City.getCitiesOfState(item["Country"], item["State"]));
         fields.forEach((field) =>
           setValue(`objItem[${index}].${field}`, item[field])
         );
-
-        setRegion(
-          (Region) => (Region = State.getStatesOfCountry(user["Country"]))
-        );
-        // selectCity(user["City"]);
-        setselRegion(user["State"]);
-
-        setCity(
-          (city) =>
-            (city = City.getCitiesOfState(user["Country"], user["State"]))
-        );
-
-        setselCity(user["City"]);
       });
     } else {
-      setRowsData([...rowsData, rowsInput]);
+      setRowsData([...rowsData]);
     }
-    // childData
-    //   ? setRowsData([...rowsData, childData])
-    //   : setRowsData([...rowsData, rowsInput]);
   };
 
   const deleteTableRows = (index) => {
@@ -213,17 +196,17 @@ const SchoolForm = (props) => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllSchoolWorkInfo(userId, relationType)(userDispatch);
 
-    addTableRows(props.dt);
+    loadTableRows(dt);
   }, [dt]);
 
   function onSubmit(formdata) {
     AddSchoolPlaceWork(formdata)(userDispatch);
-    //  console.log(`data`, data);
-    if (createUser.data) {
-      toast.success(`Your entry was saved successfully`);
+
+    if (createUser?.data?.message) {
+      toast.success(createUser?.data?.message);
     }
-    if (createUser.error) {
-      toast.error(createUser.error);
+    if (createUser?.error) {
+      toast.error(createUser?.error);
     }
 
     // props.relationType === "sch"
@@ -256,7 +239,8 @@ const SchoolForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  //  console.log("ShowProfile", showProfile);
+  console.log(props.formTypeControl, selRegion);
+  console.log("Region", Region);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -272,7 +256,7 @@ const SchoolForm = (props) => {
         <input
           type="hidden"
           name="UserId"
-          value={props.UserId}
+          value={props.userId}
           className="form-control"
           {...register("UserId")}
         />
@@ -319,7 +303,29 @@ const SchoolForm = (props) => {
                 </div>
               )}
               <div id={index} class="row">
-                <div class="col-lg-6 col-md-6">
+                <input
+                  type="hidden"
+                  class="form-control"
+                  id={`objItem[${index}].${
+                    props.formTypeControlHidden
+                      ? props.formTypeControlHidden
+                      : "SchoolId"
+                  }`}
+                  name={`objItem[${index}].${
+                    props.formTypeControlHidden
+                      ? props.formTypeControlHidden
+                      : "SchoolId"
+                  }`}
+                  {...register(
+                    `objItem[${index}].${
+                      props.formTypeControlHidden
+                        ? props.formTypeControlHidden
+                        : "SchoolId"
+                    }`
+                  )}
+                />
+
+                <div class="col-lg-12 col-md-12">
                   <div class="form-group">
                     <label>
                       {props.formTypeName
@@ -334,7 +340,6 @@ const SchoolForm = (props) => {
                           ? props.formTypeName
                           : "Name of School"
                       }
-                      value={objItem?.SchoolName}
                       id={`objItem[${index}].${
                         props.formTypeControl
                           ? props.formTypeControl
@@ -358,27 +363,7 @@ const SchoolForm = (props) => {
                     />
                   </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                  <div class="form-group">
-                    <label>
-                      {" "}
-                      {props.labelAddress ? props.labelAddress : "Address"}
-                    </label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder={
-                        props.labelAddress ? props.labelAddress : "Address"
-                      }
-                      value={objItem?.NickName}
-                      id={`objItem[${index}].Address`}
-                      name={`objItem[${index}].Address`}
-                      {...register(`objItem[${index}].Address`, {
-                        required: true,
-                      })}
-                    />
-                  </div>
-                </div>
+
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
                     <label>From Year </label>
@@ -390,21 +375,17 @@ const SchoolForm = (props) => {
                       render={({ field: { onChange, value } }) => {
                         return (
                           <DatePicker
-                            wrapperclassName="datePicker"
-                            className="ui-datepicker"
+                            wrapperclassNameName="datePicker"
+                            classNameName="form-control datepicker"
                             onChange={onChange}
-                            selected={value}
-                            value={objItem?.YearFrom}
+                            selected={Date.parse(value)}
                             yearDropdownItemNumber={100}
                             dateFormat="yyyy"
                             scrollableYearDropdown={true}
                             showYearDropdown
+                            showMonthDropdown
                             placeholderText="Enter date"
                             customInput={<CustomInput />}
-                            onChangeRaw={(e) => handleChangeRaw(e)}
-                            // onChange={(date: Date | null) => {
-                            //   setStartDate(date);
-                            // }}
                           />
                         );
                       }}
@@ -422,21 +403,17 @@ const SchoolForm = (props) => {
                       render={({ field: { onChange, value } }) => {
                         return (
                           <DatePicker
-                            wrapperclassName="datePicker"
-                            className="ui-datepicker"
+                            wrapperclassNameName="datePicker"
+                            classNameName="form-control datepicker"
                             onChange={onChange}
-                            selected={value}
-                            value={objItem?.YearFromTo}
+                            selected={Date.parse(value)}
                             yearDropdownItemNumber={100}
                             dateFormat="yyyy"
                             scrollableYearDropdown={true}
                             showYearDropdown
+                            showMonthDropdown
                             placeholderText="Enter date"
                             customInput={<CustomInput />}
-                            onChangeRaw={(e) => handleChangeRaw(e)}
-                            // onChange={(date: Date | null) => {
-                            //   setStartDate(date);
-                            // }}
                           />
                         );
                       }}
@@ -462,7 +439,11 @@ const SchoolForm = (props) => {
                     >
                       <option value="">Select Country</option>
                       {countries.map((item) => (
-                        <option key={item.isoCode} value={item.isoCode}>
+                        <option
+                          key={item.isoCode}
+                          selected={objItem?.Country === item.isoCode}
+                          value={item.isoCode}
+                        >
                           {item.name}
                         </option>
                       ))}
@@ -483,8 +464,12 @@ const SchoolForm = (props) => {
                       onChange={selectCity}
                     >
                       <option value=""> Select Region/State </option>
-                      {Region.map((item) => (
-                        <option key={item.isoCode} value={item.isoCode}>
+                      {Region[index]?.map((item) => (
+                        <option
+                          key={item.isoCode}
+                          selected={objItem?.State === item.isoCode}
+                          value={item.isoCode}
+                        >
                           {item.name}
                         </option>
                       ))}
@@ -504,11 +489,11 @@ const SchoolForm = (props) => {
                       {...register(`objItem[${index}].City`)}
                     >
                       <option value=""> Select City </option>
-                      {city.map((item) => (
+                      {city[index]?.map((item) => (
                         <option
                           key={item.isoCode}
-                          selected={objItem?.City === item.isoCode}
-                          value={item.isoCode}
+                          selected={objItem?.City === item.name}
+                          value={item.name}
                         >
                           {item.name}
                         </option>
@@ -532,14 +517,21 @@ const SchoolForm = (props) => {
                 </div>
                 <div class="col-lg-12 col-md-12">
                   <div class="form-group">
-                    <label>Address</label>
-                    <textarea
+                    <label>
+                      {" "}
+                      {props.labelAddress ? props.labelAddress : "Address"}
+                    </label>
+                    <input
                       type="text"
                       class="form-control"
-                      placeholder="Address"
+                      placeholder={
+                        props.labelAddress ? props.labelAddress : "Address"
+                      }
                       id={`objItem[${index}].Address`}
                       name={`objItem[${index}].Address`}
-                      {...register(`objItem[${index}].Address`)}
+                      {...register(`objItem[${index}].Address`, {
+                        required: true,
+                      })}
                     />
                   </div>
                 </div>

@@ -10,6 +10,7 @@ import { GlobalContext } from "../../../context/Provider";
 import {
   AddChildSibling,
   AddChildSibling2,
+  AddRelationInfo2,
   GetAllRelationByLevel,
   GetAllRelationInfo,
   GetAllRelationInfo2,
@@ -30,6 +31,7 @@ import { RELATION_TYPE_2, RELATION_TYPE_3 } from "../../../constants/enum";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { makeRequest } from "../../../helpers/axios";
 import { selectProps } from "../../../helpers/selectProps";
+import { addRelation } from "../../../context/actions/relation/relation.action";
 
 const ChildForm = (props) => {
   const { userId, relationType, dt } = props;
@@ -65,8 +67,8 @@ const ChildForm = (props) => {
   const [showReference, setShowReference] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [level, setLevel] = useState("1");
-  const [relateType, setRelateType] = useState("sibling");
+  const [level, setLevel] = useState("-1");
+  const [relateType, setRelateType] = useState();
 
   //**********page Functions *****************/
   const popupCloseHandler = (e) => {
@@ -134,13 +136,22 @@ const ChildForm = (props) => {
     handleSubmit,
   } = useForm();
 
-  // const {
-  //   authState: { user },
-  //   userDispatch,
-  //   userState: { createUser, Users },
-  // } = useContext(GlobalContext);
+  const {
+    authState: { user },
+    relationDispatch,
+    relationState: { createRelation },
+  } = useContext(GlobalContext);
+  const addTableRows = () => {
+    const rowsInput = {
+      FirstName: "",
+      LastName: "",
+      MiddleName: "",
+      NickName: "",
+    };
+    setRowsData([...rowsData, rowsInput]);
+  };
 
-  const addTableRows = (objItemDt = null) => {
+  const loadTableRows = (objItemDt = null) => {
     const rowsInput = {
       FirstName: "",
       LastName: "",
@@ -148,15 +159,11 @@ const ChildForm = (props) => {
       NickName: "",
     };
 
-    if (objItemDt) {
+    if (objItemDt?.length > 0) {
       const newChildArray = objItemDt.map(
         selectProps("FirstName", "MiddleName", "LastName", "NickName")
       );
-      //  if (newChildArray.length > 0) {
-      // alert(newChildArray);
-      // alert(rowsData);
-      setRowsData([...rowsData, newChildArray]);
-      setChildData(newChildArray);
+
       const fields = [
         "RelationId",
         "FirstName",
@@ -164,25 +171,22 @@ const ChildForm = (props) => {
         "LastName",
         "NickName",
       ];
+
       objItemDt?.map((item, index) => {
+        setRowsData([...newChildArray]);
         fields.forEach((field) =>
           setValue(`objItem[${index}].${field}`, item[field])
         );
       });
-      //}
     } else {
-      setRowsData([...rowsData, {}]);
-      setRowsData([...rowsData, rowsInput]);
+      setRowsData([...rowsData]);
     }
-    // objItemData
-    //   ? setRowsData([...rowsData, objItemData])
-    //   : setRowsData([...rowsData, rowsInput]);
   };
 
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
     // GetAllRelationInfo(userId, relationType)(userDispatch);
-    addTableRows(props.dt);
+    loadTableRows(dt);
   }, [dt]);
 
   function onSubmit(formdata) {
@@ -191,15 +195,10 @@ const ChildForm = (props) => {
   }
 
   const addChild = (formdata) => {
-    setLoading(true);
-    AddRelationInfo2(formdata)((res) => {
-      setLoading(false);
+    addRelation(form)(relationDispatch);
 
-      toast.success(res?.message);
-    })((e) => {
-      setLoading(false);
-      toast.error(e.message);
-    });
+    createRelation?.data.message && toast.success(createRelation?.data.message);
+
     //   createUser?.data
     //     ? toast.success(createUser?.data?.message)
     //     : toast.error(createUser?.error);
@@ -232,13 +231,7 @@ const ChildForm = (props) => {
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
         <h3>{props.title ? props.title : "Siblings Information"}</h3>
-        <input
-          type="hidden"
-          name="RelationType"
-          value={props.relationType}
-          className="form-control"
-          {...register("RelationType")}
-        />
+
         <input
           type="hidden"
           name="UserId"
@@ -246,6 +239,7 @@ const ChildForm = (props) => {
           className="form-control"
           {...register("UserId")}
         />
+
         <div class="row">
           <div className="form-group row">
             <div className="col-md-12">
@@ -270,6 +264,14 @@ const ChildForm = (props) => {
           </div>
           {rowsData?.map((objItem, index) => (
             <>
+              <input
+                type="hidden"
+                name={`objItem[${index}].Level`}
+                value={level}
+                className="form-control"
+                {...register(`objItem[${index}].Level`)}
+              />
+
               {index === 1 && (
                 <div className="form-group row">
                   <div
@@ -284,9 +286,9 @@ const ChildForm = (props) => {
                     <div class="form-group">
                       <label>Relationship Type</label>
                       <select
-                        name="ddlRelationType"
+                        name="RelationType"
                         className="form-select"
-                        {...register("ddlRelationType")}
+                        {...register("RelationType")}
                         onChange={changeParent}
                       >
                         <option value="-5">Select Relationship</option>
@@ -301,20 +303,7 @@ const ChildForm = (props) => {
                 ) : (
                   <></>
                 )}
-                <input
-                  type="hidden"
-                  name="RelationType"
-                  value={relateType}
-                  className="form-control"
-                  {...register("RelationType")}
-                />
-                <input
-                  type="hidden"
-                  name="Level"
-                  value={level}
-                  className="form-control"
-                  {...register("Level")}
-                />
+
                 {showParent && (
                   <div class="col-lg-6 col-md-6">
                     <div class="form-group">
@@ -341,9 +330,21 @@ const ChildForm = (props) => {
                   type="hidden"
                   name="RelationId"
                   className="form-control"
-                  {...register("RelationId")}
+                  {...register(`objItem[${index}].RelationId`)}
                 />
-
+                <input
+                  type="hidden"
+                  name={`objItem[${index}].RelationDetailId`}
+                  className="form-control"
+                  {...register(`objItem[${index}].RelationDetailId`)}
+                />
+                <input
+                  type="hidden"
+                  name={`objItem[${index}].RelationCategory`}
+                  value={props.relationCategory}
+                  className="form-control"
+                  {...register(`objItem[${index}].RelationCategory`)}
+                />
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
                     <label>First Name</label>
@@ -452,8 +453,15 @@ const ChildForm = (props) => {
           ))}
 
           <div class="col-lg-12 col-md-12">
-            <button type="submit" class="default-btn" disabled={loading}>
-              {loading && <i className="fa fa-spinner fa-spin"></i>} Save
+            <button
+              type="submit"
+              class="default-btn"
+              disabled={createRelation.loading}
+            >
+              {createRelation.loading && (
+                <i className="fa fa-spinner fa-spin"></i>
+              )}{" "}
+              Save
             </button>
           </div>
         </div>

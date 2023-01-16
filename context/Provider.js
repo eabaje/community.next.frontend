@@ -1,53 +1,57 @@
-import React, { createContext, useReducer } from "react";
+import React, { createContext, useReducer, useState } from "react";
 import InitialState from "./initialStates/index.state";
 import reducer from "./reducers/index.reducer";
 
 export const GlobalContext = createContext({});
 
 const {
+  advertReducer,
   authReducer,
-  assignReducer,
-  carrierReducer,
-  driverReducer,
   orderReducer,
   paymentReducer,
+  postReducer,
   profileReducer,
-  shipmentReducer,
-  subscribeReducer,
-  tripReducer,
-  vehicleReducer,
+  eventReducer,
+  groupReducer,
+  relationReducer,
+  relationshipReducer,
   userReducer,
 } = reducer;
 
 const {
   authInitial,
-  assignInitial,
-  carrierInitial,
-  driverInitial,
+  advertInitial,
   orderInitial,
   paymentInitial,
   profileInitial,
-  shipmentInitial,
-  subscribeInitial,
-  tripInitial,
-  vehicleInitial,
+  eventInitial,
+  groupInitial,
+  postInitial,
+  relationInitial,
+  relationshipInitial,
   userInitial,
 } = InitialState;
 
 const GlobalProvider = ({ children }) => {
+  const [isEditFormOpen, setIsEditFormOpen] = useState(0);
   const [authState, authDispatch] = useReducer(authReducer, authInitial);
-  const [assignState, assignDispatch] = useReducer(
-    assignReducer,
-    assignInitial
+  const [advertState, advertDispatch] = useReducer(
+    advertReducer,
+    advertInitial
   );
-  const [carrierState, carrierDispatch] = useReducer(
-    carrierReducer,
-    carrierInitial
+  const [eventState, eventDispatch] = useReducer(eventReducer, eventInitial);
+  const [groupState, groupDispatch] = useReducer(groupReducer, groupInitial);
+  const [postState, postDispatch] = useReducer(postReducer, postInitial);
+  const [relationState, relationDispatch] = useReducer(
+    relationReducer,
+    relationInitial
   );
-  const [driverState, driverDispatch] = useReducer(
-    driverReducer,
-    driverInitial
+
+  const [relationshipState, relationshipDispatch] = useReducer(
+    relationshipReducer,
+    relationshipInitial
   );
+
   const [orderState, orderDispatch] = useReducer(orderReducer, orderInitial);
   const [paymentState, paymentDispatch] = useReducer(
     paymentReducer,
@@ -57,48 +61,36 @@ const GlobalProvider = ({ children }) => {
     profileReducer,
     profileInitial
   );
-  const [shipmentState, shipmentDispatch] = useReducer(
-    shipmentReducer,
-    shipmentInitial
-  );
-  const [subscribeState, subscribeDispatch] = useReducer(
-    subscribeReducer,
-    subscribeInitial
-  );
-  const [tripState, tripDispatch] = useReducer(tripReducer, tripInitial);
-  const [vehicleState, vehicleDispatch] = useReducer(
-    vehicleReducer,
-    vehicleInitial
-  );
+
   const [userState, userDispatch] = useReducer(userReducer, userInitial);
 
   return (
     <GlobalContext.Provider
       value={{
         authState,
-        assignState,
-        carrierState,
-        driverState,
+        advertState,
+        postState,
+        eventState,
+        groupState,
+        relationState,
+        relationshipState,
         orderState,
         paymentState,
         profileState,
-        shipmentState,
-        subscribeState,
-        tripState,
-        vehicleState,
         userState,
+        isEditFormOpen,
         authDispatch,
-        assignDispatch,
-        carrierDispatch,
-        driverDispatch,
+        advertDispatch,
+        postDispatch,
+        eventDispatch,
+        groupDispatch,
+        relationDispatch,
+        relationshipDispatch,
         orderDispatch,
         paymentDispatch,
         profileDispatch,
-        shipmentDispatch,
-        subscribeDispatch,
-        tripDispatch,
-        vehicleDispatch,
         userDispatch,
+        setIsEditFormOpen,
       }}
     >
       {children}

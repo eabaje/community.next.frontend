@@ -1,0 +1,118 @@
+.edit-post-form .button-group {
+  padding: 0;
+  list-style-type: none;
+  margin-bottom: 0;
+  margin-top: 20px;
+}
+
+.edit-post-form .button-group li {
+  list-style-type: none;
+}
+
+.edit-post-form .button-group .photo-btn label {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: default;
+  color: var(--paragraph-color);
+  position: relative;
+  padding-left: 28px;
+  padding-right: 0;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.edit-post-form .button-group .photo-btn label:hover {
+  color: var(--main-color);
+  cursor: default;
+}
+
+.edit-post-form .button-group .photo-btn button i {
+  color: #1ccd16;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+/* .news-feed-area .news-feed-form form .button-group .photo-btn label i {
+    color: #1ccd16;
+    font-size: 20px;
+    position: absolute;
+    left: 0;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+  } */
+
+.edit-post-form .button-group .video-btn button {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--paragraph-color);
+  position: relative;
+  padding-left: 28px;
+  padding-right: 0;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.edit-post-form .button-group .video-btn button:hover {
+  color: var(--main-color);
+}
+
+.edit-post-form .button-group .video-btn button i {
+  color: #ff3e3e;
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.edit-post-form .button-group .tag-btn button {
+  background-color: transparent;
+  border: none;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--paragraph-color);
+  position: relative;
+  padding-left: 28px;
+  padding-right: 0;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+}
+
+.edit-post-form .button-group .tag-btn button:hover {
+  color: var(--main-color);
+}
+
+.edit-post-form .button-group .tag-btn button i {
+  color: var(--main-color);
+  font-size: 20px;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.edit-post-form .button-group .post-btn button {
+  background-color: var(--main-color);
+  color: var(--white-color);
+  display: inline-block;
+  border: none;
+  padding: 5px 25px;
+  border-radius: 5px;
+  -webkit-transition: var(--transition);
+  transition: var(--transition);
+  font-size: 15px;
+}
+
+.edit-post-form .button-group .post-btn button:hover {
+  background-color: #ff3e3e;
+}

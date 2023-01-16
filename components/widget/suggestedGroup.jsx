@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-const SuggestedGroupWidget = ({ userId, title, showButton }) => {
+const SuggestedGroupWidget = ({ userId, title, showButton, groups }) => {
   return (
     <>
       <div className="widget widget-suggested-groups">

@@ -4,6 +4,7 @@ export const LOG_IN = "http://";
 /* local host environment variables "http://localhost:8800/api/"  process.env.API_ENDPOINT       */
 
 export const API_URL = process.env.API_ENDPOINT;
+export const UPLOADS_URL = process.env.UPLOADS_ENDPOINT;
 
 export const MEDIA_URL = "http://localhost:8000/";
 

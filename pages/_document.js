@@ -20,8 +20,6 @@ export default class MyDocument extends Document {
               rel="stylesheet"
             />
 
-            <link rel="stylesheet" href="/assets/css/style.css" />
-
             <link rel="stylesheet" href="/assets/css/bootstrap.css" />
             <link rel="stylesheet" href="/assets/css/animate.min.css" />
             <link rel="stylesheet" href="/assets/css/remixicon.css" />

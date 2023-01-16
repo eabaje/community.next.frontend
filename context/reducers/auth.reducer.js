@@ -23,6 +23,7 @@ const auth = (state, { type, payload }) => {
         ...state,
         loading: false,
         data: payload,
+        error: null,
       };
 
     case LOGIN_SUCCESS:

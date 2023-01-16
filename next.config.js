@@ -1,6 +1,7 @@
 module.exports = {
   env: {
     API_ENDPOINT: process.env.API_ENDPOINT,
+    UPLOADS_ENDPOINT: process.env.UPLOADS_ENDPOINT,
   },
   // async redirects() {
   //   // return [

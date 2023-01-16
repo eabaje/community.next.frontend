@@ -19,10 +19,6 @@ const MainLayout = ({ children }) => {
     authState: { user, isLoggedIn },
   } = useContext(GlobalContext);
 
-  // const [isAuthenticated, setIsAuthenticated] = React.useState(isLoggedIn);
-  // const [authLoaded, setAuthLoaded] = React.useState(false);
-  //const [user, setUser] = useState({});
-
   const getUser = async () => {
     try {
       // setUser(JSON.parse(localStorage.getItem("user")));
@@ -42,11 +38,9 @@ const MainLayout = ({ children }) => {
       $(".go-top").on("click", function () {
         $("html, body").animate({ scrollTop: "0" }, 500);
       });
-      // $("#datepicker").datepicker();
-      // $("#sidemenu-nav").metisMenu();
     }
   }, [a]);
-  console.log(`User`, user);
+  // console.log(`User`, user);
 
   return (
     <>

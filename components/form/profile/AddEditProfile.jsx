@@ -8,7 +8,12 @@ import { Country, State, City } from "country-state-city";
 import { getLanguageNames } from "language-list";
 import options from "./data";
 
-import { fetchData, fetchDataAll } from "../../../helpers/query";
+import {
+  AddData,
+  fetchData,
+  fetchDataAll,
+  UpdateData,
+} from "../../../helpers/query";
 
 import { GlobalContext } from "../../../context/Provider";
 import {
@@ -63,14 +68,17 @@ const AddEditProfile = ({ query }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [selpickUpRegion, setselpickUpRegion] = useState("");
   const [pickUpRegion, setPickUpRegion] = useState([]);
-  const [childData, setChildData] = useState([{}]);
+  const [userData, setUserData] = useState([]);
   const [spouseData, setSpouseData] = useState([]);
-  const [sibData, setSibData] = useState([{}]);
-  const [paternalData, setPaternalData] = useState([{}]);
-  const [maternalData, setMaternalData] = useState([{}]);
-  const [schoolData, setSchoolData] = useState([{}]);
-  const [workData, setWorkData] = useState([{}]);
-  const [placeData, setPlaceData] = useState([{}]);
+  const [childData, setChildData] = useState([]);
+  const [sibData, setSibData] = useState([]);
+  const [paternalData, setPaternalData] = useState([]);
+  const [maternalData, setMaternalData] = useState([]);
+  const [schoolData, setSchoolData] = useState([]);
+  const [workData, setWorkData] = useState([]);
+  const [placeData, setPlaceData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [isSaved, setIsSaved] = useState(false);
 
   // const [showProfile, setShowProfile] = useState(false);
 
@@ -106,15 +114,6 @@ const AddEditProfile = ({ query }) => {
   const changeAccount = async () => {
     setShowProfile(!showProfile);
   };
-  const changeCompany = async () => {
-    setShowCompany(!showCompany);
-  };
-  const changeBilling = async () => {
-    setShowBilling(!showBilling);
-  };
-  const changeReference = async () => {
-    setShowReference(!showReference);
-  };
 
   // *************** FORM FUNCTIONS**********//
   const {
@@ -139,14 +138,30 @@ const AddEditProfile = ({ query }) => {
   }
 
   const UpdateProfile = (formdata) => {
-    UpdateUserProfile(formdata)(userDispatch);
-    createUser?.data
-      ? toast.success(createUser?.message)
-      : toast.error(createUser?.error);
+    setLoading(true);
+    UpdateData(
+      formdata,
+      `user/updateUser/${formdata.UserId}`
+    )((res) => {
+      setLoading(false);
+      setIsSaved(true);
+      toast.success(res?.message);
+    })((e) => {
+      setLoading(false);
+      toast.error(e.message);
+    });
   };
-
+  const getAllRefUserInfo = (userId) => {
+    fetchDataAll(`user/getAllRelationByCategory/${userId}/reference`)(
+      (user) => {
+        setUserData(user);
+      }
+    )((err) => {
+      toast.error(err);
+    });
+  };
   const getAllSpouseInfo = (userId) => {
-    fetchDataAll(`user/getAllRelation/${userId}/sp`)((user) => {
+    fetchDataAll(`user/getAllRelationByCategory/${userId}/spousal`)((user) => {
       setSpouseData(user);
     })((err) => {
       toast.error(err);
@@ -154,7 +169,7 @@ const AddEditProfile = ({ query }) => {
   };
 
   const getAllChildInfo = (userId) => {
-    fetchDataAll(`user/getAllRelation/${userId}/ch`)((user) => {
+    fetchDataAll(`user/getAllRelationByCategory/${userId}/children`)((user) => {
       setChildData(user);
     })((err) => {
       toast.error(err);
@@ -162,30 +177,30 @@ const AddEditProfile = ({ query }) => {
   };
 
   const getAllSiblingInfo = (userId) => {
-    fetchDataAll(`user/getAllRelation/${userId}/sib`)((user) => {
+    fetchDataAll(`user/getAllRelationByCategory/${userId}/sibling`)((user) => {
       setSibData(user);
     })((err) => {
       toast.error(err);
     });
   };
   const getAllPaternalInfo = (userId) => {
-    fetchDataAll(`user/getAllRelation/${userId}/p`)((user) => {
-      setPaternalData(user.filter((u) => u.RELATION_DETAIL.Sex === "2"));
+    fetchDataAll(`user/getAllRelationByCategory/${userId}/paternal`)((user) => {
+      setPaternalData(user);
     })((err) => {
       toast.error(err);
     });
   };
 
   const getAllMaternalInfo = (userId) => {
-    fetchDataAll(`user/getAllRelation/${userId}/m`)((user) => {
-      setMaternalData(user.filter((u) => u.RELATION_DETAIL.Sex === "3"));
+    fetchDataAll(`user/getAllRelationByCategory/${userId}/maternal`)((user) => {
+      setMaternalData(user);
     })((err) => {
       toast.error(err);
     });
   };
 
   const getAllSchoolInfo = (userId) => {
-    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/sch`)((user) => {
+    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/school`)((user) => {
       setSchoolData(user);
     })((err) => {
       toast.error(err);
@@ -193,7 +208,7 @@ const AddEditProfile = ({ query }) => {
   };
 
   const getAllPlaceInfo = (userId) => {
-    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/pl`)((user) => {
+    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/place`)((user) => {
       setPlaceData(user);
     })((err) => {
       toast.error(err);
@@ -201,7 +216,7 @@ const AddEditProfile = ({ query }) => {
   };
 
   const getAllWorkInfo = (userId) => {
-    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/wk`)((user) => {
+    fetchDataAll(`user/getAllSchoolPlaceWork/${userId}/work`)((user) => {
       setWorkData(user);
     })((err) => {
       toast.error(err);
@@ -210,6 +225,7 @@ const AddEditProfile = ({ query }) => {
   // *************** USE EFFECT**********//
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
+    getAllRefUserInfo(userId);
     getAllSpouseInfo(userId);
     getAllChildInfo(userId);
     getAllSiblingInfo(userId);
@@ -270,8 +286,8 @@ const AddEditProfile = ({ query }) => {
     })((err) => {
       toast.error(err);
     });
-  }, []);
-  console.log("SpouseData", spouseData);
+  }, [isSaved]);
+  console.log("SpouseData", userData);
   console.log("Form", createUser?.data?.message);
   const CustomInput = React.forwardRef(({ value, onClick }, ref) => {
     return (
@@ -427,6 +443,12 @@ const AddEditProfile = ({ query }) => {
         >
           <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
             <h3>Profile Information</h3>
+            <div className="col-md-12 alert alert-success">
+              <h6>
+                {" "}
+                To create a family tree,start here and update your profile
+              </h6>
+            </div>
             <input
               type="hidden"
               name="UserId"
@@ -436,10 +458,24 @@ const AddEditProfile = ({ query }) => {
             />
             <input
               type="hidden"
+              name="RelationCategory"
+              value={"reference"}
+              className="form-control"
+              {...register("RelationCategory")}
+            />
+            <input
+              type="hidden"
               name="RelationType"
               value={"reference"}
               className="form-control"
               {...register("RelationType")}
+            />
+            <input
+              type="hidden"
+              name="RefId"
+              value={userData[0]?.RelationId}
+              className="form-control"
+              {...register("RefId")}
             />
             <input
               type="hidden"
@@ -492,10 +528,22 @@ const AddEditProfile = ({ query }) => {
                   />
                 </div>
               </div>
-
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Maiden Name</label>
+                  <label>NickName</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="NickName"
+                    id="NickName"
+                    name="NickName"
+                    {...register("NickName")}
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Previous Name</label>
                   <input
                     type="text"
                     class="form-control"
@@ -525,33 +573,27 @@ const AddEditProfile = ({ query }) => {
                   </select>
                 </div>
               </div>
-              <div class="col-lg-4 col-md-4">
+
+              <div className="col-lg-6 col-md-6">
                 <div class="form-group">
                   <label>Date of Birth</label>
-                  <Controller
-                    name={"DOB"}
-                    control={control}
-                    // defaultValue={new Date()}
-                    render={({ field: { onChange, value } }) => {
-                      return (
-                        <DatePicker
-                          wrapperclassNameName="datePicker"
-                          classNameName="form-control datepicker"
-                          onChange={onChange}
-                          selected={Date.parse(value)}
-                          yearDropdownItemNumber={100}
-                          // dateFormat="dd-MM-yyyy"
-                          scrollableYearDropdown={true}
-                          showYearDropdown
-                          showMonthDropdown
-                          placeholderText="Enter date"
-                          customInput={<CustomInput />}
-                        />
-                      );
-                    }}
-                  />
+                  <div className="input-group-icon">
+                    <input
+                      className="form-control input-box form-voyage-control"
+                      id="inputDateSix"
+                      type="date"
+                      {...register("DOB", {
+                        required: true,
+                      })}
+                    />
+
+                    <span className="nav-link-icon text-800 fs--1 input-box-icon">
+                      <i className="fas fa-calendar"></i>
+                    </span>
+                  </div>
                 </div>
               </div>
+
               <div class="col-lg-4 col-md-4">
                 <div class="form-group">
                   <label>Email</label>
@@ -564,26 +606,6 @@ const AddEditProfile = ({ query }) => {
                   />
                 </div>
               </div>
-              {/* <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Backup Email</label>
-                  <input
-                    type="email"
-                    class="form-control"
-                    placeholder="Backup email"
-                    {...register("FirstName")}
-                  />
-                </div>
-              </div> */}
-
-              {/* <input
-                    type="text"
-                    class="form-control"
-                    placeholder="Date of birth"
-                    id="datepicker"
-                    name="DOB"
-                    {...register("DOB")}
-                  /> */}
 
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
@@ -665,9 +687,7 @@ const AddEditProfile = ({ query }) => {
                   <select
                     class="form-select"
                     name="BloodGroup"
-                    {...register("BloodGroup", {
-                      required: true,
-                    })}
+                    {...register("BloodGroup")}
                   >
                     <option selected="1">Blood Group</option>
                     <option value="2">A+</option>
@@ -700,34 +720,6 @@ const AddEditProfile = ({ query }) => {
                     dataSource={options}
                     {...register("Language")}
                   />
-                  {/* <Typeahead
-                    id="ddLanguage"
-                    name="ddLanguage"
-                    onChange={setSelected}
-                    options={options}
-                    placeholder="Choose a language"
-                    selected={selected}
-                   
-                  /> 
-                  <select
-                    class="form-select"
-                    name="Language"
-                    {...register("Language", {
-                      required: true,
-                    })}
-                  >
-                    <option selected="0">Language</option>
-
-                    {options.map((item, index) => (
-                      <option
-                        key={index}
-                        //   selected={seldeliveryCity === item.isoCode}
-                        value={item.code}
-                      >
-                        {item.label}
-                      </option>
-                    ))}
-                  </select>*/}
                 </div>
               </div>
 
@@ -753,7 +745,7 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>State</label>
+                  <label>Region/State</label>
 
                   <select
                     name="State"
@@ -777,7 +769,7 @@ const AddEditProfile = ({ query }) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>City</label>
+                  <label>City/County/LGA</label>
 
                   <select
                     name="City"
@@ -786,7 +778,7 @@ const AddEditProfile = ({ query }) => {
                     id="City"
                     {...register("City")}
                   >
-                    <option value=""> Select City </option>
+                    <option value=""> Select City/County/LGA </option>
                     {city.map((item) => (
                       <option
                         key={item.isoCode}
@@ -826,15 +818,11 @@ const AddEditProfile = ({ query }) => {
                 </div>
               </div>
               <div class="col-lg-12 col-md-12">
-                <button
-                  type="submit"
-                  class="default-btn"
-                  disabled={createUser.loading}
-                >
-                  {createUser.loading && (
-                    <i className="fa fa-spinner fa-spin"></i>
-                  )}{" "}
-                  Save
+                <button type="submit" class="default-btn" disabled={loading}>
+                  {loading && <i className="fa fa-spinner fa-spin"></i>}{" "}
+                  {userData.length > 0
+                    ? "Update your profile"
+                    : " Save And Start Family Tree"}
                 </button>
               </div>
             </div>
@@ -844,11 +832,12 @@ const AddEditProfile = ({ query }) => {
         <div class="tab-pane fade" id="spouse" role="tabpanel">
           <CoupleForm
             sex={gender}
-            relationType={"sp"}
+            relationType={"0,spouse"}
             relationCategory={"spousal"}
             userId={userId}
             title={"Spousal Information"}
             dt={spouseData}
+            refId={userData[0]?.RelationId}
           />
         </div>
 
@@ -856,17 +845,19 @@ const AddEditProfile = ({ query }) => {
           <ChildForm
             title={"Children Information"}
             dt={childData}
-            relationType={"ch"}
+            relationType={"child"}
             userId={userId}
+            relationCategory={"children"}
           />
         </div>
 
         <div class="tab-pane fade" id="sibling" role="tabpanel">
           <ChildForm
             title={"Sibling Information"}
-            relationType={"sib"}
+            relationType={"sibling"}
             dt={sibData.length > 0 ? sibData : null}
             userId={userId}
+            relationCategory={"sibling"}
           />
         </div>
 
@@ -897,7 +888,8 @@ const AddEditProfile = ({ query }) => {
             userId={userId}
             formTypeName={"School Name"}
             formTypeControl={"SchoolName"}
-            relationType={"sch"}
+            formTypeControlHidden={"SchoolId"}
+            relationType={"school"}
           />
         </div>
 
@@ -906,10 +898,11 @@ const AddEditProfile = ({ query }) => {
             title={"Neigbourhood I lived"}
             dt={placeData}
             userId={userId}
-            labelAddress={"Neigbourhood Address"}
-            formTypeName={"Neigbourhood I lived"}
+            labelAddress={"Neigborhood Address"}
+            formTypeName={"Neigborhood I lived"}
             formTypeControl={"NeighborhoodName"}
-            relationType={"pl"}
+            formTypeControlHidden={"PlaceLivedId"}
+            relationType={"place"}
           />
         </div>
         <div class="tab-pane fade" id="work" role="tabpanel">
@@ -919,8 +912,9 @@ const AddEditProfile = ({ query }) => {
             userId={userId}
             labelAddress={"Address of Work Place"}
             formTypeName={"Name of Work Place"}
-            formTypeControl={"Neighbourhood"}
-            relationType={"wk"}
+            formTypeControl={"CompanyName"}
+            formTypeControlHidden={"EmployerId"}
+            relationType={"work"}
           />
         </div>
       </div>

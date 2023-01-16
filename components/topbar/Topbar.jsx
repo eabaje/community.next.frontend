@@ -22,7 +22,7 @@ export default function Topbar({ user }) {
   // } = useContext(GlobalContext);
   const {
     authDispatch,
-    authState: { isLoggedIn },
+    authState: { isLoggedIn, token },
   } = useContext(GlobalContext);
 
   const logOut = () => {
@@ -36,7 +36,7 @@ export default function Topbar({ user }) {
     data: friendData,
   } = useQuery(["friends"], () =>
     makeRequest
-      .get(`/relationship/getAllRelationship/friend/${user.UserId}`)
+      .get(`relationship/getAllRelationship/friend/${user.UserId}`)
       .then((res) => {
         return res.data;
       })
@@ -47,7 +47,7 @@ export default function Topbar({ user }) {
     error: messageError,
     data: messsageData,
   } = useQuery(["message"], () =>
-    makeRequest.get(`/mesage/getAllMessageSent/${user.UserId}`).then((res) => {
+    makeRequest.get(`mesage/getAllMessageSent/${user.UserId}`).then((res) => {
       return res.data;
     })
   );
@@ -60,13 +60,23 @@ export default function Topbar({ user }) {
     data: notifyData,
   } = useQuery(["notification"], () =>
     makeRequest
-      .get(`/event/getAllNotificationSent/${user.UserId}`)
+      .get(`event/getAllNotificationSent/${user.UserId}`)
       .then((res) => {
         return res.data;
       })
   );
 
-  useEffect(() => {}, []);
+  // const { isLoading, error, data } = useQuery(["comments"], () =>
+  //   makeRequest.get(`post/getAllPostComment/3`).then((res) => {
+  //     return res.data;
+  //   })
+  // );
+  useEffect(() => {
+    // !token && (window.location.href = "/home/");
+    // router.push(`/home/${res.data._id}`);
+  }, []);
+  //  console.log("getCommentsDataTopBar", data);
+  console.log("token", localStorage.getItem("token"));
   return (
     <>
       <div className="navbar-area">

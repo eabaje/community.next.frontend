@@ -35,7 +35,7 @@ import PaternalLink from "../relationLink/paternal";
 import { useRouter } from "next/router";
 import SuggestedGroupWidget from "../widget/suggestedGroup";
 import VideoWidget from "../widget/video";
-import AdvertWidget from "../widget/advert";
+import AdvertWidget from "../widget/advert.widget";
 import ProfileWidget from "../widget/profile";
 
 function LeftBar({ user }) {

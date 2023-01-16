@@ -46,9 +46,9 @@ export default function LoginForm({ changeShowForm }) {
       <div className="row">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="form-group">
-            <label>Email</label>
+            <label>Email/Phone No</label>
             <input
-              type="email"
+              type="text"
               name="Email"
               className="form-control"
               {...register("Email", {
@@ -70,10 +70,10 @@ export default function LoginForm({ changeShowForm }) {
           </div>
 
           <button type="submit" className="form-control-submit-button">
-            {loading && <i className="fa fa-spinner fa-spin"></i>} Signin
+            {loading && <i className="fa fa-spinner fa-spin"></i>} Sign in
           </button>
           <div className="or-text " style={{ textAlign: "center" }}>
-            <span>Or</span>
+            <span style={{ fontSize: "12px" }}>or</span>
           </div>
           <button
             type="button"

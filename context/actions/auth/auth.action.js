@@ -12,8 +12,66 @@ import Axios from "axios";
 import { API_URL } from "../../../constants";
 import { CONNECTION_ERROR } from "../../../constants/api";
 import axiosInstance from "../../../helpers/axiosInstance-2";
+import AuthService from "../../../services/auth.service";
 
-export const registerUser =
+export const registerUser = (form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: REGISTER_REQUEST,
+      payload: form,
+    });
+
+    const data = await AuthService.register(form);
+
+    dispatch({
+      type: REGISTER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: REGISTER_FAIL, payload: message });
+  }
+};
+
+export const signin = (form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: LOGIN_REQUEST,
+      payload: form,
+    });
+
+    const { data } = await AuthService.login(form);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: LOGIN_FAIL, payload: message });
+  }
+};
+
+export const passwordReset = (form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: LOGIN_REQUEST,
+      payload: form,
+    });
+
+    const { data } = await AuthService.resetPassword(form);
+
+    dispatch({
+      type: LOGIN_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: LOGIN_FAIL, payload: message });
+  }
+};
+
+export const registerUser1 =
   (form) => (dispatch) => (onSuccess) => (onError) => {
     dispatch({ type: REGISTER_REQUEST, payload: form });
 
@@ -29,8 +87,8 @@ export const registerUser =
       })
 
       .catch((err) => {
-        const message = err.response
-          ? err.response.data.message
+        const message = error.response
+          ? error.response.data.message
           : CONNECTION_ERROR;
 
         dispatch({
@@ -55,7 +113,7 @@ export const signin3 = (form) => {
     return error;
   }
 };
-export const signin = (form) => (onSuccess) => (onError) => {
+export const signin1 = (form) => (onSuccess) => (onError) => {
   const requestPayload = {
     Email: form.Email,
     Password: form.Password,
@@ -68,8 +126,8 @@ export const signin = (form) => (onSuccess) => (onError) => {
       onSuccess(res.data);
     })
     .catch((err) => {
-      const message = err.response
-        ? err.response.data.message
+      const message = error.response
+        ? error.response.data.message
         : CONNECTION_ERROR;
 
       onError(message);
@@ -94,9 +152,9 @@ export const signin2 = (form) => (dispatch) => (onSuccess) => (onError) => {
       console.log(`res`, res);
       onSuccess(res.data);
     })
-    .catch((err) => {
-      const message = err.response
-        ? err.response.data.message
+    .catch((error) => {
+      const message = error.response
+        ? error.response.data.message
         : CONNECTION_ERROR;
 
       dispatch({
@@ -108,7 +166,7 @@ export const signin2 = (form) => (dispatch) => (onSuccess) => (onError) => {
     });
 };
 
-export const passwordReset =
+export const passwordReset2 =
   (form) => (dispatch) => (onSuccess) => (onError) => {
     const requestPayload = {
       Email: form.Email,
@@ -129,8 +187,8 @@ export const passwordReset =
         onSuccess(res.data);
       })
       .catch((err) => {
-        const message = err.response
-          ? err.response.data.message
+        const message = error.response
+          ? error.response.data.message
           : CONNECTION_ERROR;
 
         dispatch({

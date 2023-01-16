@@ -39,150 +39,151 @@ import {
 } from "../../../constants/actionTypes";
 import { CONNECTION_ERROR } from "../../../constants/api";
 import axios from "../../../helpers/axiosInstance";
+import UserService from "../../../services/user.service";
 
-export const listUsers = () => (dispatch) => (onSuccess) => (onError) => {
-  dispatch({
-    type: GET_USERS_REQUEST,
-  });
-  axios
-    .get(`/user/findAll/`)
-    .then((res) => {
-      dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
-      onSuccess(res.data);
-    })
-
-    .catch((err) => {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
-      dispatch({ type: GET_USERS_FAIL, payload: message });
-      onError(message);
-    });
-};
-
-export const listUserByCriteria = (url, params) => async (dispatch) => {
-  dispatch({
-    type: GET_USERS_REQUEST,
-  });
+export const getUsers = () => async (dispatch) => {
   try {
-    const { data } = await axios.get(`${url}${params}`);
-    dispatch({ type: GET_USERS_SUCCESS, payload: data });
-  } catch (err) {
-    dispatch({ type: GET_USERS_FAIL, payload: err.message });
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
+
+    const { data } = await UserService.getAllUser();
+
+    dispatch({
+      type: GET_USERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USERS_FAIL, payload: message });
   }
 };
 
-export const listUsersByUserId =
-  (userId) => (dispatch) => (onSuccess) => (onError) => {
+export const getUser = (userId) => async (dispatch) => {
+  try {
     dispatch({
       type: GET_USER_REQUEST,
     });
-    axios
-      .get(`/user/findOne/${userId}`)
-      .then((res) => {
-        dispatch({ type: GET_USER_SUCCESS, payload: res.data });
-        onSuccess(res.data);
-      })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
-        dispatch({ type: GET_USER_FAIL, payload: message });
-        onError(message);
-      });
-  };
+    const { data } = await UserService.getUser(userId);
 
-export const listUsersByName = (name) => async (dispatch) => {
-  dispatch({
-    type: GET_USERS_REQUEST,
-  });
-  try {
-    const { res } = await axios.get(`/user/findAllBySearch/${name}`);
-    dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: GET_USERS_FAIL, payload: err.message });
-  }
-};
-
-export const listUsersByDate = (fromDate, endDate) => async (dispatch) => {
-  dispatch({
-    type: GET_USERS_REQUEST,
-  });
-  try {
-    const { res } = await axios.get(
-      `/user/findAllProfilesByDate/${fromDate}/${endDate}/}`
-    );
-    dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
-  } catch (err) {
-    dispatch({ type: GET_USERS_FAIL, payload: err.message });
-  }
-};
-
-export const createUser = (form) => (dispatch) => (onSuccess) => (onError) => {
-  const requestPayload = {
-    CompanyId: form.CompanyId || "",
-    FirstName: form.FirstName || "",
-    LastName: form.LastName || "",
-    FullName: form.FirstName + " " + form.LastName,
-    Email: form.Email || "",
-    Phone: form.Phone || "",
-    Address: form.Address || "",
-    City: form.City || "",
-    Country: form.Country || "",
-    UserPicUrl: form.UserPicUrl || null,
-  };
-
-  dispatch({ type: CREATE_USER_REQUEST });
-
-  axios
-    .post(`/user/create/`, form)
-    .then((res) => {
-      dispatch({
-        type: CREATE_USER_SUCCESS,
-        payload: res.data,
-      });
-      onSuccess(res.data);
-    })
-
-    .catch((err) => {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
-      dispatch({ type: CREATE_USER_FAIL, payload: message });
-      onError(message);
+    dispatch({
+      type: GET_USER_SUCCESS,
+      payload: data,
     });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USER_FAIL, payload: message });
+  }
 };
 
-export const editUser =
-  (form, userId) => (dispatch) => (onSuccess) => (onError) => {
-    const requestPayload = {
-      UserId: form.UserId || "",
-      CompanyId: form.CompanyId || "",
-      FirstName: form.FirstName || "",
-      LastName: form.LastName || "",
-      FullName: form.FirstName + " " + form.LastName,
-      Email: form.Email || "",
-      Phone: form.Phone || "",
-      Address: form.Address || "",
-      City: form.City || "",
-      Country: form.Country || "",
-      UserPicUrl: form.UserPicUrl || null,
-    };
+export const getUserByName = (name) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
 
-    dispatch({ type: EDIT_USER_REQUEST });
+    const { data } = await UserService.getUserByName(name);
 
-    axios
-      .put(`/user/update/`, form)
+    dispatch({
+      type: GET_USERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USERS_FAIL, payload: message });
+  }
+};
 
-      .then((res) => {
-        dispatch({
-          type: EDIT_USER_SUCCESS,
-          payload: res.data,
-        });
-        onSuccess(res.data);
-      })
+export const getAllUserByDate = (fromDate, toDate) => async (dispatch) => {
+  try {
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
-        dispatch({ type: EDIT_USER_FAIL, payload: message });
-        onError(message);
-      });
-  };
+    const { data } = await UserService.getAllUserByDate(fromDate, toDate);
+
+    dispatch({
+      type: GET_USERS_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USERS_FAIL, payload: message });
+  }
+};
+
+export const addUser = (form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CREATE_USER_REQUEST,
+    });
+
+    const { data } = await UserService.addUser(form);
+
+    dispatch({
+      type: CREATE_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: CREATE_USER_FAIL, payload: message });
+  }
+};
+
+export const editUser = (id, form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: EDIT_USER_REQUEST,
+    });
+
+    const { data } = await UserService.updateUser(id, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
+
+export const updateRole = (id, form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: EDIT_USER_REQUEST,
+    });
+
+    const { data } = await UserService.updateRole(id, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
+
+export const updateUserRole = (id, form) => async (dispatch) => {
+  try {
+    dispatch({
+      type: EDIT_USER_REQUEST,
+    });
+
+    const { data } = await UserService.updateUserRole(id, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
+  }
+};
 
 export const resetPassword =
   (form) => (dispatch) => (onSuccess) => (onError) => {
@@ -199,8 +200,8 @@ export const resetPassword =
         onSuccess(res.data);
       })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: CREATE_USER_FAIL, payload: message });
         onError(message);
       });
@@ -241,8 +242,8 @@ export const UploadUserFile =
 
         onSuccess(res.data);
       })
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
 
         dispatch({
           type: CREATE_USER_FAIL,
@@ -267,31 +268,15 @@ export const deleteUser = (userId) => async (dispatch) => {
       type: DELETE_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: DELETE_USER_FAIL, payload: message });
   }
 };
 
-export const UpdateUserProfile = (form) => async (dispatch) => {
-  dispatch({ type: EDIT_USER_REQUEST });
-
-  try {
-    const res = await axios.put(`/user/updateUser/${form.UserId}`, form);
-    console.log("res.data", res.data);
-    dispatch({
-      type: EDIT_USER_SUCCESS,
-      payload: res.data,
-    });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
-
-    dispatch({ type: EDIT_USER_FAIL, payload: message });
-  }
-};
-
 export const AddRelationInfo = (form) => async (dispatch) => {
+  console.log("formvariable", form);
   dispatch({ type: CREATE_USER_REQUEST });
 
   try {
@@ -301,10 +286,27 @@ export const AddRelationInfo = (form) => async (dispatch) => {
       type: CREATE_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: CREATE_USER_FAIL, payload: message });
+  }
+};
+
+export const UpdateRelationInfo = (form) => async (dispatch) => {
+  dispatch({ type: EDIT_USER_REQUEST });
+
+  try {
+    const res = await axios.post(`/user/updateRelation`, form);
+
+    dispatch({
+      type: EDIT_USER_SUCCESS,
+      payload: res.data,
+    });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+
+    dispatch({ type: EDIT_USER_FAIL, payload: message });
   }
 };
 
@@ -313,8 +315,8 @@ export const AddRelationInfo = (form) => async (dispatch) => {
 //     const res = await axios.post(`/user/addRelation`, form);
 
 //     return res.data;
-//   } catch (err) {
-//     const message = err.response ? err.response.data : CONNECTION_ERROR;
+//   } catch (error) {
+//     const message = error.response ? error.response.data : CONNECTION_ERROR;
 
 //     return message;
 //   }
@@ -327,30 +329,39 @@ export const AddRelationInfo2 = (form) => (onSuccess) => (onError) => {
       onSuccess(res.data);
     })
 
-    .catch((err) => {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    .catch((error) => {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
+
+      onError(message);
+    });
+};
+export const SearchRelationInfo = (form) => (onSuccess) => (onError) => {
+  axios
+    .post(`/user/getAllRelationByCriteria`, form)
+    .then((res) => {
+      onSuccess(res.data);
+    })
+
+    .catch((error) => {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
 
       onError(message);
     });
 };
 
-export const GetAllRelationInfo =
-  (userId, relationType) => async (dispatch) => {
-    dispatch({
-      type: GET_USERS_REQUEST,
-    });
-    try {
-      const res = await axios.get(
-        `/user/getAllRelation/${userId}/${relationType}`
-      );
+export const GetAllRelationInfo = (userId) => async (dispatch) => {
+  dispatch({
+    type: GET_USERS_REQUEST,
+  });
+  try {
+    const res = await axios.get(`user/getAllRelation/${userId}`);
 
-      dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
-      console.log("getRelationData", res.data);
-    } catch (err) {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
-      dispatch({ type: GET_USERS_FAIL, payload: message });
-    }
-  };
+    dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
+    dispatch({ type: GET_USERS_FAIL, payload: message });
+  }
+};
 
 export const GetAllRelationInfo2 = async (userId, relationType) => {
   try {
@@ -358,11 +369,60 @@ export const GetAllRelationInfo2 = async (userId, relationType) => {
       `/user/getAllRelation/${userId}/${relationType}`
     );
     return res.data;
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
     return message;
   }
 };
+export const GetAllRelationByCategory =
+  (userId, categoryType) => async (dispatch) => {
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
+    try {
+      const res = await axios.get(
+        `/user/getAllRelationByCategory/${userId}/${categoryType}`
+      );
+      console.log("getRelationData", res.data);
+      dispatch({ type: GET_USERS_SUCCESS, payload: res.data.data });
+    } catch (error) {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
+
+      dispatch({ type: GET_USERS_FAIL, payload: message });
+    }
+  };
+
+export const GetAllRelationByCategory2 =
+  (userId, categoryType) => (onSuccess) => (onError) => {
+    axios
+      .get(`/user/getAllRelationByCategory/${userId}/${categoryType}`)
+      .then((res) => {
+        onSuccess(res.data);
+      })
+
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
+
+        onError(message);
+      });
+  };
+export const GetAllRelationByRelationType =
+  (userId, relationType) => async (dispatch) => {
+    dispatch({
+      type: GET_USERS_REQUEST,
+    });
+    try {
+      const res = await axios.get(
+        `/user/getAllRelationByRelationType/${userId}/${relationType}`
+      );
+      console.log("getRelationData", res.data);
+      dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
+    } catch (error) {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
+
+      dispatch({ type: GET_USERS_FAIL, payload: message });
+    }
+  };
 
 export const GetAllRelationByLevel = async (userId, level, relationType) => {
   try {
@@ -370,8 +430,8 @@ export const GetAllRelationByLevel = async (userId, level, relationType) => {
       `/user/getAllRelationByLevel/${userId}/${level}/${relationType}`
     );
     return res.data;
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
     return message;
   }
 };
@@ -385,8 +445,8 @@ export const GetRelationInfo = (userId, relationType) => async (dispatch) => {
       `/user/getRelation/${userId}/${relationType}`
     );
     dispatch({ type: GET_USER_SUCCESS, payload: res.data });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
     dispatch({ type: GET_USER_FAIL, payload: message });
   }
 };
@@ -401,8 +461,8 @@ export const DeleteRelation = (relationId) => async (dispatch) => {
       type: DELETE_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: DELETE_USER_FAIL, payload: message });
   }
@@ -418,8 +478,8 @@ export const AddChildSibling = (form) => async (dispatch) => {
       type: CREATE_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: CREATE_USER_FAIL, payload: message });
   }
@@ -430,8 +490,8 @@ export const AddChildSibling2 = async (form) => {
     const res = await axios.post(`/user/addChildOrSibling`, form);
 
     return res.data;
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     return message;
   }
@@ -447,8 +507,8 @@ export const GetAllSchoolWorkInfo =
         `/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`
       );
       dispatch({ type: GET_USERS_SUCCESS, payload: res.data });
-    } catch (err) {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    } catch (error) {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
       dispatch({ type: GET_USERS_FAIL, payload: message });
     }
   };
@@ -459,8 +519,8 @@ export const GetAllSchoolWorkAction = async (userId, relationType) => {
       `/user/getAllSchoolPlaceWork/${userId}/${relationType}/}`
     );
     return res.data;
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
   }
 };
 
@@ -473,47 +533,28 @@ export const GetSchoolWorkInfo = (Id, relationType) => async (dispatch) => {
       `/user/getSchoolPlaceWork/${Id}/${relationType}/}`
     );
     dispatch({ type: GET_USER_SUCCESS, payload: res.data });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
     dispatch({ type: GET_USER_FAIL, payload: message });
   }
 };
 
 export const AddSchoolPlaceWork = (form) => async (dispatch) => {
-  const requestPayload = {
-    ProfileId: userId,
-  };
+  console.log(`data`, form);
 
   dispatch({ type: CREATE_USER_REQUEST });
 
   try {
-    const { res } = await axios.post(`/user/addSchoolPlaceWork`, form);
+    const res = await axios.post(`/user/addSchoolplacework`, form);
 
     dispatch({
       type: CREATE_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: CREATE_USER_FAIL, payload: message });
-  }
-};
-
-export const UpdateRelationInfo = (form) => async (dispatch) => {
-  dispatch({ type: EDIT_USER_REQUEST });
-
-  try {
-    const { res } = await axios.put(`/user/updateRelation`, form);
-
-    dispatch({
-      type: EDIT_USER_SUCCESS,
-      payload: res.data,
-    });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
-
-    dispatch({ type: EDIT_USER_FAIL, payload: message });
   }
 };
 
@@ -527,8 +568,8 @@ export const UpdateChildSibling = (form) => async (dispatch) => {
       type: EDIT_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: EDIT_USER_FAIL, payload: message });
   }
@@ -544,34 +585,12 @@ export const UpdateSchoolPlaceWork = (form) => async (dispatch) => {
       type: EDIT_USER_SUCCESS,
       payload: res.data,
     });
-  } catch (err) {
-    const message = err.response ? err.response.data : CONNECTION_ERROR;
+  } catch (error) {
+    const message = error.response ? error.response.data : CONNECTION_ERROR;
 
     dispatch({ type: EDIT_USER_FAIL, payload: message });
   }
 };
-
-export const updateUserRole =
-  (form) => (dispatch) => (onSuccess) => (onError) => {
-    dispatch({ type: EDIT_USER_REQUEST });
-
-    axios
-      .put(`/user/updateUserRole/${form.UserId}`, form)
-
-      .then((res) => {
-        dispatch({
-          type: EDIT_USER_SUCCESS,
-          payload: res.data,
-        });
-        onSuccess(res.data);
-      })
-
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
-        dispatch({ type: EDIT_USER_FAIL, payload: message });
-        onError(message);
-      });
-  };
 
 //Section  User Subscription
 
@@ -591,8 +610,8 @@ export const listUserSubscriptions =
 
         onSuccess(res.data);
       })
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: GET_USER_SUBSCRIPTIONS_FAIL, payload: message });
         onError(message);
       });
@@ -611,8 +630,8 @@ export const listUserSubscriptionByUserId =
         onSuccess(res.data);
         //  console.log(`res.data`, res.data);
       })
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: GET_USER_SUBSCRIPTIONS_FAIL, payload: message });
         onError(message);
       });
@@ -628,8 +647,8 @@ export const listUserSubscriptionByDate =
         `/user/findAllUserSubscriptionsByDate/${fromDate}/${endDate}/}`
       );
       dispatch({ type: GET_USER_SUBSCRIPTIONS_SUCCESS, payload: res.data });
-    } catch (err) {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    } catch (error) {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
       dispatch({ type: GET_USER_SUBSCRIPTIONS_FAIL, payload: message });
     }
   };
@@ -644,8 +663,8 @@ export const listUserSubscriptionByStartDate =
         `/user/findAllUserSubscriptionsByStartDate/${fromDate}/${endDate}/}`
       );
       dispatch({ type: GET_USER_SUBSCRIPTIONS_SUCCESS, payload: res.data });
-    } catch (err) {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    } catch (error) {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
       dispatch({ type: GET_USER_SUBSCRIPTIONS_FAIL, payload: message });
     }
   };
@@ -660,8 +679,8 @@ export const listUserSubscriptionByEndDate =
         `/user/findAllUserSubscriptionsByEndDate/${fromDate}/${endDate}`
       );
       dispatch({ type: GET_USER_SUBSCRIPTIONS_SUCCESS, payload: res.data });
-    } catch (err) {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    } catch (error) {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
       dispatch({ type: GET_USERS_FAIL, payload: message });
     }
   };
@@ -689,8 +708,8 @@ export const subcribeUser =
         onSuccess(res.data);
       })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: CREATE_USER_SUBSCRIPTION_FAIL, payload: message });
         onError(message);
       });
@@ -720,8 +739,8 @@ export const updateUserSubscription =
         onSuccess(res.data);
       })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: EDIT_USER_SUBSCRIPTION_FAIL, payload: message });
         onError(message);
       });
@@ -750,8 +769,8 @@ export const upgradeUserSubscription =
         });
         onSuccess(res.data);
       })
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: UPGRADE_USER_SUBSCRIPTION_FAIL, payload: message });
         onError(message);
       });
@@ -771,8 +790,8 @@ export const listCompanys = () => (dispatch) => (onSuccess) => (onError) => {
       onSuccess(res.data);
     })
 
-    .catch((err) => {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    .catch((error) => {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
       dispatch({ type: GET_COMPANYS_FAIL, payload: message });
       onError(message);
     });
@@ -790,8 +809,8 @@ export const listCompanyByCompanyId =
         onSuccess(res.data);
       })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: GET_COMPANYS_FAIL, payload: message });
         onError(message);
       });
@@ -809,8 +828,8 @@ export const listCompanyByDate =
         onSuccess(res.data);
       })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: GET_COMPANYS_FAIL, payload: message });
         onError(message);
       });
@@ -837,8 +856,8 @@ export const addCompany = (form) => (dispatch) => (onSuccess) => (onError) => {
       onSuccess(res.data);
     })
 
-    .catch((err) => {
-      const message = err.response ? err.response.data : CONNECTION_ERROR;
+    .catch((error) => {
+      const message = error.response ? error.response.data : CONNECTION_ERROR;
       dispatch({ type: CREATE_COMPANY_FAIL, payload: message });
       onError(message);
     });
@@ -867,8 +886,8 @@ export const updateCompany =
         onSuccess(res.data);
       })
 
-      .catch((err) => {
-        const message = err.response ? err.response.data : CONNECTION_ERROR;
+      .catch((error) => {
+        const message = error.response ? error.response.data : CONNECTION_ERROR;
         dispatch({ type: EDIT_COMPANY_FAIL, payload: message });
         onError(message);
       });

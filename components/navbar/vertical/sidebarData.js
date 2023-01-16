@@ -31,12 +31,18 @@ const menuItemsPublic = (user) => [
   },
 
   {
-    title: "Classmates",
+    title: "Relationship Check",
+    path: `/relation-check/?userId=${user?.UserId}`,
+    icon: "fa fa-female",
+  },
+
+  {
+    title: "Schoolmates",
     path: `/classmate/?userId=${user?.UserId}`,
     icon: "fa fa-graduation-cap",
   },
   {
-    title: "Colleagues",
+    title: "Workmates",
     path: `/colleague/?userId=${user?.UserId}`,
     icon: "fa fa-building-user",
   },

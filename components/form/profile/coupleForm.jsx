@@ -1,10 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 //import { IMG_URL } from "../../../constants";
 import { useForm, Controller } from "react-hook-form";
-import { Typeahead } from "react-bootstrap-typeahead";
-import "react-bootstrap-typeahead/css/Typeahead.css";
 import { Country, State, City } from "country-state-city";
-import { getLanguageNames } from "language-list";
 import options from "./data";
 import { fetchData, fetchDataAll } from "../../../helpers/query";
 
@@ -33,7 +30,7 @@ import AutoSuggestInput from "../../formInput/autoSuggest.text";
 import { selectProps } from "../../../helpers/selectProps";
 
 const CoupleForm = (props) => {
-  const { userId, relationType, dt } = props;
+  const { userId, relationType, dt, refId } = props;
 
   // const isSingleMode = !userId;
 
@@ -43,12 +40,14 @@ const CoupleForm = (props) => {
   // const isAddMode = !userId;
   const [selected, setSelected] = useState([]);
   const [IsEdit, setEdit] = useState(false);
-  const [country, setCountry] = useState("");
+  const [country, setCountry] = useState([]);
   // const [companyId, setcompanyId] = useState("");
   const [email, setEmail] = useState({});
   const [countries, setCountries] = useState([]);
   const [Region, setRegion] = useState([]);
+  const [Region2, setRegion2] = useState([]);
   const [city, setCity] = useState([]);
+  const [city2, setCity2] = useState([]);
   const [picFile, setpicFile] = useState(null);
   const [docFile, setdocFile] = useState(null);
   const [selCity, setselCity] = useState("");
@@ -57,13 +56,10 @@ const CoupleForm = (props) => {
   const [value, setValues] = useState("");
   const [visibilityImage, setVisibilityImage] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
-  const [showBilling, setShowBilling] = useState(false);
-  const [showCompany, setShowCompany] = useState(false);
-  const [showReference, setShowReference] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [selpickUpRegion, setselpickUpRegion] = useState("");
-  const [pickUpRegion, setPickUpRegion] = useState([]);
+
   const [loading, setLoading] = useState(false);
+  const [showRegion, setShowRegion] = useState();
+  const [showCity, setShowCity] = useState();
 
   // const [showProfile, setShowProfile] = useState(false);
 
@@ -72,7 +68,17 @@ const CoupleForm = (props) => {
 
   // ****************Page Functions*****************
 
-  const addTableRows = (objItemDt = null) => {
+  const addTableRows = () => {
+    const rowsInput = {
+      FirstName: "",
+      LastName: "",
+      MiddleName: "",
+      NickName: "",
+    };
+    setRowsData([...rowsData, rowsInput]);
+  };
+
+  const loadTableRows = (objItemDt = null) => {
     const rowsInput = {
       FirstName: "",
       LastName: "",
@@ -122,6 +128,17 @@ const CoupleForm = (props) => {
       ];
       objItemDt?.map((item, index) => {
         setRowsData([...newChildArray]);
+
+        Region.push(
+          State.getStatesOfCountry(item["Relation_Detail"]["Country"])
+        );
+
+        city.push(
+          City.getCitiesOfState(
+            item["Relation_Detail"]["Country"],
+            item["Relation_Detail"]["State"]
+          )
+        );
         fields.forEach((field) =>
           setValue(`objItem[${index}].${field}`, item[field])
         );
@@ -132,30 +149,10 @@ const CoupleForm = (props) => {
             item["Relation_Detail"][field1]
           )
         );
-
-        setRegion(
-          (Region) =>
-            (Region = State.getStatesOfCountry(
-              item["Relation_Detail"]["Country"]
-            ))
-        );
-        // selectCity(user["City"]);
-        setselRegion(item["Relation_Detail"]["State"]);
-
-        setCity(
-          (city) =>
-            (city = City.getCitiesOfState(
-              item["Relation_Detail"]["Country"],
-              item["Relation_Detail"]["State"]
-            ))
-        );
-
-        setselCity(item["Relation_Detail"]["City"]);
       });
       //}
     } else {
-      setRowsData([...rowsData, {}]);
-      setRowsData([...rowsData, rowsInput]);
+      setRowsData([...rowsData]);
     }
     // objItemData
     //   ? setRowsData([...rowsData, objItemData])
@@ -168,15 +165,24 @@ const CoupleForm = (props) => {
     setRowsData(rows);
   };
 
-  const selectCountry = async (e) => {
-    setCountry((country) => e.target.value);
+  const selectCountry = async (e, i) => {
+    country[0] = e.target.value;
 
-    setRegion((Region = State.getStatesOfCountry(e.target.value)));
+    setShowRegion(i);
+    setRegion2((Region2 = State.getStatesOfCountry(e.target.value)));
   };
-  const selectCity = async (e) => {
+  const selectCity = async (e, i) => {
     // setPickUpRegion((pickUpRegion) => e.target.value);
 
-    setCity((city) => (city = City.getCitiesOfState(country, e.target.value)));
+    setShowCity(i);
+    console.log(
+      "Cities",
+      `${country} ${e.target.value}${City.getCitiesOfState(
+        country,
+        e.target.value
+      )}`
+    );
+    setCity2(City.getCitiesOfState(country, e.target.value));
   };
   const popupCloseHandlerImage = (e) => {
     setVisibilityImage(e);
@@ -272,7 +278,7 @@ const CoupleForm = (props) => {
   useEffect(() => {
     setCountries((countries) => (countries = Country.getAllCountries()));
 
-    addTableRows(dt);
+    loadTableRows(dt);
 
     // GetAllRelationInfo(userId, relationType)(userDispatch);
     // coupleUsers?.data?.data?.length === 1 &&
@@ -284,7 +290,6 @@ const CoupleForm = (props) => {
     setLoading(true);
     AddRelationInfo2(formdata)((res) => {
       setLoading(false);
-      alert(res?.message);
 
       toast.success(res?.message);
     })((e) => {
@@ -318,7 +323,7 @@ const CoupleForm = (props) => {
     );
   });
   CustomInput.displayName = "CustomInput";
-  // console.log("ShowProfile", imgUrl);
+  console.log("ShowCity", city2);
   return (
     <>
       <form class="account-setting-form" onSubmit={handleSubmit(onSubmit)}>
@@ -337,6 +342,13 @@ const CoupleForm = (props) => {
           value={"0"}
           className="form-control"
           {...register("Level")}
+        />
+        <input
+          type="hidden"
+          name="RefId"
+          value={refId}
+          className="form-control"
+          {...register("RefId")}
         />
 
         <div class="row">
@@ -396,7 +408,13 @@ const CoupleForm = (props) => {
                 className="form-control"
                 {...register(`objItem[${index}].RelationType`)}
               />
-
+              {/* <input
+                type="hidden"
+                name={`objItem[${index}].RefId`}
+                value={refId}
+                className="form-control"
+                {...register(`objItem[${index}].RefId`)}
+              /> */}
               <input
                 type="hidden"
                 name={`objItem[${index}].RelationId`}
@@ -427,6 +445,7 @@ const CoupleForm = (props) => {
                     placeholder="First name"
                     name={`objItem[${index}].FirstName`}
                     {...register(`objItem[${index}].FirstName`)}
+                    required
                   />
                 </div>
               </div>
@@ -451,13 +470,27 @@ const CoupleForm = (props) => {
                     placeholder="Last name"
                     name={`objItem[${index}].LastName`}
                     {...register(`objItem[${index}].LastName`)}
+                    required
+                  />
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>NickName</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    placeholder="NickName"
+                    id={`objItem[${index}].NickName`}
+                    name={`objItem[${index}].NickName`}
+                    {...register(`objItem[${index}].NickName`)}
                   />
                 </div>
               </div>
               {props.sex === "female" && (
                 <div class="col-lg-6 col-md-6">
                   <div class="form-group">
-                    <label>Maiden Name</label>
+                    <label>Previous Name</label>
                     <input
                       type="text"
                       class="form-control"
@@ -474,7 +507,9 @@ const CoupleForm = (props) => {
                   <select
                     class="form-select"
                     name={`objItem[${index}].Age`}
-                    {...register(`objItem[${index}].Age`)}
+                    {...register(`objItem[${index}].Age`, {
+                      required: true,
+                    })}
                   >
                     <option value=""></option>
                     <option value="<18">{"<18"}</option>
@@ -605,9 +640,7 @@ const CoupleForm = (props) => {
                   <select
                     class="form-select"
                     name="BloodGroup"
-                    {...register("BloodGroup", {
-                      required: true,
-                    })}
+                    {...register("BloodGroup")}
                   >
                     <option selected="1">Blood Group</option>
                     <option value="2">A+</option>
@@ -730,33 +763,13 @@ const CoupleForm = (props) => {
                     name={`objItem[${index}].Country`}
                     className="form-select"
                     {...register(`objItem[${index}].Country`)}
-                    onChange={selectCountry}
+                    onChange={(e) => selectCountry(e, index)}
                   >
                     <option value="">Select Country</option>
                     {countries.map((item) => (
-                      <option key={item.isoCode} value={item.isoCode}>
-                        {item.name}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-              </div>
-              <div class="col-lg-6 col-md-6">
-                <div class="form-group">
-                  <label>Father's State of Origin</label>
-
-                  <select
-                    name={`objItem[${index}].State`}
-                    className="form-select"
-                    id="State"
-                    {...register(`objItem[${index}].State`)}
-                    onChange={selectCity}
-                  >
-                    <option value=""> Select Region/State </option>
-                    {Region.map((item) => (
                       <option
                         key={item.isoCode}
-                        selected={selRegion === item.isoCode}
+                        selected={objItem?.Country === item.isoCode}
                         value={item.isoCode}
                       >
                         {item.name}
@@ -767,7 +780,50 @@ const CoupleForm = (props) => {
               </div>
               <div class="col-lg-6 col-md-6">
                 <div class="form-group">
-                  <label>Father's LGA/City</label>
+                  <label>Father's Region/State of Origin</label>
+
+                  <select
+                    className="form-select"
+                    id={`objItem[${index}].State`}
+                    name={`objItem[${index}].State`}
+                    {...register(`objItem[${index}].State`, {
+                      required: true,
+                    })}
+                    onChange={(e) => selectCity(e, index)}
+                  >
+                    <option value=""> Select Region/State </option>
+
+                    {showRegion === index ? (
+                      <>
+                        {Region2?.map((item) => (
+                          <option
+                            key={item.isoCode}
+                            selected={objItem?.City === item.name}
+                            value={item.name}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        {Region[index]?.map((item, i) => (
+                          <option
+                            key={i}
+                            selected={objItem?.State === item.isoCode}
+                            value={item.isoCode}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                      </>
+                    )}
+                  </select>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6">
+                <div class="form-group">
+                  <label>Father's LGA/County</label>
 
                   <select
                     name={`objItem[${index}].City`}
@@ -776,16 +832,33 @@ const CoupleForm = (props) => {
                     id="City"
                     {...register(`objItem[${index}].City`)}
                   >
-                    <option value=""> Select LGA/City </option>
-                    {city.map((item) => (
-                      <option
-                        key={item.isoCode}
-                        selected={selCity === item.name}
-                        value={item.isoCode}
-                      >
-                        {item.name}
-                      </option>
-                    ))}
+                    {showCity === index ? (
+                      <>
+                        <option value=""> Select LGA/County</option>
+                        {city2?.map((item) => (
+                          <option
+                            key={item.isoCode}
+                            selected={objItem?.City === item.name}
+                            value={item.name}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                      </>
+                    ) : (
+                      <>
+                        <option value=""> Select LGA/County</option>
+                        {city[index]?.map((item) => (
+                          <option
+                            key={item.isoCode}
+                            selected={objItem?.City === item.name}
+                            value={item.name}
+                          >
+                            {item.name}
+                          </option>
+                        ))}
+                      </>
+                    )}
                   </select>
                 </div>
               </div>

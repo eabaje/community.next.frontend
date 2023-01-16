@@ -31,12 +31,12 @@ const sideBarMenuItems = (user) => [
   },
 
   {
-    title: "Classmates",
+    title: "Schoolmates",
     path: `/classmate/?userId=${user?.UserId}`,
     icon: "fa fa-graduation-cap",
   },
   {
-    title: "Colleagues",
+    title: "Workmates",
     path: `/colleague/?userId=${user?.UserId}`,
     icon: "fa fa-building-user",
   },
