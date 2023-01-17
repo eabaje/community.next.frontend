@@ -18,14 +18,16 @@ export const RELATION_TYPE_2 = (dt) => [
   dt?.filter((m) => m.Level === "-2").length > 0 && (
     <>
       <option key={"-2,child"} value={"-2,child"}>
-        {"My Grand Child"}
+        {"Grand Child"}
       </option>
     </>
   ),
   dt?.filter((m) => m.Level === "-1").length > 0 && (
-    <option key={"-1,child"} value={"-1,child"}>
-      {"My Child"}
-    </option>
+    <>
+      <option key={"-1,child"} value={"-1,child"}>
+        {"Child"}
+      </option>
+    </>
   ),
   dt?.filter((m) => m.Level === "0").length > 0 && (
     <>
@@ -36,19 +38,28 @@ export const RELATION_TYPE_2 = (dt) => [
   ),
 
   dt?.filter((m) => m.Level === "1").length > 0 && (
-    <option key={"1,parent"} value={"1,parent"}>
-      {"Parent"}
-    </option>
+    <>
+      <option key={"0,child"} value={"0,parent"}>
+        {"My Siblings"}
+      </option>
+      <option key={"1,parent"} value={"1,parent"}>
+        {"Parent"}
+      </option>
+    </>
   ),
   dt?.filter((m) => m.Level === "2").length > 0 && (
-    <option key={"2,parent"} value={"2,parent"}>
-      {"Grand Parent"}
-    </option>
+    <>
+      <option key={"2,parent"} value={"2,parent"}>
+        {"Grand Parent"}
+      </option>
+    </>
   ),
   dt?.filter((m) => m.Level === "3").length > 0 && (
-    <option key={"3,parent"} value={"3,parent"}>
-      {"Great Grand Parent"}
-    </option>
+    <>
+      <option key={"3,parent"} value={"3,parent"}>
+        {"Great Grand Parent"}
+      </option>
+    </>
   ),
   // { value: "1,child", text: "Cousin" },
   // { value: "1,parent", text: "Parent" },
